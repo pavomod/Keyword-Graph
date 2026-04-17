@@ -11,6 +11,7 @@ from datasets import load_from_disk
 from peft import LoraConfig, PeftModel, TaskType, get_peft_model
 from src.finetune.metrics import keyword_f1, mean_keyword_f1
 from transformers import (
+    AutoConfig,
     DataCollatorForSeq2Seq,
     Seq2SeqTrainer,
     Seq2SeqTrainingArguments,
@@ -43,8 +44,9 @@ def _compute_test_keyword_f1(
 
 def build_tokenizer_and_model() -> tuple[T5Tokenizer, T5ForConditionalGeneration]:
     tokenizer = T5Tokenizer.from_pretrained(MODEL_NAME)
-    model = T5ForConditionalGeneration.from_pretrained(MODEL_NAME)
-    model.config.tie_word_embeddings = False
+    model_config = AutoConfig.from_pretrained(MODEL_NAME)
+    model_config.tie_word_embeddings = False
+    model = T5ForConditionalGeneration.from_pretrained(MODEL_NAME, config=model_config)
 
     lora_config = LoraConfig(
         task_type=TaskType.SEQ_2_SEQ_LM,
@@ -65,10 +67,13 @@ def load_inference_model(model_dir: str) -> tuple[T5Tokenizer, Any]:
     tokenizer = T5Tokenizer.from_pretrained(str(model_path))
 
     if (model_path / "adapter_config.json").exists():
-        base_model = T5ForConditionalGeneration.from_pretrained(MODEL_NAME)
+        model_config = AutoConfig.from_pretrained(MODEL_NAME)
+        model_config.tie_word_embeddings = False
+        base_model = T5ForConditionalGeneration.from_pretrained(MODEL_NAME, config=model_config)
         model = PeftModel.from_pretrained(base_model, str(model_path))
     else:
         model = T5ForConditionalGeneration.from_pretrained(str(model_path))
+        model.config.tie_word_embeddings = False
 
     model.eval()
     if torch.cuda.is_available():
