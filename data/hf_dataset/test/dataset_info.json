@@ -2,6 +2,10 @@
   "citation": "",
   "description": "",
   "features": {
+    "source_id": {
+      "dtype": "large_string",
+      "_type": "Value"
+    },
     "input": {
       "dtype": "large_string",
       "_type": "Value"

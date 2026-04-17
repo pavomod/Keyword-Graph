@@ -1,0 +1,564 @@
+{
+  "metrics": {
+    "samples": 92,
+    "exact_match": 0.043478260869565216,
+    "precision_micro": 0.29473684210526313,
+    "recall_micro": 0.29015544041450775,
+    "f1_micro": 0.2924281984334203,
+    "mean_sample_f1": 0.29456521739130437
+  },
+  "records": [
+    {
+      "source_id": "656",
+      "input": "Extract comma-separated keywords from this user story. Return only keywords.\nAs a home occupant, I want something that would turn on music by the sound of my voice. so that I won't have to get up to turn it on.",
+      "predicted_tags": "music, voice",
+      "real_tags": "music, fun"
+    },
+    {
+      "source_id": "2198",
+      "input": "Extract comma-separated keywords from this user story. Return only keywords.\nAs a home occupant, I want The shower to begin on a voice command so that it can reach the proper temperature before I enter it.",
+      "predicted_tags": "shower, temperature",
+      "real_tags": "Health, Hygiene"
+    },
+    {
+      "source_id": "612",
+      "input": "Extract comma-separated keywords from this user story. Return only keywords.\nAs a parent, I want to know when there is an intruder so that I can call the police",
+      "predicted_tags": "intruder, police",
+      "real_tags": "intruder, alert, police"
+    },
+    {
+      "source_id": "1986",
+      "input": "Extract comma-separated keywords from this user story. Return only keywords.\nAs a home occupant, I want alarm to tell me when air con filters need changing so that inside air is better and use less energy",
+      "predicted_tags": "air,conductor",
+      "real_tags": "clean air"
+    },
+    {
+      "source_id": "1501",
+      "input": "Extract comma-separated keywords from this user story. Return only keywords.\nAs a pet owner, I want a door that will allow my pets to go out or in by recognition. so that it will prevent other unwanted guests from entering.",
+      "predicted_tags": "pets, door",
+      "real_tags": "Pets, Safety, Security"
+    },
+    {
+      "source_id": "1937",
+      "input": "Extract comma-separated keywords from this user story. Return only keywords.\nAs a home owner, I want a smart house that monitors specific rooms with video at my command so that I can keep watch on my small children",
+      "predicted_tags": "children, safety",
+      "real_tags": "kids, child, video"
+    },
+    {
+      "source_id": "2604",
+      "input": "Extract comma-separated keywords from this user story. Return only keywords.\nAs a music listener, I want a refrigerator that plays music so that I can easily listen to music while cooking and doing meal preparation",
+      "predicted_tags": "music, cooking",
+      "real_tags": "refrigerator, music, cooking"
+    },
+    {
+      "source_id": "1491",
+      "input": "Extract comma-separated keywords from this user story. Return only keywords.\nAs a home occupant, I want the speaker system to detect different moods to change music accordingly (if playing). so that I can enjoy the right music at the right time.",
+      "predicted_tags": "music, mood",
+      "real_tags": "Music, Entertainment"
+    },
+    {
+      "source_id": "1789",
+      "input": "Extract comma-separated keywords from this user story. Return only keywords.\nAs a pet owner, I want a device that tells me when my pet gets into a room or something they're not meant to be in (i.e. the trash) so that I can get them soomer",
+      "predicted_tags": "pets",
+      "real_tags": "pets"
+    },
+    {
+      "source_id": "115",
+      "input": "Extract comma-separated keywords from this user story. Return only keywords.\nAs a home occupant, I want a device that organizes the kitchen items and gives an alarm or places the order when it falls below the limit so that i benefit of not forgetting to stock the fruits and vegetables",
+      "predicted_tags": "kitchen, food, food",
+      "real_tags": "food, kitchen, fruits, vegetables"
+    },
+    {
+      "source_id": "2646",
+      "input": "Extract comma-separated keywords from this user story. Return only keywords.\nAs a home owner, I want my smart home to turn off the oven after a certain time so that I wont burn the food",
+      "predicted_tags": "food, oven",
+      "real_tags": "oven, safety"
+    },
+    {
+      "source_id": "1521",
+      "input": "Extract comma-separated keywords from this user story. Return only keywords.\nAs a smart home owner, I want the option to activate the opening and closing of window curtains by using a remote or smart phone application so that during the day the blinds can be open and closed when necessary without having to manually open and close them.",
+      "predicted_tags": "window, blinds, automatic",
+      "real_tags": "curtains, remote blinds"
+    },
+    {
+      "source_id": "735",
+      "input": "Extract comma-separated keywords from this user story. Return only keywords.\nAs a home occupant, I want automatic blind shut so that I won't have to get up to shut blinds and people can't see inside",
+      "predicted_tags": "blinds, automatic",
+      "real_tags": "window blinds, automatic"
+    },
+    {
+      "source_id": "582",
+      "input": "Extract comma-separated keywords from this user story. Return only keywords.\nAs a person who appreciates efficiency, I want a smart washing machine that can order its own detergents/supplies when needed so that I'll always have laundry supplies without having to think about it",
+      "predicted_tags": "washing machine, detergents",
+      "real_tags": "washer,auto-order supplies,laundry,clothes"
+    },
+    {
+      "source_id": "2841",
+      "input": "Extract comma-separated keywords from this user story. Return only keywords.\nAs a home occupant, I want music playing in my shower so that i can dance in the shower",
+      "predicted_tags": "music, shower, dance",
+      "real_tags": "shower music"
+    },
+    {
+      "source_id": "1043",
+      "input": "Extract comma-separated keywords from this user story. Return only keywords.\nAs a home owner, I want Bed that makes itself so that I can save time on making the bed",
+      "predicted_tags": "bed, time, save",
+      "real_tags": "bed"
+    },
+    {
+      "source_id": "2873",
+      "input": "Extract comma-separated keywords from this user story. Return only keywords.\nAs a nanny, I want a camera/alarm at the back door to alert me via sound and/or text message if the back door has been opened and left open so that small children in my care can not leave the house and wander near the pool",
+      "predicted_tags": "children, safety",
+      "real_tags": "safety, doors"
+    },
+    {
+      "source_id": "1071",
+      "input": "Extract comma-separated keywords from this user story. Return only keywords.\nAs a light sleeper, I want light bulbs that can be triggered to slowly dim over a period of about half an hour to simulate the sun going down so that I can more easily fall asleep and be rested",
+      "predicted_tags": "lights, dimming",
+      "real_tags": "sleep, light, sunset"
+    },
+    {
+      "source_id": "1407",
+      "input": "Extract comma-separated keywords from this user story. Return only keywords.\nAs a home occupant, I want a smart thermostat so that i can better regulate the temperature in my home",
+      "predicted_tags": "thermostat, temperature",
+      "real_tags": "home, heating, technology, advance"
+    },
+    {
+      "source_id": "1162",
+      "input": "Extract comma-separated keywords from this user story. Return only keywords.\nAs a home occupant, I want my smart home to be able to adjust lighting in my home no matter where I am, so that I can save money and energy.",
+      "predicted_tags": "lighting, energy, savings",
+      "real_tags": "energysaver, light sensor, lights off, lights on, dim,"
+    },
+    {
+      "source_id": "517",
+      "input": "Extract comma-separated keywords from this user story. Return only keywords.\nAs a home owner, I want a smart remote so that it can control EVERY electronic device",
+      "predicted_tags": "smart remote",
+      "real_tags": "smart remote"
+    },
+    {
+      "source_id": "2964",
+      "input": "Extract comma-separated keywords from this user story. Return only keywords.\nAs a person, I want the temperature to adjust by voice command so that when I shower, I do not get scalded.",
+      "predicted_tags": "shower, temperature",
+      "real_tags": "Hot, Water, Shower"
+    },
+    {
+      "source_id": "1320",
+      "input": "Extract comma-separated keywords from this user story. Return only keywords.\nAs a parent, I want the refridgerator to lock after 10 pm so that there is no late night snacking to help us be healthy",
+      "predicted_tags": "refridgerator, late night snacking",
+      "real_tags": "refridgerator, health, time, food"
+    },
+    {
+      "source_id": "1661",
+      "input": "Extract comma-separated keywords from this user story. Return only keywords.\nAs a home occupant, I want miniature robots to periodically vacuum the house so that the house always stays clean and hypo-allergic",
+      "predicted_tags": "vacuum, house",
+      "real_tags": "robot, vacuum"
+    },
+    {
+      "source_id": "697",
+      "input": "Extract comma-separated keywords from this user story. Return only keywords.\nAs a home occupant, I want the heat to automatically adjust when people enter or exit a room so that I can save energy",
+      "predicted_tags": "heat, energy",
+      "real_tags": "energy saving, cost efficiency"
+    },
+    {
+      "source_id": "1095",
+      "input": "Extract comma-separated keywords from this user story. Return only keywords.\nAs a fat person, I want my scale to connect to my ipad so that I can track weightloss",
+      "predicted_tags": "weight loss",
+      "real_tags": "weight loss"
+    },
+    {
+      "source_id": "2928",
+      "input": "Extract comma-separated keywords from this user story. Return only keywords.\nAs a home owner, I want my smart home to put out small fires so that they don't become larger fires that get out of control",
+      "predicted_tags": "fire, safety",
+      "real_tags": "fire, extingush"
+    },
+    {
+      "source_id": "1287",
+      "input": "Extract comma-separated keywords from this user story. Return only keywords.\nAs a home occupant, I want the front door to unlock and open so that my guest can enter the home",
+      "predicted_tags": "door, security",
+      "real_tags": "door, unlock"
+    },
+    {
+      "source_id": "2558",
+      "input": "Extract comma-separated keywords from this user story. Return only keywords.\nAs a parent, I want to have all the required medicines so that i dont want to go to shop last time.",
+      "predicted_tags": "medicine, shopping",
+      "real_tags": "medications"
+    },
+    {
+      "source_id": "302",
+      "input": "Extract comma-separated keywords from this user story. Return only keywords.\nAs a parent, I want to know when someone is trying to break into my home. so that I can protect my family on the inside.",
+      "predicted_tags": "security, break-in",
+      "real_tags": "alarm, family, safe, alert"
+    },
+    {
+      "source_id": "253",
+      "input": "Extract comma-separated keywords from this user story. Return only keywords.\nAs a home occupant, I want coffee machine is controllable from mobile and tablet. so that can be save time",
+      "predicted_tags": "coffee, control",
+      "real_tags": "smart coffee machine"
+    },
+    {
+      "source_id": "2058",
+      "input": "Extract comma-separated keywords from this user story. Return only keywords.\nAs a parent, I want a television that automatically turns off after an hour so that my child will stop watching television and do something else",
+      "predicted_tags": "television, child",
+      "real_tags": "television"
+    },
+    {
+      "source_id": "3098",
+      "input": "Extract comma-separated keywords from this user story. Return only keywords.\nAs a cat owner, I want cat food automatically dispensed at certain times so that my cat will not go hungry.",
+      "predicted_tags": "cat, food, automatic",
+      "real_tags": "cat, food,"
+    },
+    {
+      "source_id": "969",
+      "input": "Extract comma-separated keywords from this user story. Return only keywords.\nAs a home owner, I want Dog food to be dispensed from a device into my dog's bowl at the same time every day. so that My dog will eat at the same time every day.",
+      "predicted_tags": "Dog, food, bowl",
+      "real_tags": "Dog, feeding"
+    },
+    {
+      "source_id": "1943",
+      "input": "Extract comma-separated keywords from this user story. Return only keywords.\nAs a home owner, I want a smart home to alert me when the mail or packages are delivered so that I can move them inside the house",
+      "predicted_tags": "mail, packages, delivery",
+      "real_tags": "mail, security"
+    },
+    {
+      "source_id": "1466",
+      "input": "Extract comma-separated keywords from this user story. Return only keywords.\nAs a home occupant, I want outlet timers so that I could turn on certain light decorations at night and have them turn off in the morning.",
+      "predicted_tags": "lights, timers",
+      "real_tags": "energy saver, decorations, timers, outlets"
+    },
+    {
+      "source_id": "1327",
+      "input": "Extract comma-separated keywords from this user story. Return only keywords.\nAs a home occupant, I want motion sensors that don't emit noises so that provide safety without disturbing autistic ears",
+      "predicted_tags": "motion sensors, autistic",
+      "real_tags": "safety, devices"
+    },
+    {
+      "source_id": "2064",
+      "input": "Extract comma-separated keywords from this user story. Return only keywords.\nAs a home occupant, I want my smart home to alert me when packages are left on my door step so that nobody steals them",
+      "predicted_tags": "packages, door step",
+      "real_tags": "Security, Deliveries"
+    },
+    {
+      "source_id": "2517",
+      "input": "Extract comma-separated keywords from this user story. Return only keywords.\nAs a pet owner, I want my smart home to automatically raise windows in the event of a fire so that I and my pets can escape (especially so they can escape when I am not home)",
+      "predicted_tags": "fire, windows",
+      "real_tags": "pets, fire"
+    },
+    {
+      "source_id": "2861",
+      "input": "Extract comma-separated keywords from this user story. Return only keywords.\nAs a occupant, I want a smart thermostat so that I can be alerted when a filter change is due, adjust the temperature remotely.",
+      "predicted_tags": "thermostat, temperature",
+      "real_tags": "remote, thermostat, controls"
+    },
+    {
+      "source_id": "59",
+      "input": "Extract comma-separated keywords from this user story. Return only keywords.\nAs a cook, I want Smart appliances that give me relevant information on the food i'm cooking so that Food always gets cooked as much as it's needed",
+      "predicted_tags": "Food, Cooking",
+      "real_tags": "Food, Health, Cooking"
+    },
+    {
+      "source_id": "1055",
+      "input": "Extract comma-separated keywords from this user story. Return only keywords.\nAs a home occupant, I want self sanitizing bathrooms so that my family gets sick less often",
+      "predicted_tags": "sanitizing, bathroom",
+      "real_tags": "bathroom, cleaning, sanatize,"
+    },
+    {
+      "source_id": "1919",
+      "input": "Extract comma-separated keywords from this user story. Return only keywords.\nAs a home occupant, I want Home monitor tell me my home is locked after I leave so that So I remember to lock my home.",
+      "predicted_tags": "Lock, Monitor",
+      "real_tags": "Lock home."
+    },
+    {
+      "source_id": "1820",
+      "input": "Extract comma-separated keywords from this user story. Return only keywords.\nAs a home occupant, I want the heated floors to turn on 30 mins before my alarm so that they only turn on when i need them",
+      "predicted_tags": "heated floors, alarm",
+      "real_tags": "save energy, warm floors"
+    },
+    {
+      "source_id": "2731",
+      "input": "Extract comma-separated keywords from this user story. Return only keywords.\nAs a home occupant, I want a robot that can prepare meals for me. so that I don't have to waste time cooking.",
+      "predicted_tags": "food, cooking",
+      "real_tags": "Cooking, Automation"
+    },
+    {
+      "source_id": "1783",
+      "input": "Extract comma-separated keywords from this user story. Return only keywords.\nAs a home owner, I want the temperature to always be changeable via a phone app so that i can have all thermostats change to a specific temperature using just one device",
+      "predicted_tags": "thermostat, temperature",
+      "real_tags": "temperature app"
+    },
+    {
+      "source_id": "2620",
+      "input": "Extract comma-separated keywords from this user story. Return only keywords.\nAs a music fan, I want my house to turn speakers on depending on which room I'm in so that I can hear my music wherever I go",
+      "predicted_tags": "music, speakers",
+      "real_tags": "Music"
+    },
+    {
+      "source_id": "351",
+      "input": "Extract comma-separated keywords from this user story. Return only keywords.\nAs a home owner, I want my doors to lock automaticaly so that I never have to worry about them being locked.",
+      "predicted_tags": "doors, locks, automatic",
+      "real_tags": "Lock,door"
+    },
+    {
+      "source_id": "2645",
+      "input": "Extract comma-separated keywords from this user story. Return only keywords.\nAs a connoisseur of fine bathroom entertainment, I want a panoramic theater system in my bathroom so that I can i can be entertained while I go poopoo.",
+      "predicted_tags": "entertainment, bathroom",
+      "real_tags": "Health, Entertainment, Home Theater"
+    },
+    {
+      "source_id": "2990",
+      "input": "Extract comma-separated keywords from this user story. Return only keywords.\nAs a parent, I want my smart home to be video monitored 24*7 and have access to my smartphone so that I am sure no disaster takes place.",
+      "predicted_tags": "video surveillance, safety",
+      "real_tags": "safety"
+    },
+    {
+      "source_id": "864",
+      "input": "Extract comma-separated keywords from this user story. Return only keywords.\nAs a home occupant, I want my smart home's showers to automatically adjust to my desired water temperature so that I'm not wasting water or time trying to find it",
+      "predicted_tags": "showers, temperature",
+      "real_tags": "shower, temperature, convience"
+    },
+    {
+      "source_id": "3081",
+      "input": "Extract comma-separated keywords from this user story. Return only keywords.\nAs a parent, I want an alarm system/sensor on the stairs so that it will alert me when my child nears the stairs",
+      "predicted_tags": "stairs, safety",
+      "real_tags": "safe, children, stairs"
+    },
+    {
+      "source_id": "1690",
+      "input": "Extract comma-separated keywords from this user story. Return only keywords.\nAs a home occupant, I want a energy consumption detector so that I can see whoever is using too much energy",
+      "predicted_tags": "energy, detector",
+      "real_tags": "conserve, energy"
+    },
+    {
+      "source_id": "2810",
+      "input": "Extract comma-separated keywords from this user story. Return only keywords.\nAs a home owner, I want the ability to fully control my electric/gas fireplace remotely (including turn on/off, heat setting, etc..) so that I can have alternative forms of heating available to me before I reach my home.",
+      "predicted_tags": "electric, gas, fireplace",
+      "real_tags": "conservation; alternative heating; remote fireplace"
+    },
+    {
+      "source_id": "2654",
+      "input": "Extract comma-separated keywords from this user story. Return only keywords.\nAs a cook, I want a feature in my stove that will tell me the exact temperature of not just the stove but the burners and grill feature as well when in use so that I can monitor my food being cooked to the exact degree as some things need precision.",
+      "predicted_tags": "stove, burners, grill",
+      "real_tags": "stove, cooking, temperature"
+    },
+    {
+      "source_id": "912",
+      "input": "Extract comma-separated keywords from this user story. Return only keywords.\nAs a home owner, I want my smart home to notify me if the household's carbon footprint is getting too high so that we can be more environmentally responsible",
+      "predicted_tags": "energy, carbon footprint",
+      "real_tags": "Oven"
+    },
+    {
+      "source_id": "1992",
+      "input": "Extract comma-separated keywords from this user story. Return only keywords.\nAs a home occupant, I want ability to lock all doors and windows instantly (phone app or hot button) so that to keep occupants safe",
+      "predicted_tags": "locks, doors, windows",
+      "real_tags": "home security"
+    },
+    {
+      "source_id": "1651",
+      "input": "Extract comma-separated keywords from this user story. Return only keywords.\nAs a equipment serviceman, I want house equipment to automatically report malfunctions so that repairs could be delivered quickly",
+      "predicted_tags": "repair, maintenance",
+      "real_tags": "equipment, service"
+    },
+    {
+      "source_id": "2427",
+      "input": "Extract comma-separated keywords from this user story. Return only keywords.\nAs a husband, I want an indicator of my wife's general mood. so that I know how to act when she is around.",
+      "predicted_tags": "husband, wife",
+      "real_tags": "Wife Behavior"
+    },
+    {
+      "source_id": "818",
+      "input": "Extract comma-separated keywords from this user story. Return only keywords.\nAs a cook, I want devices to help me prepare food quickly so that i can save prep time",
+      "predicted_tags": "food, cooking",
+      "real_tags": "kitchen, meals, prep"
+    },
+    {
+      "source_id": "281",
+      "input": "Extract comma-separated keywords from this user story. Return only keywords.\nAs a housewife, I want my smarthome to alert me whenever someone sets up a spycam inside my home. so that I won't be monitored",
+      "predicted_tags": "spycam",
+      "real_tags": "spycam, monitoring, surveillance"
+    },
+    {
+      "source_id": "2315",
+      "input": "Extract comma-separated keywords from this user story. Return only keywords.\nAs a dog owner, I want to know when my pets have to go to the bathroom so that I can take them out before they poop in the house",
+      "predicted_tags": "pets, bathroom",
+      "real_tags": "pets, poop"
+    },
+    {
+      "source_id": "1267",
+      "input": "Extract comma-separated keywords from this user story. Return only keywords.\nAs a home occupant, I want Proper shutdown my personal computer so that Secure my personal computer",
+      "predicted_tags": "Computer,Safety",
+      "real_tags": "Personal computer"
+    },
+    {
+      "source_id": "2629",
+      "input": "Extract comma-separated keywords from this user story. Return only keywords.\nAs a home owner, I want the windows to automatically lock at night so that I can prevent break-ins",
+      "predicted_tags": "windows, locks",
+      "real_tags": "windows, robbery"
+    },
+    {
+      "source_id": "3234",
+      "input": "Extract comma-separated keywords from this user story. Return only keywords.\nAs a home owner, I want a meter that can log how much water I use for things and breakdown where I can save water so that I am not wasting water.",
+      "predicted_tags": "water, meter",
+      "real_tags": "water"
+    },
+    {
+      "source_id": "1414",
+      "input": "Extract comma-separated keywords from this user story. Return only keywords.\nAs a home occupant, I want a touch screen calendar built into the wall so that I can easily track my schedule without paper, pens, markers, or messy dry erase markers",
+      "predicted_tags": "calendar, wall",
+      "real_tags": "family"
+    },
+    {
+      "source_id": "716",
+      "input": "Extract comma-separated keywords from this user story. Return only keywords.\nAs a home occupant, I want automatic window defrosters so that I can see outside when there is bad weather.",
+      "predicted_tags": "window, defroster",
+      "real_tags": "weather, defrost, window"
+    },
+    {
+      "source_id": "1027",
+      "input": "Extract comma-separated keywords from this user story. Return only keywords.\nAs a parent, I want I want to get alert calls when my kids reach home so that I can remain calm.",
+      "predicted_tags": "kids, alerts",
+      "real_tags": "reach"
+    },
+    {
+      "source_id": "2910",
+      "input": "Extract comma-separated keywords from this user story. Return only keywords.\nAs a home occupant, I want an automated sprinkler system so that that will water only when the soil needs it, and only in the places where the soil needs it",
+      "predicted_tags": "sprinklers",
+      "real_tags": "Irrigation Water Sprinkler"
+    },
+    {
+      "source_id": "34",
+      "input": "Extract comma-separated keywords from this user story. Return only keywords.\nAs a home occupant, I want my smart home to shut the lights off for me in rooms with nobody in them so that I can save on electricity on my bills",
+      "predicted_tags": "lights, energy, savings",
+      "real_tags": "electricity, lights"
+    },
+    {
+      "source_id": "701",
+      "input": "Extract comma-separated keywords from this user story. Return only keywords.\nAs a home owner, I want a showerhead that alerts me when I use more than an amount predetermined by me so that I can save on my utilities and conserve water",
+      "predicted_tags": "showerhead, water conservation",
+      "real_tags": "shower"
+    },
+    {
+      "source_id": "1527",
+      "input": "Extract comma-separated keywords from this user story. Return only keywords.\nAs a home occupant, I want my smart home to play a specific playlist or genre of music when I verbally tell my sound system what mood I am in so that I can enjoy mood appropriate music throughout the house.",
+      "predicted_tags": "music, mood",
+      "real_tags": "music, sound system, playlists"
+    },
+    {
+      "source_id": "2935",
+      "input": "Extract comma-separated keywords from this user story. Return only keywords.\nAs a animal lover, I want my smart home to inform me if any animal enters into my home or garage so that I can take steps to make sure that both the animal and my family remain safe from potential threats to one another",
+      "predicted_tags": "animal, safety",
+      "real_tags": "animals"
+    },
+    {
+      "source_id": "1245",
+      "input": "Extract comma-separated keywords from this user story. Return only keywords.\nAs a telephone operator, I want answer phone so that use hands less",
+      "predicted_tags": "telephone, operator",
+      "real_tags": "phone, work"
+    },
+    {
+      "source_id": "1567",
+      "input": "Extract comma-separated keywords from this user story. Return only keywords.\nAs a home occupant, I want answering machine to play message when I walk into that  room so that I don't miss anything important.",
+      "predicted_tags": "phone, answering machine",
+      "real_tags": "Knowledge"
+    },
+    {
+      "source_id": "3079",
+      "input": "Extract comma-separated keywords from this user story. Return only keywords.\nAs a aquarium owner, I want leakage sensors so that if anything around my tank starts to leak, I get notified.",
+      "predicted_tags": "aquarium, leakage",
+      "real_tags": "aquarium, sensor, leak"
+    },
+    {
+      "source_id": "1979",
+      "input": "Extract comma-separated keywords from this user story. Return only keywords.\nAs a smart home occupant, I want a chair that will cool me so that i can play games without overheating",
+      "predicted_tags": "chair, cooling",
+      "real_tags": "temperature, gaming, women, comfort"
+    },
+    {
+      "source_id": "3028",
+      "input": "Extract comma-separated keywords from this user story. Return only keywords.\nAs a home owner, I want video doorbell so that I can see who is at my door regardless of where I am",
+      "predicted_tags": "video doorbell",
+      "real_tags": "safety, alarm"
+    },
+    {
+      "source_id": "1049",
+      "input": "Extract comma-separated keywords from this user story. Return only keywords.\nAs a home occupant, I want floors and counters that sanitize themselves so that I don't have to worry about spreading germs constantly",
+      "predicted_tags": "germs, sanitization",
+      "real_tags": "sanitize, automated, floors"
+    },
+    {
+      "source_id": "2182",
+      "input": "Extract comma-separated keywords from this user story. Return only keywords.\nAs a person, I want to be alerted every time someone goes into my room so that I know if someone is invading my privacy",
+      "predicted_tags": "privacy, security",
+      "real_tags": "security"
+    },
+    {
+      "source_id": "220",
+      "input": "Extract comma-separated keywords from this user story. Return only keywords.\nAs a home occupant, I want giving voice commands to equipments so that i am relaxed",
+      "predicted_tags": "voice commands",
+      "real_tags": "relaxation"
+    },
+    {
+      "source_id": "2727",
+      "input": "Extract comma-separated keywords from this user story. Return only keywords.\nAs a home occupant, I want my faucets to have automatic water filtration built in. so that all the water that I utilize is fresh and free from pollutants.",
+      "predicted_tags": "water, filtration",
+      "real_tags": "Water Filtration"
+    },
+    {
+      "source_id": "1923",
+      "input": "Extract comma-separated keywords from this user story. Return only keywords.\nAs a home occupant, I want to be alerted when a window gets damaged so that I know to check on it immediately",
+      "predicted_tags": "window, damage",
+      "real_tags": "security, alert"
+    },
+    {
+      "source_id": "498",
+      "input": "Extract comma-separated keywords from this user story. Return only keywords.\nAs a home owner, I want shutters that close or open based on weather so that the house can be naturally lit when sunny",
+      "predicted_tags": "weather, shutters",
+      "real_tags": "shutters, sunlight"
+    },
+    {
+      "source_id": "1599",
+      "input": "Extract comma-separated keywords from this user story. Return only keywords.\nAs a food lover, I want to have recipe tutorials viewable through my tv at the time i usually prepare dinner so that i can receive instruction to try new meals",
+      "predicted_tags": "food, tutorials, tv",
+      "real_tags": "foodie, cooking"
+    },
+    {
+      "source_id": "708",
+      "input": "Extract comma-separated keywords from this user story. Return only keywords.\nAs a home occupant, I want TV to turn on when i enter the room and to use voice commands to control it so that I can easily relax",
+      "predicted_tags": "TV, control",
+      "real_tags": "voice command, TV, auto"
+    },
+    {
+      "source_id": "2761",
+      "input": "Extract comma-separated keywords from this user story. Return only keywords.\nAs a home occupant, I want the lights in my room to slowly come on when it is time to wake up so that I can be woken ambiently",
+      "predicted_tags": "lights, wake up",
+      "real_tags": "sleep, alarm, lights"
+    },
+    {
+      "source_id": "2119",
+      "input": "Extract comma-separated keywords from this user story. Return only keywords.\nAs a home owner, I want My home to turn on the lights when I come home and turn off the ones I'm not using when I leave a room, so that I can save on my energy bill.",
+      "predicted_tags": "lights, energy",
+      "real_tags": "lights, savings"
+    },
+    {
+      "source_id": "1427",
+      "input": "Extract comma-separated keywords from this user story. Return only keywords.\nAs a trendy person, I want stay connected, so it would be wonderful if all my social networks could be accessed across the home with lets say a finger print  and only while my phone is connected to the home's wifi network. so that i can access all my social media, email and messages from anywhere in the house without having to carry my phone.",
+      "predicted_tags": "social media, wifi",
+      "real_tags": "social"
+    },
+    {
+      "source_id": "1467",
+      "input": "Extract comma-separated keywords from this user story. Return only keywords.\nAs a home owner, I want humidity sensors so that my humidifiers function more accurately in the basement.",
+      "predicted_tags": "humidity, sensors",
+      "real_tags": "humidity, sensors"
+    },
+    {
+      "source_id": "1687",
+      "input": "Extract comma-separated keywords from this user story. Return only keywords.\nAs a parent, I want a headcount of how many people come and leave the house. so that I can keep up with the security in the house manually.",
+      "predicted_tags": "security, safety",
+      "real_tags": "Safety, alert, alarm"
+    },
+    {
+      "source_id": "1144",
+      "input": "Extract comma-separated keywords from this user story. Return only keywords.\nAs a parent, I want an auto food fill for the dogs so that incase i forgot so they get optimal health",
+      "predicted_tags": "pets, health",
+      "real_tags": "none"
+    }
+  ]
+}

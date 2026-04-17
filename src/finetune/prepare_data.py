@@ -51,8 +51,10 @@ def prepare_dataframe(df: pd.DataFrame) -> pd.DataFrame:
     work_df["tags"] = work_df["tags"].apply(_clean_tags)
     work_df = work_df[work_df["tags"] != ""].reset_index(drop=True)
 
+    source_ids = work_df["id"].astype(str) if "id" in work_df.columns else work_df.index.astype(str)
     formatted = pd.DataFrame(
         {
+            "source_id": source_ids,
             "input": work_df.apply(_build_prompt, axis=1),
             "target": work_df["tags"],
         }
@@ -72,6 +74,32 @@ def split_dataset(df_formatted: pd.DataFrame, seed: int = 42) -> tuple[pd.DataFr
         val_df.reset_index(drop=True),
         test_df.reset_index(drop=True),
     )
+
+
+def split_dataset_fixed(
+    df_formatted: pd.DataFrame,
+    train_size: int = 2000,
+    validation_size: int = 250,
+    test_size: int = 250,
+    seed: int = 42,
+) -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame, pd.DataFrame]:
+    minimum_required = train_size + validation_size + test_size
+    if len(df_formatted) < minimum_required:
+        raise ValueError(
+            "Not enough rows to apply fixed split: "
+            f"required={minimum_required}, available={len(df_formatted)}"
+        )
+
+    shuffled = df_formatted.sample(frac=1.0, random_state=seed).reset_index(drop=True)
+    train_end = train_size
+    val_end = train_end + validation_size
+    test_end = val_end + test_size
+
+    train_df = shuffled.iloc[:train_end].reset_index(drop=True)
+    val_df = shuffled.iloc[train_end:val_end].reset_index(drop=True)
+    test_df = shuffled.iloc[val_end:test_end].reset_index(drop=True)
+    real_df = shuffled.iloc[test_end:].reset_index(drop=True)
+    return train_df, val_df, test_df, real_df
 
 
 def to_hf_dataset_dict(train_df: pd.DataFrame, val_df: pd.DataFrame, test_df: pd.DataFrame) -> DatasetDict:
@@ -100,23 +128,35 @@ def main() -> None:
         help="Directory where HuggingFace dataset is saved",
     )
     parser.add_argument("--seed", type=int, default=42)
+    parser.add_argument("--train-size", type=int, default=2000)
+    parser.add_argument("--validation-size", type=int, default=250)
+    parser.add_argument("--test-size", type=int, default=250)
     args = parser.parse_args()
 
     input_path = _pick_input_csv(args.input)
     raw_df = pd.read_csv(input_path)
 
     formatted_df = prepare_dataframe(raw_df)
-    train_df, val_df, test_df = split_dataset(formatted_df, seed=args.seed)
+    train_df, val_df, test_df, real_df = split_dataset_fixed(
+        formatted_df,
+        train_size=args.train_size,
+        validation_size=args.validation_size,
+        test_size=args.test_size,
+        seed=args.seed,
+    )
 
     out_dir = Path(args.out_dir)
     out_dir.mkdir(parents=True, exist_ok=True)
     train_df.to_csv(out_dir / "train.csv", index=False)
     val_df.to_csv(out_dir / "validation.csv", index=False)
     test_df.to_csv(out_dir / "test.csv", index=False)
+    real_df.to_csv(out_dir / "real_case.csv", index=False)
 
     print(f"Input: {input_path}")
     print(f"Samples after cleaning: {len(formatted_df)}")
-    print(f"Train/Val/Test: {len(train_df)}/{len(val_df)}/{len(test_df)}")
+    print(
+        f"Train/Val/Test/Real: {len(train_df)}/{len(val_df)}/{len(test_df)}/{len(real_df)}"
+    )
     print(f"CSV splits saved in: {out_dir}")
 
     if args.save_hf:

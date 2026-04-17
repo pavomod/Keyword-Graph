@@ -1,0 +1,797 @@
+<?xml version='1.0' encoding='utf-8'?>
+<gexf xmlns="http://www.gexf.net/1.2draft" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.gexf.net/1.2draft http://www.gexf.net/1.2draft/gexf.xsd" version="1.2">
+  <meta lastmodifieddate="2026-04-17">
+    <creator>NetworkX 3.6.1</creator>
+  </meta>
+  <graph defaultedgetype="undirected" mode="static" name="">
+    <attributes mode="static" class="edge">
+      <attribute id="0" title="semantic_similarity" type="double" />
+    </attributes>
+    <nodes>
+      <node id="music" label="music" />
+      <node id="voice" label="voice" />
+      <node id="shower" label="shower" />
+      <node id="temperature" label="temperature" />
+      <node id="intruder" label="intruder" />
+      <node id="police" label="police" />
+      <node id="air" label="air" />
+      <node id="conductor" label="conductor" />
+      <node id="pets" label="pets" />
+      <node id="door" label="door" />
+      <node id="children" label="children" />
+      <node id="safety" label="safety" />
+      <node id="cooking" label="cooking" />
+      <node id="mood" label="mood" />
+      <node id="kitchen" label="kitchen" />
+      <node id="food" label="food" />
+      <node id="oven" label="oven" />
+      <node id="window" label="window" />
+      <node id="blinds" label="blinds" />
+      <node id="automatic" label="automatic" />
+      <node id="washing machine" label="washing machine" />
+      <node id="detergents" label="detergents" />
+      <node id="dance" label="dance" />
+      <node id="bed" label="bed" />
+      <node id="time" label="time" />
+      <node id="save" label="save" />
+      <node id="lights" label="lights" />
+      <node id="dimming" label="dimming" />
+      <node id="thermostat" label="thermostat" />
+      <node id="lighting" label="lighting" />
+      <node id="energy" label="energy" />
+      <node id="savings" label="savings" />
+      <node id="smart remote" label="smart remote" />
+      <node id="refridgerator" label="refridgerator" />
+      <node id="late night snacking" label="late night snacking" />
+      <node id="vacuum" label="vacuum" />
+      <node id="house" label="house" />
+      <node id="heat" label="heat" />
+      <node id="weight loss" label="weight loss" />
+      <node id="fire" label="fire" />
+      <node id="security" label="security" />
+      <node id="medicine" label="medicine" />
+      <node id="shopping" label="shopping" />
+      <node id="break-in" label="break-in" />
+      <node id="coffee" label="coffee" />
+      <node id="control" label="control" />
+      <node id="television" label="television" />
+      <node id="child" label="child" />
+      <node id="cat" label="cat" />
+      <node id="dog" label="dog" />
+      <node id="bowl" label="bowl" />
+      <node id="mail" label="mail" />
+      <node id="packages" label="packages" />
+      <node id="delivery" label="delivery" />
+      <node id="timers" label="timers" />
+      <node id="motion sensors" label="motion sensors" />
+      <node id="autistic" label="autistic" />
+      <node id="door step" label="door step" />
+      <node id="windows" label="windows" />
+      <node id="sanitizing" label="sanitizing" />
+      <node id="bathroom" label="bathroom" />
+      <node id="lock" label="lock" />
+      <node id="monitor" label="monitor" />
+      <node id="heated floors" label="heated floors" />
+      <node id="alarm" label="alarm" />
+      <node id="speakers" label="speakers" />
+      <node id="doors" label="doors" />
+      <node id="locks" label="locks" />
+      <node id="entertainment" label="entertainment" />
+      <node id="video surveillance" label="video surveillance" />
+      <node id="showers" label="showers" />
+      <node id="stairs" label="stairs" />
+      <node id="detector" label="detector" />
+      <node id="electric" label="electric" />
+      <node id="gas" label="gas" />
+      <node id="fireplace" label="fireplace" />
+      <node id="stove" label="stove" />
+      <node id="burners" label="burners" />
+      <node id="grill" label="grill" />
+      <node id="carbon footprint" label="carbon footprint" />
+      <node id="repair" label="repair" />
+      <node id="maintenance" label="maintenance" />
+      <node id="husband" label="husband" />
+      <node id="wife" label="wife" />
+      <node id="spycam" label="spycam" />
+      <node id="computer" label="computer" />
+      <node id="water" label="water" />
+      <node id="meter" label="meter" />
+      <node id="calendar" label="calendar" />
+      <node id="wall" label="wall" />
+      <node id="defroster" label="defroster" />
+      <node id="kids" label="kids" />
+      <node id="alerts" label="alerts" />
+      <node id="sprinklers" label="sprinklers" />
+      <node id="showerhead" label="showerhead" />
+      <node id="water conservation" label="water conservation" />
+      <node id="animal" label="animal" />
+      <node id="telephone" label="telephone" />
+      <node id="operator" label="operator" />
+      <node id="phone" label="phone" />
+      <node id="answering machine" label="answering machine" />
+      <node id="aquarium" label="aquarium" />
+      <node id="leakage" label="leakage" />
+      <node id="chair" label="chair" />
+      <node id="cooling" label="cooling" />
+      <node id="video doorbell" label="video doorbell" />
+      <node id="germs" label="germs" />
+      <node id="sanitization" label="sanitization" />
+      <node id="privacy" label="privacy" />
+      <node id="voice commands" label="voice commands" />
+      <node id="filtration" label="filtration" />
+      <node id="damage" label="damage" />
+      <node id="weather" label="weather" />
+      <node id="shutters" label="shutters" />
+      <node id="tutorials" label="tutorials" />
+      <node id="tv" label="tv" />
+      <node id="wake up" label="wake up" />
+      <node id="social media" label="social media" />
+      <node id="wifi" label="wifi" />
+      <node id="humidity" label="humidity" />
+      <node id="sensors" label="sensors" />
+      <node id="health" label="health" />
+    </nodes>
+    <edges>
+      <edge source="music" target="voice" id="0" weight="0.5079423785209656">
+        <attvalues>
+          <attvalue for="0" value="0.5079423785209656" />
+        </attvalues>
+      </edge>
+      <edge source="music" target="dance" id="1" weight="0.5875157713890076">
+        <attvalues>
+          <attvalue for="0" value="0.5875157713890076" />
+        </attvalues>
+      </edge>
+      <edge source="music" target="television" id="2" weight="0.5427899360656738">
+        <attvalues>
+          <attvalue for="0" value="0.5427899360656738" />
+        </attvalues>
+      </edge>
+      <edge source="music" target="speakers" id="3" weight="0.58111572265625">
+        <attvalues>
+          <attvalue for="0" value="0.58111572265625" />
+        </attvalues>
+      </edge>
+      <edge source="music" target="entertainment" id="4" weight="0.5576637983322144">
+        <attvalues>
+          <attvalue for="0" value="0.5576637983322144" />
+        </attvalues>
+      </edge>
+      <edge source="voice" target="voice commands" id="5" weight="0.6429732441902161">
+        <attvalues>
+          <attvalue for="0" value="0.6429732441902161" />
+        </attvalues>
+      </edge>
+      <edge source="shower" target="bathroom" id="6" weight="0.6804494857788086">
+        <attvalues>
+          <attvalue for="0" value="0.6804494857788086" />
+        </attvalues>
+      </edge>
+      <edge source="shower" target="showers" id="7" weight="0.9184830188751221">
+        <attvalues>
+          <attvalue for="0" value="0.9184830188751221" />
+        </attvalues>
+      </edge>
+      <edge source="shower" target="water" id="8" weight="0.5491814613342285">
+        <attvalues>
+          <attvalue for="0" value="0.5491814613342285" />
+        </attvalues>
+      </edge>
+      <edge source="shower" target="showerhead" id="9" weight="0.7183403968811035">
+        <attvalues>
+          <attvalue for="0" value="0.7183403968811035" />
+        </attvalues>
+      </edge>
+      <edge source="temperature" target="thermostat" id="10" weight="0.5627758502960205">
+        <attvalues>
+          <attvalue for="0" value="0.5627758502960205" />
+        </attvalues>
+      </edge>
+      <edge source="temperature" target="heat" id="11" weight="0.5618862509727478">
+        <attvalues>
+          <attvalue for="0" value="0.5618862509727478" />
+        </attvalues>
+      </edge>
+      <edge source="temperature" target="cooling" id="12" weight="0.5525829792022705">
+        <attvalues>
+          <attvalue for="0" value="0.5525829792022705" />
+        </attvalues>
+      </edge>
+      <edge source="temperature" target="weather" id="13" weight="0.5896191596984863">
+        <attvalues>
+          <attvalue for="0" value="0.5896191596984863" />
+        </attvalues>
+      </edge>
+      <edge source="intruder" target="security" id="14" weight="0.5265554785728455">
+        <attvalues>
+          <attvalue for="0" value="0.5265554785728455" />
+        </attvalues>
+      </edge>
+      <edge source="police" target="security" id="15" weight="0.5104423761367798">
+        <attvalues>
+          <attvalue for="0" value="0.5104423761367798" />
+        </attvalues>
+      </edge>
+      <edge source="air" target="vacuum" id="16" weight="0.6004329323768616">
+        <attvalues>
+          <attvalue for="0" value="0.6004329323768616" />
+        </attvalues>
+      </edge>
+      <edge source="air" target="fire" id="17" weight="0.5104215741157532">
+        <attvalues>
+          <attvalue for="0" value="0.5104215741157532" />
+        </attvalues>
+      </edge>
+      <edge source="air" target="gas" id="18" weight="0.6421589255332947">
+        <attvalues>
+          <attvalue for="0" value="0.6421589255332947" />
+        </attvalues>
+      </edge>
+      <edge source="air" target="water" id="19" weight="0.5006200671195984">
+        <attvalues>
+          <attvalue for="0" value="0.5006200671195984" />
+        </attvalues>
+      </edge>
+      <edge source="air" target="cooling" id="20" weight="0.5196969509124756">
+        <attvalues>
+          <attvalue for="0" value="0.5196969509124756" />
+        </attvalues>
+      </edge>
+      <edge source="conductor" target="electric" id="21" weight="0.5319642424583435">
+        <attvalues>
+          <attvalue for="0" value="0.5319642424583435" />
+        </attvalues>
+      </edge>
+      <edge source="pets" target="cat" id="22" weight="0.6662040948867798">
+        <attvalues>
+          <attvalue for="0" value="0.6662040948867798" />
+        </attvalues>
+      </edge>
+      <edge source="pets" target="dog" id="23" weight="0.7037606835365295">
+        <attvalues>
+          <attvalue for="0" value="0.7037606835365295" />
+        </attvalues>
+      </edge>
+      <edge source="pets" target="animal" id="24" weight="0.7565950751304626">
+        <attvalues>
+          <attvalue for="0" value="0.7565950751304626" />
+        </attvalues>
+      </edge>
+      <edge source="door" target="window" id="25" weight="0.5298582315444946">
+        <attvalues>
+          <attvalue for="0" value="0.5298582315444946" />
+        </attvalues>
+      </edge>
+      <edge source="door" target="house" id="26" weight="0.5401747226715088">
+        <attvalues>
+          <attvalue for="0" value="0.5401747226715088" />
+        </attvalues>
+      </edge>
+      <edge source="door" target="door step" id="27" weight="0.7427999973297119">
+        <attvalues>
+          <attvalue for="0" value="0.7427999973297119" />
+        </attvalues>
+      </edge>
+      <edge source="door" target="lock" id="28" weight="0.5159900784492493">
+        <attvalues>
+          <attvalue for="0" value="0.5159900784492493" />
+        </attvalues>
+      </edge>
+      <edge source="door" target="doors" id="29" weight="0.8927739858627319">
+        <attvalues>
+          <attvalue for="0" value="0.8927739858627319" />
+        </attvalues>
+      </edge>
+      <edge source="children" target="child" id="30" weight="0.705988883972168">
+        <attvalues>
+          <attvalue for="0" value="0.705988883972168" />
+        </attvalues>
+      </edge>
+      <edge source="children" target="kids" id="31" weight="0.8839794397354126">
+        <attvalues>
+          <attvalue for="0" value="0.8839794397354126" />
+        </attvalues>
+      </edge>
+      <edge source="safety" target="security" id="32" weight="0.6179530620574951">
+        <attvalues>
+          <attvalue for="0" value="0.6179530620574951" />
+        </attvalues>
+      </edge>
+      <edge source="cooking" target="kitchen" id="33" weight="0.653250515460968">
+        <attvalues>
+          <attvalue for="0" value="0.653250515460968" />
+        </attvalues>
+      </edge>
+      <edge source="cooking" target="food" id="34" weight="0.6497084498405457">
+        <attvalues>
+          <attvalue for="0" value="0.6497084498405457" />
+        </attvalues>
+      </edge>
+      <edge source="cooking" target="oven" id="35" weight="0.6724550127983093">
+        <attvalues>
+          <attvalue for="0" value="0.6724550127983093" />
+        </attvalues>
+      </edge>
+      <edge source="cooking" target="heat" id="36" weight="0.5345736742019653">
+        <attvalues>
+          <attvalue for="0" value="0.5345736742019653" />
+        </attvalues>
+      </edge>
+      <edge source="cooking" target="stove" id="37" weight="0.7285095453262329">
+        <attvalues>
+          <attvalue for="0" value="0.7285095453262329" />
+        </attvalues>
+      </edge>
+      <edge source="cooking" target="grill" id="38" weight="0.6446833610534668">
+        <attvalues>
+          <attvalue for="0" value="0.6446833610534668" />
+        </attvalues>
+      </edge>
+      <edge source="kitchen" target="food" id="39" weight="0.553702175617218">
+        <attvalues>
+          <attvalue for="0" value="0.553702175617218" />
+        </attvalues>
+      </edge>
+      <edge source="kitchen" target="oven" id="40" weight="0.6053796410560608">
+        <attvalues>
+          <attvalue for="0" value="0.6053796410560608" />
+        </attvalues>
+      </edge>
+      <edge source="kitchen" target="house" id="41" weight="0.577508807182312">
+        <attvalues>
+          <attvalue for="0" value="0.577508807182312" />
+        </attvalues>
+      </edge>
+      <edge source="kitchen" target="bowl" id="42" weight="0.5246977806091309">
+        <attvalues>
+          <attvalue for="0" value="0.5246977806091309" />
+        </attvalues>
+      </edge>
+      <edge source="kitchen" target="bathroom" id="43" weight="0.5287965536117554">
+        <attvalues>
+          <attvalue for="0" value="0.5287965536117554" />
+        </attvalues>
+      </edge>
+      <edge source="kitchen" target="doors" id="44" weight="0.5171215534210205">
+        <attvalues>
+          <attvalue for="0" value="0.5171215534210205" />
+        </attvalues>
+      </edge>
+      <edge source="kitchen" target="stove" id="45" weight="0.5854812860488892">
+        <attvalues>
+          <attvalue for="0" value="0.5854812860488892" />
+        </attvalues>
+      </edge>
+      <edge source="kitchen" target="grill" id="46" weight="0.508557915687561">
+        <attvalues>
+          <attvalue for="0" value="0.508557915687561" />
+        </attvalues>
+      </edge>
+      <edge source="food" target="coffee" id="47" weight="0.5154765844345093">
+        <attvalues>
+          <attvalue for="0" value="0.5154765844345093" />
+        </attvalues>
+      </edge>
+      <edge source="food" target="television" id="48" weight="0.5060510039329529">
+        <attvalues>
+          <attvalue for="0" value="0.5060510039329529" />
+        </attvalues>
+      </edge>
+      <edge source="food" target="gas" id="49" weight="0.5133009552955627">
+        <attvalues>
+          <attvalue for="0" value="0.5133009552955627" />
+        </attvalues>
+      </edge>
+      <edge source="food" target="grill" id="50" weight="0.5292115211486816">
+        <attvalues>
+          <attvalue for="0" value="0.5292115211486816" />
+        </attvalues>
+      </edge>
+      <edge source="food" target="water" id="51" weight="0.5736958980560303">
+        <attvalues>
+          <attvalue for="0" value="0.5736958980560303" />
+        </attvalues>
+      </edge>
+      <edge source="food" target="health" id="52" weight="0.5077369213104248">
+        <attvalues>
+          <attvalue for="0" value="0.5077369213104248" />
+        </attvalues>
+      </edge>
+      <edge source="oven" target="stove" id="53" weight="0.6757498979568481">
+        <attvalues>
+          <attvalue for="0" value="0.6757498979568481" />
+        </attvalues>
+      </edge>
+      <edge source="oven" target="grill" id="54" weight="0.5358558297157288">
+        <attvalues>
+          <attvalue for="0" value="0.5358558297157288" />
+        </attvalues>
+      </edge>
+      <edge source="window" target="windows" id="55" weight="0.7106263637542725">
+        <attvalues>
+          <attvalue for="0" value="0.7106263637542725" />
+        </attvalues>
+      </edge>
+      <edge source="washing machine" target="detergents" id="56" weight="0.5561584234237671">
+        <attvalues>
+          <attvalue for="0" value="0.5561584234237671" />
+        </attvalues>
+      </edge>
+      <edge source="detergents" target="germs" id="57" weight="0.5258400440216064">
+        <attvalues>
+          <attvalue for="0" value="0.5258400440216064" />
+        </attvalues>
+      </edge>
+      <edge source="save" target="savings" id="58" weight="0.611360490322113">
+        <attvalues>
+          <attvalue for="0" value="0.611360490322113" />
+        </attvalues>
+      </edge>
+      <edge source="lights" target="dimming" id="59" weight="0.5103642344474792">
+        <attvalues>
+          <attvalue for="0" value="0.5103642344474792" />
+        </attvalues>
+      </edge>
+      <edge source="lights" target="lighting" id="60" weight="0.869869589805603">
+        <attvalues>
+          <attvalue for="0" value="0.869869589805603" />
+        </attvalues>
+      </edge>
+      <edge source="lights" target="electric" id="61" weight="0.5606873631477356">
+        <attvalues>
+          <attvalue for="0" value="0.5606873631477356" />
+        </attvalues>
+      </edge>
+      <edge source="dimming" target="lighting" id="62" weight="0.5616384744644165">
+        <attvalues>
+          <attvalue for="0" value="0.5616384744644165" />
+        </attvalues>
+      </edge>
+      <edge source="thermostat" target="cooling" id="63" weight="0.5320212841033936">
+        <attvalues>
+          <attvalue for="0" value="0.5320212841033936" />
+        </attvalues>
+      </edge>
+      <edge source="lighting" target="electric" id="64" weight="0.538071870803833">
+        <attvalues>
+          <attvalue for="0" value="0.538071870803833" />
+        </attvalues>
+      </edge>
+      <edge source="energy" target="heat" id="65" weight="0.6003735065460205">
+        <attvalues>
+          <attvalue for="0" value="0.6003735065460205" />
+        </attvalues>
+      </edge>
+      <edge source="energy" target="electric" id="66" weight="0.5609686374664307">
+        <attvalues>
+          <attvalue for="0" value="0.5609686374664307" />
+        </attvalues>
+      </edge>
+      <edge source="energy" target="gas" id="67" weight="0.5206801295280457">
+        <attvalues>
+          <attvalue for="0" value="0.5206801295280457" />
+        </attvalues>
+      </edge>
+      <edge source="house" target="bathroom" id="68" weight="0.512427031993866">
+        <attvalues>
+          <attvalue for="0" value="0.512427031993866" />
+        </attvalues>
+      </edge>
+      <edge source="house" target="doors" id="69" weight="0.5471872091293335">
+        <attvalues>
+          <attvalue for="0" value="0.5471872091293335" />
+        </attvalues>
+      </edge>
+      <edge source="house" target="husband" id="70" weight="0.5201500654220581">
+        <attvalues>
+          <attvalue for="0" value="0.5201500654220581" />
+        </attvalues>
+      </edge>
+      <edge source="house" target="wall" id="71" weight="0.5186400413513184">
+        <attvalues>
+          <attvalue for="0" value="0.5186400413513184" />
+        </attvalues>
+      </edge>
+      <edge source="heat" target="fire" id="72" weight="0.6055194735527039">
+        <attvalues>
+          <attvalue for="0" value="0.6055194735527039" />
+        </attvalues>
+      </edge>
+      <edge source="heat" target="heated floors" id="73" weight="0.5496824383735657">
+        <attvalues>
+          <attvalue for="0" value="0.5496824383735657" />
+        </attvalues>
+      </edge>
+      <edge source="heat" target="gas" id="74" weight="0.5344800353050232">
+        <attvalues>
+          <attvalue for="0" value="0.5344800353050232" />
+        </attvalues>
+      </edge>
+      <edge source="heat" target="stove" id="75" weight="0.5193100571632385">
+        <attvalues>
+          <attvalue for="0" value="0.5193100571632385" />
+        </attvalues>
+      </edge>
+      <edge source="heat" target="grill" id="76" weight="0.5443750619888306">
+        <attvalues>
+          <attvalue for="0" value="0.5443750619888306" />
+        </attvalues>
+      </edge>
+      <edge source="heat" target="cooling" id="77" weight="0.6789754629135132">
+        <attvalues>
+          <attvalue for="0" value="0.6789754629135132" />
+        </attvalues>
+      </edge>
+      <edge source="fire" target="gas" id="78" weight="0.5532644987106323">
+        <attvalues>
+          <attvalue for="0" value="0.5532644987106323" />
+        </attvalues>
+      </edge>
+      <edge source="fire" target="fireplace" id="79" weight="0.6544490456581116">
+        <attvalues>
+          <attvalue for="0" value="0.6544490456581116" />
+        </attvalues>
+      </edge>
+      <edge source="fire" target="stove" id="80" weight="0.5681499242782593">
+        <attvalues>
+          <attvalue for="0" value="0.5681499242782593" />
+        </attvalues>
+      </edge>
+      <edge source="fire" target="burners" id="81" weight="0.5691078305244446">
+        <attvalues>
+          <attvalue for="0" value="0.5691078305244446" />
+        </attvalues>
+      </edge>
+      <edge source="security" target="lock" id="82" weight="0.5160620808601379">
+        <attvalues>
+          <attvalue for="0" value="0.5160620808601379" />
+        </attvalues>
+      </edge>
+      <edge source="security" target="locks" id="83" weight="0.5167660117149353">
+        <attvalues>
+          <attvalue for="0" value="0.5167660117149353" />
+        </attvalues>
+      </edge>
+      <edge source="security" target="privacy" id="84" weight="0.6341831088066101">
+        <attvalues>
+          <attvalue for="0" value="0.6341831088066101" />
+        </attvalues>
+      </edge>
+      <edge source="medicine" target="health" id="85" weight="0.6539673805236816">
+        <attvalues>
+          <attvalue for="0" value="0.6539673805236816" />
+        </attvalues>
+      </edge>
+      <edge source="coffee" target="water" id="86" weight="0.5062929391860962">
+        <attvalues>
+          <attvalue for="0" value="0.5062929391860962" />
+        </attvalues>
+      </edge>
+      <edge source="television" target="monitor" id="87" weight="0.5132837891578674">
+        <attvalues>
+          <attvalue for="0" value="0.5132837891578674" />
+        </attvalues>
+      </edge>
+      <edge source="television" target="entertainment" id="88" weight="0.6380853652954102">
+        <attvalues>
+          <attvalue for="0" value="0.6380853652954102" />
+        </attvalues>
+      </edge>
+      <edge source="television" target="computer" id="89" weight="0.5766423940658569">
+        <attvalues>
+          <attvalue for="0" value="0.5766423940658569" />
+        </attvalues>
+      </edge>
+      <edge source="television" target="phone" id="90" weight="0.5240784883499146">
+        <attvalues>
+          <attvalue for="0" value="0.5240784883499146" />
+        </attvalues>
+      </edge>
+      <edge source="television" target="tv" id="91" weight="0.9575822353363037">
+        <attvalues>
+          <attvalue for="0" value="0.9575822353363037" />
+        </attvalues>
+      </edge>
+      <edge source="child" target="kids" id="92" weight="0.7220273017883301">
+        <attvalues>
+          <attvalue for="0" value="0.7220273017883301" />
+        </attvalues>
+      </edge>
+      <edge source="cat" target="dog" id="93" weight="0.6606374979019165">
+        <attvalues>
+          <attvalue for="0" value="0.6606374979019165" />
+        </attvalues>
+      </edge>
+      <edge source="cat" target="animal" id="94" weight="0.6744635105133057">
+        <attvalues>
+          <attvalue for="0" value="0.6744635105133057" />
+        </attvalues>
+      </edge>
+      <edge source="dog" target="animal" id="95" weight="0.8155941963195801">
+        <attvalues>
+          <attvalue for="0" value="0.8155941963195801" />
+        </attvalues>
+      </edge>
+      <edge source="mail" target="delivery" id="96" weight="0.5856120586395264">
+        <attvalues>
+          <attvalue for="0" value="0.5856120586395264" />
+        </attvalues>
+      </edge>
+      <edge source="motion sensors" target="sensors" id="97" weight="0.7728719115257263">
+        <attvalues>
+          <attvalue for="0" value="0.7728719115257263" />
+        </attvalues>
+      </edge>
+      <edge source="door step" target="doors" id="98" weight="0.6658840179443359">
+        <attvalues>
+          <attvalue for="0" value="0.6658840179443359" />
+        </attvalues>
+      </edge>
+      <edge source="door step" target="stairs" id="99" weight="0.6238417029380798">
+        <attvalues>
+          <attvalue for="0" value="0.6238417029380798" />
+        </attvalues>
+      </edge>
+      <edge source="windows" target="computer" id="100" weight="0.6827335953712463">
+        <attvalues>
+          <attvalue for="0" value="0.6827335953712463" />
+        </attvalues>
+      </edge>
+      <edge source="sanitizing" target="sanitization" id="101" weight="0.9681740403175354">
+        <attvalues>
+          <attvalue for="0" value="0.9681740403175354" />
+        </attvalues>
+      </edge>
+      <edge source="bathroom" target="showers" id="102" weight="0.6722590923309326">
+        <attvalues>
+          <attvalue for="0" value="0.6722590923309326" />
+        </attvalues>
+      </edge>
+      <edge source="bathroom" target="water" id="103" weight="0.518498420715332">
+        <attvalues>
+          <attvalue for="0" value="0.518498420715332" />
+        </attvalues>
+      </edge>
+      <edge source="lock" target="locks" id="104" weight="0.9004546403884888">
+        <attvalues>
+          <attvalue for="0" value="0.9004546403884888" />
+        </attvalues>
+      </edge>
+      <edge source="monitor" target="computer" id="105" weight="0.5138674974441528">
+        <attvalues>
+          <attvalue for="0" value="0.5138674974441528" />
+        </attvalues>
+      </edge>
+      <edge source="monitor" target="tv" id="106" weight="0.5304749011993408">
+        <attvalues>
+          <attvalue for="0" value="0.5304749011993408" />
+        </attvalues>
+      </edge>
+      <edge source="alarm" target="detector" id="107" weight="0.5268899202346802">
+        <attvalues>
+          <attvalue for="0" value="0.5268899202346802" />
+        </attvalues>
+      </edge>
+      <edge source="alarm" target="alerts" id="108" weight="0.647281289100647">
+        <attvalues>
+          <attvalue for="0" value="0.647281289100647" />
+        </attvalues>
+      </edge>
+      <edge source="entertainment" target="tv" id="109" weight="0.563513994216919">
+        <attvalues>
+          <attvalue for="0" value="0.563513994216919" />
+        </attvalues>
+      </edge>
+      <edge source="video surveillance" target="detector" id="110" weight="0.5064510107040405">
+        <attvalues>
+          <attvalue for="0" value="0.5064510107040405" />
+        </attvalues>
+      </edge>
+      <edge source="video surveillance" target="spycam" id="111" weight="0.6681138277053833">
+        <attvalues>
+          <attvalue for="0" value="0.6681138277053833" />
+        </attvalues>
+      </edge>
+      <edge source="video surveillance" target="video doorbell" id="112" weight="0.5273029804229736">
+        <attvalues>
+          <attvalue for="0" value="0.5273029804229736" />
+        </attvalues>
+      </edge>
+      <edge source="showers" target="water" id="113" weight="0.5534226894378662">
+        <attvalues>
+          <attvalue for="0" value="0.5534226894378662" />
+        </attvalues>
+      </edge>
+      <edge source="showers" target="showerhead" id="114" weight="0.664542555809021">
+        <attvalues>
+          <attvalue for="0" value="0.664542555809021" />
+        </attvalues>
+      </edge>
+      <edge source="detector" target="sensors" id="115" weight="0.5659319162368774">
+        <attvalues>
+          <attvalue for="0" value="0.5659319162368774" />
+        </attvalues>
+      </edge>
+      <edge source="gas" target="stove" id="116" weight="0.5100234150886536">
+        <attvalues>
+          <attvalue for="0" value="0.5100234150886536" />
+        </attvalues>
+      </edge>
+      <edge source="gas" target="water" id="117" weight="0.5122633576393127">
+        <attvalues>
+          <attvalue for="0" value="0.5122633576393127" />
+        </attvalues>
+      </edge>
+      <edge source="fireplace" target="stove" id="118" weight="0.5938054323196411">
+        <attvalues>
+          <attvalue for="0" value="0.5938054323196411" />
+        </attvalues>
+      </edge>
+      <edge source="stove" target="burners" id="119" weight="0.6298924088478088">
+        <attvalues>
+          <attvalue for="0" value="0.6298924088478088" />
+        </attvalues>
+      </edge>
+      <edge source="stove" target="grill" id="120" weight="0.5762096643447876">
+        <attvalues>
+          <attvalue for="0" value="0.5762096643447876" />
+        </attvalues>
+      </edge>
+      <edge source="repair" target="maintenance" id="121" weight="0.6629433631896973">
+        <attvalues>
+          <attvalue for="0" value="0.6629433631896973" />
+        </attvalues>
+      </edge>
+      <edge source="repair" target="damage" id="122" weight="0.5461868047714233">
+        <attvalues>
+          <attvalue for="0" value="0.5461868047714233" />
+        </attvalues>
+      </edge>
+      <edge source="husband" target="wife" id="123" weight="0.868858814239502">
+        <attvalues>
+          <attvalue for="0" value="0.868858814239502" />
+        </attvalues>
+      </edge>
+      <edge source="computer" target="phone" id="124" weight="0.6022818684577942">
+        <attvalues>
+          <attvalue for="0" value="0.6022818684577942" />
+        </attvalues>
+      </edge>
+      <edge source="computer" target="tv" id="125" weight="0.5706490278244019">
+        <attvalues>
+          <attvalue for="0" value="0.5706490278244019" />
+        </attvalues>
+      </edge>
+      <edge source="water" target="water conservation" id="126" weight="0.5898985862731934">
+        <attvalues>
+          <attvalue for="0" value="0.5898985862731934" />
+        </attvalues>
+      </edge>
+      <edge source="telephone" target="phone" id="127" weight="0.8053301572799683">
+        <attvalues>
+          <attvalue for="0" value="0.8053301572799683" />
+        </attvalues>
+      </edge>
+      <edge source="telephone" target="answering machine" id="128" weight="0.5433716177940369">
+        <attvalues>
+          <attvalue for="0" value="0.5433716177940369" />
+        </attvalues>
+      </edge>
+      <edge source="phone" target="tv" id="129" weight="0.5321030020713806">
+        <attvalues>
+          <attvalue for="0" value="0.5321030020713806" />
+        </attvalues>
+      </edge>
+      <edge source="privacy" target="social media" id="130" weight="0.5040392875671387">
+        <attvalues>
+          <attvalue for="0" value="0.5040392875671387" />
+        </attvalues>
+      </edge>
+      <edge source="weather" target="humidity" id="131" weight="0.5330085754394531">
+        <attvalues>
+          <attvalue for="0" value="0.5330085754394531" />
+        </attvalues>
+      </edge>
+    </edges>
+  </graph>
+</gexf>

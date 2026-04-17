@@ -3,12 +3,13 @@ from __future__ import annotations
 import argparse
 import os
 from pathlib import Path
+from typing import Any
 
 import numpy as np
 import torch
 from datasets import load_from_disk
-from peft import LoraConfig, TaskType, get_peft_model
-from src.finetune.metrics import mean_keyword_f1
+from peft import LoraConfig, PeftModel, TaskType, get_peft_model
+from src.finetune.metrics import keyword_f1, mean_keyword_f1
 from transformers import (
     DataCollatorForSeq2Seq,
     Seq2SeqTrainer,
@@ -54,6 +55,106 @@ def build_tokenizer_and_model() -> tuple[T5Tokenizer, T5ForConditionalGeneration
     )
     model = get_peft_model(model, lora_config)
     return tokenizer, model
+
+
+def load_inference_model(model_dir: str) -> tuple[T5Tokenizer, Any]:
+    model_path = Path(model_dir)
+    if not model_path.exists():
+        raise FileNotFoundError(f"Model directory not found: {model_path}")
+
+    tokenizer = T5Tokenizer.from_pretrained(str(model_path))
+
+    if (model_path / "adapter_config.json").exists():
+        base_model = T5ForConditionalGeneration.from_pretrained(MODEL_NAME)
+        model = PeftModel.from_pretrained(base_model, str(model_path))
+    else:
+        model = T5ForConditionalGeneration.from_pretrained(str(model_path))
+
+    model.eval()
+    if torch.cuda.is_available():
+        model = model.to("cuda")
+
+    return tokenizer, model
+
+
+def predict_keywords(
+    model_dir: str,
+    inputs: list[str],
+    batch_size: int = 16,
+    max_input_len: int = 256,
+    max_target_len: int = 64,
+) -> list[str]:
+    tokenizer, model = load_inference_model(model_dir)
+    predictions: list[str] = []
+    device = "cuda" if torch.cuda.is_available() else "cpu"
+
+    for idx in range(0, len(inputs), batch_size):
+        batch_inputs = inputs[idx : idx + batch_size]
+        encoded = tokenizer(
+            batch_inputs,
+            padding=True,
+            truncation=True,
+            max_length=max_input_len,
+            return_tensors="pt",
+        )
+        encoded = {k: v.to(device) for k, v in encoded.items()}
+
+        with torch.no_grad():
+            generated = model.generate(
+                **encoded,
+                max_new_tokens=max_target_len,
+                num_beams=4,
+            )
+
+        batch_preds = tokenizer.batch_decode(generated, skip_special_tokens=True)
+        predictions.extend([pred.strip() for pred in batch_preds])
+
+    return predictions
+
+
+def compute_keyword_comparison_metrics(predictions: list[str], references: list[str]) -> dict:
+    if len(predictions) != len(references):
+        raise ValueError("predictions and references must have same length")
+
+    total_tp = 0
+    total_fp = 0
+    total_fn = 0
+    exact_match_count = 0
+    sample_f1_scores: list[float] = []
+
+    for pred, ref in zip(predictions, references):
+        pred_set = {k.strip().lower() for k in pred.split(",") if k.strip()}
+        ref_set = {k.strip().lower() for k in ref.split(",") if k.strip()}
+
+        if pred_set == ref_set:
+            exact_match_count += 1
+
+        tp = len(pred_set & ref_set)
+        fp = len(pred_set - ref_set)
+        fn = len(ref_set - pred_set)
+
+        total_tp += tp
+        total_fp += fp
+        total_fn += fn
+        sample_f1_scores.append(keyword_f1(pred, ref))
+
+    precision_micro = total_tp / (total_tp + total_fp) if (total_tp + total_fp) > 0 else 0.0
+    recall_micro = total_tp / (total_tp + total_fn) if (total_tp + total_fn) > 0 else 0.0
+    f1_micro = (
+        2 * precision_micro * recall_micro / (precision_micro + recall_micro)
+        if (precision_micro + recall_micro) > 0
+        else 0.0
+    )
+
+    total = len(predictions)
+    return {
+        "samples": total,
+        "exact_match": exact_match_count / total if total else 0.0,
+        "precision_micro": precision_micro,
+        "recall_micro": recall_micro,
+        "f1_micro": f1_micro,
+        "mean_sample_f1": float(sum(sample_f1_scores) / total) if total else 0.0,
+    }
 
 
 def preprocess_fn(batch: dict, tokenizer: T5Tokenizer, max_input_len: int, max_target_len: int) -> dict:
