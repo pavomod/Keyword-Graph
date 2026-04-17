@@ -33,12 +33,23 @@ Start command:
 python -m src.run_pipeline [arguments...]
 ```
 
+The pipeline automatically reads a JSON config file from `config/run_pipeline.json`.
+CLI arguments always override values from the config file.
+
+Configuration file example: `config/run_pipeline.json`
+
 ### Recommended startup commands by scenario
 
 1. First run on a new machine/project (train if needed, then evaluate real-case and build graph)
 
 ```bash
 python -m src.run_pipeline --mode auto
+```
+
+1.1 Run using only JSON config values (quickest workflow)
+
+```bash
+python -m src.run_pipeline
 ```
 
 2. Force a brand-new training run (ignore existing model)
@@ -77,10 +88,17 @@ python -m src.run_pipeline --mode reuse --semantic-threshold 0.8
 python -m src.run_pipeline --mode auto --comparison-json-out results/my_report.json --graph-out results/my_graph.gexf
 ```
 
+8. Use an alternative config file
+
+```bash
+python -m src.run_pipeline --config config/my_experiment.json
+```
+
 ### Full argument reference
 
 | Argument | Type | Default | Meaning |
 |---|---|---|---|
+| `--config` | `str` | `config/run_pipeline.json` | JSON config file path. If present, values are loaded before execution. |
 | `--mode` | `auto\|finetune\|reuse` | `auto` | Pipeline mode: `auto` trains only if model is missing, `finetune` always trains, `reuse` requires an existing model and skips training. |
 | `--input-csv` | `str` | `None` | Input dataset CSV path. If omitted, the pipeline auto-detects `data/crowd.csv` (or `requirements.csv`). |
 | `--hf-dataset-dir` | `str` | `data/hf_dataset` | Output folder for HuggingFace `DatasetDict` used by training. |
@@ -108,6 +126,16 @@ python -m src.run_pipeline --mode auto --comparison-json-out results/my_report.j
 - `auto` is the best default for daily usage.
 - `finetune` is the right choice when you changed data prep, split sizes, or training hyperparameters.
 - `reuse` is the fastest option when you only want fresh predictions/report/graph with an already trained model.
+
+### Config precedence
+
+Order used by the script for each parameter:
+
+1. CLI argument (highest priority)
+2. JSON config value from `--config`
+3. Internal default (lowest priority)
+
+This lets you keep stable experiment defaults in JSON and override only a few values from CLI when needed.
 
 ## Real-case split and outputs
 
