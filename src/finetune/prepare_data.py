@@ -30,10 +30,17 @@ def _clean_tags(value: object) -> str:
     return str(value).strip()
 
 
+def _clean_text(value: object, default: str = "") -> str:
+    if pd.isna(value):
+        return default
+    text = str(value).strip()
+    return text if text else default
+
+
 def _build_prompt(row: pd.Series) -> str:
-    role = str(row.get("role", "user")).strip()
-    feature = str(row.get("feature", "")).strip()
-    benefit = str(row.get("benefit", "")).strip()
+    role = _clean_text(row.get("role", "user"), default="user")
+    feature = _clean_text(row.get("feature", ""))
+    benefit = _clean_text(row.get("benefit", ""))
     return (
         "Extract comma-separated keywords from this user story. "
         "Return only keywords.\n"
@@ -60,6 +67,21 @@ def prepare_dataframe(df: pd.DataFrame) -> pd.DataFrame:
         }
     )
     return formatted
+
+
+def prepare_inference_dataframe(df: pd.DataFrame) -> pd.DataFrame:
+    required_columns = {"role", "feature", "benefit"}
+    missing = required_columns - set(df.columns)
+    if missing:
+        raise ValueError(f"Missing columns in input CSV: {sorted(missing)}")
+
+    source_ids = df["id"].astype(str) if "id" in df.columns else df.index.astype(str)
+    return pd.DataFrame(
+        {
+            "source_id": source_ids,
+            "input": df.apply(_build_prompt, axis=1),
+        }
+    )
 
 
 def split_dataset(df_formatted: pd.DataFrame, seed: int = 42) -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame]:

@@ -1,9 +1,11 @@
 from __future__ import annotations
 
+from src.keywords.normalize import parse_keyword_text
+
 
 def keyword_f1(predicted: str, ground_truth: str) -> float:
-    pred_set = {k.strip().lower() for k in predicted.split(",") if k.strip()}
-    truth_set = {k.strip().lower() for k in ground_truth.split(",") if k.strip()}
+    pred_set = set(parse_keyword_text(predicted))
+    truth_set = set(parse_keyword_text(ground_truth))
 
     if not pred_set and not truth_set:
         return 1.0

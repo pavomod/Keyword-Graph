@@ -8,6 +8,7 @@ import pandas as pd
 
 from src.finetune.prepare_data import (
     _pick_input_csv,
+    prepare_inference_dataframe,
     prepare_dataframe,
     split_dataset_fixed,
     to_hf_dataset_dict,
@@ -18,17 +19,20 @@ from src.finetune.train import (
     train_model,
 )
 from src.graph.build_graph import (
+    attach_requirement_references,
     build_semantic_similarity_graph,
     parse_keywords,
     save_graph_gexf,
+    style_nodes_by_degree,
 )
 
 
 DEFAULT_PIPELINE_CONFIG = {
-    "mode": "auto",
-    "input_csv": None,
+    "train": False,
+    "train_input_csv": None,
     "hf_dataset_dir": "data/hf_dataset",
     "model_dir": "models/flan-t5-keywords",
+    "base_model_name": "google/flan-t5-base",
     "seed": 42,
     "epochs": 5,
     "batch_size": 8,
@@ -117,28 +121,39 @@ def _prepare_dataset(
     )
 
 
-def _save_real_case_report(
-    real_df: pd.DataFrame,
-    predictions: list[str],
+def _save_verification_report(
+    reference_df: pd.DataFrame,
+    predictions_by_source: dict[str, str],
     comparison_json_out: str,
+    inference_diagnostics: dict | None = None,
 ) -> tuple[str, dict]:
-    references = real_df["target"].tolist()
-    metrics = compute_keyword_comparison_metrics(predictions, references)
+    records = []
+    predictions: list[str] = []
+    references: list[str] = []
 
-    comparison_records = []
-    for row, prediction, reference in zip(real_df.to_dict(orient="records"), predictions, references):
-        comparison_records.append(
+    for row in reference_df.to_dict(orient="records"):
+        source_id = str(row.get("source_id"))
+        predicted = predictions_by_source.get(source_id, "")
+        reference = str(row.get("target", ""))
+        predictions.append(predicted)
+        references.append(reference)
+        records.append(
             {
-                "source_id": row.get("source_id"),
+                "source_id": source_id,
                 "input": row.get("input"),
-                "predicted_tags": prediction,
+                "predicted_tags": predicted,
                 "real_tags": reference,
             }
         )
 
+    metrics = compute_keyword_comparison_metrics(predictions, references)
+
     payload = {
         "metrics": metrics,
-        "records": comparison_records,
+        "diagnostics": {
+            "keyword_inference": inference_diagnostics or {},
+        },
+        "records": records,
     }
 
     output_path = Path(comparison_json_out)
@@ -150,9 +165,8 @@ def _save_real_case_report(
 def main() -> None:
     parser = argparse.ArgumentParser(
         description=(
-            "One-command pipeline for keyword model. "
-            "Use --mode finetune to always train, --mode reuse to only use saved model, "
-            "or --mode auto to train only if model is missing."
+            "One-command pipeline for keyword extraction and graph generation. "
+            "Training is optional and runs only if --train is specified."
         )
     )
     parser.add_argument(
@@ -161,10 +175,14 @@ def main() -> None:
         default="config/run_pipeline.json",
         help="JSON config path. CLI args override config values.",
     )
-    parser.add_argument("--mode", choices=["auto", "finetune", "reuse"], default=None)
-    parser.add_argument("--input-csv", type=str, default=None)
+    train_group = parser.add_mutually_exclusive_group()
+    train_group.add_argument("--train", dest="train", action="store_const", const=True)
+    train_group.add_argument("--no-train", dest="train", action="store_const", const=False)
+    parser.set_defaults(train=None)
+    parser.add_argument("--train-input-csv", type=str, default=None)
     parser.add_argument("--hf-dataset-dir", type=str, default=None)
     parser.add_argument("--model-dir", type=str, default=None)
+    parser.add_argument("--base-model-name", type=str, default=None)
     parser.add_argument("--seed", type=int, default=None)
     parser.add_argument("--epochs", type=int, default=None)
     parser.add_argument("--batch-size", type=int, default=None)
@@ -209,10 +227,11 @@ def main() -> None:
     if unknown_config_keys:
         print(f"[config] Ignoring unknown keys: {unknown_config_keys}")
 
-    mode = _resolve_setting(args.mode, config_values, "mode")
-    input_csv = _resolve_setting(args.input_csv, config_values, "input_csv")
+    should_train = bool(_resolve_setting(args.train, config_values, "train"))
+    train_input_csv = _resolve_setting(args.train_input_csv, config_values, "train_input_csv")
     hf_dataset_dir = _resolve_setting(args.hf_dataset_dir, config_values, "hf_dataset_dir")
     model_dir_value = _resolve_setting(args.model_dir, config_values, "model_dir")
+    base_model_name = _resolve_setting(args.base_model_name, config_values, "base_model_name")
     seed = int(_resolve_setting(args.seed, config_values, "seed"))
     epochs = int(_resolve_setting(args.epochs, config_values, "epochs"))
     batch_size = int(_resolve_setting(args.batch_size, config_values, "batch_size"))
@@ -241,27 +260,23 @@ def main() -> None:
     model_dir = Path(model_dir_value)
     has_model = _model_exists(model_dir)
 
-    if mode == "reuse" and not has_model:
-        raise FileNotFoundError(
-            f"Model not found in {model_dir}. Use --mode finetune or --mode auto first."
+    if should_train:
+        print("[1/4] Preparing training dataset split...")
+        prep_info, _ = _prepare_dataset(
+            train_input_csv,
+            hf_dataset_dir,
+            seed,
+            train_size=train_size,
+            validation_size=validation_size,
+            test_size=test_size,
         )
-
-    should_train = mode == "finetune" or (mode == "auto" and not has_model)
-
-    print("[1/4] Preparing fixed dataset split...")
-    prep_info, real_df = _prepare_dataset(
-        input_csv,
-        hf_dataset_dir,
-        seed,
-        train_size=train_size,
-        validation_size=validation_size,
-        test_size=test_size,
-    )
-    print(
-        "Prepared dataset from {input} | samples={samples} | split={train}/{validation}/{test} | real_case={real_case}".format(
-            **prep_info
+        print(
+            "Prepared training dataset from {input} | samples={samples} | split={train}/{validation}/{test} | held_out={real_case}".format(
+                **prep_info
+            )
         )
-    )
+    else:
+        print("[1/4] Training skipped (--no-train).")
 
     if should_train:
         print("[2/4] Fine-tuning model...")
@@ -278,34 +293,63 @@ def main() -> None:
         )
         print(f"Training complete. Model saved in: {model_dir_value}")
         print(f"Eval metrics: {metrics}")
+        inference_model_dir: str | None = model_dir_value
     else:
-        print(f"Using existing model from: {model_dir_value}")
+        if has_model:
+            print(f"[2/4] Using existing fine-tuned model from: {model_dir_value}")
+            inference_model_dir = model_dir_value
+        else:
+            print(
+                f"[2/4] No fine-tuned model found in {model_dir_value}. "
+                f"Using base model: {base_model_name}"
+            )
+            inference_model_dir = None
 
-    print("[3/4] Predicting tags for real-case split...")
-    real_inputs = real_df["input"].tolist()
-    predictions = predict_keywords(
-        model_dir=model_dir_value,
-        inputs=real_inputs,
+    print("[3/4] Predicting keywords for full dataset...")
+    inference_csv_path = _pick_input_csv("data/crowd.csv")
+    raw_df = pd.read_csv(inference_csv_path)
+    inference_df = prepare_inference_dataframe(raw_df)
+    inference_inputs = inference_df["input"].tolist()
+    predictions, inference_diagnostics = predict_keywords(
+        model_dir=inference_model_dir,
+        base_model_name=base_model_name,
+        inputs=inference_inputs,
         batch_size=inference_batch_size,
         max_input_len=max_input_len,
         max_target_len=max_target_len,
     )
 
-    comparison_path, comparison_metrics = _save_real_case_report(
-        real_df=real_df,
-        predictions=predictions,
-        comparison_json_out=comparison_json_out,
-    )
-    print(f"Real-case comparison JSON saved in: {comparison_path}")
-    print(f"Real-case metrics: {comparison_metrics}")
+    predictions_by_source = {
+        str(source_id): prediction
+        for source_id, prediction in zip(inference_df["source_id"].tolist(), predictions)
+    }
 
-    print("[4/4] Building global semantic graph from predicted keywords and exporting GEXF...")
+    if "tags" in raw_df.columns:
+        reference_df = prepare_dataframe(raw_df)
+        comparison_path, comparison_metrics = _save_verification_report(
+            reference_df=reference_df,
+            predictions_by_source=predictions_by_source,
+            comparison_json_out=comparison_json_out,
+            inference_diagnostics=inference_diagnostics,
+        )
+        print(f"Comparison JSON saved in: {comparison_path}")
+        print(f"Verification metrics (rows with tags): {comparison_metrics}")
+    else:
+        print("No 'tags' column found in inference CSV. Skipping comparison report.")
+
+    print("[4/4] Building global semantic graph from full-dataset predictions and exporting GEXF...")
     predicted_keyword_lists = [parse_keywords(prediction) for prediction in predictions]
     graph = build_semantic_similarity_graph(
         keyword_lists=predicted_keyword_lists,
         threshold=semantic_threshold,
         model_name=semantic_model,
     )
+    graph = attach_requirement_references(
+        graph=graph,
+        keyword_lists=predicted_keyword_lists,
+        requirement_ids=[str(source_id) for source_id in inference_df["source_id"].tolist()],
+    )
+    graph = style_nodes_by_degree(graph)
     graph_path = save_graph_gexf(graph, graph_out)
     print(
         f"Graph saved in: {graph_path} | nodes={graph.number_of_nodes()} | edges={graph.number_of_edges()}"

@@ -1,8 +1,9 @@
 {
-  "mode": "auto",
-  "input_csv": null,
+  "train": false,
+  "train_input_csv": null,
   "hf_dataset_dir": "data/hf_dataset",
   "model_dir": "models/flan-t5-keywords",
+  "base_model_name": "google/flan-t5-base",
   "seed": 42,
   "epochs": 8,
   "batch_size": 8,
@@ -17,6 +18,6 @@
   "comparison_json_out": "results/real_case_comparison.json",
   "graph_out": "results/keyword_graph_real_case.gexf",
   "inference_batch_size": 16,
-  "semantic_threshold": 0.4,
+  "semantic_threshold": 0.5,
   "semantic_model": "all-MiniLM-L6-v2"
 }

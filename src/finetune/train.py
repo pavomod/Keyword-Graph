@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import argparse
 import os
+import re
 from pathlib import Path
 from typing import Any
 
@@ -10,8 +11,8 @@ import torch
 from datasets import load_from_disk
 from peft import LoraConfig, PeftModel, TaskType, get_peft_model
 from src.finetune.metrics import keyword_f1, mean_keyword_f1
+from src.keywords.normalize import normalize_keyword_text, parse_keyword_text
 from transformers import (
-    AutoConfig,
     DataCollatorForSeq2Seq,
     Seq2SeqTrainer,
     Seq2SeqTrainingArguments,
@@ -20,6 +21,34 @@ from transformers import (
 )
 
 MODEL_NAME = "google/flan-t5-base"
+_STOPWORDS = {
+    "a",
+    "an",
+    "and",
+    "are",
+    "as",
+    "at",
+    "be",
+    "by",
+    "for",
+    "from",
+    "i",
+    "if",
+    "in",
+    "is",
+    "it",
+    "my",
+    "of",
+    "on",
+    "or",
+    "so",
+    "that",
+    "the",
+    "this",
+    "to",
+    "want",
+    "with",
+}
 
 
 def _compute_test_keyword_f1(
@@ -59,21 +88,21 @@ def build_tokenizer_and_model() -> tuple[T5Tokenizer, T5ForConditionalGeneration
     return tokenizer, model
 
 
-def load_inference_model(model_dir: str) -> tuple[T5Tokenizer, Any]:
-    model_path = Path(model_dir)
-    if not model_path.exists():
-        raise FileNotFoundError(f"Model directory not found: {model_path}")
+def load_inference_model(model_dir: str | None = None, base_model_name: str = MODEL_NAME) -> tuple[T5Tokenizer, Any]:
+    model_path = Path(model_dir) if model_dir else None
 
-    tokenizer = T5Tokenizer.from_pretrained(str(model_path))
+    if model_path and model_path.exists():
+        tokenizer = T5Tokenizer.from_pretrained(str(model_path))
 
-    if (model_path / "adapter_config.json").exists():
-        model_config = AutoConfig.from_pretrained(MODEL_NAME)
-        model_config.tie_word_embeddings = False
-        base_model = T5ForConditionalGeneration.from_pretrained(MODEL_NAME, config=model_config)
-        model = PeftModel.from_pretrained(base_model, str(model_path))
+        if (model_path / "adapter_config.json").exists():
+            # Keep original base-model config to avoid embedding mismatch warnings.
+            base_model = T5ForConditionalGeneration.from_pretrained(base_model_name)
+            model = PeftModel.from_pretrained(base_model, str(model_path))
+        else:
+            model = T5ForConditionalGeneration.from_pretrained(str(model_path))
     else:
-        model = T5ForConditionalGeneration.from_pretrained(str(model_path))
-        model.config.tie_word_embeddings = False
+        tokenizer = T5Tokenizer.from_pretrained(base_model_name)
+        model = T5ForConditionalGeneration.from_pretrained(base_model_name)
 
     model.eval()
     if torch.cuda.is_available():
@@ -83,14 +112,17 @@ def load_inference_model(model_dir: str) -> tuple[T5Tokenizer, Any]:
 
 
 def predict_keywords(
-    model_dir: str,
+    model_dir: str | None,
     inputs: list[str],
     batch_size: int = 16,
     max_input_len: int = 256,
     max_target_len: int = 64,
-) -> list[str]:
-    tokenizer, model = load_inference_model(model_dir)
+    base_model_name: str = MODEL_NAME,
+) -> tuple[list[str], dict[str, float | int]]:
+    tokenizer, model = load_inference_model(model_dir=model_dir, base_model_name=base_model_name)
     predictions: list[str] = []
+    model_generated_count = 0
+    fallback_generated_count = 0
     device = "cuda" if torch.cuda.is_available() else "cpu"
 
     for idx in range(0, len(inputs), batch_size):
@@ -108,13 +140,62 @@ def predict_keywords(
             generated = model.generate(
                 **encoded,
                 max_new_tokens=max_target_len,
+                min_new_tokens=4,
                 num_beams=4,
+                no_repeat_ngram_size=2,
+                early_stopping=True,
             )
 
         batch_preds = tokenizer.batch_decode(generated, skip_special_tokens=True)
-        predictions.extend([pred.strip() for pred in batch_preds])
+        for prompt, pred in zip(batch_inputs, batch_preds):
+            normalized = normalize_keyword_text(pred)
+            if normalized:
+                predictions.append(normalized)
+                model_generated_count += 1
+                continue
 
-    return predictions
+            # Deterministic fallback for base-model empty generations.
+            predictions.append(_fallback_keywords_from_prompt(prompt, max_keywords=8))
+            fallback_generated_count += 1
+
+    total_predictions = len(predictions)
+    fallback_ratio = (
+        (fallback_generated_count / total_predictions) * 100.0
+        if total_predictions
+        else 0.0
+    )
+    print(
+        "[diagnostic] keyword_inference "
+        f"total={total_predictions} | "
+        f"from_model={model_generated_count} | "
+        f"from_fallback={fallback_generated_count} | "
+        f"fallback_ratio={fallback_ratio:.2f}%"
+    )
+
+    diagnostics = {
+        "total": total_predictions,
+        "from_model": model_generated_count,
+        "from_fallback": fallback_generated_count,
+        "fallback_ratio": fallback_ratio,
+    }
+
+    return predictions, diagnostics
+
+
+def _fallback_keywords_from_prompt(prompt: str, max_keywords: int = 8) -> str:
+    words = re.findall(r"[a-zA-Z][a-zA-Z\-]+", str(prompt).lower())
+    filtered = [w for w in words if len(w) > 2 and w not in _STOPWORDS]
+
+    # Preserve first occurrence order, then normalize and sort as requested by pipeline rules.
+    ordered_unique = list(dict.fromkeys(filtered))
+    if not ordered_unique:
+        relaxed = [w for w in words if len(w) > 1]
+        ordered_unique = list(dict.fromkeys(relaxed))
+    if not ordered_unique:
+        ordered_unique = ["keyword"]
+
+    heuristic = ", ".join(ordered_unique[:max_keywords])
+    return normalize_keyword_text(heuristic)
 
 
 def compute_keyword_comparison_metrics(predictions: list[str], references: list[str]) -> dict:
@@ -128,8 +209,8 @@ def compute_keyword_comparison_metrics(predictions: list[str], references: list[
     sample_f1_scores: list[float] = []
 
     for pred, ref in zip(predictions, references):
-        pred_set = {k.strip().lower() for k in pred.split(",") if k.strip()}
-        ref_set = {k.strip().lower() for k in ref.split(",") if k.strip()}
+        pred_set = set(parse_keyword_text(pred))
+        ref_set = set(parse_keyword_text(ref))
 
         if pred_set == ref_set:
             exact_match_count += 1
