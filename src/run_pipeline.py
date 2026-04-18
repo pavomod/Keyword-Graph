@@ -5,6 +5,7 @@ import json
 from pathlib import Path
 
 import pandas as pd
+from src.clustering import run_clustering_phase
 
 from src.finetune.prepare_data import (
     _pick_input_csv,
@@ -49,6 +50,17 @@ DEFAULT_PIPELINE_CONFIG = {
     "inference_batch_size": 16,
     "semantic_threshold": 0.4,
     "semantic_model": "all-MiniLM-L6-v2",
+    "enable_clustering": True,
+    "cluster_k": None,
+    "cluster_k_min": 2,
+    "cluster_k_max": 15,
+    "cluster_embedding_dim": 64,
+    "cluster_random_state": 42,
+    "cluster_node2vec_walk_length": 30,
+    "cluster_node2vec_num_walks": 200,
+    "cluster_node2vec_workers": 4,
+    "cluster_report_out": "results/clustering_report.json",
+    "cluster_elbow_plot_out": "results/elbow.png",
 }
 
 
@@ -220,6 +232,30 @@ def main() -> None:
         default=None,
         help="Sentence-Transformers model used to compute keyword similarity",
     )
+    cluster_group = parser.add_mutually_exclusive_group()
+    cluster_group.add_argument(
+        "--enable-clustering",
+        dest="enable_clustering",
+        action="store_const",
+        const=True,
+    )
+    cluster_group.add_argument(
+        "--no-clustering",
+        dest="enable_clustering",
+        action="store_const",
+        const=False,
+    )
+    parser.set_defaults(enable_clustering=None)
+    parser.add_argument("--cluster-k", type=int, default=None)
+    parser.add_argument("--cluster-k-min", type=int, default=None)
+    parser.add_argument("--cluster-k-max", type=int, default=None)
+    parser.add_argument("--cluster-embedding-dim", type=int, default=None)
+    parser.add_argument("--cluster-random-state", type=int, default=None)
+    parser.add_argument("--cluster-node2vec-walk-length", type=int, default=None)
+    parser.add_argument("--cluster-node2vec-num-walks", type=int, default=None)
+    parser.add_argument("--cluster-node2vec-workers", type=int, default=None)
+    parser.add_argument("--cluster-report-out", type=str, default=None)
+    parser.add_argument("--cluster-elbow-plot-out", type=str, default=None)
     args = parser.parse_args()
 
     config_values = _load_pipeline_config(args.config)
@@ -256,6 +292,46 @@ def main() -> None:
         _resolve_setting(args.semantic_threshold, config_values, "semantic_threshold")
     )
     semantic_model = _resolve_setting(args.semantic_model, config_values, "semantic_model")
+    enable_clustering = bool(
+        _resolve_setting(args.enable_clustering, config_values, "enable_clustering")
+    )
+    cluster_k = _resolve_setting(args.cluster_k, config_values, "cluster_k")
+    cluster_k = int(cluster_k) if cluster_k is not None else None
+    cluster_k_min = int(_resolve_setting(args.cluster_k_min, config_values, "cluster_k_min"))
+    cluster_k_max = int(_resolve_setting(args.cluster_k_max, config_values, "cluster_k_max"))
+    cluster_embedding_dim = int(
+        _resolve_setting(args.cluster_embedding_dim, config_values, "cluster_embedding_dim")
+    )
+    cluster_random_state = int(
+        _resolve_setting(args.cluster_random_state, config_values, "cluster_random_state")
+    )
+    cluster_node2vec_walk_length = int(
+        _resolve_setting(
+            args.cluster_node2vec_walk_length,
+            config_values,
+            "cluster_node2vec_walk_length",
+        )
+    )
+    cluster_node2vec_num_walks = int(
+        _resolve_setting(
+            args.cluster_node2vec_num_walks,
+            config_values,
+            "cluster_node2vec_num_walks",
+        )
+    )
+    cluster_node2vec_workers = int(
+        _resolve_setting(
+            args.cluster_node2vec_workers,
+            config_values,
+            "cluster_node2vec_workers",
+        )
+    )
+    cluster_report_out = _resolve_setting(args.cluster_report_out, config_values, "cluster_report_out")
+    cluster_elbow_plot_out = _resolve_setting(
+        args.cluster_elbow_plot_out,
+        config_values,
+        "cluster_elbow_plot_out",
+    )
 
     model_dir = Path(model_dir_value)
     has_model = _model_exists(model_dir)
@@ -337,7 +413,7 @@ def main() -> None:
     else:
         print("No 'tags' column found in inference CSV. Skipping comparison report.")
 
-    print("[4/4] Building global semantic graph from full-dataset predictions and exporting GEXF...")
+    print("[4/5] Building global semantic graph from full-dataset predictions and exporting GEXF...")
     predicted_keyword_lists = [parse_keywords(prediction) for prediction in predictions]
     graph = build_semantic_similarity_graph(
         keyword_lists=predicted_keyword_lists,
@@ -349,6 +425,32 @@ def main() -> None:
         keyword_lists=predicted_keyword_lists,
         requirement_ids=[str(source_id) for source_id in inference_df["source_id"].tolist()],
     )
+
+    if enable_clustering:
+        print("[5/5] Running clustering phase (Node2Vec -> K-Means -> UMAP)...")
+        clustering_payload, graph = run_clustering_phase(
+            graph=graph,
+            output_json_path=cluster_report_out,
+            output_elbow_plot_path=cluster_elbow_plot_out,
+            embedding_dim=cluster_embedding_dim,
+            requested_k=cluster_k,
+            k_min=cluster_k_min,
+            k_max=cluster_k_max,
+            random_state=cluster_random_state,
+            node2vec_walk_length=cluster_node2vec_walk_length,
+            node2vec_num_walks=cluster_node2vec_num_walks,
+            node2vec_workers=cluster_node2vec_workers,
+        )
+        print(
+            "Clustering report saved in: "
+            f"{cluster_report_out} | selected_k={clustering_payload['clustering'].get('selected_k')}"
+        )
+        elbow_plot_path = clustering_payload["clustering"].get("elbow_plot")
+        if elbow_plot_path:
+            print(f"Clustering elbow plot saved in: {elbow_plot_path}")
+    else:
+        print("[5/5] Clustering phase skipped (--no-clustering).")
+
     graph = style_nodes_by_degree(graph)
     graph_path = save_graph_gexf(graph, graph_out)
     print(

@@ -6,6 +6,7 @@ from pathlib import Path
 import networkx as nx
 from sentence_transformers import SentenceTransformer, util
 from src.keywords.normalize import parse_keyword_text
+from transformers import logging as hf_logging
 
 
 def parse_keywords(keywords_text: str) -> list[str]:
@@ -48,7 +49,13 @@ def build_semantic_similarity_graph(
     if len(unique_keywords) < 2:
         return graph
 
-    encoder = SentenceTransformer(model_name)
+    previous_verbosity = hf_logging.get_verbosity()
+    hf_logging.set_verbosity_error()
+    try:
+        encoder = SentenceTransformer(model_name)
+    finally:
+        hf_logging.set_verbosity(previous_verbosity)
+
     embeddings = encoder.encode(unique_keywords, convert_to_tensor=True)
     similarity_matrix = util.cos_sim(embeddings, embeddings)
 

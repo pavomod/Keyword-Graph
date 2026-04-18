@@ -1,0 +1,8423 @@
+{
+  "clustering": {
+    "enabled": true,
+    "selected_k": 2,
+    "num_nodes": 1389,
+    "embedding_dim": 64,
+    "inertia": 13022.07482210863,
+    "silhouette": 0.08392386777127268,
+    "k_selection": {
+      "selected_k": 2,
+      "strategy": "auto-silhouette",
+      "candidates": [
+        {
+          "k": 2,
+          "inertia": 13022.07482210863,
+          "silhouette": 0.08392386777127268
+        },
+        {
+          "k": 3,
+          "inertia": 12399.176487655877,
+          "silhouette": 0.06666895240273822
+        },
+        {
+          "k": 4,
+          "inertia": 11985.468928266971,
+          "silhouette": 0.056662850365380935
+        },
+        {
+          "k": 5,
+          "inertia": 11649.759618585118,
+          "silhouette": 0.06423780943016932
+        },
+        {
+          "k": 6,
+          "inertia": 11317.987901333408,
+          "silhouette": 0.06581410250786168
+        },
+        {
+          "k": 7,
+          "inertia": 10964.827278530092,
+          "silhouette": -0.007162086515576074
+        },
+        {
+          "k": 8,
+          "inertia": 10800.99327783653,
+          "silhouette": -0.0014924597587921663
+        },
+        {
+          "k": 9,
+          "inertia": 10553.994159601081,
+          "silhouette": 0.009376798676930923
+        },
+        {
+          "k": 10,
+          "inertia": 10354.591596249922,
+          "silhouette": 0.06322673518342355
+        },
+        {
+          "k": 11,
+          "inertia": 10100.776441590906,
+          "silhouette": 0.031246317598450143
+        },
+        {
+          "k": 12,
+          "inertia": 9880.810053733649,
+          "silhouette": 0.042829764158158645
+        },
+        {
+          "k": 13,
+          "inertia": 9760.930278241092,
+          "silhouette": 0.047749291446328695
+        },
+        {
+          "k": 14,
+          "inertia": 9569.946147081551,
+          "silhouette": 0.05366472545360158
+        },
+        {
+          "k": 15,
+          "inertia": 9411.826009812572,
+          "silhouette": 0.06334895835802365
+        }
+      ]
+    },
+    "elbow_plot": "results\\elbow.png"
+  },
+  "nodes": [
+    {
+      "keyword": "food",
+      "cluster_id": 0,
+      "umap_x": -0.8927424550056458,
+      "umap_y": 5.122934818267822
+    },
+    {
+      "keyword": "order",
+      "cluster_id": 1,
+      "umap_x": 2.347304105758667,
+      "umap_y": -0.9796517491340637
+    },
+    {
+      "keyword": "prepare",
+      "cluster_id": 1,
+      "umap_x": 15.035237312316895,
+      "umap_y": 4.15300989151001
+    },
+    {
+      "keyword": "come",
+      "cluster_id": 1,
+      "umap_x": 2.580906629562378,
+      "umap_y": 0.9674875736236572
+    },
+    {
+      "keyword": "home",
+      "cluster_id": 1,
+      "umap_x": -3.3726470470428467,
+      "umap_y": 3.431137800216675
+    },
+    {
+      "keyword": "light",
+      "cluster_id": 0,
+      "umap_x": 1.0356285572052002,
+      "umap_y": 9.213923454284668
+    },
+    {
+      "keyword": "turn",
+      "cluster_id": 1,
+      "umap_x": 2.8391306400299072,
+      "umap_y": 1.9772392511367798
+    },
+    {
+      "keyword": "mood",
+      "cluster_id": 0,
+      "umap_x": 0.4382471740245819,
+      "umap_y": 2.9493789672851562
+    },
+    {
+      "keyword": "music",
+      "cluster_id": 1,
+      "umap_x": -1.7922241687774658,
+      "umap_y": -2.362323045730591
+    },
+    {
+      "keyword": "fan",
+      "cluster_id": 0,
+      "umap_x": 1.083809733390808,
+      "umap_y": 6.2918500900268555
+    },
+    {
+      "keyword": "ring",
+      "cluster_id": 0,
+      "umap_x": -3.116936445236206,
+      "umap_y": 2.996565818786621
+    },
+    {
+      "keyword": "class",
+      "cluster_id": 1,
+      "umap_x": 0.12931795418262482,
+      "umap_y": -1.562673568725586
+    },
+    {
+      "keyword": "reminder",
+      "cluster_id": 1,
+      "umap_x": -1.5883071422576904,
+      "umap_y": -1.240393877029419
+    },
+    {
+      "keyword": "want",
+      "cluster_id": 1,
+      "umap_x": 2.2882494926452637,
+      "umap_y": 0.19836778938770294
+    },
+    {
+      "keyword": "feed",
+      "cluster_id": 1,
+      "umap_x": -1.1541473865509033,
+      "umap_y": 4.9749040603637695
+    },
+    {
+      "keyword": "owner",
+      "cluster_id": 1,
+      "umap_x": -0.5596354603767395,
+      "umap_y": 0.6809445023536682
+    },
+    {
+      "keyword": "pet",
+      "cluster_id": 0,
+      "umap_x": -1.2053775787353516,
+      "umap_y": 7.847800254821777
+    },
+    {
+      "keyword": "comfort",
+      "cluster_id": 0,
+      "umap_x": 0.47550472617149353,
+      "umap_y": 3.0730369091033936
+    },
+    {
+      "keyword": "temperature",
+      "cluster_id": 0,
+      "umap_x": 1.1384220123291016,
+      "umap_y": 6.275469779968262
+    },
+    {
+      "keyword": "send",
+      "cluster_id": 1,
+      "umap_x": 2.4468748569488525,
+      "umap_y": -0.1717345416545868
+    },
+    {
+      "keyword": "text",
+      "cluster_id": 1,
+      "umap_x": -2.330641269683838,
+      "umap_y": -0.4779109060764313
+    },
+    {
+      "keyword": "score",
+      "cluster_id": 1,
+      "umap_x": 0.5712099671363831,
+      "umap_y": -0.19154751300811768
+    },
+    {
+      "keyword": "activity",
+      "cluster_id": 1,
+      "umap_x": -1.1929852962493896,
+      "umap_y": 2.0173189640045166
+    },
+    {
+      "keyword": "know",
+      "cluster_id": 1,
+      "umap_x": -0.3104356825351715,
+      "umap_y": -0.9609137773513794
+    },
+    {
+      "keyword": "arrive",
+      "cluster_id": 1,
+      "umap_x": 2.5119571685791016,
+      "umap_y": -0.581415057182312
+    },
+    {
+      "keyword": "notification",
+      "cluster_id": 1,
+      "umap_x": -1.619591474533081,
+      "umap_y": -1.2881650924682617
+    },
+    {
+      "keyword": "cook",
+      "cluster_id": 0,
+      "umap_x": -0.3989696502685547,
+      "umap_y": 5.406981945037842
+    },
+    {
+      "keyword": "shut",
+      "cluster_id": 1,
+      "umap_x": 2.745075225830078,
+      "umap_y": 1.580092430114746
+    },
+    {
+      "keyword": "stove",
+      "cluster_id": 0,
+      "umap_x": 0.06621703505516052,
+      "umap_y": 5.533186912536621
+    },
+    {
+      "keyword": "television",
+      "cluster_id": 1,
+      "umap_x": -1.4307969808578491,
+      "umap_y": -2.4272584915161133
+    },
+    {
+      "keyword": "watch",
+      "cluster_id": 1,
+      "umap_x": 0.8255997896194458,
+      "umap_y": -1.922112226486206
+    },
+    {
+      "keyword": "buzz",
+      "cluster_id": 1,
+      "umap_x": -2.0561859607696533,
+      "umap_y": -2.195876359939575
+    },
+    {
+      "keyword": "thermostat",
+      "cluster_id": 0,
+      "umap_x": 1.0285484790802002,
+      "umap_y": 6.0623321533203125
+    },
+    {
+      "keyword": "alarm",
+      "cluster_id": 1,
+      "umap_x": -1.896000623703003,
+      "umap_y": -1.1638379096984863
+    },
+    {
+      "keyword": "morning",
+      "cluster_id": 0,
+      "umap_x": 0.24108585715293884,
+      "umap_y": 8.806507110595703
+    },
+    {
+      "keyword": "shower",
+      "cluster_id": 0,
+      "umap_x": 2.6532440185546875,
+      "umap_y": 4.647675514221191
+    },
+    {
+      "keyword": "brush",
+      "cluster_id": 0,
+      "umap_x": 1.3833836317062378,
+      "umap_y": 3.741672992706299
+    },
+    {
+      "keyword": "time",
+      "cluster_id": 0,
+      "umap_x": 0.3950795531272888,
+      "umap_y": 8.257208824157715
+    },
+    {
+      "keyword": "lock",
+      "cluster_id": 1,
+      "umap_x": -3.346790313720703,
+      "umap_y": 0.3683534860610962
+    },
+    {
+      "keyword": "table",
+      "cluster_id": 1,
+      "umap_x": 15.282276153564453,
+      "umap_y": 3.8030881881713867
+    },
+    {
+      "keyword": "house",
+      "cluster_id": 1,
+      "umap_x": -3.302851915359497,
+      "umap_y": 3.297869920730591
+    },
+    {
+      "keyword": "limit",
+      "cluster_id": 1,
+      "umap_x": 0.23991666734218597,
+      "umap_y": 0.9038819670677185
+    },
+    {
+      "keyword": "listen",
+      "cluster_id": 1,
+      "umap_x": -0.50801020860672,
+      "umap_y": -1.1353602409362793
+    },
+    {
+      "keyword": "ac",
+      "cluster_id": 0,
+      "umap_x": 1.4646817445755005,
+      "umap_y": 5.565185070037842
+    },
+    {
+      "keyword": "save",
+      "cluster_id": 1,
+      "umap_x": 2.146601676940918,
+      "umap_y": 1.2787935733795166
+    },
+    {
+      "keyword": "door",
+      "cluster_id": 1,
+      "umap_x": 3.026566505432129,
+      "umap_y": 0.48818182945251465
+    },
+    {
+      "keyword": "open",
+      "cluster_id": 1,
+      "umap_x": 2.7933623790740967,
+      "umap_y": 0.44207140803337097
+    },
+    {
+      "keyword": "sense",
+      "cluster_id": 1,
+      "umap_x": -0.4129921495914459,
+      "umap_y": -0.9387065768241882
+    },
+    {
+      "keyword": "vehicle",
+      "cluster_id": 1,
+      "umap_x": -2.679542303085327,
+      "umap_y": 1.7960891723632812
+    },
+    {
+      "keyword": "occupant",
+      "cluster_id": 0,
+      "umap_x": 0.10115861147642136,
+      "umap_y": 6.704087257385254
+    },
+    {
+      "keyword": "sprinkler",
+      "cluster_id": 0,
+      "umap_x": 2.9233920574188232,
+      "umap_y": 3.437697649002075
+    },
+    {
+      "keyword": "water",
+      "cluster_id": 0,
+      "umap_x": 2.707456350326538,
+      "umap_y": 4.297460556030273
+    },
+    {
+      "keyword": "energy",
+      "cluster_id": 0,
+      "umap_x": 4.4404988288879395,
+      "umap_y": 7.012208461761475
+    },
+    {
+      "keyword": "reduce",
+      "cluster_id": 1,
+      "umap_x": 0.42523083090782166,
+      "umap_y": 1.297696590423584
+    },
+    {
+      "keyword": "baby",
+      "cluster_id": 1,
+      "umap_x": -3.9110753536224365,
+      "umap_y": 4.996630668640137
+    },
+    {
+      "keyword": "disturb",
+      "cluster_id": 1,
+      "umap_x": 15.63302230834961,
+      "umap_y": 4.0475640296936035
+    },
+    {
+      "keyword": "need",
+      "cluster_id": 1,
+      "umap_x": 2.1214585304260254,
+      "umap_y": 0.1525958627462387
+    },
+    {
+      "keyword": "room",
+      "cluster_id": 1,
+      "umap_x": -2.942324161529541,
+      "umap_y": 3.020035743713379
+    },
+    {
+      "keyword": "control",
+      "cluster_id": 1,
+      "umap_x": -1.4414931535720825,
+      "umap_y": 0.5439924001693726
+    },
+    {
+      "keyword": "electricity",
+      "cluster_id": 0,
+      "umap_x": 4.474908828735352,
+      "umap_y": 6.9732441902160645
+    },
+    {
+      "keyword": "family",
+      "cluster_id": 1,
+      "umap_x": -3.663963556289673,
+      "umap_y": 4.58173131942749
+    },
+    {
+      "keyword": "member",
+      "cluster_id": 1,
+      "umap_x": -0.08929310739040375,
+      "umap_y": 0.6170434951782227
+    },
+    {
+      "keyword": "calculate",
+      "cluster_id": 1,
+      "umap_x": 0.7365192174911499,
+      "umap_y": -1.609441876411438
+    },
+    {
+      "keyword": "heat",
+      "cluster_id": 0,
+      "umap_x": 1.0097458362579346,
+      "umap_y": 6.145325660705566
+    },
+    {
+      "keyword": "detector",
+      "cluster_id": 1,
+      "umap_x": -0.037900786846876144,
+      "umap_y": -3.1003499031066895
+    },
+    {
+      "keyword": "increase",
+      "cluster_id": 1,
+      "umap_x": 0.5104291439056396,
+      "umap_y": 1.1653273105621338
+    },
+    {
+      "keyword": "safety",
+      "cluster_id": 1,
+      "umap_x": -1.2249770164489746,
+      "umap_y": 1.3604016304016113
+    },
+    {
+      "keyword": "box",
+      "cluster_id": 1,
+      "umap_x": 2.66211199760437,
+      "umap_y": -0.6761929392814636
+    },
+    {
+      "keyword": "statu",
+      "cluster_id": 0,
+      "umap_x": 0.08451991528272629,
+      "umap_y": 6.759731292724609
+    },
+    {
+      "keyword": "update",
+      "cluster_id": 1,
+      "umap_x": 1.1160255670547485,
+      "umap_y": 0.9879680871963501
+    },
+    {
+      "keyword": "odour",
+      "cluster_id": 0,
+      "umap_x": 0.4517306983470917,
+      "umap_y": 5.251015663146973
+    },
+    {
+      "keyword": "air",
+      "cluster_id": 0,
+      "umap_x": 1.2213603258132935,
+      "umap_y": 5.113868236541748
+    },
+    {
+      "keyword": "cool",
+      "cluster_id": 1,
+      "umap_x": -0.40223953127861023,
+      "umap_y": -1.025138258934021
+    },
+    {
+      "keyword": "recommend",
+      "cluster_id": 0,
+      "umap_x": 0.3399598300457001,
+      "umap_y": 6.787847995758057
+    },
+    {
+      "keyword": "place",
+      "cluster_id": 1,
+      "umap_x": -3.267446279525757,
+      "umap_y": 2.6291322708129883
+    },
+    {
+      "keyword": "sensor",
+      "cluster_id": 1,
+      "umap_x": -0.011527514085173607,
+      "umap_y": -3.131814479827881
+    },
+    {
+      "keyword": "intruder",
+      "cluster_id": 1,
+      "umap_x": -3.336087703704834,
+      "umap_y": 0.9903669357299805
+    },
+    {
+      "keyword": "bowl",
+      "cluster_id": 0,
+      "umap_x": 2.7057347297668457,
+      "umap_y": 4.883532524108887
+    },
+    {
+      "keyword": "enter",
+      "cluster_id": 1,
+      "umap_x": 2.9927175045013428,
+      "umap_y": 0.4060344398021698
+    },
+    {
+      "keyword": "picture",
+      "cluster_id": 1,
+      "umap_x": -0.6479800343513489,
+      "umap_y": -2.7518742084503174
+    },
+    {
+      "keyword": "take",
+      "cluster_id": 1,
+      "umap_x": 2.489548444747925,
+      "umap_y": 0.9457855820655823
+    },
+    {
+      "keyword": "hydration",
+      "cluster_id": 0,
+      "umap_x": 2.8501133918762207,
+      "umap_y": 4.084359645843506
+    },
+    {
+      "keyword": "temprature",
+      "cluster_id": 0,
+      "umap_x": 1.1599043607711792,
+      "umap_y": 6.276298522949219
+    },
+    {
+      "keyword": "alert",
+      "cluster_id": 1,
+      "umap_x": -1.537041187286377,
+      "umap_y": -1.2389146089553833
+    },
+    {
+      "keyword": "area",
+      "cluster_id": 1,
+      "umap_x": -3.308094024658203,
+      "umap_y": 2.7453014850616455
+    },
+    {
+      "keyword": "weather",
+      "cluster_id": 0,
+      "umap_x": 1.7445796728134155,
+      "umap_y": 6.605827808380127
+    },
+    {
+      "keyword": "check",
+      "cluster_id": 1,
+      "umap_x": -0.05039292573928833,
+      "umap_y": -0.5856040716171265
+    },
+    {
+      "keyword": "resident",
+      "cluster_id": 1,
+      "umap_x": -3.3157947063446045,
+      "umap_y": 3.2564101219177246
+    },
+    {
+      "keyword": "learn",
+      "cluster_id": 1,
+      "umap_x": 0.12863312661647797,
+      "umap_y": -1.518338918685913
+    },
+    {
+      "keyword": "money",
+      "cluster_id": 1,
+      "umap_x": 1.3670986890792847,
+      "umap_y": -0.4033668637275696
+    },
+    {
+      "keyword": "plant",
+      "cluster_id": 0,
+      "umap_x": -4.142047882080078,
+      "umap_y": 2.973019599914551
+    },
+    {
+      "keyword": "prevent",
+      "cluster_id": 1,
+      "umap_x": -1.236646294593811,
+      "umap_y": 1.3650461435317993
+    },
+    {
+      "keyword": "bed",
+      "cluster_id": 0,
+      "umap_x": 0.18141810595989227,
+      "umap_y": 8.78890323638916
+    },
+    {
+      "keyword": "sleep",
+      "cluster_id": 0,
+      "umap_x": 0.16543465852737427,
+      "umap_y": 8.792777061462402
+    },
+    {
+      "keyword": "dentist",
+      "cluster_id": 0,
+      "umap_x": 1.2332366704940796,
+      "umap_y": 3.686265707015991
+    },
+    {
+      "keyword": "doctor",
+      "cluster_id": 1,
+      "umap_x": -2.7706503868103027,
+      "umap_y": 4.481002330780029
+    },
+    {
+      "keyword": "health",
+      "cluster_id": 1,
+      "umap_x": -2.624894618988037,
+      "umap_y": 4.252112865447998
+    },
+    {
+      "keyword": "i",
+      "cluster_id": 0,
+      "umap_x": 0.27390941977500916,
+      "umap_y": 6.139031410217285
+    },
+    {
+      "keyword": "monitor",
+      "cluster_id": 1,
+      "umap_x": -0.974064826965332,
+      "umap_y": -2.5496702194213867
+    },
+    {
+      "keyword": "play",
+      "cluster_id": 1,
+      "umap_x": -0.8806017637252808,
+      "umap_y": -0.04036845266819
+    },
+    {
+      "keyword": "system",
+      "cluster_id": 1,
+      "umap_x": -1.6019178628921509,
+      "umap_y": 0.356128066778183
+    },
+    {
+      "keyword": "adjust",
+      "cluster_id": 1,
+      "umap_x": 0.3459469676017761,
+      "umap_y": 1.4921467304229736
+    },
+    {
+      "keyword": "way",
+      "cluster_id": 1,
+      "umap_x": 2.6613118648529053,
+      "umap_y": 1.1014885902404785
+    },
+    {
+      "keyword": "smashed",
+      "cluster_id": 1,
+      "umap_x": -0.10491909086704254,
+      "umap_y": 2.129211187362671
+    },
+    {
+      "keyword": "avoid",
+      "cluster_id": 1,
+      "umap_x": -1.2863943576812744,
+      "umap_y": 1.3387234210968018
+    },
+    {
+      "keyword": "shock",
+      "cluster_id": 1,
+      "umap_x": -0.18209458887577057,
+      "umap_y": 2.071904182434082
+    },
+    {
+      "keyword": "socket",
+      "cluster_id": 1,
+      "umap_x": 4.551974296569824,
+      "umap_y": 6.499429702758789
+    },
+    {
+      "keyword": "stovetop",
+      "cluster_id": 0,
+      "umap_x": -0.0045017641969025135,
+      "umap_y": 5.29723596572876
+    },
+    {
+      "keyword": "appreciator",
+      "cluster_id": 0,
+      "umap_x": -0.1881767362356186,
+      "umap_y": 6.8562846183776855
+    },
+    {
+      "keyword": "entertain",
+      "cluster_id": 1,
+      "umap_x": -0.9259321093559265,
+      "umap_y": -0.10959169268608093
+    },
+    {
+      "keyword": "oven",
+      "cluster_id": 0,
+      "umap_x": -0.20639492571353912,
+      "umap_y": 5.501364231109619
+    },
+    {
+      "keyword": "bedroom",
+      "cluster_id": 0,
+      "umap_x": -3.1048290729522705,
+      "umap_y": 3.1094841957092285
+    },
+    {
+      "keyword": "identify",
+      "cluster_id": 1,
+      "umap_x": -0.19291730225086212,
+      "umap_y": -2.8427388668060303
+    },
+    {
+      "keyword": "motion",
+      "cluster_id": 1,
+      "umap_x": -1.5196094512939453,
+      "umap_y": 2.708131790161133
+    },
+    {
+      "keyword": "forget",
+      "cluster_id": 1,
+      "umap_x": -1.644714593887329,
+      "umap_y": -1.2897669076919556
+    },
+    {
+      "keyword": "garage",
+      "cluster_id": 1,
+      "umap_x": -2.7193498611450195,
+      "umap_y": 1.8689589500427246
+    },
+    {
+      "keyword": "emergency",
+      "cluster_id": 1,
+      "umap_x": -1.711517333984375,
+      "umap_y": -1.0265636444091797
+    },
+    {
+      "keyword": "smartphone",
+      "cluster_id": 1,
+      "umap_x": -3.056544065475464,
+      "umap_y": -0.43941086530685425
+    },
+    {
+      "keyword": "benefit",
+      "cluster_id": 1,
+      "umap_x": 0.9158668518066406,
+      "umap_y": 0.20452851057052612
+    },
+    {
+      "keyword": "movie",
+      "cluster_id": 1,
+      "umap_x": -1.0888198614120483,
+      "umap_y": -1.8633205890655518
+    },
+    {
+      "keyword": "switchoff",
+      "cluster_id": 1,
+      "umap_x": 2.859712600708008,
+      "umap_y": 1.844970703125
+    },
+    {
+      "keyword": "create",
+      "cluster_id": 1,
+      "umap_x": 1.3954700231552124,
+      "umap_y": 1.5990843772888184
+    },
+    {
+      "keyword": "environment",
+      "cluster_id": 1,
+      "umap_x": -3.9894347190856934,
+      "umap_y": 2.9809343814849854
+    },
+    {
+      "keyword": "student",
+      "cluster_id": 1,
+      "umap_x": 0.1328415423631668,
+      "umap_y": -1.5724060535430908
+    },
+    {
+      "keyword": "manage",
+      "cluster_id": 1,
+      "umap_x": -3.3813371658325195,
+      "umap_y": 4.382938861846924
+    },
+    {
+      "keyword": "clean",
+      "cluster_id": 0,
+      "umap_x": 2.0138027667999268,
+      "umap_y": 4.172759056091309
+    },
+    {
+      "keyword": "floor",
+      "cluster_id": 0,
+      "umap_x": -3.019925355911255,
+      "umap_y": 3.0678420066833496
+    },
+    {
+      "keyword": "coffee",
+      "cluster_id": 0,
+      "umap_x": -1.6494574546813965,
+      "umap_y": 5.92218542098999
+    },
+    {
+      "keyword": "deal",
+      "cluster_id": 1,
+      "umap_x": 2.1191608905792236,
+      "umap_y": -0.33829233050346375
+    },
+    {
+      "keyword": "machine",
+      "cluster_id": 1,
+      "umap_x": -2.501514196395874,
+      "umap_y": 0.45962947607040405
+    },
+    {
+      "keyword": "make",
+      "cluster_id": 0,
+      "umap_x": 1.3176206350326538,
+      "umap_y": 1.6425468921661377
+    },
+    {
+      "keyword": "care",
+      "cluster_id": 1,
+      "umap_x": -2.928860664367676,
+      "umap_y": 4.37483549118042
+    },
+    {
+      "keyword": "window",
+      "cluster_id": 1,
+      "umap_x": -2.2637035846710205,
+      "umap_y": 1.1053485870361328
+    },
+    {
+      "keyword": "look",
+      "cluster_id": 1,
+      "umap_x": -0.0823901891708374,
+      "umap_y": -0.7726925611495972
+    },
+    {
+      "keyword": "carbon monoxide",
+      "cluster_id": 0,
+      "umap_x": -0.10356607288122177,
+      "umap_y": 5.958245754241943
+    },
+    {
+      "keyword": "bark",
+      "cluster_id": 0,
+      "umap_x": -1.2560734748840332,
+      "umap_y": 7.929616451263428
+    },
+    {
+      "keyword": "automate",
+      "cluster_id": 1,
+      "umap_x": -3.474216938018799,
+      "umap_y": -1.1510127782821655
+    },
+    {
+      "keyword": "forgetton",
+      "cluster_id": 1,
+      "umap_x": -1.6476339101791382,
+      "umap_y": -1.266890048980713
+    },
+    {
+      "keyword": "vacuum",
+      "cluster_id": 0,
+      "umap_x": 1.3496716022491455,
+      "umap_y": 4.617867946624756
+    },
+    {
+      "keyword": "tv",
+      "cluster_id": 1,
+      "umap_x": -1.4305787086486816,
+      "umap_y": -2.460145950317383
+    },
+    {
+      "keyword": "battery",
+      "cluster_id": 1,
+      "umap_x": 4.583269119262695,
+      "umap_y": 6.840500354766846
+    },
+    {
+      "keyword": "charger",
+      "cluster_id": 0,
+      "umap_x": 4.667866230010986,
+      "umap_y": 6.715954780578613
+    },
+    {
+      "keyword": "device",
+      "cluster_id": 1,
+      "umap_x": -2.8374671936035156,
+      "umap_y": -0.14218594133853912
+    },
+    {
+      "keyword": "item",
+      "cluster_id": 1,
+      "umap_x": 1.8432092666625977,
+      "umap_y": -0.6697803139686584
+    },
+    {
+      "keyword": "notified",
+      "cluster_id": 1,
+      "umap_x": -1.4965900182724,
+      "umap_y": -1.2137645483016968
+    },
+    {
+      "keyword": "opener",
+      "cluster_id": 1,
+      "umap_x": 2.919259548187256,
+      "umap_y": 0.49346923828125
+    },
+    {
+      "keyword": "lighting",
+      "cluster_id": 0,
+      "umap_x": 1.0496658086776733,
+      "umap_y": 9.227993965148926
+    },
+    {
+      "keyword": "photo",
+      "cluster_id": 1,
+      "umap_x": -0.7664573192596436,
+      "umap_y": -2.7975244522094727
+    },
+    {
+      "keyword": "approach",
+      "cluster_id": 1,
+      "umap_x": -2.095057964324951,
+      "umap_y": 3.2439568042755127
+    },
+    {
+      "keyword": "car",
+      "cluster_id": 1,
+      "umap_x": -2.65982985496521,
+      "umap_y": 1.8204801082611084
+    },
+    {
+      "keyword": "message",
+      "cluster_id": 1,
+      "umap_x": 2.4173896312713623,
+      "umap_y": -0.176949605345726
+    },
+    {
+      "keyword": "wait",
+      "cluster_id": 1,
+      "umap_x": 2.6352298259735107,
+      "umap_y": 1.1013575792312622
+    },
+    {
+      "keyword": "cleaner",
+      "cluster_id": 0,
+      "umap_x": 1.8178993463516235,
+      "umap_y": 4.346719264984131
+    },
+    {
+      "keyword": "gesture",
+      "cluster_id": 1,
+      "umap_x": -1.3410390615463257,
+      "umap_y": 2.9403316974639893
+    },
+    {
+      "keyword": "greet",
+      "cluster_id": 1,
+      "umap_x": 14.912904739379883,
+      "umap_y": 4.100903511047363
+    },
+    {
+      "keyword": "guest",
+      "cluster_id": 1,
+      "umap_x": -0.19136035442352295,
+      "umap_y": 0.6642686128616333
+    },
+    {
+      "keyword": "welcome",
+      "cluster_id": 1,
+      "umap_x": -0.3955751359462738,
+      "umap_y": -1.0127387046813965
+    },
+    {
+      "keyword": "add",
+      "cluster_id": 1,
+      "umap_x": 2.5828704833984375,
+      "umap_y": 0.04606330394744873
+    },
+    {
+      "keyword": "measure",
+      "cluster_id": 0,
+      "umap_x": 0.6293238401412964,
+      "umap_y": 6.565142631530762
+    },
+    {
+      "keyword": "security",
+      "cluster_id": 1,
+      "umap_x": -3.148554801940918,
+      "umap_y": 0.938034176826477
+    },
+    {
+      "keyword": "relock",
+      "cluster_id": 1,
+      "umap_x": -3.3194754123687744,
+      "umap_y": 0.3493105173110962
+    },
+    {
+      "keyword": "appliance",
+      "cluster_id": 0,
+      "umap_x": 0.08084876835346222,
+      "umap_y": 4.697059154510498
+    },
+    {
+      "keyword": "electronic",
+      "cluster_id": 1,
+      "umap_x": 4.529325008392334,
+      "umap_y": 6.928487300872803
+    },
+    {
+      "keyword": "operate",
+      "cluster_id": 1,
+      "umap_x": -1.376528263092041,
+      "umap_y": 0.25692644715309143
+    },
+    {
+      "keyword": "remote",
+      "cluster_id": 1,
+      "umap_x": -1.4138280153274536,
+      "umap_y": -2.4484448432922363
+    },
+    {
+      "keyword": "burn",
+      "cluster_id": 0,
+      "umap_x": 0.6183695197105408,
+      "umap_y": 5.5351457595825195
+    },
+    {
+      "keyword": "child",
+      "cluster_id": 1,
+      "umap_x": -3.947239637374878,
+      "umap_y": 4.995565414428711
+    },
+    {
+      "keyword": "sweep",
+      "cluster_id": 0,
+      "umap_x": 1.943820595741272,
+      "umap_y": 3.886573076248169
+    },
+    {
+      "keyword": "lower",
+      "cluster_id": 1,
+      "umap_x": 0.4167080223560333,
+      "umap_y": 1.2592878341674805
+    },
+    {
+      "keyword": "dim",
+      "cluster_id": 0,
+      "umap_x": 0.42493441700935364,
+      "umap_y": 6.885221481323242
+    },
+    {
+      "keyword": "dream",
+      "cluster_id": 1,
+      "umap_x": 0.1687726080417633,
+      "umap_y": 8.753083229064941
+    },
+    {
+      "keyword": "fear",
+      "cluster_id": 1,
+      "umap_x": -1.113725185394287,
+      "umap_y": 1.3882442712783813
+    },
+    {
+      "keyword": "night",
+      "cluster_id": 0,
+      "umap_x": 0.4150700569152832,
+      "umap_y": 8.76658821105957
+    },
+    {
+      "keyword": "lullaby",
+      "cluster_id": 0,
+      "umap_x": 0.005678010173141956,
+      "umap_y": 8.760289192199707
+    },
+    {
+      "keyword": "sing",
+      "cluster_id": 1,
+      "umap_x": -1.3481165170669556,
+      "umap_y": -2.079430341720581
+    },
+    {
+      "keyword": "begin",
+      "cluster_id": 1,
+      "umap_x": 2.2723214626312256,
+      "umap_y": 1.793411135673523
+    },
+    {
+      "keyword": "game",
+      "cluster_id": 1,
+      "umap_x": -0.5625731945037842,
+      "umap_y": 0.10712085664272308
+    },
+    {
+      "keyword": "switch",
+      "cluster_id": 1,
+      "umap_x": 2.8548295497894287,
+      "umap_y": 1.8976068496704102
+    },
+    {
+      "keyword": "meal",
+      "cluster_id": 0,
+      "umap_x": -0.915337324142456,
+      "umap_y": 5.1244096755981445
+    },
+    {
+      "keyword": "precooked",
+      "cluster_id": 0,
+      "umap_x": 1.0233185291290283,
+      "umap_y": 6.278051376342773
+    },
+    {
+      "keyword": "focu",
+      "cluster_id": 0,
+      "umap_x": 0.08163148909807205,
+      "umap_y": 6.773065090179443
+    },
+    {
+      "keyword": "feel",
+      "cluster_id": 1,
+      "umap_x": -0.5099919438362122,
+      "umap_y": -0.7877975106239319
+    },
+    {
+      "keyword": "medication",
+      "cluster_id": 1,
+      "umap_x": -2.7541239261627197,
+      "umap_y": 4.455078125
+    },
+    {
+      "keyword": "run",
+      "cluster_id": 1,
+      "umap_x": 2.689279794692993,
+      "umap_y": 2.8267159461975098
+    },
+    {
+      "keyword": "program",
+      "cluster_id": 1,
+      "umap_x": -3.4526939392089844,
+      "umap_y": -1.1199185848236084
+    },
+    {
+      "keyword": "sprinker",
+      "cluster_id": 0,
+      "umap_x": 2.9333720207214355,
+      "umap_y": 3.307405948638916
+    },
+    {
+      "keyword": "connect",
+      "cluster_id": 1,
+      "umap_x": 4.545993328094482,
+      "umap_y": 6.366365432739258
+    },
+    {
+      "keyword": "projector",
+      "cluster_id": 1,
+      "umap_x": -0.9469706416130066,
+      "umap_y": -2.5613391399383545
+    },
+    {
+      "keyword": "wifi",
+      "cluster_id": 1,
+      "umap_x": -3.2030601501464844,
+      "umap_y": -0.4479046165943146
+    },
+    {
+      "keyword": "dancer",
+      "cluster_id": 1,
+      "umap_x": -0.9970791339874268,
+      "umap_y": 1.2152775526046753
+    },
+    {
+      "keyword": "move",
+      "cluster_id": 1,
+      "umap_x": -1.654621958732605,
+      "umap_y": 2.645081043243408
+    },
+    {
+      "keyword": "conscientiou",
+      "cluster_id": 0,
+      "umap_x": 0.06799283623695374,
+      "umap_y": 6.761781215667725
+    },
+    {
+      "keyword": "break in",
+      "cluster_id": 1,
+      "umap_x": 3.2047603130340576,
+      "umap_y": 0.5000239610671997
+    },
+    {
+      "keyword": "person",
+      "cluster_id": 1,
+      "umap_x": -0.6335580945014954,
+      "umap_y": 0.6014246940612793
+    },
+    {
+      "keyword": "hurricane",
+      "cluster_id": 0,
+      "umap_x": 3.0370700359344482,
+      "umap_y": 4.094303131103516
+    },
+    {
+      "keyword": "live",
+      "cluster_id": 1,
+      "umap_x": 1.9091777801513672,
+      "umap_y": 1.733914852142334
+    },
+    {
+      "keyword": "dog",
+      "cluster_id": 0,
+      "umap_x": -1.212932825088501,
+      "umap_y": 7.860350131988525
+    },
+    {
+      "keyword": "whereabout",
+      "cluster_id": 1,
+      "umap_x": -3.3245198726654053,
+      "umap_y": 2.6521716117858887
+    },
+    {
+      "keyword": "bring",
+      "cluster_id": 1,
+      "umap_x": 2.5006418228149414,
+      "umap_y": -0.6083455085754395
+    },
+    {
+      "keyword": "laptop",
+      "cluster_id": 1,
+      "umap_x": -2.7443628311157227,
+      "umap_y": -0.11040551215410233
+    },
+    {
+      "keyword": "level",
+      "cluster_id": 1,
+      "umap_x": -0.04273320734500885,
+      "umap_y": 0.7875373959541321
+    },
+    {
+      "keyword": "school",
+      "cluster_id": 1,
+      "umap_x": 0.14214490354061127,
+      "umap_y": -1.5779880285263062
+    },
+    {
+      "keyword": "unclok",
+      "cluster_id": 1,
+      "umap_x": 2.8746492862701416,
+      "umap_y": 1.8503248691558838
+    },
+    {
+      "keyword": "unlock",
+      "cluster_id": 1,
+      "umap_x": -3.264726161956787,
+      "umap_y": 0.1724533885717392
+    },
+    {
+      "keyword": "recording",
+      "cluster_id": 1,
+      "umap_x": -1.3100159168243408,
+      "umap_y": -2.877135753631592
+    },
+    {
+      "keyword": "theft",
+      "cluster_id": 1,
+      "umap_x": -3.5826053619384766,
+      "umap_y": 0.9443433880805969
+    },
+    {
+      "keyword": "discard",
+      "cluster_id": 1,
+      "umap_x": 1.678308367729187,
+      "umap_y": 1.3723938465118408
+    },
+    {
+      "keyword": "mosquitoe",
+      "cluster_id": 0,
+      "umap_x": -1.0568788051605225,
+      "umap_y": 7.67562198638916
+    },
+    {
+      "keyword": "object",
+      "cluster_id": 1,
+      "umap_x": -2.365424156188965,
+      "umap_y": 1.0545907020568848
+    },
+    {
+      "keyword": "protect",
+      "cluster_id": 1,
+      "umap_x": -1.336783766746521,
+      "umap_y": 1.389014720916748
+    },
+    {
+      "keyword": "thing",
+      "cluster_id": 1,
+      "umap_x": -1.7054784297943115,
+      "umap_y": -0.06994892656803131
+    },
+    {
+      "keyword": "break",
+      "cluster_id": 1,
+      "umap_x": 3.2468714714050293,
+      "umap_y": 0.5214828252792358
+    },
+    {
+      "keyword": "contact",
+      "cluster_id": 1,
+      "umap_x": 2.9871933460235596,
+      "umap_y": -0.7760524749755859
+    },
+    {
+      "keyword": "police",
+      "cluster_id": 1,
+      "umap_x": -3.5975570678710938,
+      "umap_y": 0.935472846031189
+    },
+    {
+      "keyword": "catch",
+      "cluster_id": 0,
+      "umap_x": 2.017754077911377,
+      "umap_y": 4.769905090332031
+    },
+    {
+      "keyword": "eat",
+      "cluster_id": 0,
+      "umap_x": -1.0604697465896606,
+      "umap_y": 5.016704082489014
+    },
+    {
+      "keyword": "fridge",
+      "cluster_id": 0,
+      "umap_x": -0.025572603568434715,
+      "umap_y": 4.388095855712891
+    },
+    {
+      "keyword": "bacteria",
+      "cluster_id": 0,
+      "umap_x": 1.6894006729125977,
+      "umap_y": 4.5919389724731445
+    },
+    {
+      "keyword": "tell",
+      "cluster_id": 1,
+      "umap_x": -0.3449326157569885,
+      "umap_y": -0.962270975112915
+    },
+    {
+      "keyword": "centre",
+      "cluster_id": 1,
+      "umap_x": -3.337279796600342,
+      "umap_y": 2.333645820617676
+    },
+    {
+      "keyword": "worry",
+      "cluster_id": 1,
+      "umap_x": -1.1434571743011475,
+      "umap_y": -0.800125002861023
+    },
+    {
+      "keyword": "smoke",
+      "cluster_id": 0,
+      "umap_x": 0.5571919083595276,
+      "umap_y": 5.4843525886535645
+    },
+    {
+      "keyword": "doorbell",
+      "cluster_id": 1,
+      "umap_x": -2.6109073162078857,
+      "umap_y": -0.7626215219497681
+    },
+    {
+      "keyword": "phone",
+      "cluster_id": 1,
+      "umap_x": -2.921924352645874,
+      "umap_y": -0.5141900181770325
+    },
+    {
+      "keyword": "day",
+      "cluster_id": 0,
+      "umap_x": 0.659233808517456,
+      "umap_y": 8.579076766967773
+    },
+    {
+      "keyword": "task",
+      "cluster_id": 1,
+      "umap_x": -1.2025119066238403,
+      "umap_y": 0.28436094522476196
+    },
+    {
+      "keyword": "think",
+      "cluster_id": 1,
+      "umap_x": -0.02043069899082184,
+      "umap_y": -0.6894878149032593
+    },
+    {
+      "keyword": "bathroom",
+      "cluster_id": 0,
+      "umap_x": 2.74568510055542,
+      "umap_y": 4.831358909606934
+    },
+    {
+      "keyword": "hotness",
+      "cluster_id": 0,
+      "umap_x": 1.1846064329147339,
+      "umap_y": 6.315457344055176
+    },
+    {
+      "keyword": "leakage",
+      "cluster_id": 0,
+      "umap_x": 2.786518096923828,
+      "umap_y": 4.465905666351318
+    },
+    {
+      "keyword": "airconditioner",
+      "cluster_id": 0,
+      "umap_x": 1.3900541067123413,
+      "umap_y": 5.500183582305908
+    },
+    {
+      "keyword": "consume",
+      "cluster_id": 0,
+      "umap_x": -1.0998293161392212,
+      "umap_y": 5.034013748168945
+    },
+    {
+      "keyword": "block",
+      "cluster_id": 1,
+      "umap_x": -1.5271637439727783,
+      "umap_y": 1.402928352355957
+    },
+    {
+      "keyword": "carry",
+      "cluster_id": 0,
+      "umap_x": -0.8258153200149536,
+      "umap_y": 3.310917615890503
+    },
+    {
+      "keyword": "keyless",
+      "cluster_id": 1,
+      "umap_x": 2.1431312561035156,
+      "umap_y": -0.31465262174606323
+    },
+    {
+      "keyword": "kitchen",
+      "cluster_id": 0,
+      "umap_x": -0.12136557698249817,
+      "umap_y": 4.3191328048706055
+    },
+    {
+      "keyword": "can t",
+      "cluster_id": 1,
+      "umap_x": 2.3820013999938965,
+      "umap_y": 0.7026403546333313
+    },
+    {
+      "keyword": "radio",
+      "cluster_id": 1,
+      "umap_x": -1.6471604108810425,
+      "umap_y": -2.3508198261260986
+    },
+    {
+      "keyword": "start",
+      "cluster_id": 1,
+      "umap_x": 2.2997610569000244,
+      "umap_y": 1.849130392074585
+    },
+    {
+      "keyword": "equipment",
+      "cluster_id": 1,
+      "umap_x": -2.3836801052093506,
+      "umap_y": 0.6589765548706055
+    },
+    {
+      "keyword": "give",
+      "cluster_id": 1,
+      "umap_x": 2.4208853244781494,
+      "umap_y": 0.7635740041732788
+    },
+    {
+      "keyword": "clock",
+      "cluster_id": 0,
+      "umap_x": 0.33917000889778137,
+      "umap_y": 8.333223342895508
+    },
+    {
+      "keyword": "go",
+      "cluster_id": 1,
+      "umap_x": 1.9136977195739746,
+      "umap_y": 0.9146907925605774
+    },
+    {
+      "keyword": "keychain",
+      "cluster_id": 1,
+      "umap_x": 2.0643935203552246,
+      "umap_y": -0.26925474405288696
+    },
+    {
+      "keyword": "coffeemaker",
+      "cluster_id": 0,
+      "umap_x": -1.7169698476791382,
+      "umap_y": 5.848017692565918
+    },
+    {
+      "keyword": "wake",
+      "cluster_id": 0,
+      "umap_x": 0.16942797601222992,
+      "umap_y": 8.853754043579102
+    },
+    {
+      "keyword": "kid",
+      "cluster_id": 1,
+      "umap_x": -3.9823198318481445,
+      "umap_y": 5.0345635414123535
+    },
+    {
+      "keyword": "washing",
+      "cluster_id": 0,
+      "umap_x": 2.103435754776001,
+      "umap_y": 4.28435754776001
+    },
+    {
+      "keyword": "carbon",
+      "cluster_id": 0,
+      "umap_x": -0.13811251521110535,
+      "umap_y": 5.953839302062988
+    },
+    {
+      "keyword": "self-test",
+      "cluster_id": 1,
+      "umap_x": -0.19910112023353577,
+      "umap_y": -0.06944599002599716
+    },
+    {
+      "keyword": "bill",
+      "cluster_id": 1,
+      "umap_x": -3.5415847301483154,
+      "umap_y": 1.84629487991333
+    },
+    {
+      "keyword": "touch",
+      "cluster_id": 1,
+      "umap_x": -1.1985441446304321,
+      "umap_y": 2.9963691234588623
+    },
+    {
+      "keyword": "wire",
+      "cluster_id": 1,
+      "umap_x": 4.535403728485107,
+      "umap_y": 6.8252387046813965
+    },
+    {
+      "keyword": "schedule",
+      "cluster_id": 0,
+      "umap_x": 1.0363327264785767,
+      "umap_y": 8.255210876464844
+    },
+    {
+      "keyword": "change",
+      "cluster_id": 1,
+      "umap_x": 0.8517109155654907,
+      "umap_y": 1.0876588821411133
+    },
+    {
+      "keyword": "dinner",
+      "cluster_id": 0,
+      "umap_x": -0.8764351010322571,
+      "umap_y": 5.14072322845459
+    },
+    {
+      "keyword": "preheat",
+      "cluster_id": 0,
+      "umap_x": 1.0588685274124146,
+      "umap_y": 6.282997131347656
+    },
+    {
+      "keyword": "solar",
+      "cluster_id": 0,
+      "umap_x": 1.0233092308044434,
+      "umap_y": 9.215213775634766
+    },
+    {
+      "keyword": "a c",
+      "cluster_id": 0,
+      "umap_x": 1.4603294134140015,
+      "umap_y": 5.56547212600708
+    },
+    {
+      "keyword": "maintain",
+      "cluster_id": 1,
+      "umap_x": 1.9955378770828247,
+      "umap_y": 1.3909180164337158
+    },
+    {
+      "keyword": "call",
+      "cluster_id": 1,
+      "umap_x": -2.804527759552002,
+      "umap_y": -0.7529021501541138
+    },
+    {
+      "keyword": "service",
+      "cluster_id": 1,
+      "umap_x": -1.192473292350769,
+      "umap_y": 0.28192487359046936
+    },
+    {
+      "keyword": "access",
+      "cluster_id": 1,
+      "umap_x": 1.6023733615875244,
+      "umap_y": 0.37281063199043274
+    },
+    {
+      "keyword": "pipe",
+      "cluster_id": 0,
+      "umap_x": 2.5722994804382324,
+      "umap_y": 4.580383777618408
+    },
+    {
+      "keyword": "fall",
+      "cluster_id": 0,
+      "umap_x": 3.0039801597595215,
+      "umap_y": 3.958585500717163
+    },
+    {
+      "keyword": "affect",
+      "cluster_id": 0,
+      "umap_x": 0.3611048758029938,
+      "umap_y": 2.797471046447754
+    },
+    {
+      "keyword": "cost",
+      "cluster_id": 1,
+      "umap_x": 1.5271414518356323,
+      "umap_y": -0.5343036651611328
+    },
+    {
+      "keyword": "malfunction",
+      "cluster_id": 1,
+      "umap_x": -0.05284060165286064,
+      "umap_y": 0.37202152609825134
+    },
+    {
+      "keyword": "notify",
+      "cluster_id": 1,
+      "umap_x": -1.5769991874694824,
+      "umap_y": -1.2429332733154297
+    },
+    {
+      "keyword": "technology",
+      "cluster_id": 1,
+      "umap_x": -2.922224521636963,
+      "umap_y": -0.7994723320007324
+    },
+    {
+      "keyword": "test",
+      "cluster_id": 1,
+      "umap_x": -0.0033179575111716986,
+      "umap_y": -0.46425333619117737
+    },
+    {
+      "keyword": "camera",
+      "cluster_id": 1,
+      "umap_x": -1.1225330829620361,
+      "umap_y": -2.831777811050415
+    },
+    {
+      "keyword": "lawn",
+      "cluster_id": 0,
+      "umap_x": -4.264534950256348,
+      "umap_y": 2.8868112564086914
+    },
+    {
+      "keyword": "close",
+      "cluster_id": 1,
+      "umap_x": 2.7210633754730225,
+      "umap_y": 1.3263895511627197
+    },
+    {
+      "keyword": "gate",
+      "cluster_id": 1,
+      "umap_x": 2.9483470916748047,
+      "umap_y": 0.4732014238834381
+    },
+    {
+      "keyword": "controllable",
+      "cluster_id": 1,
+      "umap_x": -1.4236092567443848,
+      "umap_y": 0.5672575831413269
+    },
+    {
+      "keyword": "snowlance",
+      "cluster_id": 0,
+      "umap_x": 1.7233809232711792,
+      "umap_y": 6.644120216369629
+    },
+    {
+      "keyword": "blink",
+      "cluster_id": 0,
+      "umap_x": -0.4207197427749634,
+      "umap_y": -2.8341002464294434
+    },
+    {
+      "keyword": "guard",
+      "cluster_id": 1,
+      "umap_x": -1.5185245275497437,
+      "umap_y": 1.387563943862915
+    },
+    {
+      "keyword": "entertainer",
+      "cluster_id": 1,
+      "umap_x": -0.8312028646469116,
+      "umap_y": 0.39212656021118164
+    },
+    {
+      "keyword": "evening",
+      "cluster_id": 0,
+      "umap_x": 0.5474193692207336,
+      "umap_y": 8.750649452209473
+    },
+    {
+      "keyword": "assistant",
+      "cluster_id": 1,
+      "umap_x": -3.312927007675171,
+      "umap_y": 4.394237041473389
+    },
+    {
+      "keyword": "cleanniness",
+      "cluster_id": 0,
+      "umap_x": 2.030693292617798,
+      "umap_y": 4.205410003662109
+    },
+    {
+      "keyword": "opesity",
+      "cluster_id": 0,
+      "umap_x": -0.1477915495634079,
+      "umap_y": 6.818147659301758
+    },
+    {
+      "keyword": "power",
+      "cluster_id": 0,
+      "umap_x": 4.450708389282227,
+      "umap_y": 6.97591495513916
+    },
+    {
+      "keyword": "require",
+      "cluster_id": 0,
+      "umap_x": 0.24962745606899261,
+      "umap_y": 6.573749542236328
+    },
+    {
+      "keyword": "key",
+      "cluster_id": 1,
+      "umap_x": 2.0635390281677246,
+      "umap_y": -0.34433868527412415
+    },
+    {
+      "keyword": "search",
+      "cluster_id": 1,
+      "umap_x": 1.0460481643676758,
+      "umap_y": -1.5819097757339478
+    },
+    {
+      "keyword": "fragrence",
+      "cluster_id": 0,
+      "umap_x": 0.07154516130685806,
+      "umap_y": 6.5382256507873535
+    },
+    {
+      "keyword": "ask",
+      "cluster_id": 1,
+      "umap_x": -0.04069352149963379,
+      "umap_y": -0.7605608701705933
+    },
+    {
+      "keyword": "grass",
+      "cluster_id": 0,
+      "umap_x": -4.25172233581543,
+      "umap_y": 2.883344888687134
+    },
+    {
+      "keyword": "electricty",
+      "cluster_id": 0,
+      "umap_x": 4.476852893829346,
+      "umap_y": 6.986746788024902
+    },
+    {
+      "keyword": "milk",
+      "cluster_id": 0,
+      "umap_x": -0.7019956111907959,
+      "umap_y": 5.304360866546631
+    },
+    {
+      "keyword": "refirgerator",
+      "cluster_id": 0,
+      "umap_x": 0.1610090136528015,
+      "umap_y": 4.727913856506348
+    },
+    {
+      "keyword": "beep",
+      "cluster_id": 1,
+      "umap_x": -2.056772470474243,
+      "umap_y": -2.1899123191833496
+    },
+    {
+      "keyword": "rodent",
+      "cluster_id": 0,
+      "umap_x": -1.130150318145752,
+      "umap_y": 7.756383419036865
+    },
+    {
+      "keyword": "housewife",
+      "cluster_id": 1,
+      "umap_x": -3.4185235500335693,
+      "umap_y": 3.839954137802124
+    },
+    {
+      "keyword": "telecast",
+      "cluster_id": 1,
+      "umap_x": -1.5061944723129272,
+      "umap_y": -2.445965528488159
+    },
+    {
+      "keyword": "channel",
+      "cluster_id": 1,
+      "umap_x": -1.4560905694961548,
+      "umap_y": -2.4575042724609375
+    },
+    {
+      "keyword": "new",
+      "cluster_id": 1,
+      "umap_x": 1.10059654712677,
+      "umap_y": 1.0334213972091675
+    },
+    {
+      "keyword": "flood",
+      "cluster_id": 0,
+      "umap_x": 3.024972915649414,
+      "umap_y": 4.09567403793335
+    },
+    {
+      "keyword": "bath",
+      "cluster_id": 0,
+      "umap_x": 2.7551190853118896,
+      "umap_y": 4.788035869598389
+    },
+    {
+      "keyword": "keep",
+      "cluster_id": 1,
+      "umap_x": 2.175774335861206,
+      "umap_y": 1.5466089248657227
+    },
+    {
+      "keyword": "set",
+      "cluster_id": 1,
+      "umap_x": -3.088447093963623,
+      "umap_y": 0.22940541803836823
+    },
+    {
+      "keyword": "spycam",
+      "cluster_id": 1,
+      "umap_x": -1.2393298149108887,
+      "umap_y": -2.886889696121216
+    },
+    {
+      "keyword": "dish",
+      "cluster_id": 0,
+      "umap_x": -0.7674652934074402,
+      "umap_y": 5.198349952697754
+    },
+    {
+      "keyword": "amount",
+      "cluster_id": 1,
+      "umap_x": 1.4698331356048584,
+      "umap_y": -0.5822774767875671
+    },
+    {
+      "keyword": "deter",
+      "cluster_id": 0,
+      "umap_x": 2.0661659240722656,
+      "umap_y": 4.6501383781433105
+    },
+    {
+      "keyword": "relax",
+      "cluster_id": 1,
+      "umap_x": 0.6512281894683838,
+      "umap_y": 3.226611375808716
+    },
+    {
+      "keyword": "stress",
+      "cluster_id": 0,
+      "umap_x": 0.6293708086013794,
+      "umap_y": 3.3821303844451904
+    },
+    {
+      "keyword": "umbrella",
+      "cluster_id": 0,
+      "umap_x": 3.061979055404663,
+      "umap_y": 4.094759464263916
+    },
+    {
+      "keyword": "get",
+      "cluster_id": 1,
+      "umap_x": 2.5296032428741455,
+      "umap_y": 0.9380084872245789
+    },
+    {
+      "keyword": "help",
+      "cluster_id": 1,
+      "umap_x": -0.07210694998502731,
+      "umap_y": -0.6963421106338501
+    },
+    {
+      "keyword": "agree",
+      "cluster_id": 1,
+      "umap_x": 15.031609535217285,
+      "umap_y": 3.6681480407714844
+    },
+    {
+      "keyword": "parent",
+      "cluster_id": 1,
+      "umap_x": -3.928379535675049,
+      "umap_y": 4.968274116516113
+    },
+    {
+      "keyword": "thief",
+      "cluster_id": 1,
+      "umap_x": -3.6503078937530518,
+      "umap_y": 0.938110888004303
+    },
+    {
+      "keyword": "record",
+      "cluster_id": 1,
+      "umap_x": -1.3347223997116089,
+      "umap_y": -2.8733818531036377
+    },
+    {
+      "keyword": "what",
+      "cluster_id": 1,
+      "umap_x": -1.648093581199646,
+      "umap_y": -0.03450855612754822
+    },
+    {
+      "keyword": "fire",
+      "cluster_id": 0,
+      "umap_x": 0.6055610775947571,
+      "umap_y": 5.528306484222412
+    },
+    {
+      "keyword": "install",
+      "cluster_id": 1,
+      "umap_x": 1.2041535377502441,
+      "umap_y": 0.9855086803436279
+    },
+    {
+      "keyword": "scale",
+      "cluster_id": 1,
+      "umap_x": 0.594127893447876,
+      "umap_y": 1.498945951461792
+    },
+    {
+      "keyword": "stay",
+      "cluster_id": 1,
+      "umap_x": 2.0865018367767334,
+      "umap_y": 1.5811322927474976
+    },
+    {
+      "keyword": "mother",
+      "cluster_id": 1,
+      "umap_x": -3.724963903427124,
+      "umap_y": 4.731175899505615
+    },
+    {
+      "keyword": "fix",
+      "cluster_id": 1,
+      "umap_x": 0.8293843865394592,
+      "umap_y": 0.7333128452301025
+    },
+    {
+      "keyword": "problem",
+      "cluster_id": 1,
+      "umap_x": 0.22634710371494293,
+      "umap_y": -0.02459067478775978
+    },
+    {
+      "keyword": "detect",
+      "cluster_id": 1,
+      "umap_x": -0.05793939530849457,
+      "umap_y": -3.067084789276123
+    },
+    {
+      "keyword": "act",
+      "cluster_id": 1,
+      "umap_x": -1.1356879472732544,
+      "umap_y": 0.2782420217990875
+    },
+    {
+      "keyword": "toss",
+      "cluster_id": 1,
+      "umap_x": 15.112534523010254,
+      "umap_y": 3.5969009399414062
+    },
+    {
+      "keyword": "warning",
+      "cluster_id": 1,
+      "umap_x": -1.2679657936096191,
+      "umap_y": -0.9245223999023438
+    },
+    {
+      "keyword": "list",
+      "cluster_id": 1,
+      "umap_x": 1.5159523487091064,
+      "umap_y": -1.0036191940307617
+    },
+    {
+      "keyword": "review",
+      "cluster_id": 1,
+      "umap_x": 0.27249035239219666,
+      "umap_y": -0.604740560054779
+    },
+    {
+      "keyword": "phrase",
+      "cluster_id": 1,
+      "umap_x": 0.9943926334381104,
+      "umap_y": 0.2589368224143982
+    },
+    {
+      "keyword": "recognize",
+      "cluster_id": 1,
+      "umap_x": -0.07929810136556625,
+      "umap_y": -3.0396597385406494
+    },
+    {
+      "keyword": "restrict",
+      "cluster_id": 1,
+      "umap_x": -1.3070136308670044,
+      "umap_y": 1.2301855087280273
+    },
+    {
+      "keyword": "conserve",
+      "cluster_id": 1,
+      "umap_x": 2.0634422302246094,
+      "umap_y": 1.3437209129333496
+    },
+    {
+      "keyword": "voltage",
+      "cluster_id": 0,
+      "umap_x": 4.545207977294922,
+      "umap_y": 6.900359153747559
+    },
+    {
+      "keyword": "stop",
+      "cluster_id": 1,
+      "umap_x": 2.380058765411377,
+      "umap_y": 1.6885666847229004
+    },
+    {
+      "keyword": "computer",
+      "cluster_id": 1,
+      "umap_x": -2.797203779220581,
+      "umap_y": -0.18685735762119293
+    },
+    {
+      "keyword": "internet",
+      "cluster_id": 1,
+      "umap_x": -3.19274640083313,
+      "umap_y": -0.5096040368080139
+    },
+    {
+      "keyword": "step",
+      "cluster_id": 1,
+      "umap_x": -2.3486595153808594,
+      "umap_y": 3.1318840980529785
+    },
+    {
+      "keyword": "heating",
+      "cluster_id": 0,
+      "umap_x": 0.9369685053825378,
+      "umap_y": 6.115759372711182
+    },
+    {
+      "keyword": "programmable",
+      "cluster_id": 1,
+      "umap_x": -3.4918859004974365,
+      "umap_y": -1.1413414478302002
+    },
+    {
+      "keyword": "gooff",
+      "cluster_id": 1,
+      "umap_x": 15.099639892578125,
+      "umap_y": 3.694949150085449
+    },
+    {
+      "keyword": "find",
+      "cluster_id": 1,
+      "umap_x": 0.927268385887146,
+      "umap_y": -1.6277137994766235
+    },
+    {
+      "keyword": "recipe",
+      "cluster_id": 0,
+      "umap_x": -0.5186238288879395,
+      "umap_y": 5.477958679199219
+    },
+    {
+      "keyword": "goal",
+      "cluster_id": 1,
+      "umap_x": 0.3726673722267151,
+      "umap_y": 0.0752156600356102
+    },
+    {
+      "keyword": "track",
+      "cluster_id": 1,
+      "umap_x": -1.7691494226455688,
+      "umap_y": 2.9581298828125
+    },
+    {
+      "keyword": "bather",
+      "cluster_id": 0,
+      "umap_x": 2.6770389080047607,
+      "umap_y": 4.742701053619385
+    },
+    {
+      "keyword": "blind",
+      "cluster_id": 1,
+      "umap_x": -0.4429546296596527,
+      "umap_y": -2.8303940296173096
+    },
+    {
+      "keyword": "use",
+      "cluster_id": 1,
+      "umap_x": 1.087886929512024,
+      "umap_y": 0.35792529582977295
+    },
+    {
+      "keyword": "robbery",
+      "cluster_id": 1,
+      "umap_x": -3.6163854598999023,
+      "umap_y": 0.8908222317695618
+    },
+    {
+      "keyword": "cat",
+      "cluster_id": 0,
+      "umap_x": -1.2164443731307983,
+      "umap_y": 7.865058422088623
+    },
+    {
+      "keyword": "wake-up",
+      "cluster_id": 1,
+      "umap_x": 0.1505885124206543,
+      "umap_y": 8.831528663635254
+    },
+    {
+      "keyword": "sync",
+      "cluster_id": 0,
+      "umap_x": 1.0073785781860352,
+      "umap_y": 9.208178520202637
+    },
+    {
+      "keyword": "video",
+      "cluster_id": 1,
+      "umap_x": -0.9175412654876709,
+      "umap_y": -2.484740734100342
+    },
+    {
+      "keyword": "clap",
+      "cluster_id": 1,
+      "umap_x": -1.30009126663208,
+      "umap_y": 2.9549007415771484
+    },
+    {
+      "keyword": "curtain",
+      "cluster_id": 0,
+      "umap_x": -2.329728841781616,
+      "umap_y": 2.454859495162964
+    },
+    {
+      "keyword": "pull",
+      "cluster_id": 1,
+      "umap_x": -1.1219828128814697,
+      "umap_y": 2.574758291244507
+    },
+    {
+      "keyword": "break-in",
+      "cluster_id": 1,
+      "umap_x": 3.212282180786133,
+      "umap_y": 0.5048463940620422
+    },
+    {
+      "keyword": "leave",
+      "cluster_id": 1,
+      "umap_x": 2.071584463119507,
+      "umap_y": 1.647658348083496
+    },
+    {
+      "keyword": "wasting",
+      "cluster_id": 0,
+      "umap_x": 3.2472424507141113,
+      "umap_y": -1.7451707124710083
+    },
+    {
+      "keyword": "foyer",
+      "cluster_id": 1,
+      "umap_x": -2.6274235248565674,
+      "umap_y": 3.0832273960113525
+    },
+    {
+      "keyword": "porch",
+      "cluster_id": 0,
+      "umap_x": -3.525054454803467,
+      "umap_y": 3.0097124576568604
+    },
+    {
+      "keyword": "activate",
+      "cluster_id": 1,
+      "umap_x": -3.2180283069610596,
+      "umap_y": 0.14842383563518524
+    },
+    {
+      "keyword": "wall",
+      "cluster_id": 1,
+      "umap_x": -3.430913209915161,
+      "umap_y": 2.1839406490325928
+    },
+    {
+      "keyword": "slide",
+      "cluster_id": 1,
+      "umap_x": -1.4739254713058472,
+      "umap_y": 2.696157932281494
+    },
+    {
+      "keyword": "robber",
+      "cluster_id": 1,
+      "umap_x": -3.646144151687622,
+      "umap_y": 0.9397240877151489
+    },
+    {
+      "keyword": "work",
+      "cluster_id": 1,
+      "umap_x": -1.4669471979141235,
+      "umap_y": 0.12398707866668701
+    },
+    {
+      "keyword": "airconditioning",
+      "cluster_id": 0,
+      "umap_x": 1.3944040536880493,
+      "umap_y": 5.473076343536377
+    },
+    {
+      "keyword": "brigthness",
+      "cluster_id": 1,
+      "umap_x": 15.29142951965332,
+      "umap_y": 4.17969274520874
+    },
+    {
+      "keyword": "enjoy",
+      "cluster_id": 1,
+      "umap_x": -0.4104948341846466,
+      "umap_y": -1.02547287940979
+    },
+    {
+      "keyword": "speaker",
+      "cluster_id": 1,
+      "umap_x": -1.9596225023269653,
+      "umap_y": -2.4884257316589355
+    },
+    {
+      "keyword": "build",
+      "cluster_id": 1,
+      "umap_x": 1.3144359588623047,
+      "umap_y": 1.4861454963684082
+    },
+    {
+      "keyword": "charge",
+      "cluster_id": 1,
+      "umap_x": 4.647089958190918,
+      "umap_y": 6.754478454589844
+    },
+    {
+      "keyword": "electrical",
+      "cluster_id": 0,
+      "umap_x": 4.53358793258667,
+      "umap_y": 6.8844218254089355
+    },
+    {
+      "keyword": "brisk",
+      "cluster_id": 0,
+      "umap_x": 1.1227883100509644,
+      "umap_y": 6.261456489562988
+    },
+    {
+      "keyword": "stream",
+      "cluster_id": 1,
+      "umap_x": -1.3758289813995361,
+      "umap_y": -2.4788408279418945
+    },
+    {
+      "keyword": "bbq",
+      "cluster_id": 0,
+      "umap_x": -0.413160502910614,
+      "umap_y": 5.313201427459717
+    },
+    {
+      "keyword": "thermometer",
+      "cluster_id": 0,
+      "umap_x": 1.1072638034820557,
+      "umap_y": 6.168102741241455
+    },
+    {
+      "keyword": "body",
+      "cluster_id": 1,
+      "umap_x": -0.6407999992370605,
+      "umap_y": 2.647818088531494
+    },
+    {
+      "keyword": "rat",
+      "cluster_id": 0,
+      "umap_x": -1.1565042734146118,
+      "umap_y": 7.787528038024902
+    },
+    {
+      "keyword": "ingredient",
+      "cluster_id": 1,
+      "umap_x": -0.4791164994239807,
+      "umap_y": 5.671219825744629
+    },
+    {
+      "keyword": "noise",
+      "cluster_id": 1,
+      "umap_x": -2.052658796310425,
+      "umap_y": -2.4968559741973877
+    },
+    {
+      "keyword": "trip",
+      "cluster_id": 1,
+      "umap_x": -2.1161954402923584,
+      "umap_y": 2.387418508529663
+    },
+    {
+      "keyword": "summer",
+      "cluster_id": 0,
+      "umap_x": 0.9820688962936401,
+      "umap_y": 8.356531143188477
+    },
+    {
+      "keyword": "sound",
+      "cluster_id": 1,
+      "umap_x": -2.003053903579712,
+      "umap_y": -2.459214210510254
+    },
+    {
+      "keyword": "cooking",
+      "cluster_id": 0,
+      "umap_x": -0.3571162819862366,
+      "umap_y": 5.423621654510498
+    },
+    {
+      "keyword": "information",
+      "cluster_id": 1,
+      "umap_x": -2.0787134170532227,
+      "umap_y": -0.29427462816238403
+    },
+    {
+      "keyword": "talk",
+      "cluster_id": 1,
+      "umap_x": -2.732927083969116,
+      "umap_y": -1.176100730895996
+    },
+    {
+      "keyword": "overheat",
+      "cluster_id": 0,
+      "umap_x": 1.1062445640563965,
+      "umap_y": 6.243577003479004
+    },
+    {
+      "keyword": "burst",
+      "cluster_id": 1,
+      "umap_x": -0.2408558428287506,
+      "umap_y": 2.046764612197876
+    },
+    {
+      "keyword": "refill",
+      "cluster_id": 0,
+      "umap_x": 2.7410993576049805,
+      "umap_y": 3.5789825916290283
+    },
+    {
+      "keyword": "seat",
+      "cluster_id": 1,
+      "umap_x": -2.8345391750335693,
+      "umap_y": 2.1458396911621094
+    },
+    {
+      "keyword": "drink",
+      "cluster_id": 0,
+      "umap_x": -1.6793113946914673,
+      "umap_y": 5.937220096588135
+    },
+    {
+      "keyword": "heatpad",
+      "cluster_id": 0,
+      "umap_x": 0.9632978439331055,
+      "umap_y": 5.949609756469727
+    },
+    {
+      "keyword": "user",
+      "cluster_id": 1,
+      "umap_x": 0.00897112488746643,
+      "umap_y": 0.45815208554267883
+    },
+    {
+      "keyword": "outlet",
+      "cluster_id": 0,
+      "umap_x": 4.621009349822998,
+      "umap_y": 6.6834564208984375
+    },
+    {
+      "keyword": "dispense",
+      "cluster_id": 0,
+      "umap_x": 2.7915167808532715,
+      "umap_y": 3.6557083129882812
+    },
+    {
+      "keyword": "mode",
+      "cluster_id": 1,
+      "umap_x": -3.042412281036377,
+      "umap_y": 0.1979254186153412
+    },
+    {
+      "keyword": "co",
+      "cluster_id": 1,
+      "umap_x": 15.449313163757324,
+      "umap_y": 3.7261803150177
+    },
+    {
+      "keyword": "laundry",
+      "cluster_id": 0,
+      "umap_x": 2.153555393218994,
+      "umap_y": 4.249826431274414
+    },
+    {
+      "keyword": "flush",
+      "cluster_id": 0,
+      "umap_x": 2.3305583000183105,
+      "umap_y": 4.285080432891846
+    },
+    {
+      "keyword": "nothing",
+      "cluster_id": 1,
+      "umap_x": -1.8043221235275269,
+      "umap_y": -0.13613785803318024
+    },
+    {
+      "keyword": "toilet",
+      "cluster_id": 0,
+      "umap_x": 2.739802837371826,
+      "umap_y": 4.905216693878174
+    },
+    {
+      "keyword": "blaring",
+      "cluster_id": 0,
+      "umap_x": -3.806981325149536,
+      "umap_y": 1.0139014720916748
+    },
+    {
+      "keyword": "volume",
+      "cluster_id": 1,
+      "umap_x": -2.021380662918091,
+      "umap_y": -2.4787280559539795
+    },
+    {
+      "keyword": "content",
+      "cluster_id": 1,
+      "umap_x": -2.079073429107666,
+      "umap_y": -0.2860281765460968
+    },
+    {
+      "keyword": "driveway",
+      "cluster_id": 1,
+      "umap_x": -2.6925079822540283,
+      "umap_y": 1.8696165084838867
+    },
+    {
+      "keyword": "homeowner",
+      "cluster_id": 1,
+      "umap_x": -3.387632131576538,
+      "umap_y": 3.5634546279907227
+    },
+    {
+      "keyword": "ice",
+      "cluster_id": 0,
+      "umap_x": 1.6669580936431885,
+      "umap_y": 6.572029113769531
+    },
+    {
+      "keyword": "re-form",
+      "cluster_id": 1,
+      "umap_x": 2.5876083374023438,
+      "umap_y": -1.2595493793487549
+    },
+    {
+      "keyword": "voice",
+      "cluster_id": 1,
+      "umap_x": -1.9453831911087036,
+      "umap_y": -2.476158380508423
+    },
+    {
+      "keyword": "scan",
+      "cluster_id": 1,
+      "umap_x": -0.0649564117193222,
+      "umap_y": -3.0772359371185303
+    },
+    {
+      "keyword": "walkway",
+      "cluster_id": 1,
+      "umap_x": -2.388049840927124,
+      "umap_y": 2.9983372688293457
+    },
+    {
+      "keyword": "criminal",
+      "cluster_id": 1,
+      "umap_x": -3.659111976623535,
+      "umap_y": 0.9533383846282959
+    },
+    {
+      "keyword": "event",
+      "cluster_id": 1,
+      "umap_x": 15.29726505279541,
+      "umap_y": 4.075773239135742
+    },
+    {
+      "keyword": "fill",
+      "cluster_id": 0,
+      "umap_x": 2.7380619049072266,
+      "umap_y": 3.6394834518432617
+    },
+    {
+      "keyword": "host",
+      "cluster_id": 1,
+      "umap_x": -0.16204816102981567,
+      "umap_y": 0.6431032419204712
+    },
+    {
+      "keyword": "buzzer",
+      "cluster_id": 1,
+      "umap_x": -2.078376293182373,
+      "umap_y": -2.208204746246338
+    },
+    {
+      "keyword": "responsibility",
+      "cluster_id": 1,
+      "umap_x": -1.2779150009155273,
+      "umap_y": 0.34577980637550354
+    },
+    {
+      "keyword": "diet",
+      "cluster_id": 0,
+      "umap_x": -1.101059913635254,
+      "umap_y": 4.996949195861816
+    },
+    {
+      "keyword": "raise",
+      "cluster_id": 1,
+      "umap_x": 0.44055837392807007,
+      "umap_y": 1.3038263320922852
+    },
+    {
+      "keyword": "harm",
+      "cluster_id": 1,
+      "umap_x": 0.0024092334788292646,
+      "umap_y": 2.249608039855957
+    },
+    {
+      "keyword": "technique",
+      "cluster_id": 1,
+      "umap_x": -1.342932105064392,
+      "umap_y": 3.05928373336792
+    },
+    {
+      "keyword": "garden",
+      "cluster_id": 0,
+      "umap_x": -4.187833309173584,
+      "umap_y": 2.9062557220458984
+    },
+    {
+      "keyword": "bored",
+      "cluster_id": 1,
+      "umap_x": -0.9301393628120422,
+      "umap_y": -0.26500704884529114
+    },
+    {
+      "keyword": "decide",
+      "cluster_id": 1,
+      "umap_x": 1.995573878288269,
+      "umap_y": 0.6410648226737976
+    },
+    {
+      "keyword": "dvr",
+      "cluster_id": 1,
+      "umap_x": -1.2489782571792603,
+      "umap_y": -2.822660207748413
+    },
+    {
+      "keyword": "gardener",
+      "cluster_id": 0,
+      "umap_x": -4.220643520355225,
+      "umap_y": 2.949829578399658
+    },
+    {
+      "keyword": "grow",
+      "cluster_id": 0,
+      "umap_x": -4.1977152824401855,
+      "umap_y": 2.9625589847564697
+    },
+    {
+      "keyword": "idea",
+      "cluster_id": 1,
+      "umap_x": 0.21541498601436615,
+      "umap_y": -0.390229195356369
+    },
+    {
+      "keyword": "tool",
+      "cluster_id": 1,
+      "umap_x": -3.3224332332611084,
+      "umap_y": -0.9626659750938416
+    },
+    {
+      "keyword": "gas",
+      "cluster_id": 0,
+      "umap_x": 0.17193493247032166,
+      "umap_y": 5.68004846572876
+    },
+    {
+      "keyword": "commuting",
+      "cluster_id": 1,
+      "umap_x": -2.1329667568206787,
+      "umap_y": 2.3720593452453613
+    },
+    {
+      "keyword": "cooling",
+      "cluster_id": 0,
+      "umap_x": 1.0853983163833618,
+      "umap_y": 6.26926326751709
+    },
+    {
+      "keyword": "snow",
+      "cluster_id": 0,
+      "umap_x": 1.753180742263794,
+      "umap_y": 6.711529731750488
+    },
+    {
+      "keyword": "reset",
+      "cluster_id": 1,
+      "umap_x": 15.581565856933594,
+      "umap_y": 4.054409980773926
+    },
+    {
+      "keyword": "cistern",
+      "cluster_id": 1,
+      "umap_x": 15.599832534790039,
+      "umap_y": 4.094350814819336
+    },
+    {
+      "keyword": "rain",
+      "cluster_id": 0,
+      "umap_x": 3.02170991897583,
+      "umap_y": 4.118826389312744
+    },
+    {
+      "keyword": "sink",
+      "cluster_id": 0,
+      "umap_x": 2.7373087406158447,
+      "umap_y": 4.802563667297363
+    },
+    {
+      "keyword": "athlete",
+      "cluster_id": 1,
+      "umap_x": -1.119357943534851,
+      "umap_y": 2.1099491119384766
+    },
+    {
+      "keyword": "treadmill",
+      "cluster_id": 1,
+      "umap_x": -1.1566399335861206,
+      "umap_y": 2.101083993911743
+    },
+    {
+      "keyword": "diabetic",
+      "cluster_id": 1,
+      "umap_x": 15.696057319641113,
+      "umap_y": 3.724095582962036
+    },
+    {
+      "keyword": "tap",
+      "cluster_id": 1,
+      "umap_x": -1.186264991760254,
+      "umap_y": 3.0056464672088623
+    },
+    {
+      "keyword": "situation",
+      "cluster_id": 1,
+      "umap_x": -0.371429443359375,
+      "umap_y": -0.07286722958087921
+    },
+    {
+      "keyword": "cut",
+      "cluster_id": 1,
+      "umap_x": 0.87688148021698,
+      "umap_y": -1.1854698657989502
+    },
+    {
+      "keyword": "household",
+      "cluster_id": 1,
+      "umap_x": -3.392608165740967,
+      "umap_y": 3.7512848377227783
+    },
+    {
+      "keyword": "shutter",
+      "cluster_id": 1,
+      "umap_x": -1.1469786167144775,
+      "umap_y": -2.8693881034851074
+    },
+    {
+      "keyword": "ceiling",
+      "cluster_id": 1,
+      "umap_x": -3.021036386489868,
+      "umap_y": 2.999384880065918
+    },
+    {
+      "keyword": "communicate",
+      "cluster_id": 1,
+      "umap_x": -2.8799374103546143,
+      "umap_y": -1.1942152976989746
+    },
+    {
+      "keyword": "request",
+      "cluster_id": 1,
+      "umap_x": 2.3412322998046875,
+      "umap_y": -0.06688689440488815
+    },
+    {
+      "keyword": "song",
+      "cluster_id": 1,
+      "umap_x": -1.2303385734558105,
+      "umap_y": -2.0600876808166504
+    },
+    {
+      "keyword": "choice",
+      "cluster_id": 1,
+      "umap_x": 2.105175495147705,
+      "umap_y": 0.5398821830749512
+    },
+    {
+      "keyword": "discover",
+      "cluster_id": 1,
+      "umap_x": 0.9914933443069458,
+      "umap_y": -1.5901836156845093
+    },
+    {
+      "keyword": "hock",
+      "cluster_id": 1,
+      "umap_x": 15.02625560760498,
+      "umap_y": 3.9590976238250732
+    },
+    {
+      "keyword": "hear",
+      "cluster_id": 1,
+      "umap_x": -0.5447731018066406,
+      "umap_y": -1.0254125595092773
+    },
+    {
+      "keyword": "microwave",
+      "cluster_id": 0,
+      "umap_x": -0.09685209393501282,
+      "umap_y": 5.581563472747803
+    },
+    {
+      "keyword": "automation",
+      "cluster_id": 1,
+      "umap_x": -3.4782700538635254,
+      "umap_y": -1.1624430418014526
+    },
+    {
+      "keyword": "mailbox",
+      "cluster_id": 1,
+      "umap_x": 2.966397762298584,
+      "umap_y": -0.7643841505050659
+    },
+    {
+      "keyword": "signal",
+      "cluster_id": 1,
+      "umap_x": -2.8914144039154053,
+      "umap_y": -1.1391215324401855
+    },
+    {
+      "keyword": "buy",
+      "cluster_id": 1,
+      "umap_x": 1.8214479684829712,
+      "umap_y": -0.3548191785812378
+    },
+    {
+      "keyword": "image",
+      "cluster_id": 1,
+      "umap_x": -0.6228479146957397,
+      "umap_y": -2.7334954738616943
+    },
+    {
+      "keyword": "wake up",
+      "cluster_id": 1,
+      "umap_x": 0.11750470846891403,
+      "umap_y": 8.811400413513184
+    },
+    {
+      "keyword": "code",
+      "cluster_id": 1,
+      "umap_x": -3.4811723232269287,
+      "umap_y": -1.152305245399475
+    },
+    {
+      "keyword": "dishwasher",
+      "cluster_id": 0,
+      "umap_x": 2.0906338691711426,
+      "umap_y": 4.2973222732543945
+    },
+    {
+      "keyword": "turnoff",
+      "cluster_id": 1,
+      "umap_x": 2.86080002784729,
+      "umap_y": 1.8495287895202637
+    },
+    {
+      "keyword": "collect",
+      "cluster_id": 1,
+      "umap_x": 1.731574296951294,
+      "umap_y": -1.0829843282699585
+    },
+    {
+      "keyword": "sunlight",
+      "cluster_id": 0,
+      "umap_x": 1.019588828086853,
+      "umap_y": 9.225446701049805
+    },
+    {
+      "keyword": "defog",
+      "cluster_id": 0,
+      "umap_x": 1.675506353378296,
+      "umap_y": 6.328380584716797
+    },
+    {
+      "keyword": "mirror",
+      "cluster_id": 0,
+      "umap_x": 1.0024422407150269,
+      "umap_y": 9.2404146194458
+    },
+    {
+      "keyword": "humidifier",
+      "cluster_id": 0,
+      "umap_x": 2.609328269958496,
+      "umap_y": 4.308276653289795
+    },
+    {
+      "keyword": "warn",
+      "cluster_id": 1,
+      "umap_x": -1.3909739255905151,
+      "umap_y": -1.059631586074829
+    },
+    {
+      "keyword": "carpet",
+      "cluster_id": 0,
+      "umap_x": -2.7699389457702637,
+      "umap_y": 3.0465199947357178
+    },
+    {
+      "keyword": "awareness",
+      "cluster_id": 1,
+      "umap_x": 15.520586013793945,
+      "umap_y": 4.135364532470703
+    },
+    {
+      "keyword": "damage",
+      "cluster_id": 1,
+      "umap_x": -0.04849587008357048,
+      "umap_y": 2.143181085586548
+    },
+    {
+      "keyword": "collar",
+      "cluster_id": 0,
+      "umap_x": -1.2536176443099976,
+      "umap_y": 7.919708728790283
+    },
+    {
+      "keyword": "tracker",
+      "cluster_id": 1,
+      "umap_x": -1.7772631645202637,
+      "umap_y": 2.9551591873168945
+    },
+    {
+      "keyword": "corner",
+      "cluster_id": 1,
+      "umap_x": -3.4502506256103516,
+      "umap_y": 2.2190074920654297
+    },
+    {
+      "keyword": "mail",
+      "cluster_id": 1,
+      "umap_x": 2.9382784366607666,
+      "umap_y": -0.7733590602874756
+    },
+    {
+      "keyword": "receptacle",
+      "cluster_id": 1,
+      "umap_x": 4.583946228027344,
+      "umap_y": 6.665052890777588
+    },
+    {
+      "keyword": "expire",
+      "cluster_id": 0,
+      "umap_x": 1.0354334115982056,
+      "umap_y": 8.235051155090332
+    },
+    {
+      "keyword": "refrigerator",
+      "cluster_id": 0,
+      "umap_x": -0.035501908510923386,
+      "umap_y": 4.3505682945251465
+    },
+    {
+      "keyword": "efficiency",
+      "cluster_id": 1,
+      "umap_x": 0.7980261445045471,
+      "umap_y": 0.36083418130874634
+    },
+    {
+      "keyword": "package",
+      "cluster_id": 1,
+      "umap_x": 2.4559121131896973,
+      "umap_y": -0.7839313745498657
+    },
+    {
+      "keyword": "chair",
+      "cluster_id": 1,
+      "umap_x": -2.953737497329712,
+      "umap_y": 2.2862863540649414
+    },
+    {
+      "keyword": "convenience",
+      "cluster_id": 1,
+      "umap_x": 0.8815281987190247,
+      "umap_y": 0.2256740927696228
+    },
+    {
+      "keyword": "sit",
+      "cluster_id": 0,
+      "umap_x": -2.916255235671997,
+      "umap_y": 2.256443977355957
+    },
+    {
+      "keyword": "determine",
+      "cluster_id": 1,
+      "umap_x": 0.6171157956123352,
+      "umap_y": -1.802242636680603
+    },
+    {
+      "keyword": "plate",
+      "cluster_id": 1,
+      "umap_x": 1.0151251554489136,
+      "umap_y": -0.7376342415809631
+    },
+    {
+      "keyword": "clothe",
+      "cluster_id": 0,
+      "umap_x": -0.18438121676445007,
+      "umap_y": 3.452625274658203
+    },
+    {
+      "keyword": "dryer",
+      "cluster_id": 0,
+      "umap_x": 2.2512190341949463,
+      "umap_y": 4.226544380187988
+    },
+    {
+      "keyword": "load",
+      "cluster_id": 1,
+      "umap_x": 1.298041582107544,
+      "umap_y": 0.8358601331710815
+    },
+    {
+      "keyword": "circuit",
+      "cluster_id": 1,
+      "umap_x": 4.5963664054870605,
+      "umap_y": 6.849313735961914
+    },
+    {
+      "keyword": "detergent",
+      "cluster_id": 0,
+      "umap_x": 1.9379734992980957,
+      "umap_y": 4.38518762588501
+    },
+    {
+      "keyword": "supply",
+      "cluster_id": 1,
+      "umap_x": 1.830217719078064,
+      "umap_y": -0.6850330233573914
+    },
+    {
+      "keyword": "hanger",
+      "cluster_id": 0,
+      "umap_x": -1.6688997745513916,
+      "umap_y": 5.944052696228027
+    },
+    {
+      "keyword": "wardrobe",
+      "cluster_id": 0,
+      "umap_x": -0.34943240880966187,
+      "umap_y": 3.4695498943328857
+    },
+    {
+      "keyword": "wear",
+      "cluster_id": 0,
+      "umap_x": -0.23497292399406433,
+      "umap_y": 3.356903076171875
+    },
+    {
+      "keyword": "faucet",
+      "cluster_id": 0,
+      "umap_x": 2.7907302379608154,
+      "umap_y": 4.83556604385376
+    },
+    {
+      "keyword": "watcher",
+      "cluster_id": 1,
+      "umap_x": 1.0147497653961182,
+      "umap_y": -1.8334802389144897
+    },
+    {
+      "keyword": "maximize",
+      "cluster_id": 1,
+      "umap_x": 0.45450833439826965,
+      "umap_y": 0.8487155437469482
+    },
+    {
+      "keyword": "fume",
+      "cluster_id": 1,
+      "umap_x": -0.5255824327468872,
+      "umap_y": -0.8519314527511597
+    },
+    {
+      "keyword": "position",
+      "cluster_id": 1,
+      "umap_x": -3.0664329528808594,
+      "umap_y": 2.347320556640625
+    },
+    {
+      "keyword": "hospital",
+      "cluster_id": 1,
+      "umap_x": -2.7747421264648438,
+      "umap_y": 4.4643025398254395
+    },
+    {
+      "keyword": "barking",
+      "cluster_id": 0,
+      "umap_x": -1.2810989618301392,
+      "umap_y": 7.979044437408447
+    },
+    {
+      "keyword": "smell",
+      "cluster_id": 0,
+      "umap_x": 0.49856963753700256,
+      "umap_y": 5.287270545959473
+    },
+    {
+      "keyword": "leak",
+      "cluster_id": 0,
+      "umap_x": 2.715366840362549,
+      "umap_y": 4.543907165527344
+    },
+    {
+      "keyword": "moisture",
+      "cluster_id": 0,
+      "umap_x": 2.8649210929870605,
+      "umap_y": 4.184821605682373
+    },
+    {
+      "keyword": "education",
+      "cluster_id": 1,
+      "umap_x": 0.11106818169355392,
+      "umap_y": -1.5772771835327148
+    },
+    {
+      "keyword": "exercise",
+      "cluster_id": 1,
+      "umap_x": -1.1559922695159912,
+      "umap_y": 2.0766282081604004
+    },
+    {
+      "keyword": "waste",
+      "cluster_id": 0,
+      "umap_x": 3.2841899394989014,
+      "umap_y": -1.7591397762298584
+    },
+    {
+      "keyword": "washer",
+      "cluster_id": 0,
+      "umap_x": 2.024169445037842,
+      "umap_y": 4.130987644195557
+    },
+    {
+      "keyword": "container",
+      "cluster_id": 0,
+      "umap_x": -0.11961977183818817,
+      "umap_y": 4.358183860778809
+    },
+    {
+      "keyword": "timer",
+      "cluster_id": 1,
+      "umap_x": 0.3608194887638092,
+      "umap_y": 8.318467140197754
+    },
+    {
+      "keyword": "mailman",
+      "cluster_id": 1,
+      "umap_x": 2.98317551612854,
+      "umap_y": -0.7869334816932678
+    },
+    {
+      "keyword": "improve",
+      "cluster_id": 1,
+      "umap_x": 0.3350253403186798,
+      "umap_y": -0.5668843984603882
+    },
+    {
+      "keyword": "warm",
+      "cluster_id": 0,
+      "umap_x": 1.2149409055709839,
+      "umap_y": 6.338522434234619
+    },
+    {
+      "keyword": "breathe",
+      "cluster_id": 0,
+      "umap_x": 1.1173280477523804,
+      "umap_y": 3.4953064918518066
+    },
+    {
+      "keyword": "purify",
+      "cluster_id": 0,
+      "umap_x": 0.2030380666255951,
+      "umap_y": 6.638306617736816
+    },
+    {
+      "keyword": "range",
+      "cluster_id": 1,
+      "umap_x": 0.3656180202960968,
+      "umap_y": 0.8179230093955994
+    },
+    {
+      "keyword": "purpose",
+      "cluster_id": 1,
+      "umap_x": 0.95388263463974,
+      "umap_y": 0.23325790464878082
+    },
+    {
+      "keyword": "wi-fi",
+      "cluster_id": 1,
+      "umap_x": -3.201692581176758,
+      "umap_y": -0.47711044549942017
+    },
+    {
+      "keyword": "threshold",
+      "cluster_id": 1,
+      "umap_x": 0.3045944571495056,
+      "umap_y": 0.8981410264968872
+    },
+    {
+      "keyword": "stuff",
+      "cluster_id": 1,
+      "umap_x": -1.8106751441955566,
+      "umap_y": -0.1492432802915573
+    },
+    {
+      "keyword": "cycle",
+      "cluster_id": 0,
+      "umap_x": -2.6946194171905518,
+      "umap_y": 1.9178789854049683
+    },
+    {
+      "keyword": "do",
+      "cluster_id": 1,
+      "umap_x": 1.8414958715438843,
+      "umap_y": 0.584151566028595
+    },
+    {
+      "keyword": "closet",
+      "cluster_id": 0,
+      "umap_x": -2.512676477432251,
+      "umap_y": 2.803349494934082
+    },
+    {
+      "keyword": "straighten",
+      "cluster_id": 1,
+      "umap_x": -0.0058623687364161015,
+      "umap_y": 2.0573973655700684
+    },
+    {
+      "keyword": "nanny",
+      "cluster_id": 1,
+      "umap_x": -3.394789457321167,
+      "umap_y": 4.441902160644531
+    },
+    {
+      "keyword": "completion",
+      "cluster_id": 1,
+      "umap_x": 2.6107490062713623,
+      "umap_y": 1.6493293046951294
+    },
+    {
+      "keyword": "heater",
+      "cluster_id": 0,
+      "umap_x": 0.8894233703613281,
+      "umap_y": 5.947539806365967
+    },
+    {
+      "keyword": "impurity",
+      "cluster_id": 1,
+      "umap_x": 15.353043556213379,
+      "umap_y": 3.58176851272583
+    },
+    {
+      "keyword": "freeze",
+      "cluster_id": 0,
+      "umap_x": 1.7408034801483154,
+      "umap_y": 6.585022449493408
+    },
+    {
+      "keyword": "doorstep",
+      "cluster_id": 1,
+      "umap_x": 2.9380602836608887,
+      "umap_y": 0.5167245268821716
+    },
+    {
+      "keyword": "receive",
+      "cluster_id": 1,
+      "umap_x": 2.4658095836639404,
+      "umap_y": -0.33327794075012207
+    },
+    {
+      "keyword": "spend",
+      "cluster_id": 1,
+      "umap_x": 1.5472495555877686,
+      "umap_y": -0.42879706621170044
+    },
+    {
+      "keyword": "sport",
+      "cluster_id": 1,
+      "umap_x": -1.13627290725708,
+      "umap_y": 2.0725371837615967
+    },
+    {
+      "keyword": "defroster",
+      "cluster_id": 0,
+      "umap_x": 1.7252262830734253,
+      "umap_y": 6.395416736602783
+    },
+    {
+      "keyword": "ac heater",
+      "cluster_id": 0,
+      "umap_x": 1.0332226753234863,
+      "umap_y": 5.859421730041504
+    },
+    {
+      "keyword": "retract",
+      "cluster_id": 1,
+      "umap_x": 2.671358346939087,
+      "umap_y": -1.2736021280288696
+    },
+    {
+      "keyword": "app",
+      "cluster_id": 1,
+      "umap_x": -3.216888189315796,
+      "umap_y": -0.694516122341156
+    },
+    {
+      "keyword": "miss",
+      "cluster_id": 1,
+      "umap_x": 15.623631477355957,
+      "umap_y": 3.963693618774414
+    },
+    {
+      "keyword": "vitamin",
+      "cluster_id": 0,
+      "umap_x": -0.5515024065971375,
+      "umap_y": 5.709017753601074
+    },
+    {
+      "keyword": "foot",
+      "cluster_id": 1,
+      "umap_x": -1.384247899055481,
+      "umap_y": 2.8276426792144775
+    },
+    {
+      "keyword": "absorb",
+      "cluster_id": 0,
+      "umap_x": -0.973196804523468,
+      "umap_y": 4.779193878173828
+    },
+    {
+      "keyword": "tile",
+      "cluster_id": 1,
+      "umap_x": 15.267900466918945,
+      "umap_y": 3.83347749710083
+    },
+    {
+      "keyword": "walk",
+      "cluster_id": 1,
+      "umap_x": -1.8013464212417603,
+      "umap_y": 2.7698748111724854
+    },
+    {
+      "keyword": "revoke",
+      "cluster_id": 1,
+      "umap_x": 1.7024084329605103,
+      "umap_y": 1.4543206691741943
+    },
+    {
+      "keyword": "sanitize",
+      "cluster_id": 0,
+      "umap_x": 1.9295213222503662,
+      "umap_y": 4.408848762512207
+    },
+    {
+      "keyword": "transcribe",
+      "cluster_id": 1,
+      "umap_x": 15.45312213897705,
+      "umap_y": 4.154155731201172
+    },
+    {
+      "keyword": "paw",
+      "cluster_id": 0,
+      "umap_x": -1.2305198907852173,
+      "umap_y": 7.898895740509033
+    },
+    {
+      "keyword": "quantity",
+      "cluster_id": 1,
+      "umap_x": 1.3492333889007568,
+      "umap_y": -0.7877165079116821
+    },
+    {
+      "keyword": "short",
+      "cluster_id": 1,
+      "umap_x": 15.282981872558594,
+      "umap_y": 3.9915342330932617
+    },
+    {
+      "keyword": "animal",
+      "cluster_id": 0,
+      "umap_x": -1.150406837463379,
+      "umap_y": 7.774492263793945
+    },
+    {
+      "keyword": "weight",
+      "cluster_id": 1,
+      "umap_x": 0.6550167202949524,
+      "umap_y": 1.5960471630096436
+    },
+    {
+      "keyword": "pantry",
+      "cluster_id": 0,
+      "umap_x": -0.1520897001028061,
+      "umap_y": 4.1869683265686035
+    },
+    {
+      "keyword": "humidity",
+      "cluster_id": 0,
+      "umap_x": 2.745391607284546,
+      "umap_y": 4.28970193862915
+    },
+    {
+      "keyword": "renter",
+      "cluster_id": 1,
+      "umap_x": -3.291168451309204,
+      "umap_y": 3.357787609100342
+    },
+    {
+      "keyword": "invite",
+      "cluster_id": 1,
+      "umap_x": 2.6654632091522217,
+      "umap_y": 0.10447515547275543
+    },
+    {
+      "keyword": "feature",
+      "cluster_id": 1,
+      "umap_x": -0.08807311952114105,
+      "umap_y": -3.0285797119140625
+    },
+    {
+      "keyword": "allergy",
+      "cluster_id": 0,
+      "umap_x": -0.12290956825017929,
+      "umap_y": 6.359470367431641
+    },
+    {
+      "keyword": "dust",
+      "cluster_id": 0,
+      "umap_x": 1.2623099088668823,
+      "umap_y": 4.837750434875488
+    },
+    {
+      "keyword": "hair",
+      "cluster_id": 0,
+      "umap_x": 1.2190080881118774,
+      "umap_y": 3.5580363273620605
+    },
+    {
+      "keyword": "part",
+      "cluster_id": 1,
+      "umap_x": 1.072864055633545,
+      "umap_y": -0.6165544390678406
+    },
+    {
+      "keyword": "divide",
+      "cluster_id": 1,
+      "umap_x": 0.7610227465629578,
+      "umap_y": -1.5288128852844238
+    },
+    {
+      "keyword": "roommate",
+      "cluster_id": 1,
+      "umap_x": -3.2417397499084473,
+      "umap_y": 3.179918050765991
+    },
+    {
+      "keyword": "utility",
+      "cluster_id": 1,
+      "umap_x": 0.7678109407424927,
+      "umap_y": 0.35453763604164124
+    },
+    {
+      "keyword": "orb",
+      "cluster_id": 1,
+      "umap_x": 15.030689239501953,
+      "umap_y": 4.072897911071777
+    },
+    {
+      "keyword": "portfolio",
+      "cluster_id": 1,
+      "umap_x": 1.805862307548523,
+      "umap_y": -0.6541882753372192
+    },
+    {
+      "keyword": "swing",
+      "cluster_id": 1,
+      "umap_x": 15.728874206542969,
+      "umap_y": 3.869173049926758
+    },
+    {
+      "keyword": "grandma",
+      "cluster_id": 1,
+      "umap_x": -3.68306040763855,
+      "umap_y": 4.703458786010742
+    },
+    {
+      "keyword": "mood-appropriate",
+      "cluster_id": 0,
+      "umap_x": 0.417418509721756,
+      "umap_y": 2.9328908920288086
+    },
+    {
+      "keyword": "empty",
+      "cluster_id": 1,
+      "umap_x": 15.596648216247559,
+      "umap_y": 3.723836660385132
+    },
+    {
+      "keyword": "abnormality",
+      "cluster_id": 1,
+      "umap_x": 15.16886043548584,
+      "umap_y": 3.531519889831543
+    },
+    {
+      "keyword": "hint",
+      "cluster_id": 1,
+      "umap_x": -0.26468876004219055,
+      "umap_y": -0.8698115348815918
+    },
+    {
+      "keyword": "everything",
+      "cluster_id": 1,
+      "umap_x": -1.8128539323806763,
+      "umap_y": -0.13430704176425934
+    },
+    {
+      "keyword": "bread",
+      "cluster_id": 0,
+      "umap_x": -0.5928270816802979,
+      "umap_y": 5.318175315856934
+    },
+    {
+      "keyword": "week",
+      "cluster_id": 0,
+      "umap_x": 1.0738838911056519,
+      "umap_y": 8.263717651367188
+    },
+    {
+      "keyword": "deform",
+      "cluster_id": 0,
+      "umap_x": 1.7105903625488281,
+      "umap_y": 6.452075481414795
+    },
+    {
+      "keyword": "office",
+      "cluster_id": 1,
+      "umap_x": -1.8522155284881592,
+      "umap_y": 0.0797291025519371
+    },
+    {
+      "keyword": "pool",
+      "cluster_id": 0,
+      "umap_x": 2.5149407386779785,
+      "umap_y": 4.546947956085205
+    },
+    {
+      "keyword": "bathtub",
+      "cluster_id": 0,
+      "umap_x": 2.723660945892334,
+      "umap_y": 4.760161876678467
+    },
+    {
+      "keyword": "head",
+      "cluster_id": 0,
+      "umap_x": 1.251461148262024,
+      "umap_y": 3.5906941890716553
+    },
+    {
+      "keyword": "tub",
+      "cluster_id": 0,
+      "umap_x": 2.670182466506958,
+      "umap_y": 4.692424774169922
+    },
+    {
+      "keyword": "lawnmower",
+      "cluster_id": 0,
+      "umap_x": -4.309957981109619,
+      "umap_y": 2.885864496231079
+    },
+    {
+      "keyword": "gasoline",
+      "cluster_id": 0,
+      "umap_x": 0.1531505137681961,
+      "umap_y": 5.681863307952881
+    },
+    {
+      "keyword": "ice cream",
+      "cluster_id": 0,
+      "umap_x": -0.6531344056129456,
+      "umap_y": 5.339742183685303
+    },
+    {
+      "keyword": "freezer",
+      "cluster_id": 0,
+      "umap_x": 0.27739354968070984,
+      "umap_y": 4.8600358963012695
+    },
+    {
+      "keyword": "stock",
+      "cluster_id": 1,
+      "umap_x": 1.7609606981277466,
+      "umap_y": -0.7329002618789673
+    },
+    {
+      "keyword": "grocery",
+      "cluster_id": 0,
+      "umap_x": 1.661855697631836,
+      "umap_y": -0.09882381558418274
+    },
+    {
+      "keyword": "repair",
+      "cluster_id": 1,
+      "umap_x": 0.07451416552066803,
+      "umap_y": 1.9336926937103271
+    },
+    {
+      "keyword": "litter",
+      "cluster_id": 0,
+      "umap_x": 3.2632391452789307,
+      "umap_y": -1.7198251485824585
+    },
+    {
+      "keyword": "show",
+      "cluster_id": 1,
+      "umap_x": -0.3297916650772095,
+      "umap_y": -2.485210657119751
+    },
+    {
+      "keyword": "cry",
+      "cluster_id": 1,
+      "umap_x": 1.0815541744232178,
+      "umap_y": 2.2425711154937744
+    },
+    {
+      "keyword": "gutter",
+      "cluster_id": 1,
+      "umap_x": 15.526917457580566,
+      "umap_y": 3.8303911685943604
+    },
+    {
+      "keyword": "litterbox",
+      "cluster_id": 1,
+      "umap_x": 2.935335874557495,
+      "umap_y": -0.8616059422492981
+    },
+    {
+      "keyword": "screen",
+      "cluster_id": 1,
+      "umap_x": -0.8392768502235413,
+      "umap_y": -2.581631898880005
+    },
+    {
+      "keyword": "pump",
+      "cluster_id": 0,
+      "umap_x": 2.267014980316162,
+      "umap_y": 4.6567254066467285
+    },
+    {
+      "keyword": "outfit",
+      "cluster_id": 1,
+      "umap_x": -0.27891626954078674,
+      "umap_y": 3.4422223567962646
+    },
+    {
+      "keyword": "pick",
+      "cluster_id": 1,
+      "umap_x": 2.181946039199829,
+      "umap_y": 0.6213048696517944
+    },
+    {
+      "keyword": "indicate",
+      "cluster_id": 1,
+      "umap_x": -0.21219928562641144,
+      "umap_y": -2.821633815765381
+    },
+    {
+      "keyword": "well",
+      "cluster_id": 0,
+      "umap_x": 0.3063295781612396,
+      "umap_y": 6.101853847503662
+    },
+    {
+      "keyword": "color",
+      "cluster_id": 0,
+      "umap_x": 0.0016936417669057846,
+      "umap_y": 3.6658968925476074
+    },
+    {
+      "keyword": "design",
+      "cluster_id": 1,
+      "umap_x": -0.15059225261211395,
+      "umap_y": 3.4035046100616455
+    },
+    {
+      "keyword": "pattern",
+      "cluster_id": 1,
+      "umap_x": 15.23676586151123,
+      "umap_y": 3.885214328765869
+    },
+    {
+      "keyword": "quality",
+      "cluster_id": 1,
+      "umap_x": 15.526372909545898,
+      "umap_y": 4.150350570678711
+    },
+    {
+      "keyword": "brew",
+      "cluster_id": 0,
+      "umap_x": -1.7031073570251465,
+      "umap_y": 5.952866077423096
+    },
+    {
+      "keyword": "mix",
+      "cluster_id": 0,
+      "umap_x": -0.5079552531242371,
+      "umap_y": 5.5163421630859375
+    },
+    {
+      "keyword": "mobile",
+      "cluster_id": 1,
+      "umap_x": -3.0770938396453857,
+      "umap_y": -0.44431766867637634
+    },
+    {
+      "keyword": "let",
+      "cluster_id": 1,
+      "umap_x": 2.3252673149108887,
+      "umap_y": 0.6417961120605469
+    },
+    {
+      "keyword": "inventory",
+      "cluster_id": 1,
+      "umap_x": 1.716016411781311,
+      "umap_y": -0.8892690539360046
+    },
+    {
+      "keyword": "runout",
+      "cluster_id": 1,
+      "umap_x": 2.8948705196380615,
+      "umap_y": 3.061262845993042
+    },
+    {
+      "keyword": "detecting",
+      "cluster_id": 1,
+      "umap_x": -0.07364365458488464,
+      "umap_y": -3.0516061782836914
+    },
+    {
+      "keyword": "life",
+      "cluster_id": 1,
+      "umap_x": 1.7509206533432007,
+      "umap_y": 1.8373980522155762
+    },
+    {
+      "keyword": "property",
+      "cluster_id": 1,
+      "umap_x": 14.958949089050293,
+      "umap_y": 4.068060874938965
+    },
+    {
+      "keyword": "like",
+      "cluster_id": 1,
+      "umap_x": 15.434317588806152,
+      "umap_y": 4.0164055824279785
+    },
+    {
+      "keyword": "locate",
+      "cluster_id": 1,
+      "umap_x": 0.9615494608879089,
+      "umap_y": -1.5824636220932007
+    },
+    {
+      "keyword": "daughter",
+      "cluster_id": 1,
+      "umap_x": -3.8590445518493652,
+      "umap_y": 4.899634838104248
+    },
+    {
+      "keyword": "study",
+      "cluster_id": 1,
+      "umap_x": 0.15688176453113556,
+      "umap_y": -1.5153664350509644
+    },
+    {
+      "keyword": "children",
+      "cluster_id": 1,
+      "umap_x": -3.9246902465820312,
+      "umap_y": 4.9759345054626465
+    },
+    {
+      "keyword": "display",
+      "cluster_id": 1,
+      "umap_x": -0.6006449460983276,
+      "umap_y": -2.5744473934173584
+    },
+    {
+      "keyword": "optimize",
+      "cluster_id": 1,
+      "umap_x": 0.5740345120429993,
+      "umap_y": 0.6649582982063293
+    },
+    {
+      "keyword": "application",
+      "cluster_id": 1,
+      "umap_x": -3.4253640174865723,
+      "umap_y": -1.075940728187561
+    },
+    {
+      "keyword": "chore",
+      "cluster_id": 1,
+      "umap_x": 1.6733213663101196,
+      "umap_y": -0.16989092528820038
+    },
+    {
+      "keyword": "cookerchef",
+      "cluster_id": 0,
+      "umap_x": -0.1732429414987564,
+      "umap_y": 5.4398512840271
+    },
+    {
+      "keyword": "bank",
+      "cluster_id": 1,
+      "umap_x": 15.22469711303711,
+      "umap_y": 4.107037544250488
+    },
+    {
+      "keyword": "hunger",
+      "cluster_id": 0,
+      "umap_x": -1.0846165418624878,
+      "umap_y": 5.011803150177002
+    },
+    {
+      "keyword": "demand",
+      "cluster_id": 1,
+      "umap_x": 1.3008049726486206,
+      "umap_y": -0.26787349581718445
+    },
+    {
+      "keyword": "feedback",
+      "cluster_id": 1,
+      "umap_x": 0.26078906655311584,
+      "umap_y": -0.613575279712677
+    },
+    {
+      "keyword": "tooth",
+      "cluster_id": 0,
+      "umap_x": 1.2357920408248901,
+      "umap_y": 3.645092248916626
+    },
+    {
+      "keyword": "fresh",
+      "cluster_id": 0,
+      "umap_x": 2.1896591186523438,
+      "umap_y": 4.044832706451416
+    },
+    {
+      "keyword": "everyone",
+      "cluster_id": 1,
+      "umap_x": -0.7102927565574646,
+      "umap_y": 0.6195448040962219
+    },
+    {
+      "keyword": "acoustic",
+      "cluster_id": 1,
+      "umap_x": -1.9933608770370483,
+      "umap_y": -2.473884105682373
+    },
+    {
+      "keyword": "travel",
+      "cluster_id": 1,
+      "umap_x": -2.115347385406494,
+      "umap_y": 2.3462023735046387
+    },
+    {
+      "keyword": "downtime",
+      "cluster_id": 0,
+      "umap_x": 0.328717440366745,
+      "umap_y": 8.268928527832031
+    },
+    {
+      "keyword": "behaving",
+      "cluster_id": 1,
+      "umap_x": 15.197327613830566,
+      "umap_y": 3.6397855281829834
+    },
+    {
+      "keyword": "nudity",
+      "cluster_id": 0,
+      "umap_x": -0.29765763878822327,
+      "umap_y": 3.4422032833099365
+    },
+    {
+      "keyword": "software",
+      "cluster_id": 1,
+      "umap_x": -3.485621452331543,
+      "umap_y": -1.1563169956207275
+    },
+    {
+      "keyword": "cord",
+      "cluster_id": 1,
+      "umap_x": 4.596248626708984,
+      "umap_y": 6.585610389709473
+    },
+    {
+      "keyword": "organizer",
+      "cluster_id": 1,
+      "umap_x": 1.8845957517623901,
+      "umap_y": -1.11473548412323
+    },
+    {
+      "keyword": "immobile",
+      "cluster_id": 1,
+      "umap_x": -3.152163028717041,
+      "umap_y": -0.24798715114593506
+    },
+    {
+      "keyword": "vital",
+      "cluster_id": 1,
+      "umap_x": 15.318291664123535,
+      "umap_y": 3.743070363998413
+    },
+    {
+      "keyword": "cupboard",
+      "cluster_id": 0,
+      "umap_x": -0.12213650345802307,
+      "umap_y": 4.238358497619629
+    },
+    {
+      "keyword": "log",
+      "cluster_id": 1,
+      "umap_x": 15.154730796813965,
+      "umap_y": 3.5870587825775146
+    },
+    {
+      "keyword": "motor",
+      "cluster_id": 1,
+      "umap_x": -2.6609249114990234,
+      "umap_y": 1.7372074127197266
+    },
+    {
+      "keyword": "identifier",
+      "cluster_id": 1,
+      "umap_x": -0.18369407951831818,
+      "umap_y": -2.8809337615966797
+    },
+    {
+      "keyword": "electric",
+      "cluster_id": 0,
+      "umap_x": 4.511089324951172,
+      "umap_y": 6.9412078857421875
+    },
+    {
+      "keyword": "good",
+      "cluster_id": 0,
+      "umap_x": 0.289576917886734,
+      "umap_y": 6.095529079437256
+    },
+    {
+      "keyword": "regulation",
+      "cluster_id": 1,
+      "umap_x": -1.3098899126052856,
+      "umap_y": 0.7548535466194153
+    },
+    {
+      "keyword": "regulate",
+      "cluster_id": 1,
+      "umap_x": -1.2917879819869995,
+      "umap_y": 0.759516716003418
+    },
+    {
+      "keyword": "transmitter",
+      "cluster_id": 1,
+      "umap_x": -3.0489091873168945,
+      "umap_y": -0.6791845560073853
+    },
+    {
+      "keyword": "syllabu",
+      "cluster_id": 1,
+      "umap_x": 15.212759017944336,
+      "umap_y": 4.087137699127197
+    },
+    {
+      "keyword": "teacher",
+      "cluster_id": 1,
+      "umap_x": 0.15510745346546173,
+      "umap_y": -1.552276611328125
+    },
+    {
+      "keyword": "burner",
+      "cluster_id": 0,
+      "umap_x": 0.7542308568954468,
+      "umap_y": 5.770898342132568
+    },
+    {
+      "keyword": "fitness",
+      "cluster_id": 1,
+      "umap_x": -1.1336712837219238,
+      "umap_y": 2.1321849822998047
+    },
+    {
+      "keyword": "heart",
+      "cluster_id": 1,
+      "umap_x": 0.4479553699493408,
+      "umap_y": 2.5487704277038574
+    },
+    {
+      "keyword": "patient",
+      "cluster_id": 1,
+      "umap_x": -2.777704954147339,
+      "umap_y": 4.463024139404297
+    },
+    {
+      "keyword": "pressure",
+      "cluster_id": 0,
+      "umap_x": 0.7718498706817627,
+      "umap_y": 4.111073970794678
+    },
+    {
+      "keyword": "farmer",
+      "cluster_id": 0,
+      "umap_x": -4.248865604400635,
+      "umap_y": 2.9157590866088867
+    },
+    {
+      "keyword": "result",
+      "cluster_id": 1,
+      "umap_x": 0.2568008005619049,
+      "umap_y": -0.4076494872570038
+    },
+    {
+      "keyword": "caregiver",
+      "cluster_id": 1,
+      "umap_x": -3.3424696922302246,
+      "umap_y": 4.55872917175293
+    },
+    {
+      "keyword": "recycle",
+      "cluster_id": 0,
+      "umap_x": 3.1315228939056396,
+      "umap_y": -1.6104366779327393
+    },
+    {
+      "keyword": "sort",
+      "cluster_id": 1,
+      "umap_x": 2.2688136100769043,
+      "umap_y": -1.1929688453674316
+    },
+    {
+      "keyword": "trash",
+      "cluster_id": 0,
+      "umap_x": 3.2656567096710205,
+      "umap_y": -1.7338658571243286
+    },
+    {
+      "keyword": "seal",
+      "cluster_id": 1,
+      "umap_x": -1.4514261484146118,
+      "umap_y": 1.3623063564300537
+    },
+    {
+      "keyword": "decrease",
+      "cluster_id": 1,
+      "umap_x": 0.41819870471954346,
+      "umap_y": 1.2611124515533447
+    },
+    {
+      "keyword": "difference",
+      "cluster_id": 1,
+      "umap_x": 0.3576112389564514,
+      "umap_y": -0.19238527119159698
+    },
+    {
+      "keyword": "friend",
+      "cluster_id": 1,
+      "umap_x": 15.3609619140625,
+      "umap_y": 4.153408527374268
+    },
+    {
+      "keyword": "park",
+      "cluster_id": 0,
+      "umap_x": -4.208011627197266,
+      "umap_y": 2.8288094997406006
+    },
+    {
+      "keyword": "pot",
+      "cluster_id": 0,
+      "umap_x": -0.0723085030913353,
+      "umap_y": 5.351487636566162
+    },
+    {
+      "keyword": "forgetful",
+      "cluster_id": 1,
+      "umap_x": -1.6405181884765625,
+      "umap_y": -1.2923712730407715
+    },
+    {
+      "keyword": "medicine",
+      "cluster_id": 1,
+      "umap_x": -2.7435901165008545,
+      "umap_y": 4.436038017272949
+    },
+    {
+      "keyword": "doer",
+      "cluster_id": 1,
+      "umap_x": 15.317407608032227,
+      "umap_y": 3.7616195678710938
+    },
+    {
+      "keyword": "number",
+      "cluster_id": 1,
+      "umap_x": 0.9434019327163696,
+      "umap_y": -0.4278877377510071
+    },
+    {
+      "keyword": "earthquake",
+      "cluster_id": 1,
+      "umap_x": 15.745187759399414,
+      "umap_y": 3.762603759765625
+    },
+    {
+      "keyword": "manager",
+      "cluster_id": 1,
+      "umap_x": -3.320190906524658,
+      "umap_y": 4.447141170501709
+    },
+    {
+      "keyword": "e-mail",
+      "cluster_id": 1,
+      "umap_x": 2.9963245391845703,
+      "umap_y": -0.7936449646949768
+    },
+    {
+      "keyword": "grope",
+      "cluster_id": 1,
+      "umap_x": 15.690204620361328,
+      "umap_y": 3.916652202606201
+    },
+    {
+      "keyword": "nobody",
+      "cluster_id": 1,
+      "umap_x": -0.7048439979553223,
+      "umap_y": 0.6354511380195618
+    },
+    {
+      "keyword": "fly",
+      "cluster_id": 0,
+      "umap_x": 1.218004822731018,
+      "umap_y": 5.070755958557129
+    },
+    {
+      "keyword": "remain",
+      "cluster_id": 1,
+      "umap_x": 2.1299800872802734,
+      "umap_y": 1.5711190700531006
+    },
+    {
+      "keyword": "reach",
+      "cluster_id": 1,
+      "umap_x": 0.3659304976463318,
+      "umap_y": 0.7106813788414001
+    },
+    {
+      "keyword": "aromatherapy",
+      "cluster_id": 0,
+      "umap_x": 0.4621376395225525,
+      "umap_y": 5.289322376251221
+    },
+    {
+      "keyword": "eye",
+      "cluster_id": 1,
+      "umap_x": -0.5017982721328735,
+      "umap_y": -2.7961301803588867
+    },
+    {
+      "keyword": "vision",
+      "cluster_id": 1,
+      "umap_x": -0.44461536407470703,
+      "umap_y": -2.831190824508667
+    },
+    {
+      "keyword": "vaccum",
+      "cluster_id": 0,
+      "umap_x": 1.3274799585342407,
+      "umap_y": 4.724710941314697
+    },
+    {
+      "keyword": "can",
+      "cluster_id": 1,
+      "umap_x": 2.3604700565338135,
+      "umap_y": 0.6298458576202393
+    },
+    {
+      "keyword": "return",
+      "cluster_id": 1,
+      "umap_x": 2.6337263584136963,
+      "umap_y": -1.1957390308380127
+    },
+    {
+      "keyword": "hand",
+      "cluster_id": 1,
+      "umap_x": -1.2288810014724731,
+      "umap_y": 3.009669780731201
+    },
+    {
+      "keyword": "pay",
+      "cluster_id": 1,
+      "umap_x": 1.4450408220291138,
+      "umap_y": -0.38990920782089233
+    },
+    {
+      "keyword": "panel",
+      "cluster_id": 1,
+      "umap_x": -2.3007383346557617,
+      "umap_y": 1.0562080144882202
+    },
+    {
+      "keyword": "celebrity",
+      "cluster_id": 1,
+      "umap_x": -0.721197247505188,
+      "umap_y": 0.5752386450767517
+    },
+    {
+      "keyword": "bathe",
+      "cluster_id": 0,
+      "umap_x": 2.548154354095459,
+      "umap_y": 4.435616493225098
+    },
+    {
+      "keyword": "counter",
+      "cluster_id": 1,
+      "umap_x": 0.32446834444999695,
+      "umap_y": 8.34661865234375
+    },
+    {
+      "keyword": "appear",
+      "cluster_id": 1,
+      "umap_x": -0.34046319127082825,
+      "umap_y": -2.5433716773986816
+    },
+    {
+      "keyword": "toy",
+      "cluster_id": 1,
+      "umap_x": -2.4202675819396973,
+      "umap_y": 1.2532775402069092
+    },
+    {
+      "keyword": "melatonin",
+      "cluster_id": 1,
+      "umap_x": 15.650040626525879,
+      "umap_y": 3.6920297145843506
+    },
+    {
+      "keyword": "book",
+      "cluster_id": 1,
+      "umap_x": -1.067041039466858,
+      "umap_y": -1.9035001993179321
+    },
+    {
+      "keyword": "read",
+      "cluster_id": 1,
+      "umap_x": -0.565632700920105,
+      "umap_y": -1.080697774887085
+    },
+    {
+      "keyword": "son",
+      "cluster_id": 1,
+      "umap_x": -3.967412233352661,
+      "umap_y": 4.993013858795166
+    },
+    {
+      "keyword": "radon",
+      "cluster_id": 0,
+      "umap_x": -0.03237598016858101,
+      "umap_y": 6.485941410064697
+    },
+    {
+      "keyword": "hologram",
+      "cluster_id": 1,
+      "umap_x": 15.027412414550781,
+      "umap_y": 3.9612722396850586
+    },
+    {
+      "keyword": "wallpaper",
+      "cluster_id": 1,
+      "umap_x": -3.342806339263916,
+      "umap_y": 2.119072675704956
+    },
+    {
+      "keyword": "piano",
+      "cluster_id": 1,
+      "umap_x": -1.7431590557098389,
+      "umap_y": -2.3383638858795166
+    },
+    {
+      "keyword": "tune",
+      "cluster_id": 1,
+      "umap_x": -1.5455904006958008,
+      "umap_y": -2.2920618057250977
+    },
+    {
+      "keyword": "paper",
+      "cluster_id": 1,
+      "umap_x": -2.1379144191741943,
+      "umap_y": -0.22803951799869537
+    },
+    {
+      "keyword": "replace",
+      "cluster_id": 1,
+      "umap_x": 1.0992249250411987,
+      "umap_y": 1.2191956043243408
+    },
+    {
+      "keyword": "garbage",
+      "cluster_id": 0,
+      "umap_x": 3.283360481262207,
+      "umap_y": -1.7552392482757568
+    },
+    {
+      "keyword": "issue",
+      "cluster_id": 1,
+      "umap_x": 0.7799755930900574,
+      "umap_y": 0.6655435562133789
+    },
+    {
+      "keyword": "suggest",
+      "cluster_id": 0,
+      "umap_x": 0.3450217843055725,
+      "umap_y": 6.805741310119629
+    },
+    {
+      "keyword": "sleeper",
+      "cluster_id": 0,
+      "umap_x": 0.13527831435203552,
+      "umap_y": 8.816350936889648
+    },
+    {
+      "keyword": "comment",
+      "cluster_id": 1,
+      "umap_x": -0.01017833687365055,
+      "umap_y": -0.7869468927383423
+    },
+    {
+      "keyword": "asthmatic",
+      "cluster_id": 0,
+      "umap_x": -0.06259916722774506,
+      "umap_y": 6.403624534606934
+    },
+    {
+      "keyword": "infrared",
+      "cluster_id": 1,
+      "umap_x": 15.241545677185059,
+      "umap_y": 3.9365835189819336
+    },
+    {
+      "keyword": "boil",
+      "cluster_id": 0,
+      "umap_x": -0.17931301891803741,
+      "umap_y": 5.501369476318359
+    },
+    {
+      "keyword": "pasta",
+      "cluster_id": 0,
+      "umap_x": -0.9245994687080383,
+      "umap_y": 5.061467170715332
+    },
+    {
+      "keyword": "filter",
+      "cluster_id": 0,
+      "umap_x": 0.1419299840927124,
+      "umap_y": 7.33189582824707
+    },
+    {
+      "keyword": "see",
+      "cluster_id": 1,
+      "umap_x": -0.14628450572490692,
+      "umap_y": -0.9317215085029602
+    },
+    {
+      "keyword": "express",
+      "cluster_id": 1,
+      "umap_x": 15.6508207321167,
+      "umap_y": 3.9698596000671387
+    },
+    {
+      "keyword": "wrinkle",
+      "cluster_id": 1,
+      "umap_x": -0.32278433442115784,
+      "umap_y": 2.4310739040374756
+    },
+    {
+      "keyword": "bulb",
+      "cluster_id": 0,
+      "umap_x": 1.0536867380142212,
+      "umap_y": 9.234583854675293
+    },
+    {
+      "keyword": "ding",
+      "cluster_id": 1,
+      "umap_x": 15.020783424377441,
+      "umap_y": 4.0435791015625
+    },
+    {
+      "keyword": "catalog",
+      "cluster_id": 1,
+      "umap_x": 1.4680964946746826,
+      "umap_y": -1.2036410570144653
+    },
+    {
+      "keyword": "disorganized",
+      "cluster_id": 1,
+      "umap_x": 2.196154832839966,
+      "umap_y": -1.2009518146514893
+    },
+    {
+      "keyword": "rob",
+      "cluster_id": 1,
+      "umap_x": -3.6945552825927734,
+      "umap_y": 1.033077597618103
+    },
+    {
+      "keyword": "alcohol",
+      "cluster_id": 0,
+      "umap_x": -1.6733500957489014,
+      "umap_y": 5.922133922576904
+    },
+    {
+      "keyword": "love",
+      "cluster_id": 1,
+      "umap_x": 0.4471859931945801,
+      "umap_y": 2.540044069290161
+    },
+    {
+      "keyword": "viru",
+      "cluster_id": 1,
+      "umap_x": 15.071866035461426,
+      "umap_y": 3.7445318698883057
+    },
+    {
+      "keyword": "individual",
+      "cluster_id": 1,
+      "umap_x": -0.6983587145805359,
+      "umap_y": 0.6533601880073547
+    },
+    {
+      "keyword": "weapon",
+      "cluster_id": 1,
+      "umap_x": -0.5595930814743042,
+      "umap_y": 1.7449651956558228
+    },
+    {
+      "keyword": "calorie",
+      "cluster_id": 0,
+      "umap_x": 0.2475268542766571,
+      "umap_y": 7.048399925231934
+    },
+    {
+      "keyword": "interest",
+      "cluster_id": 1,
+      "umap_x": 1.571485161781311,
+      "umap_y": -0.42563697695732117
+    },
+    {
+      "keyword": "radiation",
+      "cluster_id": 1,
+      "umap_x": 15.552717208862305,
+      "umap_y": 3.7100119590759277
+    },
+    {
+      "keyword": "accident",
+      "cluster_id": 1,
+      "umap_x": -0.06793659925460815,
+      "umap_y": 2.182082176208496
+    },
+    {
+      "keyword": "basement",
+      "cluster_id": 0,
+      "umap_x": -3.1937947273254395,
+      "umap_y": 3.222625255584717
+    },
+    {
+      "keyword": "awaken",
+      "cluster_id": 0,
+      "umap_x": 0.17540396749973297,
+      "umap_y": 8.837568283081055
+    },
+    {
+      "keyword": "overflow",
+      "cluster_id": 0,
+      "umap_x": 0.40868136286735535,
+      "umap_y": 0.8704761266708374
+    },
+    {
+      "keyword": "sneak",
+      "cluster_id": 1,
+      "umap_x": -1.3935753107070923,
+      "umap_y": 2.446686267852783
+    },
+    {
+      "keyword": "die",
+      "cluster_id": 1,
+      "umap_x": 1.8752171993255615,
+      "umap_y": 1.8070967197418213
+    },
+    {
+      "keyword": "soap",
+      "cluster_id": 0,
+      "umap_x": 2.0611705780029297,
+      "umap_y": 4.417331218719482
+    },
+    {
+      "keyword": "disinfect",
+      "cluster_id": 0,
+      "umap_x": 1.7604763507843018,
+      "umap_y": 4.45358943939209
+    },
+    {
+      "keyword": "frosty",
+      "cluster_id": 0,
+      "umap_x": 1.7228128910064697,
+      "umap_y": 6.631804943084717
+    },
+    {
+      "keyword": "dehumidifier",
+      "cluster_id": 0,
+      "umap_x": 2.0588440895080566,
+      "umap_y": 5.093662738800049
+    },
+    {
+      "keyword": "dry",
+      "cluster_id": 0,
+      "umap_x": 2.553238868713379,
+      "umap_y": 4.20408296585083
+    },
+    {
+      "keyword": "intercom",
+      "cluster_id": 1,
+      "umap_x": -2.8951759338378906,
+      "umap_y": -1.2002816200256348
+    },
+    {
+      "keyword": "robbed",
+      "cluster_id": 1,
+      "umap_x": -3.6551156044006348,
+      "umap_y": 0.9364914298057556
+    },
+    {
+      "keyword": "center",
+      "cluster_id": 1,
+      "umap_x": -3.312863349914551,
+      "umap_y": 2.302043914794922
+    },
+    {
+      "keyword": "regulator",
+      "cluster_id": 1,
+      "umap_x": -1.3337693214416504,
+      "umap_y": 0.7596122622489929
+    },
+    {
+      "keyword": "controller",
+      "cluster_id": 1,
+      "umap_x": -1.4630694389343262,
+      "umap_y": 0.49497082829475403
+    },
+    {
+      "keyword": "furnace",
+      "cluster_id": 0,
+      "umap_x": 0.8329397439956665,
+      "umap_y": 5.88758659362793
+    },
+    {
+      "keyword": "party",
+      "cluster_id": 1,
+      "umap_x": -0.2840724587440491,
+      "umap_y": 0.7492592930793762
+    },
+    {
+      "keyword": "hot",
+      "cluster_id": 0,
+      "umap_x": 1.2313672304153442,
+      "umap_y": 6.4304423332214355
+    },
+    {
+      "keyword": "mornign",
+      "cluster_id": 1,
+      "umap_x": 15.263209342956543,
+      "umap_y": 3.5828568935394287
+    },
+    {
+      "keyword": "perpare",
+      "cluster_id": 1,
+      "umap_x": -3.435805559158325,
+      "umap_y": 4.438521385192871
+    },
+    {
+      "keyword": "spoil",
+      "cluster_id": 0,
+      "umap_x": 0.15422981977462769,
+      "umap_y": 6.483401298522949
+    },
+    {
+      "keyword": "capture",
+      "cluster_id": 1,
+      "umap_x": -1.3295962810516357,
+      "umap_y": -2.89666485786438
+    },
+    {
+      "keyword": "nightlight",
+      "cluster_id": 0,
+      "umap_x": 0.9796016216278076,
+      "umap_y": 9.178722381591797
+    },
+    {
+      "keyword": "fence",
+      "cluster_id": 1,
+      "umap_x": -3.560960531234741,
+      "umap_y": 2.124819278717041
+    },
+    {
+      "keyword": "response",
+      "cluster_id": 1,
+      "umap_x": 0.2192135602235794,
+      "umap_y": -0.6754412651062012
+    },
+    {
+      "keyword": "disable",
+      "cluster_id": 1,
+      "umap_x": 2.7667551040649414,
+      "umap_y": 1.9386191368103027
+    },
+    {
+      "keyword": "enable",
+      "cluster_id": 1,
+      "umap_x": -3.0590147972106934,
+      "umap_y": 0.22640925645828247
+    },
+    {
+      "keyword": "mop",
+      "cluster_id": 0,
+      "umap_x": -4.416062355041504,
+      "umap_y": 2.9663496017456055
+    },
+    {
+      "keyword": "self-clean",
+      "cluster_id": 0,
+      "umap_x": 1.9923685789108276,
+      "umap_y": 4.184662818908691
+    },
+    {
+      "keyword": "wash",
+      "cluster_id": 0,
+      "umap_x": 2.1527233123779297,
+      "umap_y": 4.291186809539795
+    },
+    {
+      "keyword": "plan",
+      "cluster_id": 1,
+      "umap_x": 1.8738934993743896,
+      "umap_y": 0.5034918189048767
+    },
+    {
+      "keyword": "shopping",
+      "cluster_id": 1,
+      "umap_x": 1.685279369354248,
+      "umap_y": -0.23118188977241516
+    },
+    {
+      "keyword": "baker",
+      "cluster_id": 0,
+      "umap_x": -0.46109631657600403,
+      "umap_y": 5.425533294677734
+    },
+    {
+      "keyword": "lose",
+      "cluster_id": 1,
+      "umap_x": 1.9220778942108154,
+      "umap_y": 1.7078806161880493
+    },
+    {
+      "keyword": "stamina",
+      "cluster_id": 0,
+      "umap_x": 0.6052061319351196,
+      "umap_y": 1.6318436861038208
+    },
+    {
+      "keyword": "strength",
+      "cluster_id": 1,
+      "umap_x": 0.5841128826141357,
+      "umap_y": 1.6502786874771118
+    },
+    {
+      "keyword": "adaptable",
+      "cluster_id": 1,
+      "umap_x": 0.5914629101753235,
+      "umap_y": 1.577096700668335
+    },
+    {
+      "keyword": "er",
+      "cluster_id": 1,
+      "umap_x": 15.634511947631836,
+      "umap_y": 3.8606343269348145
+    },
+    {
+      "keyword": "meat",
+      "cluster_id": 0,
+      "umap_x": -0.8708730340003967,
+      "umap_y": 5.076929569244385
+    },
+    {
+      "keyword": "spoiled",
+      "cluster_id": 0,
+      "umap_x": 0.1476103663444519,
+      "umap_y": 6.365422248840332
+    },
+    {
+      "keyword": "cleaning",
+      "cluster_id": 0,
+      "umap_x": 1.8316888809204102,
+      "umap_y": 4.305124282836914
+    },
+    {
+      "keyword": "hour",
+      "cluster_id": 0,
+      "umap_x": 0.3910144567489624,
+      "umap_y": 8.360119819641113
+    },
+    {
+      "keyword": "shutoff",
+      "cluster_id": 1,
+      "umap_x": 2.8000714778900146,
+      "umap_y": 1.7111650705337524
+    },
+    {
+      "keyword": "project",
+      "cluster_id": 1,
+      "umap_x": 0.21272574365139008,
+      "umap_y": -0.27762603759765625
+    },
+    {
+      "keyword": "stand",
+      "cluster_id": 1,
+      "umap_x": -2.9997060298919678,
+      "umap_y": 2.30165696144104
+    },
+    {
+      "keyword": "dividing",
+      "cluster_id": 1,
+      "umap_x": 0.7715306282043457,
+      "umap_y": -1.5329149961471558
+    },
+    {
+      "keyword": "occupy",
+      "cluster_id": 1,
+      "umap_x": 1.5084675550460815,
+      "umap_y": 0.4106816053390503
+    },
+    {
+      "keyword": "mold",
+      "cluster_id": 0,
+      "umap_x": 1.6267975568771362,
+      "umap_y": 4.567914962768555
+    },
+    {
+      "keyword": "mkae",
+      "cluster_id": 1,
+      "umap_x": 15.651527404785156,
+      "umap_y": 3.7517547607421875
+    },
+    {
+      "keyword": "sitter",
+      "cluster_id": 0,
+      "umap_x": -2.861222505569458,
+      "umap_y": 2.177485227584839
+    },
+    {
+      "keyword": "mower",
+      "cluster_id": 0,
+      "umap_x": -4.381998538970947,
+      "umap_y": 2.9244353771209717
+    },
+    {
+      "keyword": "wet",
+      "cluster_id": 0,
+      "umap_x": 2.636502981185913,
+      "umap_y": 4.220363616943359
+    },
+    {
+      "keyword": "homework",
+      "cluster_id": 1,
+      "umap_x": 0.13702473044395447,
+      "umap_y": -1.4157185554504395
+    },
+    {
+      "keyword": "taker",
+      "cluster_id": 1,
+      "umap_x": 2.4135336875915527,
+      "umap_y": 1.0434379577636719
+    },
+    {
+      "keyword": "listener",
+      "cluster_id": 1,
+      "umap_x": -1.942244529724121,
+      "umap_y": -2.4797606468200684
+    },
+    {
+      "keyword": "remind",
+      "cluster_id": 1,
+      "umap_x": -1.559707522392273,
+      "umap_y": -1.259255051612854
+    },
+    {
+      "keyword": "enthusiast",
+      "cluster_id": 0,
+      "umap_x": -0.15798074007034302,
+      "umap_y": 6.857394218444824
+    },
+    {
+      "keyword": "operator",
+      "cluster_id": 1,
+      "umap_x": -1.3917689323425293,
+      "umap_y": 0.2599555552005768
+    },
+    {
+      "keyword": "pannel",
+      "cluster_id": 1,
+      "umap_x": 15.282936096191406,
+      "umap_y": 4.306764125823975
+    },
+    {
+      "keyword": "tilt",
+      "cluster_id": 1,
+      "umap_x": 0.19346840679645538,
+      "umap_y": 1.7146177291870117
+    },
+    {
+      "keyword": "maid",
+      "cluster_id": 0,
+      "umap_x": -3.3644778728485107,
+      "umap_y": 4.150172233581543
+    },
+    {
+      "keyword": "mess",
+      "cluster_id": 0,
+      "umap_x": 1.9904178380966187,
+      "umap_y": 4.072789669036865
+    },
+    {
+      "keyword": "sweeper",
+      "cluster_id": 0,
+      "umap_x": 1.904032826423645,
+      "umap_y": 3.8841700553894043
+    },
+    {
+      "keyword": "shut down",
+      "cluster_id": 1,
+      "umap_x": 2.7706055641174316,
+      "umap_y": 1.769836187362671
+    },
+    {
+      "keyword": "arm",
+      "cluster_id": 1,
+      "umap_x": -1.0461068153381348,
+      "umap_y": 2.9476828575134277
+    },
+    {
+      "keyword": "butt",
+      "cluster_id": 0,
+      "umap_x": 1.3016538619995117,
+      "umap_y": 3.621469259262085
+    },
+    {
+      "keyword": "gamer",
+      "cluster_id": 1,
+      "umap_x": -0.7714975476264954,
+      "umap_y": 0.056972336024045944
+    },
+    {
+      "keyword": "hide",
+      "cluster_id": 1,
+      "umap_x": -1.3331936597824097,
+      "umap_y": 1.513738989830017
+    },
+    {
+      "keyword": "saver",
+      "cluster_id": 1,
+      "umap_x": 2.1890289783477783,
+      "umap_y": 1.172547698020935
+    },
+    {
+      "keyword": "try",
+      "cluster_id": 1,
+      "umap_x": -0.039783086627721786,
+      "umap_y": -0.5338160991668701
+    },
+    {
+      "keyword": "connection",
+      "cluster_id": 1,
+      "umap_x": 4.542427062988281,
+      "umap_y": 6.4111785888671875
+    },
+    {
+      "keyword": "excretion",
+      "cluster_id": 0,
+      "umap_x": 2.6593847274780273,
+      "umap_y": 5.035354137420654
+    },
+    {
+      "keyword": "store",
+      "cluster_id": 1,
+      "umap_x": 1.7236003875732422,
+      "umap_y": -0.14649832248687744
+    },
+    {
+      "keyword": "evacuation",
+      "cluster_id": 1,
+      "umap_x": -1.6556613445281982,
+      "umap_y": -1.0034892559051514
+    },
+    {
+      "keyword": "lamp",
+      "cluster_id": 0,
+      "umap_x": 1.0364755392074585,
+      "umap_y": 9.22681713104248
+    },
+    {
+      "keyword": "choose",
+      "cluster_id": 1,
+      "umap_x": 2.1077592372894287,
+      "umap_y": 0.5607947111129761
+    },
+    {
+      "keyword": "refridgerator",
+      "cluster_id": 0,
+      "umap_x": 0.05905800312757492,
+      "umap_y": 4.50181770324707
+    },
+    {
+      "keyword": "autistic",
+      "cluster_id": 1,
+      "umap_x": 14.983808517456055,
+      "umap_y": 3.6436333656311035
+    },
+    {
+      "keyword": "teach",
+      "cluster_id": 1,
+      "umap_x": 0.15386706590652466,
+      "umap_y": -1.5501829385757446
+    },
+    {
+      "keyword": "allow",
+      "cluster_id": 1,
+      "umap_x": 1.9571346044540405,
+      "umap_y": 0.36588922142982483
+    },
+    {
+      "keyword": "dial",
+      "cluster_id": 1,
+      "umap_x": -2.826052665710449,
+      "umap_y": -0.624453604221344
+    },
+    {
+      "keyword": "force",
+      "cluster_id": 1,
+      "umap_x": -1.051181435585022,
+      "umap_y": 2.6632633209228516
+    },
+    {
+      "keyword": "recite",
+      "cluster_id": 1,
+      "umap_x": 2.3901758193969727,
+      "umap_y": -0.3398069143295288
+    },
+    {
+      "keyword": "follow",
+      "cluster_id": 1,
+      "umap_x": -2.1030800342559814,
+      "umap_y": 3.312952756881714
+    },
+    {
+      "keyword": "who",
+      "cluster_id": 1,
+      "umap_x": -0.7504396438598633,
+      "umap_y": 0.5988175868988037
+    },
+    {
+      "keyword": "dress",
+      "cluster_id": 0,
+      "umap_x": -0.3086138069629669,
+      "umap_y": 3.459099531173706
+    },
+    {
+      "keyword": "delivery",
+      "cluster_id": 1,
+      "umap_x": 2.540635585784912,
+      "umap_y": -0.6534923315048218
+    },
+    {
+      "keyword": "knock",
+      "cluster_id": 1,
+      "umap_x": 2.503807783126831,
+      "umap_y": 0.9248682856559753
+    },
+    {
+      "keyword": "gather",
+      "cluster_id": 1,
+      "umap_x": 1.9079664945602417,
+      "umap_y": -1.2086806297302246
+    },
+    {
+      "keyword": "yell",
+      "cluster_id": 1,
+      "umap_x": -1.2619041204452515,
+      "umap_y": 7.923508167266846
+    },
+    {
+      "keyword": "safe",
+      "cluster_id": 1,
+      "umap_x": -1.10968816280365,
+      "umap_y": 1.3018313646316528
+    },
+    {
+      "keyword": "couch",
+      "cluster_id": 0,
+      "umap_x": -2.9674205780029297,
+      "umap_y": 2.6013576984405518
+    },
+    {
+      "keyword": "mom",
+      "cluster_id": 1,
+      "umap_x": -3.9183597564697266,
+      "umap_y": 4.93347692489624
+    },
+    {
+      "keyword": "product",
+      "cluster_id": 1,
+      "umap_x": 0.8810921907424927,
+      "umap_y": 0.2082202285528183
+    },
+    {
+      "keyword": "feelsafe",
+      "cluster_id": 1,
+      "umap_x": -0.5174190998077393,
+      "umap_y": -0.8549763560295105
+    },
+    {
+      "keyword": "eliminate",
+      "cluster_id": 1,
+      "umap_x": 1.4499274492263794,
+      "umap_y": 1.3944964408874512
+    },
+    {
+      "keyword": "plug",
+      "cluster_id": 1,
+      "umap_x": 4.608575344085693,
+      "umap_y": 6.6488752365112305
+    },
+    {
+      "keyword": "tomperature",
+      "cluster_id": 1,
+      "umap_x": 15.402583122253418,
+      "umap_y": 3.8735010623931885
+    },
+    {
+      "keyword": "audio",
+      "cluster_id": 1,
+      "umap_x": -1.8944098949432373,
+      "umap_y": -2.4970180988311768
+    },
+    {
+      "keyword": "condition",
+      "cluster_id": 0,
+      "umap_x": 1.3583991527557373,
+      "umap_y": 5.56757926940918
+    },
+    {
+      "keyword": "station",
+      "cluster_id": 1,
+      "umap_x": -3.308347702026367,
+      "umap_y": 2.5666708946228027
+    },
+    {
+      "keyword": "blanket",
+      "cluster_id": 0,
+      "umap_x": -0.2597295939922333,
+      "umap_y": 3.3916237354278564
+    },
+    {
+      "keyword": "blockage",
+      "cluster_id": 1,
+      "umap_x": -1.4766489267349243,
+      "umap_y": 1.3906784057617188
+    },
+    {
+      "keyword": "sneek",
+      "cluster_id": 0,
+      "umap_x": 0.15513888001441956,
+      "umap_y": 8.758429527282715
+    },
+    {
+      "keyword": "scenery",
+      "cluster_id": 1,
+      "umap_x": -3.7805676460266113,
+      "umap_y": 2.8634562492370605
+    },
+    {
+      "keyword": "communocate",
+      "cluster_id": 1,
+      "umap_x": -2.8783633708953857,
+      "umap_y": -1.2071515321731567
+    },
+    {
+      "keyword": "wireless",
+      "cluster_id": 1,
+      "umap_x": -3.1512343883514404,
+      "umap_y": -0.47853195667266846
+    },
+    {
+      "keyword": "fece",
+      "cluster_id": 0,
+      "umap_x": 0.4492361545562744,
+      "umap_y": 6.7937750816345215
+    },
+    {
+      "keyword": "poop",
+      "cluster_id": 0,
+      "umap_x": 2.6604199409484863,
+      "umap_y": 5.10032844543457
+    },
+    {
+      "keyword": "clog",
+      "cluster_id": 0,
+      "umap_x": 1.653303861618042,
+      "umap_y": 6.2815632820129395
+    },
+    {
+      "keyword": "septic",
+      "cluster_id": 1,
+      "umap_x": 15.592232704162598,
+      "umap_y": 4.088021755218506
+    },
+    {
+      "keyword": "wife",
+      "cluster_id": 1,
+      "umap_x": -3.6918203830718994,
+      "umap_y": 4.577649116516113
+    },
+    {
+      "keyword": "marker",
+      "cluster_id": 1,
+      "umap_x": -0.23739400506019592,
+      "umap_y": -2.7673261165618896
+    },
+    {
+      "keyword": "neighbor",
+      "cluster_id": 1,
+      "umap_x": -3.3257498741149902,
+      "umap_y": 3.012357234954834
+    },
+    {
+      "keyword": "style",
+      "cluster_id": 1,
+      "umap_x": -0.22501824796199799,
+      "umap_y": 3.4195992946624756
+    },
+    {
+      "keyword": "data",
+      "cluster_id": 1,
+      "umap_x": -2.0593490600585938,
+      "umap_y": -0.26851603388786316
+    },
+    {
+      "keyword": "interact",
+      "cluster_id": 1,
+      "umap_x": -3.152365207672119,
+      "umap_y": -1.2022234201431274
+    },
+    {
+      "keyword": "network",
+      "cluster_id": 1,
+      "umap_x": -3.249654531478882,
+      "umap_y": -0.4550163447856903
+    },
+    {
+      "keyword": "social",
+      "cluster_id": 1,
+      "umap_x": 15.386941909790039,
+      "umap_y": 3.518493175506592
+    },
+    {
+      "keyword": "fruit",
+      "cluster_id": 0,
+      "umap_x": -1.1830146312713623,
+      "umap_y": 4.849574089050293
+    },
+    {
+      "keyword": "complain",
+      "cluster_id": 0,
+      "umap_x": 0.0895027369260788,
+      "umap_y": 6.47666072845459
+    },
+    {
+      "keyword": "console",
+      "cluster_id": 1,
+      "umap_x": -2.756986379623413,
+      "umap_y": 0.12329427897930145
+    },
+    {
+      "keyword": "watering",
+      "cluster_id": 0,
+      "umap_x": 2.8960821628570557,
+      "umap_y": 4.139149188995361
+    },
+    {
+      "keyword": "zone",
+      "cluster_id": 1,
+      "umap_x": -3.293128490447998,
+      "umap_y": 2.77034068107605
+    },
+    {
+      "keyword": "crawl",
+      "cluster_id": 1,
+      "umap_x": -0.48039841651916504,
+      "umap_y": 2.300906181335449
+    },
+    {
+      "keyword": "rate",
+      "cluster_id": 1,
+      "umap_x": 1.8283551931381226,
+      "umap_y": -0.48275744915008545
+    },
+    {
+      "keyword": "motorcycle",
+      "cluster_id": 1,
+      "umap_x": -2.6804561614990234,
+      "umap_y": 1.853377103805542
+    },
+    {
+      "keyword": "survive",
+      "cluster_id": 1,
+      "umap_x": 1.9062557220458984,
+      "umap_y": 1.7812559604644775
+    },
+    {
+      "keyword": "de-activate",
+      "cluster_id": 1,
+      "umap_x": -3.2035655975341797,
+      "umap_y": 0.14192701876163483
+    },
+    {
+      "keyword": "engage",
+      "cluster_id": 1,
+      "umap_x": -3.1963307857513428,
+      "umap_y": -1.2212040424346924
+    },
+    {
+      "keyword": "decorate",
+      "cluster_id": 1,
+      "umap_x": 15.080574989318848,
+      "umap_y": 4.042562961578369
+    },
+    {
+      "keyword": "function",
+      "cluster_id": 1,
+      "umap_x": -0.06841978430747986,
+      "umap_y": 0.369540810585022
+    },
+    {
+      "keyword": "daylight",
+      "cluster_id": 0,
+      "umap_x": 0.8508868217468262,
+      "umap_y": 9.054444313049316
+    },
+    {
+      "keyword": "unit",
+      "cluster_id": 1,
+      "umap_x": 0.1345931738615036,
+      "umap_y": 0.39057016372680664
+    },
+    {
+      "keyword": "exceed",
+      "cluster_id": 1,
+      "umap_x": 0.3641147315502167,
+      "umap_y": 0.8509170413017273
+    },
+    {
+      "keyword": "330am",
+      "cluster_id": 0,
+      "umap_x": 0.4163144528865814,
+      "umap_y": 8.430312156677246
+    },
+    {
+      "keyword": "judge",
+      "cluster_id": 1,
+      "umap_x": -3.7300374507904053,
+      "umap_y": 0.972379744052887
+    },
+    {
+      "keyword": "replenish",
+      "cluster_id": 1,
+      "umap_x": 2.893343687057495,
+      "umap_y": -1.3840936422348022
+    },
+    {
+      "keyword": "library",
+      "cluster_id": 1,
+      "umap_x": -1.0487151145935059,
+      "umap_y": -1.8875818252563477
+    },
+    {
+      "keyword": "presence",
+      "cluster_id": 1,
+      "umap_x": -0.30598509311676025,
+      "umap_y": -2.550645112991333
+    },
+    {
+      "keyword": "turndown",
+      "cluster_id": 1,
+      "umap_x": 2.8614673614501953,
+      "umap_y": 1.8644856214523315
+    },
+    {
+      "keyword": "crib",
+      "cluster_id": 1,
+      "umap_x": 15.05113410949707,
+      "umap_y": 3.8866634368896484
+    },
+    {
+      "keyword": "diaper",
+      "cluster_id": 0,
+      "umap_x": 2.535444498062134,
+      "umap_y": 5.10568380355835
+    },
+    {
+      "keyword": "bothered",
+      "cluster_id": 1,
+      "umap_x": -1.0441837310791016,
+      "umap_y": -0.5272179245948792
+    },
+    {
+      "keyword": "tank",
+      "cluster_id": 0,
+      "umap_x": 0.1449650377035141,
+      "umap_y": 5.640364646911621
+    },
+    {
+      "keyword": "workout",
+      "cluster_id": 1,
+      "umap_x": -1.0858973264694214,
+      "umap_y": 2.1774590015411377
+    },
+    {
+      "keyword": "cabling",
+      "cluster_id": 0,
+      "umap_x": 0.2208923101425171,
+      "umap_y": 6.621860504150391
+    },
+    {
+      "keyword": "toothbrush",
+      "cluster_id": 0,
+      "umap_x": 1.2669497728347778,
+      "umap_y": 3.665421724319458
+    },
+    {
+      "keyword": "email",
+      "cluster_id": 1,
+      "umap_x": 3.023360013961792,
+      "umap_y": -0.8145238757133484
+    },
+    {
+      "keyword": "recognition",
+      "cluster_id": 1,
+      "umap_x": -0.12557318806648254,
+      "umap_y": -3.0063586235046387
+    },
+    {
+      "keyword": "understand",
+      "cluster_id": 1,
+      "umap_x": -0.36858153343200684,
+      "umap_y": -0.904630720615387
+    },
+    {
+      "keyword": "pill",
+      "cluster_id": 1,
+      "umap_x": -2.711754083633423,
+      "umap_y": 4.4707512855529785
+    },
+    {
+      "keyword": "aunt",
+      "cluster_id": 1,
+      "umap_x": -3.7734549045562744,
+      "umap_y": 4.790063381195068
+    },
+    {
+      "keyword": "niece",
+      "cluster_id": 1,
+      "umap_x": -3.871222734451294,
+      "umap_y": 4.896664619445801
+    },
+    {
+      "keyword": "playlist",
+      "cluster_id": 1,
+      "umap_x": -0.824995219707489,
+      "umap_y": -0.16527342796325684
+    },
+    {
+      "keyword": "prefer",
+      "cluster_id": 1,
+      "umap_x": 2.0936391353607178,
+      "umap_y": 0.3999418616294861
+    },
+    {
+      "keyword": "purchase",
+      "cluster_id": 1,
+      "umap_x": 1.9259613752365112,
+      "umap_y": -0.34524691104888916
+    },
+    {
+      "keyword": "airspace",
+      "cluster_id": 0,
+      "umap_x": 1.1631760597229004,
+      "umap_y": 5.052129745483398
+    },
+    {
+      "keyword": "privacy",
+      "cluster_id": 1,
+      "umap_x": -3.2423250675201416,
+      "umap_y": 0.9028028845787048
+    },
+    {
+      "keyword": "roof",
+      "cluster_id": 0,
+      "umap_x": -3.172755002975464,
+      "umap_y": 3.097346782684326
+    },
+    {
+      "keyword": "blood",
+      "cluster_id": 0,
+      "umap_x": -0.6704346537590027,
+      "umap_y": 4.933887004852295
+    },
+    {
+      "keyword": "husband",
+      "cluster_id": 1,
+      "umap_x": -3.6487152576446533,
+      "umap_y": 4.564039707183838
+    },
+    {
+      "keyword": "name",
+      "cluster_id": 1,
+      "umap_x": -0.704131543636322,
+      "umap_y": 0.47532036900520325
+    },
+    {
+      "keyword": "hurt",
+      "cluster_id": 1,
+      "umap_x": 0.21622709929943085,
+      "umap_y": 2.3495235443115234
+    },
+    {
+      "keyword": "maintenance",
+      "cluster_id": 1,
+      "umap_x": 1.8719319105148315,
+      "umap_y": 1.3522460460662842
+    },
+    {
+      "keyword": "fish",
+      "cluster_id": 0,
+      "umap_x": -0.42364394664764404,
+      "umap_y": 5.3357977867126465
+    },
+    {
+      "keyword": "closing",
+      "cluster_id": 1,
+      "umap_x": 2.7089200019836426,
+      "umap_y": 1.5149527788162231
+    },
+    {
+      "keyword": "location",
+      "cluster_id": 1,
+      "umap_x": -3.2988717555999756,
+      "umap_y": 2.5995876789093018
+    },
+    {
+      "keyword": "maintainance",
+      "cluster_id": 1,
+      "umap_x": 2.0176074504852295,
+      "umap_y": 1.3824559450149536
+    },
+    {
+      "keyword": "paint",
+      "cluster_id": 0,
+      "umap_x": 0.5542885661125183,
+      "umap_y": 4.31876277923584
+    },
+    {
+      "keyword": "snack",
+      "cluster_id": 0,
+      "umap_x": -1.055561900138855,
+      "umap_y": 4.991071701049805
+    },
+    {
+      "keyword": "setting",
+      "cluster_id": 1,
+      "umap_x": -3.0808136463165283,
+      "umap_y": 0.2163105607032776
+    },
+    {
+      "keyword": "allot",
+      "cluster_id": 1,
+      "umap_x": 15.149297714233398,
+      "umap_y": 3.796541452407837
+    },
+    {
+      "keyword": "recieve",
+      "cluster_id": 1,
+      "umap_x": 2.3724615573883057,
+      "umap_y": -0.38698282837867737
+    },
+    {
+      "keyword": "yard",
+      "cluster_id": 1,
+      "umap_x": -4.107975006103516,
+      "umap_y": 2.7494969367980957
+    },
+    {
+      "keyword": "analyze",
+      "cluster_id": 1,
+      "umap_x": 0.30408820509910583,
+      "umap_y": -1.6106840372085571
+    },
+    {
+      "keyword": "attach",
+      "cluster_id": 1,
+      "umap_x": 0.5347084403038025,
+      "umap_y": 1.5742506980895996
+    },
+    {
+      "keyword": "supervised",
+      "cluster_id": 1,
+      "umap_x": -0.06981920450925827,
+      "umap_y": -3.0644805431365967
+    },
+    {
+      "keyword": "geyser",
+      "cluster_id": 0,
+      "umap_x": 1.808008074760437,
+      "umap_y": 4.286919593811035
+    },
+    {
+      "keyword": "cutoff",
+      "cluster_id": 1,
+      "umap_x": 2.9004836082458496,
+      "umap_y": 1.691991925239563
+    },
+    {
+      "keyword": "puppy",
+      "cluster_id": 0,
+      "umap_x": -1.2037756443023682,
+      "umap_y": 7.850223064422607
+    },
+    {
+      "keyword": "router",
+      "cluster_id": 1,
+      "umap_x": -3.2316136360168457,
+      "umap_y": -0.5485450029373169
+    },
+    {
+      "keyword": "unauthorizedly",
+      "cluster_id": 1,
+      "umap_x": 1.493048906326294,
+      "umap_y": 0.3381516933441162
+    },
+    {
+      "keyword": "auto-eject",
+      "cluster_id": 1,
+      "umap_x": -3.454970598220825,
+      "umap_y": -1.2017486095428467
+    },
+    {
+      "keyword": "driver",
+      "cluster_id": 1,
+      "umap_x": -2.660801887512207,
+      "umap_y": 1.8116976022720337
+    },
+    {
+      "keyword": "tutorial",
+      "cluster_id": 1,
+      "umap_x": 15.59735107421875,
+      "umap_y": 4.261460781097412
+    },
+    {
+      "keyword": "recorder",
+      "cluster_id": 1,
+      "umap_x": -1.3305063247680664,
+      "umap_y": -2.866974353790283
+    },
+    {
+      "keyword": "thing-to-do",
+      "cluster_id": 1,
+      "umap_x": -1.625792384147644,
+      "umap_y": -0.08821894228458405
+    },
+    {
+      "keyword": "locker",
+      "cluster_id": 1,
+      "umap_x": -2.4023187160491943,
+      "umap_y": 2.5521793365478516
+    },
+    {
+      "keyword": "contain",
+      "cluster_id": 0,
+      "umap_x": 0.23115843534469604,
+      "umap_y": 6.572457790374756
+    },
+    {
+      "keyword": "target",
+      "cluster_id": 1,
+      "umap_x": 0.31901875138282776,
+      "umap_y": 0.2618791460990906
+    },
+    {
+      "keyword": "housework",
+      "cluster_id": 1,
+      "umap_x": -3.368436336517334,
+      "umap_y": 3.593679189682007
+    },
+    {
+      "keyword": "organic",
+      "cluster_id": 0,
+      "umap_x": -0.3870014548301697,
+      "umap_y": 5.9753522872924805
+    },
+    {
+      "keyword": "choke",
+      "cluster_id": 0,
+      "umap_x": 1.1697213649749756,
+      "umap_y": 3.602613925933838
+    },
+    {
+      "keyword": "push",
+      "cluster_id": 1,
+      "umap_x": -1.240017056465149,
+      "umap_y": 2.6697230339050293
+    },
+    {
+      "keyword": "bird",
+      "cluster_id": 0,
+      "umap_x": -1.1271731853485107,
+      "umap_y": 7.748998641967773
+    },
+    {
+      "keyword": "starve",
+      "cluster_id": 0,
+      "umap_x": -1.0952404737472534,
+      "umap_y": 4.99822473526001
+    },
+    {
+      "keyword": "deodorize",
+      "cluster_id": 0,
+      "umap_x": 2.825451612472534,
+      "umap_y": 3.7987060546875
+    },
+    {
+      "keyword": "surveilance",
+      "cluster_id": 1,
+      "umap_x": 15.175593376159668,
+      "umap_y": 3.7574527263641357
+    },
+    {
+      "keyword": "support",
+      "cluster_id": 1,
+      "umap_x": -2.8113858699798584,
+      "umap_y": 4.2709431648254395
+    },
+    {
+      "keyword": "groom",
+      "cluster_id": 0,
+      "umap_x": -3.352402925491333,
+      "umap_y": 4.132808208465576
+    },
+    {
+      "keyword": "surf",
+      "cluster_id": 0,
+      "umap_x": 2.555943489074707,
+      "umap_y": 4.453664302825928
+    },
+    {
+      "keyword": "timing",
+      "cluster_id": 0,
+      "umap_x": 0.3595590591430664,
+      "umap_y": 8.274807929992676
+    },
+    {
+      "keyword": "cream",
+      "cluster_id": 0,
+      "umap_x": -0.730833113193512,
+      "umap_y": 5.280550956726074
+    },
+    {
+      "keyword": "caloric",
+      "cluster_id": 0,
+      "umap_x": 0.24631023406982422,
+      "umap_y": 7.017383098602295
+    },
+    {
+      "keyword": "bp",
+      "cluster_id": 1,
+      "umap_x": 15.518451690673828,
+      "umap_y": 3.6210405826568604
+    },
+    {
+      "keyword": "ecosystem",
+      "cluster_id": 1,
+      "umap_x": -4.024003028869629,
+      "umap_y": 2.96642804145813
+    },
+    {
+      "keyword": "drive",
+      "cluster_id": 1,
+      "umap_x": -2.624807596206665,
+      "umap_y": 1.869560718536377
+    },
+    {
+      "keyword": "injury",
+      "cluster_id": 1,
+      "umap_x": -0.058785904198884964,
+      "umap_y": 2.2117252349853516
+    },
+    {
+      "keyword": "cabinet",
+      "cluster_id": 0,
+      "umap_x": -0.16396692395210266,
+      "umap_y": 4.159243106842041
+    },
+    {
+      "keyword": "risk",
+      "cluster_id": 1,
+      "umap_x": -1.2783772945404053,
+      "umap_y": 1.3895859718322754
+    },
+    {
+      "keyword": "tv audio",
+      "cluster_id": 1,
+      "umap_x": -1.8097409009933472,
+      "umap_y": -2.504136562347412
+    },
+    {
+      "keyword": "residence",
+      "cluster_id": 1,
+      "umap_x": -3.3450777530670166,
+      "umap_y": 3.25946044921875
+    },
+    {
+      "keyword": "trespassing",
+      "cluster_id": 1,
+      "umap_x": -3.6958224773406982,
+      "umap_y": 1.0376125574111938
+    },
+    {
+      "keyword": "interect",
+      "cluster_id": 1,
+      "umap_x": 1.8576242923736572,
+      "umap_y": -1.243273138999939
+    },
+    {
+      "keyword": "restock",
+      "cluster_id": 1,
+      "umap_x": 1.7542083263397217,
+      "umap_y": -0.6576080322265625
+    },
+    {
+      "keyword": "unplug",
+      "cluster_id": 1,
+      "umap_x": 2.8874971866607666,
+      "umap_y": 1.843544363975525
+    },
+    {
+      "keyword": "dance",
+      "cluster_id": 1,
+      "umap_x": -1.1873341798782349,
+      "umap_y": 2.0427839756011963
+    },
+    {
+      "keyword": "accent",
+      "cluster_id": 1,
+      "umap_x": -1.9741888046264648,
+      "umap_y": -2.393343687057495
+    },
+    {
+      "keyword": "spot",
+      "cluster_id": 1,
+      "umap_x": -3.177760362625122,
+      "umap_y": 2.422633409500122
+    },
+    {
+      "keyword": "belong",
+      "cluster_id": 1,
+      "umap_x": -0.18611623346805573,
+      "umap_y": 0.652195155620575
+    },
+    {
+      "keyword": "finder",
+      "cluster_id": 1,
+      "umap_x": 1.0796290636062622,
+      "umap_y": -1.6955897808074951
+    },
+    {
+      "keyword": "season",
+      "cluster_id": 0,
+      "umap_x": 1.1203441619873047,
+      "umap_y": 8.188376426696777
+    },
+    {
+      "keyword": "sick",
+      "cluster_id": 0,
+      "umap_x": 1.297349214553833,
+      "umap_y": 6.46940279006958
+    },
+    {
+      "keyword": "download",
+      "cluster_id": 1,
+      "umap_x": 1.2164493799209595,
+      "umap_y": 0.920604944229126
+    },
+    {
+      "keyword": "remove",
+      "cluster_id": 1,
+      "umap_x": 1.4628870487213135,
+      "umap_y": 1.302635669708252
+    },
+    {
+      "keyword": "fireplace",
+      "cluster_id": 0,
+      "umap_x": 0.43108198046684265,
+      "umap_y": 5.5128397941589355
+    },
+    {
+      "keyword": "nutrition",
+      "cluster_id": 0,
+      "umap_x": -1.03927481174469,
+      "umap_y": 5.039989471435547
+    },
+    {
+      "keyword": "boot",
+      "cluster_id": 1,
+      "umap_x": 1.3066622018814087,
+      "umap_y": 0.862278401851654
+    },
+    {
+      "keyword": "bike",
+      "cluster_id": 1,
+      "umap_x": -2.6847991943359375,
+      "umap_y": 1.8862706422805786
+    },
+    {
+      "keyword": "oil",
+      "cluster_id": 0,
+      "umap_x": -0.09138138592243195,
+      "umap_y": 5.709757328033447
+    },
+    {
+      "keyword": "toast",
+      "cluster_id": 0,
+      "umap_x": -0.5570958256721497,
+      "umap_y": 5.270825386047363
+    },
+    {
+      "keyword": "toaster",
+      "cluster_id": 0,
+      "umap_x": -0.2073957473039627,
+      "umap_y": 5.349956035614014
+    },
+    {
+      "keyword": "lid",
+      "cluster_id": 0,
+      "umap_x": -0.12202969193458557,
+      "umap_y": 5.091144561767578
+    },
+    {
+      "keyword": "bag",
+      "cluster_id": 0,
+      "umap_x": -0.7026723027229309,
+      "umap_y": 3.4280810356140137
+    },
+    {
+      "keyword": "pesticide",
+      "cluster_id": 0,
+      "umap_x": -0.9762265682220459,
+      "umap_y": 7.447564601898193
+    },
+    {
+      "keyword": "pit",
+      "cluster_id": 1,
+      "umap_x": 15.513997077941895,
+      "umap_y": 4.152847766876221
+    },
+    {
+      "keyword": "produce",
+      "cluster_id": 0,
+      "umap_x": -1.2887893915176392,
+      "umap_y": 4.647970199584961
+    },
+    {
+      "keyword": "forecast",
+      "cluster_id": 1,
+      "umap_x": 15.14519214630127,
+      "umap_y": 3.654716730117798
+    },
+    {
+      "keyword": "to-do",
+      "cluster_id": 1,
+      "umap_x": -1.508510947227478,
+      "umap_y": -0.13422416150569916
+    },
+    {
+      "keyword": "theme",
+      "cluster_id": 1,
+      "umap_x": -0.15738791227340698,
+      "umap_y": 3.4664933681488037
+    },
+    {
+      "keyword": "staircase",
+      "cluster_id": 1,
+      "umap_x": -2.4818336963653564,
+      "umap_y": 3.109076976776123
+    },
+    {
+      "keyword": "chasing",
+      "cluster_id": 1,
+      "umap_x": -1.851799726486206,
+      "umap_y": 3.132836103439331
+    },
+    {
+      "keyword": "siren",
+      "cluster_id": 1,
+      "umap_x": -1.8709968328475952,
+      "umap_y": -1.1776176691055298
+    },
+    {
+      "keyword": "release",
+      "cluster_id": 1,
+      "umap_x": 1.1639989614486694,
+      "umap_y": 0.949171245098114
+    },
+    {
+      "keyword": "automatic",
+      "cluster_id": 1,
+      "umap_x": -3.480990409851074,
+      "umap_y": -1.1696922779083252
+    },
+    {
+      "keyword": "pentrate",
+      "cluster_id": 1,
+      "umap_x": 15.273615837097168,
+      "umap_y": 3.653583288192749
+    },
+    {
+      "keyword": "sun",
+      "cluster_id": 0,
+      "umap_x": 0.9545757174491882,
+      "umap_y": 9.154932975769043
+    },
+    {
+      "keyword": "cabnit",
+      "cluster_id": 0,
+      "umap_x": 0.21895331144332886,
+      "umap_y": 6.673364162445068
+    },
+    {
+      "keyword": "trespasser",
+      "cluster_id": 1,
+      "umap_x": -3.694260358810425,
+      "umap_y": 1.0681177377700806
+    },
+    {
+      "keyword": "guage",
+      "cluster_id": 1,
+      "umap_x": 15.080772399902344,
+      "umap_y": 3.6331071853637695
+    },
+    {
+      "keyword": "month",
+      "cluster_id": 0,
+      "umap_x": 1.0966514348983765,
+      "umap_y": 8.264606475830078
+    },
+    {
+      "keyword": "rack",
+      "cluster_id": 0,
+      "umap_x": -0.6903528571128845,
+      "umap_y": 3.5701420307159424
+    },
+    {
+      "keyword": "rotate",
+      "cluster_id": 1,
+      "umap_x": 0.27205654978752136,
+      "umap_y": 1.813979983329773
+    },
+    {
+      "keyword": "rang",
+      "cluster_id": 1,
+      "umap_x": 15.179226875305176,
+      "umap_y": 3.9949448108673096
+    },
+    {
+      "keyword": "eatable",
+      "cluster_id": 0,
+      "umap_x": -1.0841788053512573,
+      "umap_y": 4.990320205688477
+    },
+    {
+      "keyword": "mouth",
+      "cluster_id": 0,
+      "umap_x": 1.2431577444076538,
+      "umap_y": 3.612034797668457
+    },
+    {
+      "keyword": "breakin",
+      "cluster_id": 1,
+      "umap_x": 3.240034818649292,
+      "umap_y": 0.499826580286026
+    },
+    {
+      "keyword": "emply",
+      "cluster_id": 1,
+      "umap_x": 15.188796043395996,
+      "umap_y": 4.229456424713135
+    },
+    {
+      "keyword": "distance",
+      "cluster_id": 1,
+      "umap_x": 0.3675210773944855,
+      "umap_y": 0.7662036418914795
+    },
+    {
+      "keyword": "sms",
+      "cluster_id": 1,
+      "umap_x": -2.7031362056732178,
+      "umap_y": -0.5001965761184692
+    },
+    {
+      "keyword": "apartment",
+      "cluster_id": 1,
+      "umap_x": -3.2397940158843994,
+      "umap_y": 3.2180254459381104
+    },
+    {
+      "keyword": "bedtime",
+      "cluster_id": 0,
+      "umap_x": 0.2391805499792099,
+      "umap_y": 8.764206886291504
+    },
+    {
+      "keyword": "comfortness",
+      "cluster_id": 0,
+      "umap_x": 0.5070251822471619,
+      "umap_y": 3.0568695068359375
+    },
+    {
+      "keyword": "lover",
+      "cluster_id": 1,
+      "umap_x": -3.6290595531463623,
+      "umap_y": 4.631779193878174
+    },
+    {
+      "keyword": "chimney",
+      "cluster_id": 0,
+      "umap_x": 0.06974991410970688,
+      "umap_y": 5.490087032318115
+    },
+    {
+      "keyword": "correct",
+      "cluster_id": 1,
+      "umap_x": -0.4089634120464325,
+      "umap_y": -0.9009759426116943
+    },
+    {
+      "keyword": "saftey",
+      "cluster_id": 1,
+      "umap_x": 15.205927848815918,
+      "umap_y": 3.654731273651123
+    },
+    {
+      "keyword": "gym",
+      "cluster_id": 1,
+      "umap_x": -1.1782729625701904,
+      "umap_y": 2.0734946727752686
+    },
+    {
+      "keyword": "blinded",
+      "cluster_id": 0,
+      "umap_x": -0.4570087194442749,
+      "umap_y": -2.8191428184509277
+    },
+    {
+      "keyword": "react",
+      "cluster_id": 1,
+      "umap_x": -2.322296619415283,
+      "umap_y": 1.056901454925537
+    },
+    {
+      "keyword": "breach",
+      "cluster_id": 1,
+      "umap_x": 3.27303409576416,
+      "umap_y": 0.5381221771240234
+    },
+    {
+      "keyword": "wiper",
+      "cluster_id": 0,
+      "umap_x": 2.0400638580322266,
+      "umap_y": 4.176448822021484
+    },
+    {
+      "keyword": "purifier",
+      "cluster_id": 0,
+      "umap_x": 0.21604503691196442,
+      "umap_y": 6.658085346221924
+    },
+    {
+      "keyword": "have",
+      "cluster_id": 1,
+      "umap_x": 15.412152290344238,
+      "umap_y": 4.105175495147705
+    },
+    {
+      "keyword": "butler",
+      "cluster_id": 1,
+      "umap_x": 15.484640121459961,
+      "umap_y": 3.884510040283203
+    },
+    {
+      "keyword": "adapt",
+      "cluster_id": 1,
+      "umap_x": 0.5836933255195618,
+      "umap_y": 1.5996670722961426
+    },
+    {
+      "keyword": "shut off",
+      "cluster_id": 1,
+      "umap_x": 2.7865958213806152,
+      "umap_y": 1.6958469152450562
+    },
+    {
+      "keyword": "recomendation",
+      "cluster_id": 0,
+      "umap_x": 0.2783240079879761,
+      "umap_y": 6.734804153442383
+    },
+    {
+      "keyword": "jiggle",
+      "cluster_id": 1,
+      "umap_x": 15.267097473144531,
+      "umap_y": 4.142796516418457
+    },
+    {
+      "keyword": "bug",
+      "cluster_id": 1,
+      "umap_x": 0.6965305209159851,
+      "umap_y": 0.5672119855880737
+    },
+    {
+      "keyword": "count",
+      "cluster_id": 1,
+      "umap_x": 0.8925076723098755,
+      "umap_y": -0.4000810384750366
+    },
+    {
+      "keyword": "kill",
+      "cluster_id": 1,
+      "umap_x": 1.9330805540084839,
+      "umap_y": 1.7688127756118774
+    },
+    {
+      "keyword": "electricityty",
+      "cluster_id": 0,
+      "umap_x": 4.416397571563721,
+      "umap_y": 7.042888641357422
+    },
+    {
+      "keyword": "re-order",
+      "cluster_id": 1,
+      "umap_x": 2.462148666381836,
+      "umap_y": -1.1910628080368042
+    },
+    {
+      "keyword": "answer",
+      "cluster_id": 1,
+      "umap_x": -0.015138593502342701,
+      "umap_y": -0.7765073180198669
+    },
+    {
+      "keyword": "encyclopedia",
+      "cluster_id": 1,
+      "umap_x": -1.0484328269958496,
+      "umap_y": -1.8709003925323486
+    },
+    {
+      "keyword": "fever",
+      "cluster_id": 0,
+      "umap_x": 1.591336965560913,
+      "umap_y": 6.572322368621826
+    },
+    {
+      "keyword": "butter",
+      "cluster_id": 0,
+      "umap_x": -0.6122825741767883,
+      "umap_y": 5.317314624786377
+    },
+    {
+      "keyword": "egg",
+      "cluster_id": 0,
+      "umap_x": -0.7499098777770996,
+      "umap_y": 5.274247169494629
+    },
+    {
+      "keyword": "toddler",
+      "cluster_id": 0,
+      "umap_x": -3.9583444595336914,
+      "umap_y": 5.026072978973389
+    },
+    {
+      "keyword": "scent",
+      "cluster_id": 0,
+      "umap_x": 0.46130794286727905,
+      "umap_y": 5.326208114624023
+    },
+    {
+      "keyword": "lert",
+      "cluster_id": 1,
+      "umap_x": 15.229830741882324,
+      "umap_y": 3.9705584049224854
+    },
+    {
+      "keyword": "shave",
+      "cluster_id": 1,
+      "umap_x": 1.2074413299560547,
+      "umap_y": 3.450672149658203
+    },
+    {
+      "keyword": "doggie",
+      "cluster_id": 0,
+      "umap_x": -1.2591012716293335,
+      "umap_y": 7.894711971282959
+    },
+    {
+      "keyword": "escape",
+      "cluster_id": 1,
+      "umap_x": 2.1833698749542236,
+      "umap_y": 1.750691533088684
+    },
+    {
+      "keyword": "budget",
+      "cluster_id": 1,
+      "umap_x": 1.4960225820541382,
+      "umap_y": -0.48035070300102234
+    },
+    {
+      "keyword": "integrate",
+      "cluster_id": 0,
+      "umap_x": 0.7308393120765686,
+      "umap_y": 6.348453044891357
+    },
+    {
+      "keyword": "view",
+      "cluster_id": 1,
+      "umap_x": -0.6341884732246399,
+      "umap_y": -2.6443660259246826
+    },
+    {
+      "keyword": "notice",
+      "cluster_id": 1,
+      "umap_x": -1.06181800365448,
+      "umap_y": -0.9330990314483643
+    },
+    {
+      "keyword": "potty",
+      "cluster_id": 0,
+      "umap_x": 2.6712779998779297,
+      "umap_y": 5.0779008865356445
+    },
+    {
+      "keyword": "dresser",
+      "cluster_id": 0,
+      "umap_x": -0.30814990401268005,
+      "umap_y": 3.7011656761169434
+    },
+    {
+      "keyword": "stranger",
+      "cluster_id": 1,
+      "umap_x": 15.464546203613281,
+      "umap_y": 3.7146596908569336
+    },
+    {
+      "keyword": "360",
+      "cluster_id": 1,
+      "umap_x": 15.363195419311523,
+      "umap_y": 4.163669109344482
+    },
+    {
+      "keyword": "deliver",
+      "cluster_id": 1,
+      "umap_x": 2.5110433101654053,
+      "umap_y": -0.5470433831214905
+    },
+    {
+      "keyword": "pizza",
+      "cluster_id": 0,
+      "umap_x": -0.8472582101821899,
+      "umap_y": 5.122458457946777
+    },
+    {
+      "keyword": "lightbulb",
+      "cluster_id": 0,
+      "umap_x": 1.0219454765319824,
+      "umap_y": 9.183549880981445
+    },
+    {
+      "keyword": "ladder",
+      "cluster_id": 1,
+      "umap_x": -2.5480902194976807,
+      "umap_y": 3.1137359142303467
+    },
+    {
+      "keyword": "circulate",
+      "cluster_id": 1,
+      "umap_x": 15.184698104858398,
+      "umap_y": 3.529812812805176
+    },
+    {
+      "keyword": "scratcher",
+      "cluster_id": 1,
+      "umap_x": 1.0625269412994385,
+      "umap_y": -1.7914483547210693
+    },
+    {
+      "keyword": "cause",
+      "cluster_id": 1,
+      "umap_x": 15.227787017822266,
+      "umap_y": 3.6943068504333496
+    },
+    {
+      "keyword": "nut",
+      "cluster_id": 1,
+      "umap_x": 15.331979751586914,
+      "umap_y": 3.5084803104400635
+    },
+    {
+      "keyword": "reuse",
+      "cluster_id": 1,
+      "umap_x": 3.052459239959717,
+      "umap_y": -1.5431640148162842
+    },
+    {
+      "keyword": "carbon-monoxide",
+      "cluster_id": 0,
+      "umap_x": -0.09448141604661942,
+      "umap_y": 6.016031265258789
+    },
+    {
+      "keyword": "appreciate",
+      "cluster_id": 1,
+      "umap_x": -0.3957705497741699,
+      "umap_y": -1.003090500831604
+    },
+    {
+      "keyword": "admire",
+      "cluster_id": 0,
+      "umap_x": -0.16882453858852386,
+      "umap_y": 6.887332439422607
+    },
+    {
+      "keyword": "finish",
+      "cluster_id": 1,
+      "umap_x": 2.554257869720459,
+      "umap_y": 1.6035895347595215
+    },
+    {
+      "keyword": "audible",
+      "cluster_id": 1,
+      "umap_x": -1.9953207969665527,
+      "umap_y": -2.5179500579833984
+    },
+    {
+      "keyword": "include",
+      "cluster_id": 0,
+      "umap_x": 0.23250044882297516,
+      "umap_y": 6.59182596206665
+    },
+    {
+      "keyword": "perishable",
+      "cluster_id": 0,
+      "umap_x": 1.0126875638961792,
+      "umap_y": 8.277179718017578
+    },
+    {
+      "keyword": "pre-heat",
+      "cluster_id": 0,
+      "umap_x": 1.091715693473816,
+      "umap_y": 6.283856391906738
+    },
+    {
+      "keyword": "tea",
+      "cluster_id": 0,
+      "umap_x": -1.6266857385635376,
+      "umap_y": 5.94130277633667
+    },
+    {
+      "keyword": "drain",
+      "cluster_id": 0,
+      "umap_x": 2.7585771083831787,
+      "umap_y": 4.537325382232666
+    },
+    {
+      "keyword": "decibel",
+      "cluster_id": 1,
+      "umap_x": -2.0481374263763428,
+      "umap_y": -2.507685422897339
+    },
+    {
+      "keyword": "string",
+      "cluster_id": 1,
+      "umap_x": -2.3466379642486572,
+      "umap_y": -0.4579993784427643
+    },
+    {
+      "keyword": "fold",
+      "cluster_id": 0,
+      "umap_x": -0.36780664324760437,
+      "umap_y": 2.4968836307525635
+    },
+    {
+      "keyword": "useage",
+      "cluster_id": 1,
+      "umap_x": 1.0373313426971436,
+      "umap_y": 0.307910293340683
+    },
+    {
+      "keyword": "gardner",
+      "cluster_id": 1,
+      "umap_x": 15.699185371398926,
+      "umap_y": 3.842730760574341
+    },
+    {
+      "keyword": "electrocute",
+      "cluster_id": 1,
+      "umap_x": 4.517210960388184,
+      "umap_y": 7.018148899078369
+    },
+    {
+      "keyword": "electrocution",
+      "cluster_id": 0,
+      "umap_x": 4.436070442199707,
+      "umap_y": 7.037338733673096
+    },
+    {
+      "keyword": "boiler",
+      "cluster_id": 0,
+      "umap_x": 0.5029216408729553,
+      "umap_y": 5.9259819984436035
+    },
+    {
+      "keyword": "default",
+      "cluster_id": 1,
+      "umap_x": -3.0836825370788574,
+      "umap_y": 0.2164239138364792
+    },
+    {
+      "keyword": "bait",
+      "cluster_id": 0,
+      "umap_x": 1.8532365560531616,
+      "umap_y": 4.878067970275879
+    },
+    {
+      "keyword": "critter",
+      "cluster_id": 0,
+      "umap_x": -1.1062980890274048,
+      "umap_y": 7.727212905883789
+    },
+    {
+      "keyword": "crying",
+      "cluster_id": 1,
+      "umap_x": 0.4520886242389679,
+      "umap_y": 2.4730336666107178
+    },
+    {
+      "keyword": "drop",
+      "cluster_id": 1,
+      "umap_x": 0.41069918870925903,
+      "umap_y": 1.3282685279846191
+    },
+    {
+      "keyword": "staple",
+      "cluster_id": 1,
+      "umap_x": 15.4027099609375,
+      "umap_y": 4.232564449310303
+    },
+    {
+      "keyword": "ev",
+      "cluster_id": 0,
+      "umap_x": 4.452724933624268,
+      "umap_y": 7.017977714538574
+    },
+    {
+      "keyword": "steal",
+      "cluster_id": 1,
+      "umap_x": -3.620058298110962,
+      "umap_y": 0.8820528984069824
+    },
+    {
+      "keyword": "exit",
+      "cluster_id": 1,
+      "umap_x": 2.543727397918701,
+      "umap_y": 1.6144583225250244
+    },
+    {
+      "keyword": "self",
+      "cluster_id": 1,
+      "umap_x": -1.1757593154907227,
+      "umap_y": 0.8301403522491455
+    },
+    {
+      "keyword": "spray",
+      "cluster_id": 0,
+      "umap_x": 0.471657931804657,
+      "umap_y": 5.223125457763672
+    },
+    {
+      "keyword": "dispose",
+      "cluster_id": 0,
+      "umap_x": 3.2272086143493652,
+      "umap_y": -1.7001454830169678
+    },
+    {
+      "keyword": "odor",
+      "cluster_id": 0,
+      "umap_x": 0.5487687587738037,
+      "umap_y": 5.244460105895996
+    },
+    {
+      "keyword": "towel",
+      "cluster_id": 0,
+      "umap_x": 2.2765519618988037,
+      "umap_y": 4.317935943603516
+    },
+    {
+      "keyword": "swim",
+      "cluster_id": 0,
+      "umap_x": 2.545344829559326,
+      "umap_y": 4.475032806396484
+    },
+    {
+      "keyword": "address",
+      "cluster_id": 1,
+      "umap_x": 2.9896233081817627,
+      "umap_y": -0.7552904486656189
+    },
+    {
+      "keyword": "extinguisher",
+      "cluster_id": 0,
+      "umap_x": 0.9357094168663025,
+      "umap_y": 5.533318042755127
+    },
+    {
+      "keyword": "where",
+      "cluster_id": 1,
+      "umap_x": -3.30439829826355,
+      "umap_y": 2.622304677963257
+    },
+    {
+      "keyword": "robot",
+      "cluster_id": 1,
+      "umap_x": -2.4662957191467285,
+      "umap_y": 1.2074307203292847
+    },
+    {
+      "keyword": "daugher",
+      "cluster_id": 1,
+      "umap_x": 15.353002548217773,
+      "umap_y": 3.9606213569641113
+    },
+    {
+      "keyword": "bin",
+      "cluster_id": 1,
+      "umap_x": 15.847070693969727,
+      "umap_y": 4.0352253913879395
+    },
+    {
+      "keyword": "organize",
+      "cluster_id": 1,
+      "umap_x": 2.0322813987731934,
+      "umap_y": -1.248315691947937
+    },
+    {
+      "keyword": "bake",
+      "cluster_id": 0,
+      "umap_x": -0.3884393274784088,
+      "umap_y": 5.479158401489258
+    },
+    {
+      "keyword": "accumulate",
+      "cluster_id": 1,
+      "umap_x": 1.5783766508102417,
+      "umap_y": -0.8512011170387268
+    },
+    {
+      "keyword": "if",
+      "cluster_id": 1,
+      "umap_x": 15.232606887817383,
+      "umap_y": 3.7910680770874023
+    },
+    {
+      "keyword": "clear",
+      "cluster_id": 0,
+      "umap_x": 2.1944637298583984,
+      "umap_y": 4.094379425048828
+    },
+    {
+      "keyword": "automobile",
+      "cluster_id": 1,
+      "umap_x": -2.687875270843506,
+      "umap_y": 1.8577700853347778
+    },
+    {
+      "keyword": "defrost",
+      "cluster_id": 0,
+      "umap_x": 1.6940720081329346,
+      "umap_y": 6.48750114440918
+    },
+    {
+      "keyword": "ocassion",
+      "cluster_id": 0,
+      "umap_x": 0.11868260055780411,
+      "umap_y": 6.749653339385986
+    },
+    {
+      "keyword": "meter",
+      "cluster_id": 0,
+      "umap_x": 0.6513588428497314,
+      "umap_y": 6.560434818267822
+    },
+    {
+      "keyword": "afternoon",
+      "cluster_id": 0,
+      "umap_x": 0.5187215805053711,
+      "umap_y": 8.658018112182617
+    },
+    {
+      "keyword": "invading",
+      "cluster_id": 1,
+      "umap_x": -0.3494036793708801,
+      "umap_y": 1.9293467998504639
+    },
+    {
+      "keyword": "quieter",
+      "cluster_id": 1,
+      "umap_x": -2.0829217433929443,
+      "umap_y": -2.5465972423553467
+    },
+    {
+      "keyword": "sweet",
+      "cluster_id": 1,
+      "umap_x": -0.39313191175460815,
+      "umap_y": -1.0134661197662354
+    },
+    {
+      "keyword": "lighter",
+      "cluster_id": 0,
+      "umap_x": 1.0850859880447388,
+      "umap_y": 9.06738567352295
+    },
+    {
+      "keyword": "advance",
+      "cluster_id": 1,
+      "umap_x": 15.4169921875,
+      "umap_y": 4.134807109832764
+    },
+    {
+      "keyword": "share",
+      "cluster_id": 1,
+      "umap_x": 15.604178428649902,
+      "umap_y": 3.84804630279541
+    },
+    {
+      "keyword": "phantom",
+      "cluster_id": 0,
+      "umap_x": 1.3274468183517456,
+      "umap_y": 4.726008415222168
+    },
+    {
+      "keyword": "handle",
+      "cluster_id": 0,
+      "umap_x": -1.0995675325393677,
+      "umap_y": 3.0804786682128906
+    },
+    {
+      "keyword": "pre-heated",
+      "cluster_id": 0,
+      "umap_x": 1.053628921508789,
+      "umap_y": 6.255465030670166
+    },
+    {
+      "keyword": "homemaker",
+      "cluster_id": 1,
+      "umap_x": -3.3824286460876465,
+      "umap_y": 3.679793119430542
+    },
+    {
+      "keyword": "stair",
+      "cluster_id": 1,
+      "umap_x": -2.5059852600097656,
+      "umap_y": 3.0945260524749756
+    },
+    {
+      "keyword": "vemture",
+      "cluster_id": 1,
+      "umap_x": 15.459796905517578,
+      "umap_y": 3.628375291824341
+    },
+    {
+      "keyword": "gun safe",
+      "cluster_id": 1,
+      "umap_x": -0.8472625613212585,
+      "umap_y": 1.5346530675888062
+    },
+    {
+      "keyword": "entry",
+      "cluster_id": 1,
+      "umap_x": 3.0658085346221924,
+      "umap_y": 0.4435197412967682
+    },
+    {
+      "keyword": "funk",
+      "cluster_id": 1,
+      "umap_x": 15.717706680297852,
+      "umap_y": 3.6757187843322754
+    },
+    {
+      "keyword": "bend",
+      "cluster_id": 1,
+      "umap_x": -0.35597333312034607,
+      "umap_y": 2.4693076610565186
+    },
+    {
+      "keyword": "citizen",
+      "cluster_id": 1,
+      "umap_x": -3.453244924545288,
+      "umap_y": 1.1448359489440918
+    },
+    {
+      "keyword": "fireproof",
+      "cluster_id": 0,
+      "umap_x": 0.7462496161460876,
+      "umap_y": 5.451518535614014
+    },
+    {
+      "keyword": "ability",
+      "cluster_id": 0,
+      "umap_x": 0.6691462993621826,
+      "umap_y": 1.6775997877120972
+    },
+    {
+      "keyword": "charging",
+      "cluster_id": 1,
+      "umap_x": 4.649096965789795,
+      "umap_y": 6.729109287261963
+    },
+    {
+      "keyword": "breaker",
+      "cluster_id": 0,
+      "umap_x": 4.4989423751831055,
+      "umap_y": 6.960493564605713
+    },
+    {
+      "keyword": "bio",
+      "cluster_id": 0,
+      "umap_x": 1.658861756324768,
+      "umap_y": 4.616063117980957
+    },
+    {
+      "keyword": "threatening",
+      "cluster_id": 1,
+      "umap_x": -0.25048795342445374,
+      "umap_y": 2.079495906829834
+    },
+    {
+      "keyword": "perminitor",
+      "cluster_id": 1,
+      "umap_x": -3.410036087036133,
+      "umap_y": 4.408906936645508
+    },
+    {
+      "keyword": "note",
+      "cluster_id": 1,
+      "umap_x": -0.7110146284103394,
+      "umap_y": -0.9459187984466553
+    },
+    {
+      "keyword": "shield",
+      "cluster_id": 0,
+      "umap_x": -1.512486219406128,
+      "umap_y": 1.4652425050735474
+    },
+    {
+      "keyword": "grandchild",
+      "cluster_id": 1,
+      "umap_x": -3.8780736923217773,
+      "umap_y": 4.9168314933776855
+    },
+    {
+      "keyword": "algorithm",
+      "cluster_id": 1,
+      "umap_x": 15.237329483032227,
+      "umap_y": 3.598822593688965
+    },
+    {
+      "keyword": "errand",
+      "cluster_id": 1,
+      "umap_x": 15.639297485351562,
+      "umap_y": 3.8909592628479004
+    },
+    {
+      "keyword": "moment",
+      "cluster_id": 1,
+      "umap_x": 15.162222862243652,
+      "umap_y": 4.1121649742126465
+    },
+    {
+      "keyword": "continue",
+      "cluster_id": 1,
+      "umap_x": 2.326226234436035,
+      "umap_y": 1.704930305480957
+    },
+    {
+      "keyword": "entrant",
+      "cluster_id": 1,
+      "umap_x": 15.219581604003906,
+      "umap_y": 4.091198921203613
+    },
+    {
+      "keyword": "68-76",
+      "cluster_id": 1,
+      "umap_x": 0.5339491367340088,
+      "umap_y": -0.16508539021015167
+    },
+    {
+      "keyword": "drinker",
+      "cluster_id": 0,
+      "umap_x": -1.7073047161102295,
+      "umap_y": 5.965644836425781
+    },
+    {
+      "keyword": "offer",
+      "cluster_id": 1,
+      "umap_x": 2.2945051193237305,
+      "umap_y": -0.23401673138141632
+    },
+    {
+      "keyword": "saving",
+      "cluster_id": 1,
+      "umap_x": 2.072378635406494,
+      "umap_y": 1.1678954362869263
+    },
+    {
+      "keyword": "gambler",
+      "cluster_id": 1,
+      "umap_x": 15.0365571975708,
+      "umap_y": 4.068051338195801
+    },
+    {
+      "keyword": "bet",
+      "cluster_id": 1,
+      "umap_x": 15.73262882232666,
+      "umap_y": 3.9440999031066895
+    },
+    {
+      "keyword": "win",
+      "cluster_id": 1,
+      "umap_x": 1.7734333276748657,
+      "umap_y": 1.2509620189666748
+    },
+    {
+      "keyword": "rock",
+      "cluster_id": 1,
+      "umap_x": -1.955743670463562,
+      "umap_y": -2.4183945655822754
+    },
+    {
+      "keyword": "raver",
+      "cluster_id": 1,
+      "umap_x": 15.313070297241211,
+      "umap_y": 4.161431312561035
+    },
+    {
+      "keyword": "language",
+      "cluster_id": 1,
+      "umap_x": -2.7047929763793945,
+      "umap_y": -1.069942593574524
+    },
+    {
+      "keyword": "fantasy",
+      "cluster_id": 1,
+      "umap_x": -0.5477210283279419,
+      "umap_y": 0.137259379029274
+    },
+    {
+      "keyword": "roleplaying",
+      "cluster_id": 1,
+      "umap_x": -0.9301210641860962,
+      "umap_y": -0.06287006288766861
+    },
+    {
+      "keyword": "degree",
+      "cluster_id": 1,
+      "umap_x": 0.0915997251868248,
+      "umap_y": -1.606860637664795
+    },
+    {
+      "keyword": "brushing",
+      "cluster_id": 0,
+      "umap_x": 1.2863858938217163,
+      "umap_y": 3.6902639865875244
+    },
+    {
+      "keyword": "blast",
+      "cluster_id": 1,
+      "umap_x": -0.34988322854042053,
+      "umap_y": 1.9458454847335815
+    },
+    {
+      "keyword": "face",
+      "cluster_id": 1,
+      "umap_x": 1.223764419555664,
+      "umap_y": 3.598468780517578
+    },
+    {
+      "keyword": "bouncy",
+      "cluster_id": 1,
+      "umap_x": 15.003952026367188,
+      "umap_y": 4.129571914672852
+    },
+    {
+      "keyword": "slip",
+      "cluster_id": 1,
+      "umap_x": -1.4004554748535156,
+      "umap_y": 2.694044828414917
+    },
+    {
+      "keyword": "attack",
+      "cluster_id": 1,
+      "umap_x": -0.3637291193008423,
+      "umap_y": 1.8805333375930786
+    },
+    {
+      "keyword": "pest",
+      "cluster_id": 0,
+      "umap_x": -1.1088873147964478,
+      "umap_y": 7.722105503082275
+    },
+    {
+      "keyword": "hypochondriac",
+      "cluster_id": 1,
+      "umap_x": 14.851099014282227,
+      "umap_y": 3.9225821495056152
+    },
+    {
+      "keyword": "foodie",
+      "cluster_id": 0,
+      "umap_x": -1.0826011896133423,
+      "umap_y": 5.003062725067139
+    },
+    {
+      "keyword": "upgrade",
+      "cluster_id": 1,
+      "umap_x": 1.2002379894256592,
+      "umap_y": 1.144815444946289
+    },
+    {
+      "keyword": "integration",
+      "cluster_id": 0,
+      "umap_x": 0.6174847483634949,
+      "umap_y": 6.435049057006836
+    },
+    {
+      "keyword": "clumsy",
+      "cluster_id": 1,
+      "umap_x": -0.29463499784469604,
+      "umap_y": 2.3364033699035645
+    },
+    {
+      "keyword": "landfill",
+      "cluster_id": 0,
+      "umap_x": 3.2634806632995605,
+      "umap_y": -1.7337510585784912
+    },
+    {
+      "keyword": "frost",
+      "cluster_id": 0,
+      "umap_x": 1.73872971534729,
+      "umap_y": 6.5971856117248535
+    },
+    {
+      "keyword": "stumble",
+      "cluster_id": 1,
+      "umap_x": -0.3360406458377838,
+      "umap_y": 2.3580918312072754
+    },
+    {
+      "keyword": "scanner",
+      "cluster_id": 1,
+      "umap_x": -0.03948124498128891,
+      "umap_y": -3.1141836643218994
+    },
+    {
+      "keyword": "crunch",
+      "cluster_id": 0,
+      "umap_x": -0.9595574736595154,
+      "umap_y": 4.829288959503174
+    },
+    {
+      "keyword": "jerk",
+      "cluster_id": 1,
+      "umap_x": 15.517578125,
+      "umap_y": 4.149336338043213
+    },
+    {
+      "keyword": "page",
+      "cluster_id": 1,
+      "umap_x": -2.1731319427490234,
+      "umap_y": -0.23967915773391724
+    },
+    {
+      "keyword": "burglar",
+      "cluster_id": 1,
+      "umap_x": -3.8355443477630615,
+      "umap_y": 1.0311745405197144
+    },
+    {
+      "keyword": "shoot",
+      "cluster_id": 1,
+      "umap_x": 2.449117660522461,
+      "umap_y": 0.9843245148658752
+    },
+    {
+      "keyword": "dislike",
+      "cluster_id": 1,
+      "umap_x": 15.335883140563965,
+      "umap_y": 3.58347225189209
+    },
+    {
+      "keyword": "holiday",
+      "cluster_id": 0,
+      "umap_x": 1.0797933340072632,
+      "umap_y": 8.233415603637695
+    },
+    {
+      "keyword": "bible",
+      "cluster_id": 1,
+      "umap_x": -1.0229296684265137,
+      "umap_y": -1.9223088026046753
+    },
+    {
+      "keyword": "epedemic",
+      "cluster_id": 1,
+      "umap_x": 15.468950271606445,
+      "umap_y": 4.042705535888672
+    },
+    {
+      "keyword": "desire",
+      "cluster_id": 1,
+      "umap_x": 0.9749616980552673,
+      "umap_y": 0.13176752626895905
+    },
+    {
+      "keyword": "wareabout",
+      "cluster_id": 1,
+      "umap_x": 14.896727561950684,
+      "umap_y": 4.181114673614502
+    },
+    {
+      "keyword": "shit",
+      "cluster_id": 0,
+      "umap_x": 1.2855781316757202,
+      "umap_y": 6.475675106048584
+    },
+    {
+      "keyword": "traffic",
+      "cluster_id": 1,
+      "umap_x": -3.2559385299682617,
+      "umap_y": -0.41562139987945557
+    },
+    {
+      "keyword": "opacity",
+      "cluster_id": 0,
+      "umap_x": -0.2287348061800003,
+      "umap_y": 6.866930961608887
+    },
+    {
+      "keyword": "in",
+      "cluster_id": 1,
+      "umap_x": 3.1443030834198,
+      "umap_y": 0.49302902817726135
+    },
+    {
+      "keyword": "out",
+      "cluster_id": 1,
+      "umap_x": 2.92410945892334,
+      "umap_y": 3.0148673057556152
+    },
+    {
+      "keyword": "roll",
+      "cluster_id": 0,
+      "umap_x": 1.9796040058135986,
+      "umap_y": 3.636573076248169
+    },
+    {
+      "keyword": "barrier",
+      "cluster_id": 1,
+      "umap_x": -1.4928876161575317,
+      "umap_y": 1.4099431037902832
+    },
+    {
+      "keyword": "ghost",
+      "cluster_id": 0,
+      "umap_x": 1.322055459022522,
+      "umap_y": 4.7646870613098145
+    },
+    {
+      "keyword": "scarecrow",
+      "cluster_id": 1,
+      "umap_x": 15.56144905090332,
+      "umap_y": 3.5752742290496826
+    },
+    {
+      "keyword": "burgler",
+      "cluster_id": 0,
+      "umap_x": -3.8201723098754883,
+      "umap_y": 1.018189549446106
+    },
+    {
+      "keyword": "prefered",
+      "cluster_id": 1,
+      "umap_x": 2.237809181213379,
+      "umap_y": 0.2279638797044754
+    },
+    {
+      "keyword": "stppage",
+      "cluster_id": 1,
+      "umap_x": 15.455004692077637,
+      "umap_y": 4.147615909576416
+    },
+    {
+      "keyword": "letter",
+      "cluster_id": 1,
+      "umap_x": -2.2921347618103027,
+      "umap_y": -0.4232558012008667
+    },
+    {
+      "keyword": "airhorn",
+      "cluster_id": 0,
+      "umap_x": 1.210105538368225,
+      "umap_y": 5.038572311401367
+    },
+    {
+      "keyword": "hazard",
+      "cluster_id": 1,
+      "umap_x": 0.4366495609283447,
+      "umap_y": 0.10384897142648697
+    },
+    {
+      "keyword": "doobie",
+      "cluster_id": 1,
+      "umap_x": 15.339465141296387,
+      "umap_y": 4.172361373901367
+    },
+    {
+      "keyword": "kibble",
+      "cluster_id": 0,
+      "umap_x": -1.0018360614776611,
+      "umap_y": 5.047821521759033
+    },
+    {
+      "keyword": "am",
+      "cluster_id": 1,
+      "umap_x": 15.050253868103027,
+      "umap_y": 3.594111442565918
+    },
+    {
+      "keyword": "father",
+      "cluster_id": 1,
+      "umap_x": -3.7854623794555664,
+      "umap_y": 4.788641452789307
+    },
+    {
+      "keyword": "insect",
+      "cluster_id": 0,
+      "umap_x": -1.1076494455337524,
+      "umap_y": 7.717976093292236
+    },
+    {
+      "keyword": "zap",
+      "cluster_id": 0,
+      "umap_x": -4.4025092124938965,
+      "umap_y": 2.9551098346710205
+    },
+    {
+      "keyword": "platform",
+      "cluster_id": 1,
+      "umap_x": -2.585249900817871,
+      "umap_y": 0.11160524934530258
+    },
+    {
+      "keyword": "occupied",
+      "cluster_id": 1,
+      "umap_x": 1.4759482145309448,
+      "umap_y": 0.4139597415924072
+    },
+    {
+      "keyword": "mud",
+      "cluster_id": 0,
+      "umap_x": 2.743150234222412,
+      "umap_y": 4.275695323944092
+    },
+    {
+      "keyword": "disconnect",
+      "cluster_id": 1,
+      "umap_x": 2.854203939437866,
+      "umap_y": 1.805059790611267
+    },
+    {
+      "keyword": "consciou",
+      "cluster_id": 0,
+      "umap_x": 0.06922733038663864,
+      "umap_y": 6.757628917694092
+    },
+    {
+      "keyword": "shade",
+      "cluster_id": 0,
+      "umap_x": 1.0291115045547485,
+      "umap_y": 9.216363906860352
+    },
+    {
+      "keyword": "germ",
+      "cluster_id": 0,
+      "umap_x": 1.7320582866668701,
+      "umap_y": 4.5255446434021
+    },
+    {
+      "keyword": "ground",
+      "cluster_id": 0,
+      "umap_x": 0.9956097602844238,
+      "umap_y": 4.852534294128418
+    },
+    {
+      "keyword": "height",
+      "cluster_id": 1,
+      "umap_x": 0.5210473537445068,
+      "umap_y": 1.3851624727249146
+    },
+    {
+      "keyword": "mentain",
+      "cluster_id": 1,
+      "umap_x": 15.703925132751465,
+      "umap_y": 3.7504191398620605
+    },
+    {
+      "keyword": "chew",
+      "cluster_id": 0,
+      "umap_x": 1.0282436609268188,
+      "umap_y": 3.759462594985962
+    },
+    {
+      "keyword": "supervise",
+      "cluster_id": 1,
+      "umap_x": -3.3586347103118896,
+      "umap_y": 4.408046722412109
+    },
+    {
+      "keyword": "contaminate",
+      "cluster_id": 0,
+      "umap_x": 1.9328175783157349,
+      "umap_y": 4.29101037979126
+    },
+    {
+      "keyword": "lickege",
+      "cluster_id": 1,
+      "umap_x": 14.921773910522461,
+      "umap_y": 3.725912570953369
+    },
+    {
+      "keyword": "extinguish",
+      "cluster_id": 0,
+      "umap_x": 0.9891532063484192,
+      "umap_y": 5.577410697937012
+    },
+    {
+      "keyword": "fevarite",
+      "cluster_id": 0,
+      "umap_x": 0.46386536955833435,
+      "umap_y": 6.848701000213623
+    },
+    {
+      "keyword": "put",
+      "cluster_id": 1,
+      "umap_x": 2.381044864654541,
+      "umap_y": 0.7689555883407593
+    },
+    {
+      "keyword": "comand",
+      "cluster_id": 1,
+      "umap_x": 15.706611633300781,
+      "umap_y": 3.7881429195404053
+    },
+    {
+      "keyword": "feautre",
+      "cluster_id": 0,
+      "umap_x": 0.4847247898578644,
+      "umap_y": 6.82657527923584
+    },
+    {
+      "keyword": "shop",
+      "cluster_id": 1,
+      "umap_x": 1.6932110786437988,
+      "umap_y": -0.2265455424785614
+    },
+    {
+      "keyword": "trespass",
+      "cluster_id": 1,
+      "umap_x": -3.7212395668029785,
+      "umap_y": 1.2775925397872925
+    },
+    {
+      "keyword": "self-regulate",
+      "cluster_id": 1,
+      "umap_x": -1.3075876235961914,
+      "umap_y": 0.7578763961791992
+    },
+    {
+      "keyword": "surveillance",
+      "cluster_id": 1,
+      "umap_x": -1.206343650817871,
+      "umap_y": -2.9257407188415527
+    },
+    {
+      "keyword": "lifestyle",
+      "cluster_id": 1,
+      "umap_x": -2.8272101879119873,
+      "umap_y": 3.9576237201690674
+    },
+    {
+      "keyword": "portion",
+      "cluster_id": 1,
+      "umap_x": 1.1508113145828247,
+      "umap_y": -0.7370291352272034
+    },
+    {
+      "keyword": "colapsing",
+      "cluster_id": 0,
+      "umap_x": -3.82104229927063,
+      "umap_y": 1.0120102167129517
+    },
+    {
+      "keyword": "melt",
+      "cluster_id": 0,
+      "umap_x": 0.7196337580680847,
+      "umap_y": 5.873159885406494
+    },
+    {
+      "keyword": "spice",
+      "cluster_id": 0,
+      "umap_x": 0.42509207129478455,
+      "umap_y": 5.263505935668945
+    },
+    {
+      "keyword": "write",
+      "cluster_id": 1,
+      "umap_x": -2.2610890865325928,
+      "umap_y": -0.3885495364665985
+    },
+    {
+      "keyword": "cover",
+      "cluster_id": 0,
+      "umap_x": -0.5043210387229919,
+      "umap_y": 3.3830583095550537
+    },
+    {
+      "keyword": "button",
+      "cluster_id": 1,
+      "umap_x": 15.760821342468262,
+      "umap_y": 3.711688280105591
+    },
+    {
+      "keyword": "crop",
+      "cluster_id": 0,
+      "umap_x": -4.261934757232666,
+      "umap_y": 2.9240527153015137
+    },
+    {
+      "keyword": "mow",
+      "cluster_id": 0,
+      "umap_x": -4.436182498931885,
+      "umap_y": 2.9614455699920654
+    },
+    {
+      "keyword": "grill",
+      "cluster_id": 0,
+      "umap_x": -0.29668039083480835,
+      "umap_y": 5.337967872619629
+    },
+    {
+      "keyword": "nephew",
+      "cluster_id": 1,
+      "umap_x": -3.8572793006896973,
+      "umap_y": 4.885290622711182
+    },
+    {
+      "keyword": "rake",
+      "cluster_id": 0,
+      "umap_x": 1.9053269624710083,
+      "umap_y": 3.891752004623413
+    },
+    {
+      "keyword": "broaden",
+      "cluster_id": 1,
+      "umap_x": 15.558470726013184,
+      "umap_y": 3.9037232398986816
+    },
+    {
+      "keyword": "businessman",
+      "cluster_id": 1,
+      "umap_x": -3.446655750274658,
+      "umap_y": 4.387320518493652
+    },
+    {
+      "keyword": "compost",
+      "cluster_id": 0,
+      "umap_x": 3.266549825668335,
+      "umap_y": -1.7356780767440796
+    },
+    {
+      "keyword": "remember",
+      "cluster_id": 1,
+      "umap_x": -1.6273192167282104,
+      "umap_y": -1.2774083614349365
+    },
+    {
+      "keyword": "reprimand",
+      "cluster_id": 1,
+      "umap_x": 15.631245613098145,
+      "umap_y": 3.629059314727783
+    },
+    {
+      "keyword": "communication",
+      "cluster_id": 1,
+      "umap_x": -2.8560547828674316,
+      "umap_y": -1.1587663888931274
+    },
+    {
+      "keyword": "watchful",
+      "cluster_id": 1,
+      "umap_x": 0.9719035029411316,
+      "umap_y": -1.8671303987503052
+    },
+    {
+      "keyword": "consistent",
+      "cluster_id": 1,
+      "umap_x": 2.0288405418395996,
+      "umap_y": 1.421766996383667
+    },
+    {
+      "keyword": "podcast",
+      "cluster_id": 1,
+      "umap_x": -1.7907915115356445,
+      "umap_y": -2.475349187850952
+    },
+    {
+      "keyword": "dimness",
+      "cluster_id": 0,
+      "umap_x": 0.40996092557907104,
+      "umap_y": 6.883172512054443
+    },
+    {
+      "keyword": "crime",
+      "cluster_id": 1,
+      "umap_x": -3.6357309818267822,
+      "umap_y": 0.9343645572662354
+    },
+    {
+      "keyword": "bacterium",
+      "cluster_id": 0,
+      "umap_x": 1.57785165309906,
+      "umap_y": 4.676036357879639
+    },
+    {
+      "keyword": "rotting",
+      "cluster_id": 0,
+      "umap_x": 3.279592752456665,
+      "umap_y": -1.7471611499786377
+    },
+    {
+      "keyword": "knob",
+      "cluster_id": 1,
+      "umap_x": 15.018328666687012,
+      "umap_y": 3.7995450496673584
+    },
+    {
+      "keyword": "filtration",
+      "cluster_id": 0,
+      "umap_x": 0.13055233657360077,
+      "umap_y": 7.364154815673828
+    },
+    {
+      "keyword": "define",
+      "cluster_id": 1,
+      "umap_x": 15.686479568481445,
+      "umap_y": 4.0990519523620605
+    },
+    {
+      "keyword": "word",
+      "cluster_id": 1,
+      "umap_x": 15.503741264343262,
+      "umap_y": 4.215579032897949
+    },
+    {
+      "keyword": "expiration",
+      "cluster_id": 0,
+      "umap_x": 1.0343806743621826,
+      "umap_y": 8.2566556930542
+    },
+    {
+      "keyword": "wash dry",
+      "cluster_id": 0,
+      "umap_x": 2.2160987854003906,
+      "umap_y": 4.256591320037842
+    },
+    {
+      "keyword": "airborne",
+      "cluster_id": 0,
+      "umap_x": 1.1740268468856812,
+      "umap_y": 4.998457908630371
+    },
+    {
+      "keyword": "clapping",
+      "cluster_id": 1,
+      "umap_x": -1.2681947946548462,
+      "umap_y": 2.9827871322631836
+    },
+    {
+      "keyword": "reflect",
+      "cluster_id": 0,
+      "umap_x": 1.061428189277649,
+      "umap_y": 9.275138854980469
+    },
+    {
+      "keyword": "accessed",
+      "cluster_id": 1,
+      "umap_x": 1.528306245803833,
+      "umap_y": 0.336648553609848
+    },
+    {
+      "keyword": "filling",
+      "cluster_id": 0,
+      "umap_x": 2.725358724594116,
+      "umap_y": 3.649768829345703
+    },
+    {
+      "keyword": "shelf",
+      "cluster_id": 0,
+      "umap_x": -0.16791409254074097,
+      "umap_y": 4.13694953918457
+    },
+    {
+      "keyword": "court",
+      "cluster_id": 1,
+      "umap_x": -3.718165874481201,
+      "umap_y": 0.9822721481323242
+    },
+    {
+      "keyword": "practice",
+      "cluster_id": 1,
+      "umap_x": 0.16129618883132935,
+      "umap_y": -1.3780461549758911
+    },
+    {
+      "keyword": "night-light",
+      "cluster_id": 0,
+      "umap_x": 0.8445973992347717,
+      "umap_y": 9.083681106567383
+    },
+    {
+      "keyword": "path",
+      "cluster_id": 1,
+      "umap_x": -2.1490821838378906,
+      "umap_y": 2.752882242202759
+    },
+    {
+      "keyword": "puddle",
+      "cluster_id": 0,
+      "umap_x": 3.035181760787964,
+      "umap_y": 4.108439922332764
+    },
+    {
+      "keyword": "pooper",
+      "cluster_id": 0,
+      "umap_x": 2.676898717880249,
+      "umap_y": 5.043145179748535
+    },
+    {
+      "keyword": "stack",
+      "cluster_id": 1,
+      "umap_x": 15.01894760131836,
+      "umap_y": 4.174307823181152
+    },
+    {
+      "keyword": "average",
+      "cluster_id": 1,
+      "umap_x": 15.551438331604004,
+      "umap_y": 4.304807186126709
+    },
+    {
+      "keyword": "foggy",
+      "cluster_id": 0,
+      "umap_x": 3.0499024391174316,
+      "umap_y": 4.093382835388184
+    },
+    {
+      "keyword": "ammonia",
+      "cluster_id": 0,
+      "umap_x": 0.11863699555397034,
+      "umap_y": 5.693268299102783
+    },
+    {
+      "keyword": "meltdown",
+      "cluster_id": 0,
+      "umap_x": 2.8142001628875732,
+      "umap_y": 2.0080678462982178
+    },
+    {
+      "keyword": "outtage",
+      "cluster_id": 1,
+      "umap_x": 2.924821138381958,
+      "umap_y": 3.0324599742889404
+    },
+    {
+      "keyword": "beer",
+      "cluster_id": 0,
+      "umap_x": -1.6810334920883179,
+      "umap_y": 5.9337568283081055
+    },
+    {
+      "keyword": "estimate",
+      "cluster_id": 1,
+      "umap_x": 0.733957052230835,
+      "umap_y": -1.5686664581298828
+    },
+    {
+      "keyword": "year",
+      "cluster_id": 0,
+      "umap_x": 1.1173322200775146,
+      "umap_y": 8.178555488586426
+    },
+    {
+      "keyword": "mowed",
+      "cluster_id": 0,
+      "umap_x": -4.41063117980957,
+      "umap_y": 2.9467897415161133
+    },
+    {
+      "keyword": "ems",
+      "cluster_id": 1,
+      "umap_x": -1.717597246170044,
+      "umap_y": -1.0885396003723145
+    },
+    {
+      "keyword": "bowel",
+      "cluster_id": 0,
+      "umap_x": 2.7113845348358154,
+      "umap_y": 5.017200469970703
+    },
+    {
+      "keyword": "movement",
+      "cluster_id": 1,
+      "umap_x": -1.5217547416687012,
+      "umap_y": 2.71621036529541
+    },
+    {
+      "keyword": "txt",
+      "cluster_id": 1,
+      "umap_x": -2.451781749725342,
+      "umap_y": -0.5566153526306152
+    },
+    {
+      "keyword": "cross",
+      "cluster_id": 1,
+      "umap_x": 15.635154724121094,
+      "umap_y": 4.085591793060303
+    },
+    {
+      "keyword": "server",
+      "cluster_id": 1,
+      "umap_x": 4.497898101806641,
+      "umap_y": 6.359949111938477
+    },
+    {
+      "keyword": "foundation",
+      "cluster_id": 0,
+      "umap_x": -3.1912686824798584,
+      "umap_y": 3.233128786087036
+    },
+    {
+      "keyword": "gun",
+      "cluster_id": 1,
+      "umap_x": -0.511590838432312,
+      "umap_y": 1.5480798482894897
+    },
+    {
+      "keyword": "fail",
+      "cluster_id": 1,
+      "umap_x": 0.10009882599115372,
+      "umap_y": -0.2756003737449646
+    },
+    {
+      "keyword": "wipe",
+      "cluster_id": 0,
+      "umap_x": 2.0905330181121826,
+      "umap_y": 4.196793556213379
+    },
+    {
+      "keyword": "exterminator",
+      "cluster_id": 0,
+      "umap_x": 0.968074381351471,
+      "umap_y": 5.584689617156982
+    },
+    {
+      "keyword": "termite",
+      "cluster_id": 1,
+      "umap_x": 15.139593124389648,
+      "umap_y": 3.9111270904541016
+    },
+    {
+      "keyword": "childre",
+      "cluster_id": 1,
+      "umap_x": -3.9507861137390137,
+      "umap_y": 4.997227668762207
+    },
+    {
+      "keyword": "dimmer",
+      "cluster_id": 0,
+      "umap_x": 0.38466063141822815,
+      "umap_y": 6.891453742980957
+    },
+    {
+      "keyword": "glow",
+      "cluster_id": 0,
+      "umap_x": 1.0319862365722656,
+      "umap_y": 9.24878978729248
+    },
+    {
+      "keyword": "softener",
+      "cluster_id": 1,
+      "umap_x": 15.154411315917969,
+      "umap_y": 4.228063583374023
+    },
+    {
+      "keyword": "unload",
+      "cluster_id": 1,
+      "umap_x": 2.8450205326080322,
+      "umap_y": 1.854534387588501
+    },
+    {
+      "keyword": "bidet",
+      "cluster_id": 1,
+      "umap_x": 15.067638397216797,
+      "umap_y": 3.8036084175109863
+    },
+    {
+      "keyword": "buttock",
+      "cluster_id": 0,
+      "umap_x": 1.3390456438064575,
+      "umap_y": 3.607362985610962
+    },
+    {
+      "keyword": "shopper",
+      "cluster_id": 1,
+      "umap_x": 1.7147319316864014,
+      "umap_y": -0.1256023794412613
+    },
+    {
+      "keyword": "wattage",
+      "cluster_id": 0,
+      "umap_x": 4.447709560394287,
+      "umap_y": 6.997004985809326
+    },
+    {
+      "keyword": "loss",
+      "cluster_id": 1,
+      "umap_x": 1.7954275608062744,
+      "umap_y": 1.6910979747772217
+    },
+    {
+      "keyword": "provide",
+      "cluster_id": 1,
+      "umap_x": 2.456616163253784,
+      "umap_y": -0.10674615949392319
+    },
+    {
+      "keyword": "bodybuilder",
+      "cluster_id": 1,
+      "umap_x": -1.0885239839553833,
+      "umap_y": 2.18408203125
+    },
+    {
+      "keyword": "state",
+      "cluster_id": 1,
+      "umap_x": -3.347221851348877,
+      "umap_y": 2.6626510620117188
+    },
+    {
+      "keyword": "whose",
+      "cluster_id": 1,
+      "umap_x": -0.707828938961029,
+      "umap_y": 0.6005772352218628
+    },
+    {
+      "keyword": "blood pressure",
+      "cluster_id": 0,
+      "umap_x": 0.7446370720863342,
+      "umap_y": 4.131447792053223
+    },
+    {
+      "keyword": "report",
+      "cluster_id": 0,
+      "umap_x": 0.04331052675843239,
+      "umap_y": 6.533001899719238
+    },
+    {
+      "keyword": "usage",
+      "cluster_id": 1,
+      "umap_x": 1.0676034688949585,
+      "umap_y": 0.33451423048973083
+    },
+    {
+      "keyword": "assist",
+      "cluster_id": 1,
+      "umap_x": -3.0150771141052246,
+      "umap_y": 4.344940185546875
+    },
+    {
+      "keyword": "computerized",
+      "cluster_id": 1,
+      "umap_x": -3.4248223304748535,
+      "umap_y": -1.0648022890090942
+    },
+    {
+      "keyword": "elctricity",
+      "cluster_id": 0,
+      "umap_x": 4.442625522613525,
+      "umap_y": 6.99440860748291
+    },
+    {
+      "keyword": "grandparent",
+      "cluster_id": 1,
+      "umap_x": -3.644407272338867,
+      "umap_y": 4.623524188995361
+    },
+    {
+      "keyword": "shank",
+      "cluster_id": 1,
+      "umap_x": 15.059216499328613,
+      "umap_y": 4.1895012855529785
+    },
+    {
+      "keyword": "snore",
+      "cluster_id": 0,
+      "umap_x": 0.10398948937654495,
+      "umap_y": 8.7802734375
+    },
+    {
+      "keyword": "polisher",
+      "cluster_id": 1,
+      "umap_x": 1.0764740705490112,
+      "umap_y": -1.783939242362976
+    },
+    {
+      "keyword": "shoe",
+      "cluster_id": 1,
+      "umap_x": -1.4041789770126343,
+      "umap_y": 2.7925078868865967
+    },
+    {
+      "keyword": "serve",
+      "cluster_id": 1,
+      "umap_x": -1.0774105787277222,
+      "umap_y": 0.1335505098104477
+    },
+    {
+      "keyword": "spout",
+      "cluster_id": 0,
+      "umap_x": 2.924769163131714,
+      "umap_y": 3.3046133518218994
+    },
+    {
+      "keyword": "drawer",
+      "cluster_id": 0,
+      "umap_x": -0.1957378089427948,
+      "umap_y": 4.126791000366211
+    },
+    {
+      "keyword": "winter",
+      "cluster_id": 0,
+      "umap_x": 1.713755488395691,
+      "umap_y": 6.730507850646973
+    },
+    {
+      "keyword": "card",
+      "cluster_id": 1,
+      "umap_x": 0.4990849196910858,
+      "umap_y": 2.561044454574585
+    },
+    {
+      "keyword": "air-conditioner",
+      "cluster_id": 0,
+      "umap_x": 1.3795762062072754,
+      "umap_y": 5.564648628234863
+    },
+    {
+      "keyword": "compartment",
+      "cluster_id": 1,
+      "umap_x": -0.9251173138618469,
+      "umap_y": 3.321082592010498
+    },
+    {
+      "keyword": "escalator",
+      "cluster_id": 1,
+      "umap_x": -2.4889841079711914,
+      "umap_y": 3.1474335193634033
+    },
+    {
+      "keyword": "talkie",
+      "cluster_id": 1,
+      "umap_x": -2.704082489013672,
+      "umap_y": -1.1146315336227417
+    },
+    {
+      "keyword": "indicator",
+      "cluster_id": 1,
+      "umap_x": -0.059817466884851456,
+      "umap_y": -3.06559681892395
+    },
+    {
+      "keyword": "complimentor",
+      "cluster_id": 0,
+      "umap_x": -0.23556534945964813,
+      "umap_y": 6.890881538391113
+    },
+    {
+      "keyword": "consumer",
+      "cluster_id": 1,
+      "umap_x": -1.0157557725906372,
+      "umap_y": 5.143923759460449
+    },
+    {
+      "keyword": "sale",
+      "cluster_id": 1,
+      "umap_x": 1.8442308902740479,
+      "umap_y": -0.38450923562049866
+    },
+    {
+      "keyword": "eergy",
+      "cluster_id": 1,
+      "umap_x": 15.374046325683594,
+      "umap_y": 4.212765216827393
+    },
+    {
+      "keyword": "surround",
+      "cluster_id": 1,
+      "umap_x": -1.9214344024658203,
+      "umap_y": -2.528242349624634
+    },
+    {
+      "keyword": "cellar",
+      "cluster_id": 0,
+      "umap_x": -1.7435641288757324,
+      "umap_y": 5.8767595291137695
+    },
+    {
+      "keyword": "wine",
+      "cluster_id": 0,
+      "umap_x": -1.6721701622009277,
+      "umap_y": 5.959472179412842
+    },
+    {
+      "keyword": "lowered",
+      "cluster_id": 1,
+      "umap_x": 0.3966465890407562,
+      "umap_y": 1.2929354906082153
+    },
+    {
+      "keyword": "entertainment",
+      "cluster_id": 1,
+      "umap_x": -0.8646031618118286,
+      "umap_y": -0.0994001254439354
+    },
+    {
+      "keyword": "tv music",
+      "cluster_id": 1,
+      "umap_x": -1.6487319469451904,
+      "umap_y": -2.386089563369751
+    },
+    {
+      "keyword": "unlocked",
+      "cluster_id": 1,
+      "umap_x": -3.220391273498535,
+      "umap_y": -0.005992575082927942
+    },
+    {
+      "keyword": "cold",
+      "cluster_id": 0,
+      "umap_x": 1.6132116317749023,
+      "umap_y": 6.595584869384766
+    },
+    {
+      "keyword": "piece",
+      "cluster_id": 1,
+      "umap_x": 1.0480479001998901,
+      "umap_y": -0.8112584352493286
+    },
+    {
+      "keyword": "bacon",
+      "cluster_id": 0,
+      "umap_x": -0.7938467264175415,
+      "umap_y": 5.185068607330322
+    },
+    {
+      "keyword": "upload",
+      "cluster_id": 1,
+      "umap_x": 1.2280081510543823,
+      "umap_y": 0.9016342759132385
+    },
+    {
+      "keyword": "anergy",
+      "cluster_id": 0,
+      "umap_x": -0.12038452178239822,
+      "umap_y": 6.344381332397461
+    },
+    {
+      "keyword": "sign in",
+      "cluster_id": 1,
+      "umap_x": 3.0516598224639893,
+      "umap_y": 0.4271809756755829
+    },
+    {
+      "keyword": "accomodate",
+      "cluster_id": 1,
+      "umap_x": 0.32760491967201233,
+      "umap_y": 1.5082590579986572
+    },
+    {
+      "keyword": "fumble",
+      "cluster_id": 1,
+      "umap_x": 15.714682579040527,
+      "umap_y": 3.9847309589385986
+    },
+    {
+      "keyword": "dispay",
+      "cluster_id": 0,
+      "umap_x": 2.795358657836914,
+      "umap_y": 3.737752676010132
+    },
+    {
+      "keyword": "vent",
+      "cluster_id": 0,
+      "umap_x": 0.9821394681930542,
+      "umap_y": 4.985866546630859
+    },
+    {
+      "keyword": "resist",
+      "cluster_id": 1,
+      "umap_x": -0.43394774198532104,
+      "umap_y": 1.9549343585968018
+    },
+    {
+      "keyword": "microphone",
+      "cluster_id": 1,
+      "umap_x": -1.653948426246643,
+      "umap_y": -2.745932102203369
+    },
+    {
+      "keyword": "sorter",
+      "cluster_id": 1,
+      "umap_x": 2.1648004055023193,
+      "umap_y": -1.2435954809188843
+    },
+    {
+      "keyword": "hostess",
+      "cluster_id": 1,
+      "umap_x": -3.4466583728790283,
+      "umap_y": 3.9970884323120117
+    },
+    {
+      "keyword": "techie",
+      "cluster_id": 0,
+      "umap_x": -1.094449520111084,
+      "umap_y": 4.992501258850098
+    },
+    {
+      "keyword": "adjuster",
+      "cluster_id": 1,
+      "umap_x": 0.3323521912097931,
+      "umap_y": 1.5241905450820923
+    },
+    {
+      "keyword": "burgular",
+      "cluster_id": 0,
+      "umap_x": -3.8557567596435547,
+      "umap_y": 1.0531995296478271
+    },
+    {
+      "keyword": "dectector",
+      "cluster_id": 0,
+      "umap_x": 1.0345677137374878,
+      "umap_y": 5.5643792152404785
+    },
+    {
+      "keyword": "multitask",
+      "cluster_id": 1,
+      "umap_x": -1.1961203813552856,
+      "umap_y": 0.2722160518169403
+    },
+    {
+      "keyword": "solve",
+      "cluster_id": 1,
+      "umap_x": 0.7305482029914856,
+      "umap_y": -1.6495616436004639
+    },
+    {
+      "keyword": "kidnap",
+      "cluster_id": 1,
+      "umap_x": -3.629788398742676,
+      "umap_y": 0.8858531713485718
+    },
+    {
+      "keyword": "recognizing",
+      "cluster_id": 1,
+      "umap_x": -0.07362226396799088,
+      "umap_y": -3.031259775161743
+    },
+    {
+      "keyword": "paramedic",
+      "cluster_id": 1,
+      "umap_x": -2.7537896633148193,
+      "umap_y": 4.485496997833252
+    },
+    {
+      "keyword": "holder",
+      "cluster_id": 1,
+      "umap_x": -0.2226494550704956,
+      "umap_y": 0.6343913674354553
+    },
+    {
+      "keyword": "nurse",
+      "cluster_id": 1,
+      "umap_x": -2.834507703781128,
+      "umap_y": 4.463688850402832
+    },
+    {
+      "keyword": "space",
+      "cluster_id": 0,
+      "umap_x": -2.952319622039795,
+      "umap_y": 3.004810333251953
+    },
+    {
+      "keyword": "cue",
+      "cluster_id": 0,
+      "umap_x": 2.1324384212493896,
+      "umap_y": 4.739679336547852
+    },
+    {
+      "keyword": "rfid",
+      "cluster_id": 1,
+      "umap_x": -3.15054988861084,
+      "umap_y": -0.4737260043621063
+    },
+    {
+      "keyword": "drier",
+      "cluster_id": 0,
+      "umap_x": 2.129396915435791,
+      "umap_y": 4.141236782073975
+    },
+    {
+      "keyword": "scooper",
+      "cluster_id": 0,
+      "umap_x": 1.919551968574524,
+      "umap_y": 3.9447567462921143
+    },
+    {
+      "keyword": "mug",
+      "cluster_id": 0,
+      "umap_x": -1.6691229343414307,
+      "umap_y": 5.93379020690918
+    },
+    {
+      "keyword": "leash",
+      "cluster_id": 0,
+      "umap_x": -1.2806718349456787,
+      "umap_y": 7.948253154754639
+    },
+    {
+      "keyword": "usuage",
+      "cluster_id": 1,
+      "umap_x": -2.6472034454345703,
+      "umap_y": -1.0026426315307617
+    },
+    {
+      "keyword": "intrude",
+      "cluster_id": 1,
+      "umap_x": 15.264973640441895,
+      "umap_y": 3.7064034938812256
+    },
+    {
+      "keyword": "self-park",
+      "cluster_id": 1,
+      "umap_x": -4.144837379455566,
+      "umap_y": 2.7411162853240967
+    },
+    {
+      "keyword": "conditioner",
+      "cluster_id": 0,
+      "umap_x": 1.3697104454040527,
+      "umap_y": 5.591483116149902
+    },
+    {
+      "keyword": "greenhouse",
+      "cluster_id": 0,
+      "umap_x": -4.051122188568115,
+      "umap_y": 2.9285356998443604
+    },
+    {
+      "keyword": "cube",
+      "cluster_id": 1,
+      "umap_x": 15.298980712890625,
+      "umap_y": 3.9880990982055664
+    },
+    {
+      "keyword": "shape",
+      "cluster_id": 1,
+      "umap_x": -0.48223045468330383,
+      "umap_y": 2.4689383506774902
+    },
+    {
+      "keyword": "dehydrate",
+      "cluster_id": 0,
+      "umap_x": 2.8244829177856445,
+      "umap_y": 3.909029245376587
+    },
+    {
+      "keyword": "caretaker",
+      "cluster_id": 1,
+      "umap_x": -3.3535079956054688,
+      "umap_y": 4.279095649719238
+    },
+    {
+      "keyword": "dialysi",
+      "cluster_id": 1,
+      "umap_x": -2.831879138946533,
+      "umap_y": -0.6647281050682068
+    },
+    {
+      "keyword": "junk",
+      "cluster_id": 0,
+      "umap_x": 3.262794017791748,
+      "umap_y": -1.7362232208251953
+    },
+    {
+      "keyword": "tag",
+      "cluster_id": 1,
+      "umap_x": -2.1171927452087402,
+      "umap_y": -0.27094903588294983
+    },
+    {
+      "keyword": "collection",
+      "cluster_id": 1,
+      "umap_x": 1.6555372476577759,
+      "umap_y": -1.0812195539474487
+    },
+    {
+      "keyword": "composter",
+      "cluster_id": 0,
+      "umap_x": 3.2706198692321777,
+      "umap_y": -1.7419216632843018
+    },
+    {
+      "keyword": "media",
+      "cluster_id": 1,
+      "umap_x": -1.7154269218444824,
+      "umap_y": -2.2086284160614014
+    },
+    {
+      "keyword": "component",
+      "cluster_id": 1,
+      "umap_x": -2.337465763092041,
+      "umap_y": 1.0247485637664795
+    },
+    {
+      "keyword": "recall",
+      "cluster_id": 1,
+      "umap_x": -1.6144787073135376,
+      "umap_y": -1.3107692003250122
+    },
+    {
+      "keyword": "toe",
+      "cluster_id": 1,
+      "umap_x": -1.4025429487228394,
+      "umap_y": 2.7946012020111084
+    },
+    {
+      "keyword": "vessel",
+      "cluster_id": 1,
+      "umap_x": 15.145936012268066,
+      "umap_y": 3.949495315551758
+    },
+    {
+      "keyword": "hold",
+      "cluster_id": 1,
+      "umap_x": 2.513575553894043,
+      "umap_y": 1.569753646850586
+    },
+    {
+      "keyword": "date",
+      "cluster_id": 0,
+      "umap_x": 1.0776859521865845,
+      "umap_y": 8.265148162841797
+    },
+    {
+      "keyword": "fragrance",
+      "cluster_id": 0,
+      "umap_x": 0.4500579833984375,
+      "umap_y": 5.3079094886779785
+    },
+    {
+      "keyword": "price",
+      "cluster_id": 1,
+      "umap_x": 1.8614131212234497,
+      "umap_y": -0.4937061369419098
+    },
+    {
+      "keyword": "fun",
+      "cluster_id": 1,
+      "umap_x": -0.9032757878303528,
+      "umap_y": -0.12490430474281311
+    },
+    {
+      "keyword": "flame",
+      "cluster_id": 0,
+      "umap_x": 0.5618261098861694,
+      "umap_y": 5.507932662963867
+    },
+    {
+      "keyword": "attention",
+      "cluster_id": 1,
+      "umap_x": -1.1639341115951538,
+      "umap_y": 0.19947318732738495
+    },
+    {
+      "keyword": "clothing",
+      "cluster_id": 0,
+      "umap_x": -0.30697932839393616,
+      "umap_y": 3.454272985458374
+    },
+    {
+      "keyword": "nighttime",
+      "cluster_id": 0,
+      "umap_x": 0.6925961971282959,
+      "umap_y": 8.911102294921875
+    },
+    {
+      "keyword": "interactive",
+      "cluster_id": 1,
+      "umap_x": -3.4971957206726074,
+      "umap_y": -1.1113134622573853
+    },
+    {
+      "keyword": "changeable",
+      "cluster_id": 1,
+      "umap_x": 0.6048464775085449,
+      "umap_y": 1.4531782865524292
+    },
+    {
+      "keyword": "playroom",
+      "cluster_id": 0,
+      "umap_x": -3.039658784866333,
+      "umap_y": 3.0539612770080566
+    },
+    {
+      "keyword": "lift",
+      "cluster_id": 1,
+      "umap_x": 0.4446381628513336,
+      "umap_y": 1.7360258102416992
+    },
+    {
+      "keyword": "linger",
+      "cluster_id": 1,
+      "umap_x": 15.002925872802734,
+      "umap_y": 3.7450919151306152
+    }
+  ]
+}
