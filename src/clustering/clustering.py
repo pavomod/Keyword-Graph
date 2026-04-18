@@ -9,6 +9,7 @@ import numpy as np
 import umap
 from node2vec import Node2Vec
 from sklearn.cluster import KMeans
+from sklearn.decomposition import TruncatedSVD
 from sklearn.metrics import silhouette_score
 
 
@@ -130,6 +131,81 @@ def _save_elbow_plot(candidates: list[dict], output_path: str) -> str | None:
     return str(out_path)
 
 
+def _build_requirement_feature_matrix(
+    graph: nx.Graph,
+    nodes: list[str],
+    svd_dim: int,
+) -> tuple[np.ndarray | None, dict]:
+    requirement_sets: list[list[str]] = []
+    unique_requirement_ids: set[str] = set()
+
+    for node in nodes:
+        raw = str(graph.nodes[node].get("requirement_ids", "")).strip()
+        req_ids = [piece.strip() for piece in raw.split(",") if piece.strip()]
+        requirement_sets.append(req_ids)
+        unique_requirement_ids.update(req_ids)
+
+    if not unique_requirement_ids:
+        return None, {
+            "enabled": False,
+            "reason": "no_requirement_ids",
+            "num_requirements": 0,
+            "raw_dim": 0,
+            "reduced_dim": 0,
+        }
+
+    sorted_requirements = sorted(unique_requirement_ids)
+    req_index = {req_id: idx for idx, req_id in enumerate(sorted_requirements)}
+    matrix = np.zeros((len(nodes), len(sorted_requirements)), dtype=float)
+
+    for row_idx, req_ids in enumerate(requirement_sets):
+        for req_id in req_ids:
+            matrix[row_idx, req_index[req_id]] = 1.0
+
+    max_rank = max(1, min(matrix.shape[0] - 1, matrix.shape[1] - 1))
+    target_dim = max(1, min(int(svd_dim), max_rank))
+
+    if matrix.shape[1] == target_dim:
+        reduced = matrix
+    else:
+        svd = TruncatedSVD(n_components=target_dim, random_state=42)
+        reduced = svd.fit_transform(matrix)
+
+    return reduced, {
+        "enabled": True,
+        "num_requirements": int(len(sorted_requirements)),
+        "raw_dim": int(matrix.shape[1]),
+        "reduced_dim": int(reduced.shape[1]),
+    }
+
+
+def _normalize_block(values: np.ndarray) -> np.ndarray:
+    if values.size == 0:
+        return values
+
+    means = values.mean(axis=0, keepdims=True)
+    stds = values.std(axis=0, keepdims=True)
+    stds = np.where(stds == 0, 1.0, stds)
+    return (values - means) / stds
+
+
+def _combine_clustering_features(
+    node2vec_vectors: np.ndarray,
+    requirement_vectors: np.ndarray | None,
+    requirement_weight: float,
+) -> np.ndarray:
+    left = _normalize_block(node2vec_vectors)
+    if requirement_vectors is None:
+        return left
+
+    right = _normalize_block(requirement_vectors)
+    weight = max(0.0, float(requirement_weight))
+    if weight == 0.0:
+        return left
+
+    return np.concatenate([left, right * weight], axis=1)
+
+
 def run_clustering_phase(
     graph: nx.Graph,
     output_json_path: str,
@@ -142,6 +218,8 @@ def run_clustering_phase(
     node2vec_walk_length: int = 30,
     node2vec_num_walks: int = 200,
     node2vec_workers: int = 4,
+    requirement_feature_weight: float = 0.5,
+    requirement_svd_dim: int = 16,
 ) -> tuple[dict, nx.Graph]:
     embeddings = compute_node2vec_embeddings(
         graph,
@@ -170,7 +248,17 @@ def run_clustering_phase(
         out_json.write_text(json.dumps(payload, indent=2, ensure_ascii=True), encoding="utf-8")
         return payload, graph
 
-    vectors = np.array([embeddings[node] for node in nodes], dtype=float)
+    node2vec_vectors = np.array([embeddings[node] for node in nodes], dtype=float)
+    requirement_vectors, requirement_feature_info = _build_requirement_feature_matrix(
+        graph=graph,
+        nodes=nodes,
+        svd_dim=requirement_svd_dim,
+    )
+    vectors = _combine_clustering_features(
+        node2vec_vectors=node2vec_vectors,
+        requirement_vectors=requirement_vectors,
+        requirement_weight=requirement_feature_weight,
+    )
     selected_k, k_selection = _resolve_k(
         vectors=vectors,
         requested_k=requested_k,
@@ -218,10 +306,15 @@ def run_clustering_phase(
             "selected_k": int(selected_k),
             "num_nodes": int(len(nodes)),
             "embedding_dim": int(embedding_dim),
+            "effective_feature_dim": int(vectors.shape[1]),
             "inertia": float(inertia),
             "silhouette": float(silhouette),
             "k_selection": k_selection,
             "elbow_plot": elbow_plot,
+            "requirement_features": {
+                **requirement_feature_info,
+                "weight": float(requirement_feature_weight),
+            },
         },
         "nodes": node_records,
     }

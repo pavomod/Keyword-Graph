@@ -59,6 +59,8 @@ DEFAULT_PIPELINE_CONFIG = {
     "cluster_node2vec_walk_length": 30,
     "cluster_node2vec_num_walks": 200,
     "cluster_node2vec_workers": 4,
+    "cluster_requirement_feature_weight": 0.5,
+    "cluster_requirement_svd_dim": 16,
     "cluster_report_out": "results/clustering_report.json",
     "cluster_elbow_plot_out": "results/elbow.png",
 }
@@ -174,6 +176,41 @@ def _save_verification_report(
     return str(output_path), metrics
 
 
+def _print_verification_summary(comparison_path: str, metrics: dict) -> None:
+    def fmt_pct(value: float) -> str:
+        return f"{value * 100.0:.2f}%"
+
+    print("[report] Comparison JSON saved")
+    print(f"  path            : {comparison_path}")
+    print("[report] Verification metrics (rows with tags)")
+    print(f"  samples         : {int(metrics.get('samples', 0))}")
+    print(
+        "  exact_match     : "
+        f"{fmt_pct(float(metrics.get('exact_match', 0.0)))} "
+        f"(raw={float(metrics.get('exact_match', 0.0)):.6f})"
+    )
+    print(
+        "  precision_micro : "
+        f"{fmt_pct(float(metrics.get('precision_micro', 0.0)))} "
+        f"(raw={float(metrics.get('precision_micro', 0.0)):.6f})"
+    )
+    print(
+        "  recall_micro    : "
+        f"{fmt_pct(float(metrics.get('recall_micro', 0.0)))} "
+        f"(raw={float(metrics.get('recall_micro', 0.0)):.6f})"
+    )
+    print(
+        "  f1_micro        : "
+        f"{fmt_pct(float(metrics.get('f1_micro', 0.0)))} "
+        f"(raw={float(metrics.get('f1_micro', 0.0)):.6f})"
+    )
+    print(
+        "  mean_sample_f1  : "
+        f"{fmt_pct(float(metrics.get('mean_sample_f1', 0.0)))} "
+        f"(raw={float(metrics.get('mean_sample_f1', 0.0)):.6f})"
+    )
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(
         description=(
@@ -254,6 +291,8 @@ def main() -> None:
     parser.add_argument("--cluster-node2vec-walk-length", type=int, default=None)
     parser.add_argument("--cluster-node2vec-num-walks", type=int, default=None)
     parser.add_argument("--cluster-node2vec-workers", type=int, default=None)
+    parser.add_argument("--cluster-requirement-feature-weight", type=float, default=None)
+    parser.add_argument("--cluster-requirement-svd-dim", type=int, default=None)
     parser.add_argument("--cluster-report-out", type=str, default=None)
     parser.add_argument("--cluster-elbow-plot-out", type=str, default=None)
     args = parser.parse_args()
@@ -324,6 +363,20 @@ def main() -> None:
             args.cluster_node2vec_workers,
             config_values,
             "cluster_node2vec_workers",
+        )
+    )
+    cluster_requirement_feature_weight = float(
+        _resolve_setting(
+            args.cluster_requirement_feature_weight,
+            config_values,
+            "cluster_requirement_feature_weight",
+        )
+    )
+    cluster_requirement_svd_dim = int(
+        _resolve_setting(
+            args.cluster_requirement_svd_dim,
+            config_values,
+            "cluster_requirement_svd_dim",
         )
     )
     cluster_report_out = _resolve_setting(args.cluster_report_out, config_values, "cluster_report_out")
@@ -408,8 +461,7 @@ def main() -> None:
             comparison_json_out=comparison_json_out,
             inference_diagnostics=inference_diagnostics,
         )
-        print(f"Comparison JSON saved in: {comparison_path}")
-        print(f"Verification metrics (rows with tags): {comparison_metrics}")
+        _print_verification_summary(comparison_path, comparison_metrics)
     else:
         print("No 'tags' column found in inference CSV. Skipping comparison report.")
 
@@ -440,6 +492,8 @@ def main() -> None:
             node2vec_walk_length=cluster_node2vec_walk_length,
             node2vec_num_walks=cluster_node2vec_num_walks,
             node2vec_workers=cluster_node2vec_workers,
+            requirement_feature_weight=cluster_requirement_feature_weight,
+            requirement_svd_dim=cluster_requirement_svd_dim,
         )
         print(
             "Clustering report saved in: "

@@ -2,6 +2,14 @@
 
 A step-by-step pipeline for keyword extraction from requirements and graph-based analysis.
 
+## Technical Explanations
+
+Detailed technical documentation for each implemented phase is available in:
+
+- [Phase 1 - Model and Inference](explanation/PHASE_1_MODEL_AND_INFERENCE.md)
+- [Phase 2 - Graph and Traceability](explanation/PHASE_2_GRAPH_AND_TRACEABILITY.md)
+- [Phase 3 - Clustering and Requirement-Aware Features](explanation/PHASE_3_CLUSTERING_AND_REQUIREMENT_AWARE_FEATURES.md)
+
 ## Dependency installation
 
 Install project dependencies first:

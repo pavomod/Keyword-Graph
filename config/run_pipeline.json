@@ -29,6 +29,8 @@
   "cluster_node2vec_walk_length": 30,
   "cluster_node2vec_num_walks": 200,
   "cluster_node2vec_workers": 4,
+  "cluster_requirement_feature_weight": 0.5,
+  "cluster_requirement_svd_dim": 16,
   "cluster_report_out": "results/clustering_report.json",
   "cluster_elbow_plot_out": "results/elbow.png"
 }

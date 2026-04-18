@@ -13,6 +13,7 @@ from peft import LoraConfig, PeftModel, TaskType, get_peft_model
 from src.finetune.metrics import keyword_f1, mean_keyword_f1
 from src.keywords.normalize import normalize_keyword_text, parse_keyword_text
 from transformers import (
+    AutoConfig,
     DataCollatorForSeq2Seq,
     Seq2SeqTrainer,
     Seq2SeqTrainingArguments,
@@ -99,7 +100,10 @@ def load_inference_model(model_dir: str | None = None, base_model_name: str = MO
             base_model = T5ForConditionalGeneration.from_pretrained(base_model_name)
             model = PeftModel.from_pretrained(base_model, str(model_path))
         else:
-            model = T5ForConditionalGeneration.from_pretrained(str(model_path))
+            # Silence tie warning for checkpoints that store both shared/lm_head with different values.
+            local_config = AutoConfig.from_pretrained(str(model_path))
+            local_config.tie_word_embeddings = False
+            model = T5ForConditionalGeneration.from_pretrained(str(model_path), config=local_config)
     else:
         tokenizer = T5Tokenizer.from_pretrained(base_model_name)
         model = T5ForConditionalGeneration.from_pretrained(base_model_name)
