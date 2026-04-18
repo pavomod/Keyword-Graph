@@ -46,7 +46,7 @@ DEFAULT_PIPELINE_CONFIG = {
     "validation_size": 250,
     "test_size": 250,
     "comparison_json_out": "results/real_case_comparison.json",
-    "graph_out": "results/keyword_graph_real_case.gexf",
+    "graph_out": "results/keyword_graph.gexf",
     "inference_batch_size": 16,
     "semantic_threshold": 0.4,
     "semantic_model": "all-MiniLM-L6-v2",

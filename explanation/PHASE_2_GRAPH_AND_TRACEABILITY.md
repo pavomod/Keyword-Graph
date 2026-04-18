@@ -82,7 +82,7 @@ Node attributes added for styling and filtering:
 ## Export Format
 
 Final graph is exported as GEXF to:
-- `--graph-out` (default `results/keyword_graph_real_case.gexf`)
+- `--graph-out` (default `results/keyword_graph.gexf`)
 
 The GEXF includes:
 - Semantic structure (nodes and edges)
@@ -125,4 +125,4 @@ Lower threshold:
 ## Outputs Produced by Phase 2
 
 - Fully annotated and styled GEXF graph:
-  - `results/keyword_graph_real_case.gexf` (or custom output path)
+  - `results/keyword_graph.gexf` (or custom output path)

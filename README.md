@@ -40,54 +40,12 @@ The pipeline automatically reads a JSON config file from `config/run_pipeline.js
 CLI arguments always override values from the config file.
 
 
-### Recommended startup commands by scenario
+### Quick start (JSON-based)
 
-1. Default run (no training). Uses the fine-tuned model if available, otherwise falls back to base `google/flan-t5-base`.
+Use the default JSON configuration in `config/run_pipeline.json`:
 
 ```bash
 python -m src.run_pipeline
-```
-
-2. Run with explicit training (fine-tuning is optional and runs only when requested)
-
-```bash
-python -m src.run_pipeline --train
-```
-
-3. Explicit skip training
-
-```bash
-python -m src.run_pipeline --no-train
-```
-
-4. GPU training with mixed precision
-
-```bash
-python -m src.run_pipeline --train --fp16 --require-cuda
-```
-
-5. Select a custom CSV for training (only for fine-tune stage)
-
-```bash
-python -m src.run_pipeline --train --train-input-csv data/my_train.csv
-```
-
-6. Stronger semantic filtering in graph edges (fewer, stronger relations)
-
-```bash
-python -m src.run_pipeline --semantic-threshold 0.8
-```
-
-7. Custom output paths for report and graph
-
-```bash
-python -m src.run_pipeline --comparison-json-out results/my_report.json --graph-out results/my_graph.gexf
-```
-
-8. Use an alternative config file
-
-```bash
-python -m src.run_pipeline --config config/my_experiment.json
 ```
 
 ### Full argument reference
@@ -114,10 +72,24 @@ python -m src.run_pipeline --config config/my_experiment.json
 | `--validation-size` | `int` | `250` | Fixed number of rows used for validation split. |
 | `--test-size` | `int` | `250` | Fixed number of rows used for test split. |
 | `--comparison-json-out` | `str` | `results/real_case_comparison.json` | Output JSON file with prediction vs ground truth and aggregate metrics over rows that contain `tags`. |
-| `--graph-out` | `str` | `results/keyword_graph_real_case.gexf` | Output GEXF graph file generated from predicted keywords. |
+| `--graph-out` | `str` | `results/keyword_graph.gexf` | Output GEXF graph file generated from predicted keywords. |
 | `--inference-batch-size` | `int` | `16` | Batch size used during full-dataset inference/prediction phase. |
 | `--semantic-threshold` | `float` | `0.4` | Minimum cosine similarity required to create an edge between two keywords in the semantic graph. |
 | `--semantic-model` | `str` | `all-MiniLM-L6-v2` | Sentence-Transformers model used to compute keyword semantic similarity. |
+| `--enable-clustering` | flag | `True` | Enable Phase 3 clustering (Node2Vec + K-Means + UMAP). |
+| `--no-clustering` | flag | `False` | Disable Phase 3 clustering. |
+| `--cluster-k` | `int` | `None` | Fixed number of clusters. If omitted, `k` is selected automatically by silhouette score. |
+| `--cluster-k-min` | `int` | `2` | Lower bound for automatic `k` search. |
+| `--cluster-k-max` | `int` | `15` | Upper bound for automatic `k` search. |
+| `--cluster-embedding-dim` | `int` | `64` | Node2Vec embedding dimension before feature fusion. |
+| `--cluster-random-state` | `int` | `42` | Random seed for Node2Vec, K-Means, and UMAP reproducibility. |
+| `--cluster-node2vec-walk-length` | `int` | `30` | Random walk length for Node2Vec. |
+| `--cluster-node2vec-num-walks` | `int` | `200` | Number of random walks per node for Node2Vec. |
+| `--cluster-node2vec-workers` | `int` | `4` | Number of worker threads for Node2Vec. |
+| `--cluster-requirement-feature-weight` | `float` | `0.5` | Weight applied to requirement-aware feature block before concatenation with Node2Vec vectors. |
+| `--cluster-requirement-svd-dim` | `int` | `16` | SVD-reduced dimensionality of requirement incidence features. |
+| `--cluster-report-out` | `str` | `results/clustering_report.json` | Output JSON report path for clustering diagnostics and per-node cluster assignments. |
+| `--cluster-elbow-plot-out` | `str` | `results/elbow.png` | Output plot path for inertia and silhouette by candidate `k`. |
 
 ### Notes on training behavior
 
@@ -157,7 +129,7 @@ Outputs:
 - JSON report with metrics and per-row predicted vs real tags:
 	- `results/real_case_comparison.json`
 - Graph generated from predicted full-dataset keywords:
-	- `results/keyword_graph_real_case.gexf`
+	- `results/keyword_graph.gexf`
 
 Graph logic:
 
