@@ -99,30 +99,11 @@ The GEXF includes:
 5. Apply degree-based node styling
 6. Save GEXF
 
-## Tuning Parameters
-
-Main graph knobs:
-- `--semantic-threshold`
-- `--semantic-model`
-- `--graph-out`
-
-Higher threshold:
-- Fewer edges
-- More isolated nodes
-- Higher precision, lower connectivity
-
-Lower threshold:
-- More edges
-- Denser graph
-- Better connectivity, potentially more noise
-
-## Practical Usage Notes
-
-- If many nodes are red (degree 0), threshold may be too high or keywords may be too sparse.
-- If almost all nodes are green, threshold may be too low and graph may be over-connected.
-- Use `shared_requirement_count` to prioritize stronger requirement-level overlaps, not only embedding proximity.
 
 ## Outputs Produced by Phase 2
 
 - Fully annotated and styled GEXF graph:
   - `results/keyword_graph.gexf` (or custom output path)
+
+## Next step
+[Phase 3 - Clustering and Requirement-Aware Features](explanation/PHASE_3_CLUSTERING_AND_REQUIREMENT_AWARE_FEATURES.md)

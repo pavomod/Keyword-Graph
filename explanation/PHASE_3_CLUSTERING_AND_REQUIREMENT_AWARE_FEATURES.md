@@ -132,30 +132,6 @@ Main report sections:
 Elbow/silhouette plot default path:
 - `results/elbow.png`
 
-## CLI and Config Controls
-
-Main toggles in `src.run_pipeline`:
-- `--enable-clustering` / `--no-clustering`
-- `--cluster-k`
-- `--cluster-k-min`
-- `--cluster-k-max`
-- `--cluster-embedding-dim`
-- `--cluster-random-state`
-- `--cluster-node2vec-walk-length`
-- `--cluster-node2vec-num-walks`
-- `--cluster-node2vec-workers`
-- `--cluster-requirement-feature-weight`
-- `--cluster-requirement-svd-dim`
-- `--cluster-report-out`
-- `--cluster-elbow-plot-out`
-
-## Practical Tuning Notes
-
-- If clusters are too coarse, increase `cluster_k` or reduce requirement feature weight.
-- If clusters ignore requirement provenance, increase `cluster_requirement_feature_weight`.
-- If feature space is too noisy, reduce `cluster_requirement_svd_dim`.
-- If silhouette stays very low, improve keyword quality in Phase 1 and graph quality in Phase 2 before tuning K-Means.
-
 ## Outputs Produced by Phase 3
 
 - Enriched graph node attributes (`cluster_id`, `umap_x`, `umap_y`) in final GEXF

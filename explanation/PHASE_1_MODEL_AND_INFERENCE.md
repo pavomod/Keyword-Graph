@@ -127,24 +127,6 @@ Report contains:
 
 If `tags` is missing, metrics/report section is skipped.
 
-## Important CLI Controls
-
-Model and training:
-- `--train`
-- `--no-train`
-- `--model-dir`
-- `--base-model-name`
-
-Data and splits:
-- `--train-input-csv`
-- `--train-size`
-- `--validation-size`
-- `--test-size`
-
-Generation behavior:
-- `--max-input-len`
-- `--max-target-len`
-- `--inference-batch-size`
 
 ## Failure and Recovery Strategy
 
@@ -158,3 +140,6 @@ Built-in resilience in Phase 1:
 - Trained model artifacts (when `--train`): `models/flan-t5-keywords` (or custom path)
 - Verification JSON: `results/real_case_comparison.json`
 - In-memory normalized keyword lists passed to Phase 2
+
+## Next step
+[Phase 2 - Graph and Traceability](explanation/PHASE_2_GRAPH_AND_TRACEABILITY.md)
