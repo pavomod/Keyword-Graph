@@ -7,6 +7,12 @@ from pathlib import Path
 import pandas as pd
 from src.clustering import run_clustering_phase
 
+from src.comparison.compare_pipelines import (
+    build_direct_clustering_report,
+    cluster_requirements_directly,
+    compare_clustering_approaches,
+)
+
 from src.finetune.prepare_data import (
     _pick_input_csv,
     prepare_inference_dataframe,
@@ -23,6 +29,8 @@ from src.graph.build_graph import (
     attach_requirement_references,
     build_semantic_similarity_graph,
     parse_keywords,
+    reduce_graph_nodes,
+    remove_isolated_nodes,
     save_graph_gexf,
     style_nodes_by_degree,
 )
@@ -50,6 +58,9 @@ DEFAULT_PIPELINE_CONFIG = {
     "inference_batch_size": 16,
     "semantic_threshold": 0.4,
     "semantic_model": "all-MiniLM-L6-v2",
+    "enable_node_reduction": True,
+    "node_reduction_degree_threshold_low": 2,
+    "node_reduction_degree_threshold_high": 5,
     "enable_clustering": True,
     "cluster_k": None,
     "cluster_k_min": 2,
@@ -63,6 +74,9 @@ DEFAULT_PIPELINE_CONFIG = {
     "cluster_requirement_svd_dim": 16,
     "cluster_report_out": "results/clustering_report.json",
     "cluster_elbow_plot_out": "results/elbow.png",
+    "enable_clustering_comparison": True,
+    "clustering_comparison_out": "results/clustering_comparison.json",
+    "direct_clustering_report_out": "results/direct_clustering_report.json",
 }
 
 
@@ -269,6 +283,31 @@ def main() -> None:
         default=None,
         help="Sentence-Transformers model used to compute keyword similarity",
     )
+    parser.add_argument(
+        "--enable-node-reduction",
+        dest="enable_node_reduction",
+        action="store_true",
+        default=None,
+        help="Enable node reduction: absorb low-degree nodes into high-degree hub nodes",
+    )
+    parser.add_argument(
+        "--disable-node-reduction",
+        dest="enable_node_reduction",
+        action="store_false",
+        help="Disable node reduction",
+    )
+    parser.add_argument(
+        "--node-reduction-degree-threshold-low",
+        type=int,
+        default=None,
+        help="Maximum degree for a node to be considered low (default: 2)",
+    )
+    parser.add_argument(
+        "--node-reduction-degree-threshold-high",
+        type=int,
+        default=None,
+        help="Minimum degree for a node to be considered hub (default: 5)",
+    )
     cluster_group = parser.add_mutually_exclusive_group()
     cluster_group.add_argument(
         "--enable-clustering",
@@ -295,6 +334,25 @@ def main() -> None:
     parser.add_argument("--cluster-requirement-svd-dim", type=int, default=None)
     parser.add_argument("--cluster-report-out", type=str, default=None)
     parser.add_argument("--cluster-elbow-plot-out", type=str, default=None)
+    comparison_group = parser.add_mutually_exclusive_group()
+    comparison_group.add_argument(
+        "--enable-clustering-comparison",
+        dest="enable_clustering_comparison",
+        action="store_true",
+    )
+    comparison_group.add_argument(
+        "--disable-clustering-comparison",
+        dest="enable_clustering_comparison",
+        action="store_false",
+    )
+    parser.set_defaults(enable_clustering_comparison=None)
+    parser.add_argument("--clustering-comparison-out", type=str, default=None)
+    parser.add_argument(
+        "--direct-clustering-report-out",
+        type=str,
+        default=None,
+        help="Output JSON path for the direct requirement clustering report",
+    )
     args = parser.parse_args()
 
     config_values = _load_pipeline_config(args.config)
@@ -331,6 +389,23 @@ def main() -> None:
         _resolve_setting(args.semantic_threshold, config_values, "semantic_threshold")
     )
     semantic_model = _resolve_setting(args.semantic_model, config_values, "semantic_model")
+    enable_node_reduction = bool(
+        _resolve_setting(args.enable_node_reduction, config_values, "enable_node_reduction")
+    )
+    node_reduction_degree_threshold_low = int(
+        _resolve_setting(
+            args.node_reduction_degree_threshold_low,
+            config_values,
+            "node_reduction_degree_threshold_low",
+        )
+    )
+    node_reduction_degree_threshold_high = int(
+        _resolve_setting(
+            args.node_reduction_degree_threshold_high,
+            config_values,
+            "node_reduction_degree_threshold_high",
+        )
+    )
     enable_clustering = bool(
         _resolve_setting(args.enable_clustering, config_values, "enable_clustering")
     )
@@ -384,6 +459,17 @@ def main() -> None:
         args.cluster_elbow_plot_out,
         config_values,
         "cluster_elbow_plot_out",
+    )
+    enable_clustering_comparison = bool(
+        _resolve_setting(args.enable_clustering_comparison, config_values, "enable_clustering_comparison")
+    )
+    clustering_comparison_out = _resolve_setting(
+        args.clustering_comparison_out, config_values, "clustering_comparison_out"
+    )
+    direct_clustering_report_out = _resolve_setting(
+        args.direct_clustering_report_out,
+        config_values,
+        "direct_clustering_report_out",
     )
 
     model_dir = Path(model_dir_value)
@@ -478,6 +564,28 @@ def main() -> None:
         requirement_ids=[str(source_id) for source_id in inference_df["source_id"].tolist()],
     )
 
+    graph, removed_isolated = remove_isolated_nodes(graph)
+    if removed_isolated:
+        print(f"Removed {removed_isolated} isolated nodes with zero relations")
+
+    if enable_node_reduction:
+        print(
+            "[4/5] Reducing graph nodes "
+            f"(low_degree<={node_reduction_degree_threshold_low}, "
+            f"high_degree>{node_reduction_degree_threshold_high})..."
+        )
+        initial_nodes = graph.number_of_nodes()
+        graph = reduce_graph_nodes(
+            graph=graph,
+            degree_threshold_low=node_reduction_degree_threshold_low,
+            degree_threshold_high=node_reduction_degree_threshold_high,
+        )
+        reduced_nodes = graph.number_of_nodes()
+        print(
+            f"Node reduction completed: {initial_nodes} nodes -> {reduced_nodes} nodes "
+            f"({initial_nodes - reduced_nodes} absorbed)"
+        )
+
     if enable_clustering:
         print("[5/5] Running clustering phase (Node2Vec -> K-Means -> UMAP)...")
         clustering_payload, graph = run_clustering_phase(
@@ -494,6 +602,10 @@ def main() -> None:
             node2vec_workers=cluster_node2vec_workers,
             requirement_feature_weight=cluster_requirement_feature_weight,
             requirement_svd_dim=cluster_requirement_svd_dim,
+            model_dir=inference_model_dir,
+            base_model_name=base_model_name,
+            enable_cluster_labeling=True,
+            isolated_nodes_removed=removed_isolated,
         )
         print(
             "Clustering report saved in: "
@@ -502,6 +614,45 @@ def main() -> None:
         elbow_plot_path = clustering_payload["clustering"].get("elbow_plot")
         if elbow_plot_path:
             print(f"Clustering elbow plot saved in: {elbow_plot_path}")
+        
+        if enable_clustering_comparison:
+            print("[6/6] Running clustering comparison (keyword-graph vs direct embedding)...")
+            raw_requirement_data = raw_df.to_dict(orient="records")
+            direct_requirement_texts = [
+                f"As a {str(row.get('role', 'user')).strip()}, "
+                f"I want {str(row.get('feature', '')).strip()} "
+                f"so that {str(row.get('benefit', '')).strip()}"
+                for row in raw_requirement_data
+            ]
+            
+            # Cluster requirements directly using their text embeddings
+            direct_clustering_result = cluster_requirements_directly(
+                requirement_texts=direct_requirement_texts,
+                selected_k=cluster_k,
+                k_min=cluster_k_min,
+                k_max=cluster_k_max,
+                embedding_model=semantic_model,
+                random_state=cluster_random_state,
+            )
+
+            direct_report_path = build_direct_clustering_report(
+                requirement_texts=direct_requirement_texts,
+                requirement_ids=[str(source_id) for source_id in inference_df["source_id"].tolist()],
+                direct_clustering_result=direct_clustering_result,
+                output_path=direct_clustering_report_out,
+                model_dir=inference_model_dir,
+                base_model_name=base_model_name,
+            )
+            print(f"Direct clustering report saved in: {direct_report_path}")
+            
+            # Compare the two approaches
+            comparison_path = compare_clustering_approaches(
+                keyword_graph_clustering=clustering_payload,
+                direct_clustering_result=direct_clustering_result,
+                requirement_ids=[str(source_id) for source_id in inference_df["source_id"].tolist()],
+                output_path=clustering_comparison_out,
+            )
+            print(f"Clustering comparison report saved in: {comparison_path}")
     else:
         print("[5/5] Clustering phase skipped (--no-clustering).")
 

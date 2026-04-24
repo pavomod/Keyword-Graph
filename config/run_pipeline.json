@@ -21,7 +21,7 @@
   "semantic_threshold": 0.5,
   "semantic_model": "all-MiniLM-L6-v2",
   "enable_clustering": true,
-  "cluster_k": null,
+  "cluster_k": 9,
   "cluster_k_min": 2,
   "cluster_k_max": 15,
   "cluster_embedding_dim": 64,

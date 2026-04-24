@@ -107,6 +107,16 @@ def attach_requirement_references(
     return graph
 
 
+def remove_isolated_nodes(graph: nx.Graph) -> tuple[nx.Graph, int]:
+    isolated_nodes = [node for node in graph.nodes if graph.degree(node) == 0]
+    if not isolated_nodes:
+        return graph, 0
+
+    graph = graph.copy()
+    graph.remove_nodes_from(isolated_nodes)
+    return graph, len(isolated_nodes)
+
+
 def style_nodes_by_degree(graph: nx.Graph) -> nx.Graph:
     for node in graph.nodes:
         degree = int(graph.degree(node))
@@ -142,6 +152,128 @@ def _sort_requirement_ids(requirement_ids: set[str]) -> list[str]:
         return (0, f"{int(value):012d}") if value.isdigit() else (1, value)
 
     return sorted(requirement_ids, key=sort_key)
+
+
+def reduce_graph_nodes(
+    graph: nx.Graph,
+    degree_threshold_low: int = 2,
+    degree_threshold_high: int = 5,
+) -> nx.Graph:
+    """
+    Reduce the number of graph nodes by absorbing low-degree nodes into high-degree hub nodes.
+    
+    Strategy:
+    - Identify hub nodes: degree > degree_threshold_high
+    - For each low-degree node (degree <= degree_threshold_low):
+      - If connected only to hub nodes, absorb it into the hub with highest weight connection
+      - Transfer requirement references to the absorbing hub
+      - Remove the low-degree node from the graph
+    
+    Args:
+        graph: NetworkX graph with node attributes 'requirement_ids', 'requirement_count'
+        degree_threshold_low: Maximum degree for a node to be considered "low"
+        degree_threshold_high: Minimum degree for a node to be considered "hub"
+    
+    Returns:
+        Modified graph with reduced nodes
+    """
+    graph = graph.copy()
+    
+    # Identify hub nodes
+    hub_nodes = set(node for node in graph.nodes() if graph.degree(node) > degree_threshold_high)
+    
+    if not hub_nodes:
+        return graph
+    
+    nodes_to_remove = set()
+    node_absorption_map = {}  # Maps absorbed node -> target hub node
+    
+    # For each low-degree node, check if it should be absorbed
+    for node in list(graph.nodes()):
+        if node in hub_nodes or node in nodes_to_remove:
+            continue
+        
+        degree = graph.degree(node)
+        if degree > degree_threshold_low:
+            continue
+        
+        # Get neighbors and check if all are hubs
+        neighbors = list(graph.neighbors(node))
+        hub_neighbors = [n for n in neighbors if n in hub_nodes]
+        
+        # Only absorb if connected ONLY to hubs or is isolated
+        if len(hub_neighbors) == len(neighbors) and (len(neighbors) > 0 or degree == 0):
+            # Find the hub with the strongest edge (highest weight)
+            if neighbors:
+                best_hub = max(
+                    hub_neighbors,
+                    key=lambda h: graph[node][h].get("weight", 0)
+                    if graph.has_edge(node, h)
+                    else 0,
+                )
+            else:
+                # Isolated node: attach to largest hub by requirement count
+                best_hub = max(
+                    hub_nodes,
+                    key=lambda h: graph.nodes[h].get("requirement_count", 0),
+                )
+            
+            node_absorption_map[node] = best_hub
+            nodes_to_remove.add(node)
+    
+    # Merge requirement references from absorbed nodes to target hubs
+    for absorbed_node, target_hub in node_absorption_map.items():
+        absorbed_reqs = set(
+            graph.nodes[absorbed_node]
+            .get("requirement_ids", "")
+            .split(",")
+            if graph.nodes[absorbed_node].get("requirement_ids")
+            else []
+        )
+        absorbed_reqs = {r for r in absorbed_reqs if r}  # Remove empty strings
+        
+        current_reqs = set(
+            graph.nodes[target_hub]
+            .get("requirement_ids", "")
+            .split(",")
+            if graph.nodes[target_hub].get("requirement_ids")
+            else []
+        )
+        current_reqs = {r for r in current_reqs if r}  # Remove empty strings
+        
+        # Merge requirement sets
+        merged_reqs = _sort_requirement_ids(current_reqs | absorbed_reqs)
+        graph.nodes[target_hub]["requirement_ids"] = ",".join(merged_reqs)
+        graph.nodes[target_hub]["requirement_count"] = len(merged_reqs)
+    
+    # Remove absorbed nodes from graph
+    graph.remove_nodes_from(nodes_to_remove)
+    
+    # Update edge shared_requirement_count after node removal
+    for left, right in graph.edges():
+        left_ids = set(
+            graph.nodes[left]
+            .get("requirement_ids", "")
+            .split(",")
+            if graph.nodes[left].get("requirement_ids")
+            else []
+        )
+        left_ids = {r for r in left_ids if r}
+        
+        right_ids = set(
+            graph.nodes[right]
+            .get("requirement_ids", "")
+            .split(",")
+            if graph.nodes[right].get("requirement_ids")
+            else []
+        )
+        right_ids = {r for r in right_ids if r}
+        
+        shared_ids = _sort_requirement_ids(left_ids & right_ids)
+        graph.edges[left, right]["shared_requirement_ids"] = ",".join(shared_ids)
+        graph.edges[left, right]["shared_requirement_count"] = len(shared_ids)
+    
+    return graph
 
 
 def save_graph_gexf(graph: nx.Graph, output_path: str) -> str:

@@ -22,7 +22,9 @@ from transformers import (
 )
 
 MODEL_NAME = "google/flan-t5-base"
+# Stopwords: common grammatical and non-informative terms to exclude from keyword extraction
 _STOPWORDS = {
+    # Common grammatical stopwords
     "a",
     "an",
     "and",
@@ -49,6 +51,35 @@ _STOPWORDS = {
     "to",
     "want",
     "with",
+    # Non-informative UI/generic terms
+    "home",
+    "user",
+    "page",
+    "system",
+    "feature",
+    "interface",
+    "button",
+    "screen",
+    "application",
+    "window",
+    "link",
+    "input",
+    "field",
+    "option",
+    "setting",
+    "menu",
+    "form",
+    "dialog",
+    "view",
+    "panel",
+    "message",
+    "content",
+    "data",
+    "item",
+    "element",
+    "action",
+    "function",
+    "tool",
 }
 
 

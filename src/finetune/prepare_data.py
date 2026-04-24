@@ -42,9 +42,25 @@ def _build_prompt(row: pd.Series) -> str:
     feature = _clean_text(row.get("feature", ""))
     benefit = _clean_text(row.get("benefit", ""))
     return (
-        "Extract comma-separated keywords from this user story. "
-        "Return only keywords.\n"
-        f"As a {role}, I want {feature} so that {benefit}"
+        "Task: Extract high-quality keywords from the following user story.\n"
+        
+        "Rules:\n"
+        "- Return ONLY a comma-separated list of keywords.\n"
+        "- Use 1–3 words per keyword (noun phrases preferred).\n"
+        "- Avoid generic or uninformative terms (e.g., user, system, home, feature).\n"
+        "- Avoid duplicates and synonyms.\n"
+        "- Prefer domain-specific and meaningful terms.\n"
+        "- Include actions only if they are essential (e.g., 'user authentication').\n"
+        "- Maximum 6 keywords.\n"
+        
+        "Example:\n"
+        "Input: As a user, I want to reset my password so that I can regain access.\n"
+        "Output: password reset, account access, authentication\n\n"
+        
+        "Input:\n"
+        f"As a {role}, I want {feature} so that {benefit}\n"
+        
+        "Output:"
     )
 
 

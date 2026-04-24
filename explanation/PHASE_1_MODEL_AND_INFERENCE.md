@@ -1,145 +1,111 @@
-# Phase 1 Technical README: Model, Data, and Inference
+# Phase 1: Model and Inference
 
-This document explains how Phase 1 is implemented in the current pipeline.
+This step turns user stories into clean keyword sets that the next phases can use.
 
-## Scope of Phase 1
+## Quick Purpose
 
-Phase 1 covers:
-- Optional fine-tuning
-- Dataset preparation for training
-- Full-dataset inference on requirements
-- Keyword normalization
-- Verification report generation
-- Inference diagnostics
+Phase 1 answers two questions:
+- What keywords describe each requirement?
+- How reliable is the extraction process?
 
-Main orchestrator:
-- `python -m src.run_pipeline`
+## What This Step Works On
 
-Main modules:
+Primary input:
+- `data/crowd.csv`
+
+Expected columns:
+- `role`
+- `feature`
+- `benefit`
+- `source_id` (or another requirement identifier)
+
+Optional column:
+- `tags` (used only for evaluation metrics, not required for inference)
+
+Optional training input override:
+- `--train-input-csv`
+
+## What This Step Produces
+
+- One normalized keyword list per requirement (in memory, passed to Phase 2)
+- Optional fine-tuned model artifacts in `models/flan-t5-keywords` (or custom `--model-dir`)
+- Verification report in `results/real_case_comparison.json` when `tags` is available
+- Inference diagnostics (how often model output vs fallback output was used)
+
+## How This Step Works
+
+### 1. Model selection
+
+Two runtime modes are supported:
+
+1. Training enabled (`--train`)
+- Build dataset splits
+- Fine-tune FLAN-T5 with LoRA
+- Save model to `--model-dir`
+- Use this model for inference
+
+2. Training disabled (default)
+- Try loading a fine-tuned model from `--model-dir`
+- If missing, automatically fallback to base model (`google/flan-t5-base` by default)
+
+### 2. Prompt creation
+
+Each requirement is converted to a prompt using this story template:
+- As a <role>, I want <feature> so that <benefit>
+
+The instruction asks for comma-separated keywords only and explicitly discourages generic, low-information terms.
+
+### 3. Generation and fallback
+
+Inference runs in batches and uses beam search.
+
+If generation is empty for a row:
+- A deterministic fallback extracts candidate terms from the prompt text
+- The output still follows the same normalization pipeline
+
+This ensures each requirement gets a non-empty keyword result.
+
+### 4. Normalization and filtering
+
+All predicted keywords are normalized with consistent rules:
+- Lowercasing
+- Light singularization
+- Deduplication
+- Lexicographic sorting
+- Stopword and non-informative term filtering
+
+The same rules are applied for:
+- Predicted output
+- Evaluation metrics
+- Graph input parsing in Phase 2
+
+### 5. Verification report
+
+If `tags` exists in `data/crowd.csv`, Phase 1 writes:
+- `results/real_case_comparison.json`
+
+Main sections include:
+- `metrics` (exact match, precision/recall/F1 variants)
+- `diagnostics.keyword_inference` (model vs fallback usage)
+- `records` (row-level predicted vs reference tags)
+
+If `tags` is missing, inference still runs and reporting is skipped gracefully.
+
+## Why This Step Is Important
+
+Phase 1 creates the semantic foundation of the pipeline:
+- Better keyword quality improves graph quality in Phase 2
+- Strong normalization keeps behavior consistent across all downstream steps
+- Diagnostics make extraction behavior transparent and auditable
+
+## Main Code Entry Points
+
 - `src/run_pipeline.py`
 - `src/finetune/prepare_data.py`
 - `src/finetune/train.py`
 - `src/finetune/metrics.py`
 - `src/keywords/normalize.py`
 
-## Runtime Behavior
+## Next Step
 
-The pipeline has two execution modes for model usage:
-
-1. Training enabled (`--train`)
-- Prepares fixed train/validation/test splits from the selected training CSV
-- Fine-tunes model with LoRA
-- Saves model to `--model-dir`
-- Uses that model for inference
-
-2. Training disabled (default)
-- Tries loading a fine-tuned model from `--model-dir`
-- If not available, falls back to base model (`--base-model-name`, default `google/flan-t5-base`)
-- Continues inference without stopping
-
-## Data Flow
-
-### Training dataset path
-
-Training CSV is configurable with:
-- `--train-input-csv`
-
-If omitted, input fallback logic checks:
-- `data/crowd.csv`
-- `requirements.csv`
-
-### Inference dataset path
-
-Inference always uses:
-- `data/crowd.csv`
-
-This is intentional so graph generation and reporting are computed over the full requirements set.
-
-## Training Dataset Preparation
-
-Training preparation performs:
-- Prompt construction from `role`, `feature`, `benefit`
-- Target extraction from `tags`
-- Cleaning of empty tags
-- Fixed split sizes:
-  - train: 2000
-  - validation: 250
-  - test: 250
-  - remainder: held-out (not used by trainer)
-
-HF dataset is written to:
-- `--hf-dataset-dir` (default `data/hf_dataset`)
-
-## Prompt Template
-
-Each requirement is transformed into a generation prompt:
-
-- Instruction prefix: "Extract comma-separated keywords from this user story. Return only keywords."
-- Story body: "As a <role>, I want <feature> so that <benefit>"
-
-## Inference and Generation
-
-Inference runs in batches (`--inference-batch-size`) and uses beam search.
-
-If the model returns an empty prediction for a row:
-- A deterministic fallback extracts candidate terms from the prompt text
-- Output still goes through the same normalization pipeline
-
-This guarantees non-empty keyword outputs.
-
-## Keyword Normalization Rules
-
-All generated keyword strings are normalized before any metric or graph step.
-
-Normalization guarantees:
-- Lowercase
-- Singularized words (heuristic rules)
-- Deduplicated terms
-- Lexicographically sorted output
-
-The same normalization is used in:
-- Prediction output
-- Evaluation metrics
-- Graph input parsing
-
-## Verification Report
-
-If `tags` column exists in `data/crowd.csv`, the pipeline writes:
-- `results/real_case_comparison.json`
-
-Report contains:
-- `metrics`:
-  - exact_match
-  - precision_micro
-  - recall_micro
-  - f1_micro
-  - mean_sample_f1
-- `diagnostics.keyword_inference`:
-  - total
-  - from_model
-  - from_fallback
-  - fallback_ratio
-- `records`: per requirement row
-  - source_id
-  - input
-  - predicted_tags
-  - real_tags
-
-If `tags` is missing, metrics/report section is skipped.
-
-
-## Failure and Recovery Strategy
-
-Built-in resilience in Phase 1:
-- Missing fine-tuned model does not fail pipeline; it falls back to base model
-- Empty generations are recovered through prompt-based fallback extraction
-- Diagnostic counters expose how often fallback was used
-
-## Outputs Produced by Phase 1
-
-- Trained model artifacts (when `--train`): `models/flan-t5-keywords` (or custom path)
-- Verification JSON: `results/real_case_comparison.json`
-- In-memory normalized keyword lists passed to Phase 2
-
-## Next step
 [Phase 2 - Graph and Traceability](explanation/PHASE_2_GRAPH_AND_TRACEABILITY.md)

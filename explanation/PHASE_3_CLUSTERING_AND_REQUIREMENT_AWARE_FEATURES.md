@@ -1,139 +1,134 @@
-# Phase 3 Technical README: Clustering (Node2Vec + K-Means + UMAP)
+# Phase 3: Clustering and Requirement-Aware Features
 
-This document explains how Phase 3 is implemented in the current pipeline.
+This step groups graph concepts into themes and explains cluster behavior with requirement-aware features.
 
-## Scope of Phase 3
+## Quick Purpose
 
-Phase 3 covers:
-- Graph node embedding with Node2Vec
-- Requirement-aware feature augmentation
-- Cluster selection and assignment with K-Means
-- 2D projection with UMAP for visualization
-- Clustering diagnostics export (JSON + elbow/silhouette chart)
+Phase 3 answers two questions:
+- Which keyword nodes belong to the same semantic theme?
+- How do graph structure and requirement provenance jointly shape clusters?
 
-Main modules:
-- `src/run_pipeline.py`
-- `src/clustering/clustering.py`
+## What This Step Works On
 
-## Phase 3 Input Contract
+Input graph from Phase 2, including:
+- Semantic nodes and edges
+- Node attributes `requirement_ids` and `requirement_count`
 
-Input graph comes from Phase 2 and already contains:
-- Keyword nodes
-- Semantic edges
-- Node traceability attributes:
-  - `requirement_ids`
-  - `requirement_count`
+This allows clustering to combine:
+- Structural signals (Node2Vec)
+- Requirement traceability signals (incidence features)
 
-This means clustering can use both:
-- Graph structure (Node2Vec)
-- Explicit requirement provenance (requirement feature matrix)
+## What This Step Produces
 
-## End-to-End Pipeline in Phase 3
+- Cluster IDs assigned to graph nodes
+- 2D coordinates (`umap_x`, `umap_y`) for visualization
+- Cluster labels generated with FLAN-T5
+- Clustering diagnostics report in JSON
+- Elbow/silhouette image for k-selection interpretation
 
-1. Build Node2Vec embeddings for each keyword node
-2. Build requirement-incidence matrix from `requirement_ids`
-3. Reduce requirement matrix dimensionality with Truncated SVD
-4. Normalize and combine feature blocks (Node2Vec + requirement block)
-5. Select `k` (manual or auto by silhouette)
-6. Run K-Means
-7. Compute UMAP 2D coordinates
-8. Annotate graph nodes and export clustering report
+Default outputs:
+- `results/clustering_report.json`
+- `results/elbow.png`
 
-## Node2Vec Embeddings
+Optional comparison output:
+- `results/direct_clustering_report.json`
 
-Node2Vec is computed with edge `weight` as walk bias.
+## How This Step Works
 
-Main controls:
+### 1. Node2Vec embedding
+
+Build dense vectors for each keyword node using weighted random walks.
+
+Main controls include:
 - `embedding_dim`
 - `node2vec_walk_length`
 - `node2vec_num_walks`
 - `node2vec_workers`
 - `random_state`
 
-Output:
-- One dense vector per node keyword
+### 2. Requirement-aware feature matrix
 
-## Requirement-Aware Feature Block
+For each node:
+- Read `requirement_ids`
+- Build a binary incidence vector over all unique requirement IDs
 
-For each node keyword:
-- Read `requirement_ids` from node attributes
-- Create a binary row over all unique requirement IDs in the graph
-- Value `1.0` if keyword appears in that requirement, else `0.0`
-
-The binary matrix is reduced using Truncated SVD to avoid excessive dimensionality.
+Then reduce dimensionality with Truncated SVD to keep features compact.
 
 Main controls:
 - `requirement_svd_dim`
 - `requirement_feature_weight`
 
-Combination rule:
+If requirement IDs are unavailable, this block is disabled automatically and clustering falls back to pure Node2Vec.
+
+### 3. Feature fusion
+
+Fusion strategy:
 - Normalize Node2Vec block
 - Normalize requirement block
 - Concatenate `[node2vec, requirement_block * weight]`
 
-If no requirement IDs are available:
-- Requirement block is disabled automatically
-- Clustering falls back to pure Node2Vec features
+This balances topology with explicit requirement context.
 
-## K Selection Strategy
+### 4. Choose number of clusters (k)
 
-Two modes are supported:
+Two modes:
 
-1. Manual `k`
-- If `requested_k` is provided, that value is used (bounded by node count)
+1. Manual
+- Use `requested_k` (bounded by node count)
 
-2. Automatic `k`
-- Evaluate `k` in `[k_min, k_max]`
-- Compute inertia and silhouette for each candidate
-- Select the candidate with maximum silhouette
+2. Automatic
+- Evaluate candidates in `[k_min, k_max]`
+- Compute inertia and silhouette for each
+- Select the k with highest silhouette
 
-## K-Means and Cluster Labels
+### 5. Run K-Means and annotate nodes
 
-K-Means runs on the final combined feature vectors.
+K-Means assigns a `cluster_id` to each node.
 
-For each node, the following attributes are written into the graph:
-- `cluster_id`
+Then UMAP projects vectors to 2D and writes:
 - `umap_x`
 - `umap_y`
 
-These values are later available in the GEXF output.
+These attributes are added directly to graph nodes.
 
-## UMAP Projection
+### 6. Generate cluster labels with FLAN-T5
 
-UMAP projects clustering vectors to 2D for visualization.
+For each cluster:
+- Collect top keywords (up to 20)
+- Prompt FLAN-T5 for a short descriptive label (2-5 words)
+- Clean and store the generated label
 
-Details:
-- `n_components=2`
-- `n_neighbors` is automatically adapted to node count
-- Robust handling for tiny graphs (`0` or `1` node)
+Result example:
+- `"0": "user authentication"`
 
-## Clustering Report Output
+### 7. Export diagnostics and mappings
 
-JSON report default path:
-- `results/clustering_report.json`
+The report contains:
+- `clustering` summary (k, scores, feature dimensions)
+- `cluster_requirements_mapping`
+- `requirement_to_cluster_mapping`
+- `cluster_labels`
+- `nodes` with cluster and UMAP fields
 
-Main report sections:
-- `clustering`
-  - `selected_k`
-  - `num_nodes`
-  - `embedding_dim`
-  - `effective_feature_dim`
-  - `inertia`
-  - `silhouette`
-  - `k_selection` (strategy + candidate scores)
-  - `elbow_plot`
-  - `requirement_features` (enabled, dims, weight, requirement count)
-- `nodes`
-  - `keyword`
-  - `cluster_id`
-  - `umap_x`
-  - `umap_y`
+## Processing Order Summary
 
-Elbow/silhouette plot default path:
-- `results/elbow.png`
+1. Build Node2Vec vectors
+2. Build and reduce requirement feature matrix
+3. Fuse feature blocks
+4. Select k (manual or automatic)
+5. Run K-Means
+6. Project to 2D with UMAP
+7. Label clusters with FLAN-T5
+8. Export reports and plots
 
-## Outputs Produced by Phase 3
+## Main Code Entry Points
 
-- Enriched graph node attributes (`cluster_id`, `umap_x`, `umap_y`) in final GEXF
-- Clustering report JSON for diagnostics and downstream analysis
-- Elbow/silhouette plot image for `k` interpretation
+- `src/run_pipeline.py`
+- `src/clustering/clustering.py`
+
+## Final Output Context
+
+After Phase 3, the graph is ready for interpretation and downstream analysis:
+- Each concept has a cluster assignment
+- Clusters have human-readable labels
+- Requirement-level traceability is preserved across the full pipeline

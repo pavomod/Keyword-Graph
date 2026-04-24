@@ -1,0 +1,25 @@
+{
+  "comparison": {
+    "method": "keyword_graph_vs_direct_embedding",
+    "num_requirements": 2966
+  },
+  "keyword_graph_approach": {
+    "num_clusters": 9,
+    "requirements_mapped": 2965,
+    "multi_cluster_requirements": 2848
+  },
+  "direct_embedding_approach": {
+    "num_clusters": 9,
+    "inertia": 1810.1641801173275,
+    "silhouette": 0.057286032717251106,
+    "davies_bouldin": 3.3113870548144004,
+    "calinski_harabasz": 78.99591627181621
+  },
+  "cross_approach_agreement": {
+    "total_compared": 2965,
+    "agreement_count": 717,
+    "mismatch_count": 2248,
+    "agreement_ratio": 0.2418212478920742
+  },
+  "interpretation": "High agreement ratio indicates both approaches produce similar clusters. Lower agreement suggests keyword graph captures different semantic structures. Different cluster counts (k) may indicate different granularity levels."
+}

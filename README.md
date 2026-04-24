@@ -76,6 +76,10 @@ python -m src.run_pipeline
 | `--inference-batch-size` | `int` | `16` | Batch size used during full-dataset inference/prediction phase. |
 | `--semantic-threshold` | `float` | `0.4` | Minimum cosine similarity required to create an edge between two keywords in the semantic graph. |
 | `--semantic-model` | `str` | `all-MiniLM-L6-v2` | Sentence-Transformers model used to compute keyword semantic similarity. |
+| `--enable-node-reduction` | flag | `True` | Enable node reduction: absorb low-degree nodes into high-degree hub nodes. |
+| `--disable-node-reduction` | flag | `False` | Disable node reduction. |
+| `--node-reduction-degree-threshold-low` | `int` | `2` | Maximum degree for a node to be considered "low" and eligible for absorption. |
+| `--node-reduction-degree-threshold-high` | `int` | `5` | Minimum degree for a node to be considered a "hub" node. |
 | `--enable-clustering` | flag | `True` | Enable Phase 3 clustering (Node2Vec + K-Means + UMAP). |
 | `--no-clustering` | flag | `False` | Disable Phase 3 clustering. |
 | `--cluster-k` | `int` | `None` | Fixed number of clusters. If omitted, `k` is selected automatically by silhouette score. |
@@ -90,6 +94,9 @@ python -m src.run_pipeline
 | `--cluster-requirement-svd-dim` | `int` | `16` | SVD-reduced dimensionality of requirement incidence features. |
 | `--cluster-report-out` | `str` | `results/clustering_report.json` | Output JSON report path for clustering diagnostics and per-node cluster assignments. |
 | `--cluster-elbow-plot-out` | `str` | `results/elbow.png` | Output plot path for inertia and silhouette by candidate `k`. |
+| `--enable-clustering-comparison` | flag | `True` | Enable clustering comparison: evaluate keyword-graph clustering vs direct requirement embedding clustering. |
+| `--disable-clustering-comparison` | flag | `False` | Disable clustering comparison. |
+| `--clustering-comparison-out` | `str` | `results/clustering_comparison.json` | Output JSON path for clustering comparison diagnostics and cross-approach agreement metrics. |
 
 ### Notes on training behavior
 
@@ -136,5 +143,142 @@ Graph logic:
 - The graph compares all extracted keywords globally (not only inside the same user story).
 - An edge is created only when semantic similarity is greater than or equal to `--semantic-threshold`.
 - Edge weight is the cosine semantic similarity score.
+
+## Clustering Comparison (Phase 3+)
+
+**Purpose**: Evaluate whether the keyword-graph clustering approach produces better results than direct requirement clustering.
+
+**How it works**:
+1. Runs the keyword-graph clustering pipeline (Phase 3)
+2. In parallel, clusters requirements directly using their text embeddings (without keywords)
+3. Compares cluster assignments between the two approaches
+4. Generates a JSON report with agreement metrics
+
+**Outputs**:
+- JSON comparison report: `results/clustering_comparison.json`
+- Direct clustering report with pipeline-like schema: `results/direct_clustering_report.json`
+
+**Report structure**:
+```json
+{
+  "clustering": {
+    "enabled": true,
+    "mode": "direct_requirement_clustering",
+    "selected_k": 12,
+    "num_nodes": 5000,
+    "embedding_dim": 384,
+    "effective_feature_dim": 384,
+    "inertia": 45000.5,
+    "silhouette": 0.42,
+    "k_selection": {
+      "selected_k": 12,
+      "strategy": "auto-silhouette",
+      "candidates": []
+    },
+    "elbow_plot": null,
+    "requirement_features": {
+      "enabled": false,
+      "reason": "direct_requirement_clustering",
+      "num_requirements": 5000,
+      "raw_dim": 384,
+      "reduced_dim": 384,
+      "weight": 0.0
+    }
+  },
+  "cluster_requirements_mapping": {
+    "0": ["1001", "1008"],
+    "1": ["1002", "1010"]
+  },
+  "requirement_to_cluster_mapping": {
+    "1001": [0],
+    "1002": [1]
+  },
+  "cluster_labels": {
+    "0": "user access control",
+    "1": "notification scheduling"
+  },
+  "nodes": [
+    {
+      "requirement_id": "1001",
+      "input": "As a ...",
+      "cluster_id": 0,
+      "umap_x": 0.12,
+      "umap_y": -0.34
+    }
+  ]
+}
+```
+
+The same structure is used for the keyword-graph clustering report in `results/clustering_report.json`, so you can compare the two outputs directly.
+
+## Direct Clustering Report
+
+The direct clustering report mirrors the keyword-graph report structure, but it is built from requirement embeddings instead of keyword graph nodes.
+
+**Purpose**:
+- Keep the same JSON shape for both approaches
+- Make quantitative comparison and inspection easier
+- Preserve cluster labels and per-node assignments for direct clustering
+
+**Configuration**:
+- Output path: `--direct-clustering-report-out`
+
+**Schema notes**:
+- `cluster_requirements_mapping` maps cluster IDs to unique requirement IDs
+- `requirement_to_cluster_mapping` maps each requirement to its direct cluster as a one-item list
+- `cluster_labels` are generated with FLAN-T5 in the same way as the pipeline report
+
+The comparison report in `results/clustering_comparison.json` is still generated alongside it.
+```
+
+**Interpretation**:
+- **High agreement ratio** (>0.75): Both approaches produce similar clusters, suggesting robust clustering structure
+- **Low agreement ratio** (<0.6): Keyword graph captures different semantic structures; may indicate:
+  - Keywords provide valuable semantic compression
+  - Direct embedding misses intermediate abstractions that keywords capture
+- **Cluster count difference**: Different k values can indicate different granularity levels
+  - Keyword graph typically produces fewer clusters (nodes as abstractions)
+  - Direct embedding may create more fine-grained clusters
+
+**Configuration**:
+- Enable with `--enable-clustering-comparison` (default: enabled when clustering is enabled)
+- Disable with `--disable-clustering-comparison`
+- Output path: `--clustering-comparison-out`
+
+## Cluster Labeling (Phase 3)
+
+**Purpose**: Automatically generate human-readable, descriptive labels for each cluster using FLAN-T5.
+
+**How it works**:
+1. For each cluster, the top 20 keywords are collected
+2. A prompt is created: *"Generate a brief, descriptive label (2-5 words) for a cluster of requirements represented by these keywords: [keywords]. The cluster contains [N] requirements. Label:"*
+3. FLAN-T5 generates a concise label capturing the cluster's semantic essence
+4. Labels are cleaned and stored in the clustering report
+
+**Example labels**:
+```
+Cluster 0: "user authentication"
+Cluster 1: "notification scheduling" 
+Cluster 2: "data export functionality"
+Cluster 3: "permission management"
+```
+
+**Output**:
+- Labels are included in the clustering report under `cluster_labels`
+- Format: `{ "0": "user authentication", "1": "notification scheduling", ... }`
+- Each label is 2-5 words, lowercase, free of punctuation
+
+**Configuration**:
+- Automatically enabled when clustering is enabled
+- Uses the same model (fine-tuned or base FLAN-T5) as Phase 1 keyword extraction
+- Ensures semantic consistency across the entire pipeline
+
+**Benefits**:
+- Provides human-interpretable summaries of discovered clusters
+- Enables quick understanding of requirement groupings
+- Facilitates communication with non-technical stakeholders
+- Uses the same semantic understanding as keyword extraction for consistency
+
+
 
 
