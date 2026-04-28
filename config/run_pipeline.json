@@ -18,12 +18,12 @@
   "comparison_json_out": "results/real_case_comparison.json",
   "graph_out": "results/keyword_graph.gexf",
   "inference_batch_size": 16,
-  "semantic_threshold": 0.5,
+  "semantic_threshold": 0.6,
   "semantic_model": "all-MiniLM-L6-v2",
   "enable_clustering": true,
-  "cluster_k": 9,
-  "cluster_k_min": 2,
-  "cluster_k_max": 15,
+  "cluster_k": null,
+  "cluster_k_min": 3,
+  "cluster_k_max": 10,
   "cluster_embedding_dim": 64,
   "cluster_random_state": 42,
   "cluster_node2vec_walk_length": 30,
@@ -32,5 +32,5 @@
   "cluster_requirement_feature_weight": 0.5,
   "cluster_requirement_svd_dim": 16,
   "cluster_report_out": "results/clustering_report.json",
-  "cluster_elbow_plot_out": "results/elbow.png"
+  "cluster_elbow_plot_out": "results/k.png"
 }

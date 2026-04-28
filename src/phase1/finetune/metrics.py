@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from src.keywords.normalize import parse_keyword_text
+from src.phase1.finetune.normalize import parse_keyword_text
 
 
 def keyword_f1(predicted: str, ground_truth: str) -> float:

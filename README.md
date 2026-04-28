@@ -4,7 +4,7 @@ A step-by-step pipeline for keyword extraction from requirements and graph-based
 
 ## Technical Explanations
 
-Detailed technical documentation for each implemented phase is available in:
+Detailed technical documentation for the implemented pipeline phases is available in:
 
 - [Phase 1 - Model and Inference](explanation/PHASE_1_MODEL_AND_INFERENCE.md)
 - [Phase 2 - Graph and Traceability](explanation/PHASE_2_GRAPH_AND_TRACEABILITY.md)
@@ -82,7 +82,7 @@ python -m src.run_pipeline
 | `--node-reduction-degree-threshold-high` | `int` | `5` | Minimum degree for a node to be considered a "hub" node. |
 | `--enable-clustering` | flag | `True` | Enable Phase 3 clustering (Node2Vec + K-Means + UMAP). |
 | `--no-clustering` | flag | `False` | Disable Phase 3 clustering. |
-| `--cluster-k` | `int` | `None` | Fixed number of clusters. If omitted, `k` is selected automatically by silhouette score. |
+| `--cluster-k` | `int` | `None` | Fixed number of clusters. If omitted, `k` is selected automatically using Davies-Bouldin and Calinski-Harabasz scores. |
 | `--cluster-k-min` | `int` | `2` | Lower bound for automatic `k` search. |
 | `--cluster-k-max` | `int` | `15` | Upper bound for automatic `k` search. |
 | `--cluster-embedding-dim` | `int` | `64` | Node2Vec embedding dimension before feature fusion. |
@@ -93,16 +93,26 @@ python -m src.run_pipeline
 | `--cluster-requirement-feature-weight` | `float` | `0.5` | Weight applied to requirement-aware feature block before concatenation with Node2Vec vectors. |
 | `--cluster-requirement-svd-dim` | `int` | `16` | SVD-reduced dimensionality of requirement incidence features. |
 | `--cluster-report-out` | `str` | `results/clustering_report.json` | Output JSON report path for clustering diagnostics and per-node cluster assignments. |
-| `--cluster-elbow-plot-out` | `str` | `results/elbow.png` | Output plot path for inertia and silhouette by candidate `k`. |
+| `--cluster-elbow-plot-out` | `str` | `results/k.png` | Output plot path for inertia and cluster quality scores by candidate `k`. |
 | `--enable-clustering-comparison` | flag | `True` | Enable clustering comparison: evaluate keyword-graph clustering vs direct requirement embedding clustering. |
 | `--disable-clustering-comparison` | flag | `False` | Disable clustering comparison. |
 | `--clustering-comparison-out` | `str` | `results/clustering_comparison.json` | Output JSON path for clustering comparison diagnostics and cross-approach agreement metrics. |
+| `--direct-clustering-report-out` | `str` | `results/direct_clustering_report.json` | Output JSON path for the direct requirement clustering report. |
+| `--use-finetuned` | flag | `False` | Force the pipeline to use the fine-tuned model for inference even when KeyBERT is available. |
 
 ### Notes on training behavior
 
 - Fine-tuning is optional and runs only when `--train` is provided.
 - Without `--train`, the pipeline tries to load the model from `--model-dir`; if unavailable, it uses the base model.
 - Training data path and split sizes are fully controllable via CLI/config.
+
+### KeyBERT default extractor
+
+- The pipeline now prefers KeyBERT for keyword extraction by default when KeyBERT is installed in the environment.
+- To force using the fine-tuned model instead, pass `--use-finetuned` on the command line.
+- If `--use-finetuned` is provided but no checkpoint exists in `--model-dir`, the pipeline will warn and fall back to KeyBERT or the base model.
+
+Ensure KeyBERT is installed if you want the default extractor behavior: `pip install keybert` (already suggested in `requirements.txt`).
 
 ### Config precedence
 
@@ -143,6 +153,8 @@ Graph logic:
 - The graph compares all extracted keywords globally (not only inside the same user story).
 - An edge is created only when semantic similarity is greater than or equal to `--semantic-threshold`.
 - Edge weight is the cosine semantic similarity score.
+- Nodes with degree `0` are removed before clustering.
+- Node reduction merges low-degree nodes into hubs when `--enable-node-reduction` is active.
 
 ## Clustering Comparison (Phase 3+)
 
@@ -155,34 +167,32 @@ Graph logic:
 4. Generates a JSON report with agreement metrics
 
 **Outputs**:
-- JSON comparison report: `results/clustering_comparison.json`
+- Keyword-graph clustering report: `results/clustering_report.json`
 - Direct clustering report with pipeline-like schema: `results/direct_clustering_report.json`
+- Comparison report: `results/clustering_comparison.json`
 
-**Report structure**:
+**Keyword-graph report shape**:
 ```json
 {
   "clustering": {
     "enabled": true,
-    "mode": "direct_requirement_clustering",
     "selected_k": 12,
-    "num_nodes": 5000,
-    "embedding_dim": 384,
-    "effective_feature_dim": 384,
-    "inertia": 45000.5,
-    "silhouette": 0.42,
+    "num_nodes": 1477,
+    "embedding_dim": 64,
+    "effective_feature_dim": 80,
+    "inertia": 81390.92,
     "k_selection": {
       "selected_k": 12,
-      "strategy": "auto-silhouette",
+      "strategy": "auto-combined",
       "candidates": []
     },
     "elbow_plot": null,
     "requirement_features": {
-      "enabled": false,
-      "reason": "direct_requirement_clustering",
-      "num_requirements": 5000,
-      "raw_dim": 384,
-      "reduced_dim": 384,
-      "weight": 0.0
+      "enabled": true,
+      "num_requirements": 2965,
+      "raw_dim": 2965,
+      "reduced_dim": 16,
+      "weight": 0.5
     }
   },
   "cluster_requirements_mapping": {
@@ -190,17 +200,12 @@ Graph logic:
     "1": ["1002", "1010"]
   },
   "requirement_to_cluster_mapping": {
-    "1001": [0],
+    "1001": [0, 2],
     "1002": [1]
-  },
-  "cluster_labels": {
-    "0": "user access control",
-    "1": "notification scheduling"
   },
   "nodes": [
     {
-      "requirement_id": "1001",
-      "input": "As a ...",
+      "keyword": "temperature",
       "cluster_id": 0,
       "umap_x": 0.12,
       "umap_y": -0.34
@@ -209,16 +214,16 @@ Graph logic:
 }
 ```
 
-The same structure is used for the keyword-graph clustering report in `results/clustering_report.json`, so you can compare the two outputs directly.
+The direct requirement report in `results/direct_clustering_report.json` uses the same top-level shape, but its `clustering` section includes `mode: "direct_requirement_clustering"` and its `nodes` list stores `requirement_id` and `input` instead of graph keywords.
 
 ## Direct Clustering Report
 
 The direct clustering report mirrors the keyword-graph report structure, but it is built from requirement embeddings instead of keyword graph nodes.
 
 **Purpose**:
-- Keep the same JSON shape for both approaches
+- Keep the same top-level JSON shape for both approaches
 - Make quantitative comparison and inspection easier
-- Preserve cluster labels and per-node assignments for direct clustering
+- Preserve per-requirement assignments for direct clustering
 
 **Configuration**:
 - Output path: `--direct-clustering-report-out`
@@ -226,58 +231,11 @@ The direct clustering report mirrors the keyword-graph report structure, but it 
 **Schema notes**:
 - `cluster_requirements_mapping` maps cluster IDs to unique requirement IDs
 - `requirement_to_cluster_mapping` maps each requirement to its direct cluster as a one-item list
-- `cluster_labels` are generated with FLAN-T5 in the same way as the pipeline report
+- `nodes` contains `requirement_id`, `input`, `cluster_id`, `umap_x`, and `umap_y`
 
 The comparison report in `results/clustering_comparison.json` is still generated alongside it.
-```
 
-**Interpretation**:
-- **High agreement ratio** (>0.75): Both approaches produce similar clusters, suggesting robust clustering structure
-- **Low agreement ratio** (<0.6): Keyword graph captures different semantic structures; may indicate:
-  - Keywords provide valuable semantic compression
-  - Direct embedding misses intermediate abstractions that keywords capture
-- **Cluster count difference**: Different k values can indicate different granularity levels
-  - Keyword graph typically produces fewer clusters (nodes as abstractions)
-  - Direct embedding may create more fine-grained clusters
 
-**Configuration**:
-- Enable with `--enable-clustering-comparison` (default: enabled when clustering is enabled)
-- Disable with `--disable-clustering-comparison`
-- Output path: `--clustering-comparison-out`
-
-## Cluster Labeling (Phase 3)
-
-**Purpose**: Automatically generate human-readable, descriptive labels for each cluster using FLAN-T5.
-
-**How it works**:
-1. For each cluster, the top 20 keywords are collected
-2. A prompt is created: *"Generate a brief, descriptive label (2-5 words) for a cluster of requirements represented by these keywords: [keywords]. The cluster contains [N] requirements. Label:"*
-3. FLAN-T5 generates a concise label capturing the cluster's semantic essence
-4. Labels are cleaned and stored in the clustering report
-
-**Example labels**:
-```
-Cluster 0: "user authentication"
-Cluster 1: "notification scheduling" 
-Cluster 2: "data export functionality"
-Cluster 3: "permission management"
-```
-
-**Output**:
-- Labels are included in the clustering report under `cluster_labels`
-- Format: `{ "0": "user authentication", "1": "notification scheduling", ... }`
-- Each label is 2-5 words, lowercase, free of punctuation
-
-**Configuration**:
-- Automatically enabled when clustering is enabled
-- Uses the same model (fine-tuned or base FLAN-T5) as Phase 1 keyword extraction
-- Ensures semantic consistency across the entire pipeline
-
-**Benefits**:
-- Provides human-interpretable summaries of discovered clusters
-- Enables quick understanding of requirement groupings
-- Facilitates communication with non-technical stakeholders
-- Uses the same semantic understanding as keyword extraction for consistency
 
 
 

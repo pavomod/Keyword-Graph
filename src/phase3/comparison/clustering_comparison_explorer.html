@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Clustering Explorer — Keyword Graph vs Direct Embedding</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    /* Dark mode palette */
+    --bg: #0f1115;
+    --surface: #0b0d10;
+    --surface-2: #111315;
+    --border: #1e2228;
+    --border-med: #2b3036;
+    --text: #e6e6e6;
+    --text-2: #bdbdbd;
+    --text-3: #8f8f8f;
+    --accent-kg: #8f82ff;
+    --accent-kg-light: #1a1630;
+    --accent-kg-dark: #3C3489;
+    --accent-direct: #49b892;
+    --accent-direct-light: #083628;
+    --accent-direct-dark: #0b6e4f;
+    --accent-amber: #f2a85c;
+    --accent-amber-light: #3a2410;
+    --radius: 10px;
+    --radius-sm: 6px;
+    --shadow: 0 4px 18px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.02);
+  }
+
+  body {
+    font-family: 'Georgia', serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    padding: 2rem 1.5rem;
+  }
+
+  h1 {
+    font-size: 20px;
+    font-weight: normal;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.25rem;
+    color: var(--text);
+  }
+  .subtitle {
+    font-size: 13px;
+    color: var(--text-2);
+    font-family: 'Courier New', monospace;
+    margin-bottom: 2rem;
+  }
+
+  /* Upload */
+  .upload-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 1.5rem;
+  }
+  .upload-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 14px 16px;
+    box-shadow: var(--shadow);
+  }
+  .upload-lbl {
+    font-size: 10px;
+    font-family: 'Courier New', monospace;
+    letter-spacing: 0.08em;
+    color: var(--text-3);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .upload-name {
+    font-size: 12px;
+    color: var(--text-2);
+    margin-top: 6px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .file-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    font-family: 'Courier New', monospace;
+    padding: 5px 12px;
+    border: 1px solid var(--border-med);
+    border-radius: var(--radius-sm);
+    background: var(--surface-2);
+    color: var(--text);
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  .file-btn:hover { background: var(--border); }
+  input[type=file] { display: none; }
+
+  /* Stats */
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin-bottom: 1.5rem;
+  }
+  .stat {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 14px 16px;
+    box-shadow: var(--shadow);
+  }
+  .stat-val {
+    font-size: 26px;
+    font-weight: normal;
+    letter-spacing: -0.03em;
+    color: var(--text);
+    line-height: 1;
+  }
+  .stat-lbl {
+    font-size: 11px;
+    color: var(--text-3);
+    margin-top: 4px;
+    font-family: 'Courier New', monospace;
+  }
+
+  /* ARI bar */
+  .ari-row {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 14px 18px;
+    margin-bottom: 1.5rem;
+    display: none;
+    align-items: center;
+    gap: 14px;
+    flex-wrap: wrap;
+    box-shadow: var(--shadow);
+  }
+  .ari-lbl { font-size: 11px; font-family: 'Courier New', monospace; color: var(--text-2); white-space: nowrap; }
+  .ari-track { flex: 1; min-width: 80px; height: 6px; background: var(--surface-2); border-radius: 20px; overflow: hidden; }
+  .ari-fill { height: 100%; border-radius: 20px; transition: width 0.5s ease; }
+  .ari-val { font-size: 15px; color: var(--text); white-space: nowrap; min-width: 48px; }
+  .ari-sep { width: 1px; height: 20px; background: var(--border); }
+  .ari-interp { font-size: 11px; color: var(--text-3); font-style: italic; }
+
+  /* Main panels */
+  .panels {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 1.5rem;
+  }
+  .panel {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+  }
+  .panel-head {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .panel-title { font-size: 13px; color: var(--text); }
+  .badge {
+    font-size: 10px;
+    font-family: 'Courier New', monospace;
+    padding: 3px 9px;
+    border-radius: 20px;
+    font-weight: normal;
+  }
+  .badge-kg { background: var(--accent-kg-light); color: var(--accent-kg-dark); }
+  .badge-direct { background: var(--accent-direct-light); color: var(--accent-direct-dark); }
+
+  .cluster-list { height: 280px; overflow-y: auto; padding: 8px; }
+  .cluster-chip {
+    padding: 7px 10px;
+    border-radius: var(--radius-sm);
+    margin-bottom: 3px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid transparent;
+    transition: background 0.1s, border-color 0.1s;
+  }
+  .cluster-chip:hover { background: var(--surface-2); }
+  .cluster-chip.active { background: var(--surface-2); border-color: var(--border-med); }
+  .cluster-name { font-size: 12px; color: var(--text); display: flex; align-items: center; gap: 7px; }
+  .cluster-count {
+    font-size: 10px;
+    font-family: 'Courier New', monospace;
+    color: var(--text-3);
+    background: var(--surface-2);
+    padding: 2px 7px;
+    border-radius: 20px;
+  }
+  .dot { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; }
+
+  /* Req panel */
+  .req-panel {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+  }
+  .req-head {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .req-title { font-size: 13px; color: var(--text); flex-shrink: 0; }
+  .search-box {
+    flex: 1;
+    min-width: 160px;
+    font-size: 12px;
+    font-family: 'Courier New', monospace;
+    padding: 5px 10px;
+    border: 1px solid var(--border-med);
+    border-radius: var(--radius-sm);
+    background: var(--surface-2);
+    color: var(--text);
+    outline: none;
+  }
+  .search-box:focus { border-color: #888; }
+  .req-list { padding: 10px; max-height: 480px; overflow-y: auto; }
+  .req-card {
+    padding: 10px 12px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    margin-bottom: 6px;
+    background: var(--surface);
+    transition: border-color 0.1s;
+  }
+  .req-card:hover { border-color: var(--border-med); }
+  .req-meta {
+    font-size: 10px;
+    font-family: 'Courier New', monospace;
+    color: var(--text-3);
+    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    flex-wrap: wrap;
+  }
+  .req-story { font-size: 13px; color: var(--text); line-height: 1.55; }
+  .req-story b { font-weight: normal; color: var(--text-2); font-style: italic; }
+  .req-tags { margin-top: 5px; }
+  .tag {
+    display: inline-block;
+    font-size: 10px;
+    font-family: 'Courier New', monospace;
+    background: var(--surface-2);
+    color: var(--text-3);
+    border-radius: 20px;
+    padding: 1px 7px;
+    margin: 2px 2px 0 0;
+  }
+  .cross-badge {
+    font-size: 10px;
+    font-family: 'Courier New', monospace;
+    padding: 2px 7px;
+    border-radius: 20px;
+    background: var(--accent-amber-light);
+    color: var(--accent-amber);
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .empty { padding: 2.5rem; text-align: center; font-size: 13px; color: var(--text-3); font-style: italic; }
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+</style>
+</head>
+<body>
+
+<h1>Clustering Explorer</h1>
+<div class="subtitle">keyword graph &nbsp;vs&nbsp; direct embedding — crowd requirements</div>
+
+<div class="upload-grid">
+  <div class="upload-card">
+    <div class="upload-lbl">JSON — Keyword Graph</div>
+    <label class="file-btn" for="file-kg">&#128194; Scegli file</label>
+    <input type="file" id="file-kg" accept=".json">
+    <div class="upload-name" id="name-kg">nessun file</div>
+  </div>
+  <div class="upload-card">
+    <div class="upload-lbl">JSON — Direct Embedding</div>
+    <label class="file-btn" for="file-direct">&#128194; Scegli file</label>
+    <input type="file" id="file-direct" accept=".json">
+    <div class="upload-name" id="name-direct">nessun file</div>
+  </div>
+  <div class="upload-card">
+    <div class="upload-lbl">CSV — Requisiti</div>
+    <label class="file-btn" for="file-csv">&#128194; Scegli file</label>
+    <input type="file" id="file-csv" accept=".csv">
+    <div class="upload-name" id="name-csv">nessun file</div>
+  </div>
+</div>
+
+<div class="stats-grid">
+  <div class="stat"><div class="stat-val" id="s-kg-k">—</div><div class="stat-lbl">cluster keyword graph</div></div>
+  <div class="stat"><div class="stat-val" id="s-dir-k">—</div><div class="stat-lbl">cluster direct embedding</div></div>
+  <div class="stat"><div class="stat-val" id="s-reqs">—</div><div class="stat-lbl">requisiti nel CSV</div></div>
+  <div class="stat"><div class="stat-val" id="s-diff">—</div><div class="stat-lbl">req. con cluster diverso</div></div>
+</div>
+
+<div class="ari-row" id="ari-row">
+  <div class="ari-lbl">ARI</div>
+  <div class="ari-track"><div class="ari-fill" id="ari-fill" style="background:#534AB7;width:0%"></div></div>
+  <div class="ari-val" id="ari-val">—</div>
+  <div class="ari-interp" id="ari-interp"></div>
+  <div class="ari-sep"></div>
+  <div class="ari-lbl">NMI</div>
+  <div class="ari-track"><div class="ari-fill" id="nmi-fill" style="background:#0F6E56;width:0%"></div></div>
+  <div class="ari-val" id="nmi-val">—</div>
+</div>
+
+<div class="panels">
+  <div class="panel">
+    <div class="panel-head">
+      <span class="panel-title">Keyword Graph</span>
+      <span class="badge badge-kg" id="badge-kg">— cluster</span>
+    </div>
+    <div class="cluster-list" id="kg-list"><div class="empty">carica il JSON keyword graph</div></div>
+  </div>
+  <div class="panel">
+    <div class="panel-head">
+      <span class="panel-title">Direct Embedding</span>
+      <span class="badge badge-direct" id="badge-direct">— cluster</span>
+    </div>
+    <div class="cluster-list" id="direct-list"><div class="empty">carica il JSON direct embedding</div></div>
+  </div>
+</div>
+
+<div class="req-panel">
+  <div class="req-head">
+    <span class="req-title" id="req-title">Seleziona un cluster per vedere i requisiti</span>
+    <input class="search-box" id="req-search" placeholder="cerca nel testo..." style="display:none">
+  </div>
+  <div class="req-list" id="req-list"><div class="empty">nessun cluster selezionato</div></div>
+</div>
+
+<script>
+var kgData = null, dirData = null, csvMap = {};
+var selKg = null, selDir = null, activeSource = null;
+
+var COLORS_KG = ['#534AB7','#D85A30','#0F6E56','#993556','#185FA5','#3B6D11','#854F0B','#A32D2D','#5F5E5A','#BA7517'];
+var COLORS_DIR = ['#0F6E56','#534AB7','#BA7517','#993556','#185FA5','#3B6D11','#A32D2D','#5F5E5A','#D85A30','#185FA5'];
+
+function col(idx, palette) { return palette[idx % palette.length]; }
+
+function parseCSV(text) {
+  var lines = text.trim().split('\n');
+  var headers = splitLine(lines[0]);
+  var map = {};
+  for (var i = 1; i < lines.length; i++) {
+    var vals = splitLine(lines[i]);
+    var row = {};
+    headers.forEach(function(h, j) { row[h] = (vals[j] || '').replace(/^"|"$/g, '').trim(); });
+    if (row.id) map[row.id] = row;
+  }
+  return map;
+}
+
+function splitLine(line) {
+  var res = [], cur = '', inQ = false;
+  for (var i = 0; i < line.length; i++) {
+    var c = line[i];
+    if (c === '"') { inQ = !inQ; continue; }
+    if (c === ',' && !inQ) { res.push(cur); cur = ''; continue; }
+    cur += c;
+  }
+  res.push(cur);
+  return res;
+}
+
+function getMapping(data) { return data.cluster_requirements_mapping || {}; }
+function getReqMap(data) { return data.requirement_to_cluster_mapping || {}; }
+
+function renderClusterList(elId, data, palette, source) {
+  var el = document.getElementById(elId);
+  var mapping = getMapping(data);
+  var keys = Object.keys(mapping).sort(function(a,b){ return parseInt(a)-parseInt(b); });
+  el.innerHTML = '';
+  keys.forEach(function(k) {
+    var reqs = mapping[k] || [];
+    var chip = document.createElement('div');
+    chip.className = 'cluster-chip';
+    chip.innerHTML =
+      '<span class="cluster-name"><span class="dot" style="background:' + col(parseInt(k), palette) + '"></span>Cluster ' + k + '</span>' +
+      '<span class="cluster-count">' + reqs.length + ' req</span>';
+    chip.onclick = (function(kk, src, ch, eid) {
+      return function() { selectCluster(kk, src, ch, eid); };
+    })(k, source, chip, elId);
+    el.appendChild(chip);
+  });
+}
+
+function selectCluster(k, source, chipEl, elId) {
+  document.querySelectorAll('#' + elId + ' .cluster-chip').forEach(function(c){ c.classList.remove('active'); });
+  chipEl.classList.add('active');
+  if (source === 'kg') selKg = k;
+  else selDir = k;
+  activeSource = source;
+  renderReqs();
+}
+
+function renderReqs() {
+  var searchEl = document.getElementById('req-search');
+  searchEl.style.display = 'block';
+  var q = searchEl.value.toLowerCase();
+
+  var data = activeSource === 'kg' ? kgData : dirData;
+  var palette = activeSource === 'kg' ? COLORS_KG : COLORS_DIR;
+  var k = activeSource === 'kg' ? selKg : selDir;
+  var otherData = activeSource === 'kg' ? dirData : kgData;
+  var otherPalette = activeSource === 'kg' ? COLORS_DIR : COLORS_KG;
+  var otherLabel = activeSource === 'kg' ? 'Direct' : 'KG';
+
+  var mapping = getMapping(data);
+  var ids = mapping[k] || [];
+  var otherReqMap = otherData ? getReqMap(otherData) : {};
+  var dotColor = col(parseInt(k), palette);
+
+  document.getElementById('req-title').innerHTML =
+    '<span class="dot" style="background:' + dotColor + ';display:inline-block;margin-right:6px;vertical-align:middle"></span>' +
+    'Cluster ' + k + ' &mdash; <span style="color:#9e9d98;font-style:italic">' +
+    (activeSource === 'kg' ? 'Keyword Graph' : 'Direct Embedding') + '</span>';
+
+  var filtered = ids.filter(function(id) {
+    if (!q) return true;
+    var row = csvMap[id] || {};
+    var story = ((row.role||'') + ' ' + (row.feature||'') + ' ' + (row.benefit||'')).toLowerCase();
+    return story.includes(q) || id.includes(q);
+  });
+
+  var list = document.getElementById('req-list');
+  if (!filtered.length) {
+    list.innerHTML = '<div class="empty">nessun requisito trovato</div>';
+    return;
+  }
+
+  list.innerHTML = filtered.map(function(id) {
+    var row = csvMap[id] || {};
+    var role = row.role || '';
+    var feature = row.feature || '(testo non disponibile — carica il CSV)';
+    var benefit = row.benefit || '';
+    var tags = (row.tags || '').split(',').map(function(t){ return t.trim(); }).filter(Boolean);
+
+    var otherClusters = otherReqMap[id];
+    var crossBadge = '';
+    if (otherClusters !== undefined) {
+      var arr = Array.isArray(otherClusters) ? otherClusters : [otherClusters];
+      var dots = arr.map(function(c) {
+        return '<span class="dot" style="background:' + col(parseInt(c), otherPalette) + ';width:7px;height:7px;display:inline-block"></span>' + c;
+      }).join(' ');
+      crossBadge = '<span class="cross-badge">' + otherLabel + ': ' + dots + '</span>';
+    }
+
+    var tagsHtml = tags.map(function(t){ return '<span class="tag">' + t + '</span>'; }).join('');
+    var storyHtml = role
+      ? 'As a <b>' + esc(role) + '</b>, I want ' + esc(feature) + (benefit ? ' so that ' + esc(benefit) : '')
+      : esc(feature);
+
+    return '<div class="req-card">' +
+      '<div class="req-meta"><span>#' + id + '</span>' + crossBadge + '</div>' +
+      '<div class="req-story">' + storyHtml + '</div>' +
+      (tagsHtml ? '<div class="req-tags">' + tagsHtml + '</div>' : '') +
+      '</div>';
+  }).join('');
+}
+
+function esc(s) {
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+function computeDiff() {
+  if (!kgData || !dirData) return '—';
+  var kgMap = getReqMap(kgData), dirMap = getReqMap(dirData);
+  var diff = 0;
+  Object.keys(kgMap).forEach(function(id) {
+    var kc = Array.isArray(kgMap[id]) ? kgMap[id][0] : kgMap[id];
+    var dc = dirMap[id];
+    if (dc === undefined) return;
+    var dcFirst = Array.isArray(dc) ? dc[0] : dc;
+    if (kc !== dcFirst) diff++;
+  });
+  return diff;
+}
+
+function updateStats() {
+  if (kgData) {
+    var k = Object.keys(getMapping(kgData)).length;
+    document.getElementById('s-kg-k').textContent = k;
+    document.getElementById('badge-kg').textContent = k + ' cluster';
+  }
+  if (dirData) {
+    var k2 = Object.keys(getMapping(dirData)).length;
+    document.getElementById('s-dir-k').textContent = k2;
+    document.getElementById('badge-direct').textContent = k2 + ' cluster';
+  }
+  var csvCount = Object.keys(csvMap).length;
+  if (csvCount) document.getElementById('s-reqs').textContent = csvCount;
+  var diff = computeDiff();
+  document.getElementById('s-diff').textContent = diff;
+}
+
+function showARI(ari, nmi) {
+  var row = document.getElementById('ari-row');
+  row.style.display = 'flex';
+  var ariPct = Math.max(0, Math.min(100, ((ari + 1) / 2) * 100));
+  document.getElementById('ari-fill').style.width = ariPct.toFixed(0) + '%';
+  document.getElementById('ari-val').textContent = ari.toFixed(3);
+  var interp = ari >= 0.7 ? 'accordo alto' : ari >= 0.4 ? 'accordo moderato' : ari >= 0.1 ? 'accordo basso' : 'casuale / anti-correlato';
+  document.getElementById('ari-interp').textContent = '(' + interp + ')';
+  if (nmi !== undefined) {
+    var nmiPct = Math.max(0, Math.min(100, nmi * 100));
+    document.getElementById('nmi-fill').style.width = nmiPct.toFixed(0) + '%';
+    document.getElementById('nmi-val').textContent = nmi.toFixed(3);
+  }
+}
+
+function readJSON(file, cb) {
+  var r = new FileReader();
+  r.onload = function(e) {
+    try { cb(JSON.parse(e.target.result)); }
+    catch(ex) { alert('Errore JSON: ' + ex.message); }
+  };
+  r.readAsText(file);
+}
+
+document.getElementById('file-kg').onchange = function(e) {
+  var f = e.target.files[0]; if (!f) return;
+  document.getElementById('name-kg').textContent = f.name;
+  readJSON(f, function(data) {
+    kgData = data;
+    renderClusterList('kg-list', data, COLORS_KG, 'kg');
+    updateStats();
+    var ag = data.agreement;
+    if (ag && ag.adjusted_rand_index !== undefined) showARI(ag.adjusted_rand_index, ag.normalized_mutual_info);
+  });
+};
+
+document.getElementById('file-direct').onchange = function(e) {
+  var f = e.target.files[0]; if (!f) return;
+  document.getElementById('name-direct').textContent = f.name;
+  readJSON(f, function(data) {
+    dirData = data;
+    renderClusterList('direct-list', data, COLORS_DIR, 'direct');
+    updateStats();
+  });
+};
+
+document.getElementById('file-csv').onchange = function(e) {
+  var f = e.target.files[0]; if (!f) return;
+  document.getElementById('name-csv').textContent = f.name;
+  var r = new FileReader();
+  r.onload = function(ev) {
+    csvMap = parseCSV(ev.target.result);
+    updateStats();
+    if (activeSource) renderReqs();
+  };
+  r.readAsText(f);
+};
+
+document.getElementById('req-search').oninput = function() {
+  if (activeSource) renderReqs();
+};
+</script>
+</body>
+</html>

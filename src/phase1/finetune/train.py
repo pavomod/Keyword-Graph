@@ -2,7 +2,6 @@ from __future__ import annotations
 
 import argparse
 import os
-import re
 from pathlib import Path
 from typing import Any
 
@@ -10,8 +9,14 @@ import numpy as np
 import torch
 from datasets import load_from_disk
 from peft import LoraConfig, PeftModel, TaskType, get_peft_model
-from src.finetune.metrics import keyword_f1, mean_keyword_f1
-from src.keywords.normalize import normalize_keyword_text, parse_keyword_text
+from src.phase1.finetune.metrics import keyword_f1, mean_keyword_f1
+from src.phase1.finetune.normalize import normalize_keyword_text, parse_keyword_text
+try:
+    from src.phase1.keyBERT.keybert_adapter import extract_keywords_keybert
+    _KEYBERT_AVAILABLE = True
+except Exception:
+    extract_keywords_keybert = None  # type: ignore
+    _KEYBERT_AVAILABLE = False
 from transformers import (
     AutoConfig,
     DataCollatorForSeq2Seq,
@@ -22,6 +27,10 @@ from transformers import (
 )
 
 MODEL_NAME = "google/flan-t5-base"
+
+# Maximum keywords: must stay aligned with prepare_data.MAX_KEYWORDS and the prompt rule.
+MAX_KEYWORDS = 6
+
 # Stopwords: common grammatical and non-informative terms to exclude from keyword extraction
 _STOPWORDS = {
     # Common grammatical stopwords
@@ -83,6 +92,24 @@ _STOPWORDS = {
 }
 
 
+def _make_compute_metrics(tokenizer: T5Tokenizer):
+    """
+    Returns a compute_metrics function for Seq2SeqTrainer.
+    Uses keyword F1 so that best-model selection is driven by the actual
+    task metric rather than eval loss.
+    """
+    def compute_metrics(eval_pred):
+        pred_ids, label_ids = eval_pred
+        if isinstance(pred_ids, tuple):
+            pred_ids = pred_ids[0]
+        label_ids = np.where(label_ids == -100, tokenizer.pad_token_id, label_ids)
+        preds = tokenizer.batch_decode(pred_ids, skip_special_tokens=True)
+        labels = tokenizer.batch_decode(label_ids, skip_special_tokens=True)
+        return {"keyword_f1": mean_keyword_f1(preds, labels)}
+
+    return compute_metrics
+
+
 def _compute_test_keyword_f1(
     trainer: Seq2SeqTrainer,
     tokenized_test,
@@ -114,7 +141,8 @@ def build_tokenizer_and_model() -> tuple[T5Tokenizer, T5ForConditionalGeneration
         r=8,
         lora_alpha=32,
         lora_dropout=0.1,
-        target_modules=["q", "v"],
+        # Adapt all four attention projections for better generative capacity.
+        target_modules=["q", "k", "v", "o"],
     )
     model = get_peft_model(model, lora_config)
     return tokenizer, model
@@ -154,44 +182,63 @@ def predict_keywords(
     max_target_len: int = 64,
     base_model_name: str = MODEL_NAME,
 ) -> tuple[list[str], dict[str, float | int]]:
-    tokenizer, model = load_inference_model(model_dir=model_dir, base_model_name=base_model_name)
     predictions: list[str] = []
     model_generated_count = 0
     fallback_generated_count = 0
-    device = "cuda" if torch.cuda.is_available() else "cpu"
 
-    for idx in range(0, len(inputs), batch_size):
-        batch_inputs = inputs[idx : idx + batch_size]
-        encoded = tokenizer(
-            batch_inputs,
-            padding=True,
-            truncation=True,
-            max_length=max_input_len,
-            return_tensors="pt",
-        )
-        encoded = {k: v.to(device) for k, v in encoded.items()}
+    # If no finetuned model is provided, prefer KeyBERT extractor when available
+    if model_dir is None and _KEYBERT_AVAILABLE:
+        for prompt in inputs:
+            try:
+                kws = extract_keywords_keybert(prompt)
+                if kws:
+                    # join with comma to match pipeline normalization expectations
+                    joined = ", ".join(kws[:MAX_KEYWORDS])
+                    normalized = normalize_keyword_text(joined)
+                    predictions.append(normalized)
+                    model_generated_count += 1
+                    continue
+            except Exception:
+                # on any error, fall back to heuristic
+                pass
 
-        with torch.no_grad():
-            generated = model.generate(
-                **encoded,
-                max_new_tokens=max_target_len,
-                min_new_tokens=4,
-                num_beams=4,
-                no_repeat_ngram_size=2,
-                early_stopping=True,
-            )
-
-        batch_preds = tokenizer.batch_decode(generated, skip_special_tokens=True)
-        for prompt, pred in zip(batch_inputs, batch_preds):
-            normalized = normalize_keyword_text(pred)
-            if normalized:
-                predictions.append(normalized)
-                model_generated_count += 1
-                continue
-
-            # Deterministic fallback for base-model empty generations.
-            predictions.append(_fallback_keywords_from_prompt(prompt, max_keywords=8))
+            predictions.append(_fallback_keywords_from_prompt(prompt, max_keywords=MAX_KEYWORDS))
             fallback_generated_count += 1
+    else:
+        tokenizer, model = load_inference_model(model_dir=model_dir, base_model_name=base_model_name)
+        device = "cuda" if torch.cuda.is_available() else "cpu"
+
+        for idx in range(0, len(inputs), batch_size):
+            batch_inputs = inputs[idx : idx + batch_size]
+            encoded = tokenizer(
+                batch_inputs,
+                padding=True,
+                truncation=True,
+                max_length=max_input_len,
+                return_tensors="pt",
+            )
+            encoded = {k: v.to(device) for k, v in encoded.items()}
+
+            with torch.no_grad():
+                generated = model.generate(
+                    **encoded,
+                    max_new_tokens=max_target_len,
+                    min_new_tokens=4,
+                    num_beams=4,
+                    early_stopping=True,
+                )
+
+            batch_preds = tokenizer.batch_decode(generated, skip_special_tokens=True)
+            for prompt, pred in zip(batch_inputs, batch_preds):
+                normalized = normalize_keyword_text(pred)
+                if normalized:
+                    predictions.append(normalized)
+                    model_generated_count += 1
+                    continue
+
+                # Deterministic fallback for base-model empty generations.
+                predictions.append(_fallback_keywords_from_prompt(prompt, max_keywords=MAX_KEYWORDS))
+                fallback_generated_count += 1
 
     total_predictions = len(predictions)
     fallback_ratio = (
@@ -217,7 +264,7 @@ def predict_keywords(
     return predictions, diagnostics
 
 
-def _fallback_keywords_from_prompt(prompt: str, max_keywords: int = 8) -> str:
+def _fallback_keywords_from_prompt(prompt: str, max_keywords: int = MAX_KEYWORDS) -> str:
     words = re.findall(r"[a-zA-Z][a-zA-Z\-]+", str(prompt).lower())
     filtered = [w for w in words if len(w) > 2 and w not in _STOPWORDS]
 
@@ -304,9 +351,10 @@ def train_model(
     max_input_len: int = 256,
     max_target_len: int = 64,
     use_fp16: bool | None = None,
+    use_bf16: bool = False,
     require_cuda: bool = False,
 ) -> dict:
-    os.environ.setdefault("TENSORBOARD_LOGGING_DIR", "logs")
+    logging_dir = os.environ.get("TENSORBOARD_LOGGING_DIR", "logs")
 
     cuda_available = torch.cuda.is_available()
     cuda_version = torch.version.cuda
@@ -358,17 +406,27 @@ def train_model(
         per_device_eval_batch_size=batch_size,
         learning_rate=lr,
         weight_decay=0.01,
-        warmup_steps=100,
+        # warmup_ratio is more robust than a fixed warmup_steps: it scales
+        # automatically with dataset size and number of epochs.
+        warmup_ratio=0.06,
         eval_strategy="epoch",
         save_strategy="epoch",
         predict_with_generate=True,
         load_best_model_at_end=True,
+        # Best checkpoint is now selected by keyword F1 (higher is better),
+        # not eval loss.
+        metric_for_best_model="keyword_f1",
+        greater_is_better=True,
         fp16=resolved_fp16,
+        bf16=use_bf16,
         max_grad_norm=1.0,
-        report_to="none",
+        # TensorBoard logging enabled; set TENSORBOARD_LOGGING_DIR env var to override path.
+        report_to="tensorboard",
+        logging_dir=logging_dir,
     )
 
-    print(f"[device] trainer_device={train_args.device} | fp16={train_args.fp16}")
+    print(f"[device] trainer_device={train_args.device} | fp16={train_args.fp16} | bf16={train_args.bf16}")
+    print(f"[logging] TensorBoard logs -> {logging_dir}")
 
     trainer = Seq2SeqTrainer(
         model=model,
@@ -377,6 +435,8 @@ def train_model(
         eval_dataset=tokenized["validation"],
         processing_class=tokenizer,
         data_collator=data_collator,
+        # compute_metrics drives both eval reporting and best-model selection.
+        compute_metrics=_make_compute_metrics(tokenizer),
     )
 
     trainer.train()
@@ -421,6 +481,11 @@ def main() -> None:
         help="Disable fp16 training",
     )
     parser.add_argument(
+        "--bf16",
+        action="store_true",
+        help="Use bf16 training — preferred over fp16 on Ampere+ GPUs (RTX 3090, A100, etc.)",
+    )
+    parser.add_argument(
         "--require-cuda",
         action="store_true",
         help="Fail fast if CUDA is not available",
@@ -429,6 +494,8 @@ def main() -> None:
 
     if args.fp16 and args.no_fp16:
         raise ValueError("Use only one of --fp16 or --no-fp16")
+    if args.bf16 and args.fp16:
+        raise ValueError("Use only one of --bf16 or --fp16")
 
     requested_fp16 = True if args.fp16 else False if args.no_fp16 else None
 
@@ -441,6 +508,7 @@ def main() -> None:
         max_input_len=args.max_input_len,
         max_target_len=args.max_target_len,
         use_fp16=requested_fp16,
+        use_bf16=args.bf16,
         require_cuda=args.require_cuda,
     )
     print(metrics)

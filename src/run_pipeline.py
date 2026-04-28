@@ -3,29 +3,39 @@ from __future__ import annotations
 import argparse
 import json
 from pathlib import Path
+import os
+import logging as _py_logging
+from transformers import logging as hf_logging
+
+# Reduce verbosity from transformers / sentence-transformers to hide LOAD REPORT logs
+os.environ.setdefault("TRANSFORMERS_VERBOSITY", "error")
+hf_logging.set_verbosity_error()
+_py_logging.getLogger("transformers").setLevel(_py_logging.ERROR)
+_py_logging.getLogger("sentence_transformers").setLevel(_py_logging.ERROR)
 
 import pandas as pd
-from src.clustering import run_clustering_phase
+from src.phase3.clustering import run_clustering_phase
 
-from src.comparison.compare_pipelines import (
+from src.phase3.comparison.compare_pipelines import (
     build_direct_clustering_report,
     cluster_requirements_directly,
     compare_clustering_approaches,
 )
 
-from src.finetune.prepare_data import (
+from src.phase1.finetune.prepare_data import (
     _pick_input_csv,
     prepare_inference_dataframe,
     prepare_dataframe,
     split_dataset_fixed,
     to_hf_dataset_dict,
 )
-from src.finetune.train import (
+from src.phase1.finetune.train import (
     compute_keyword_comparison_metrics,
     predict_keywords,
     train_model,
 )
-from src.graph.build_graph import (
+from src.phase1.keyBERT.keybert_adapter import extract_requirement_text
+from src.phase2.graph.build_graph import (
     attach_requirement_references,
     build_semantic_similarity_graph,
     parse_keywords,
@@ -73,10 +83,11 @@ DEFAULT_PIPELINE_CONFIG = {
     "cluster_requirement_feature_weight": 0.5,
     "cluster_requirement_svd_dim": 16,
     "cluster_report_out": "results/clustering_report.json",
-    "cluster_elbow_plot_out": "results/elbow.png",
+    "cluster_elbow_plot_out": "results/K.png",
     "enable_clustering_comparison": True,
     "clustering_comparison_out": "results/clustering_comparison.json",
     "direct_clustering_report_out": "results/direct_clustering_report.json",
+    "use_finetuned": False,
 }
 
 
@@ -168,7 +179,7 @@ def _save_verification_report(
         records.append(
             {
                 "source_id": source_id,
-                "input": row.get("input"),
+                "input": extract_requirement_text(str(row.get("input", ""))),
                 "predicted_tags": predicted,
                 "real_tags": reference,
             }
@@ -353,6 +364,14 @@ def main() -> None:
         default=None,
         help="Output JSON path for the direct requirement clustering report",
     )
+    # Prefer KeyBERT by default. Use this flag to force using the fine-tuned model instead.
+    parser.add_argument(
+        "--use-finetuned",
+        dest="use_finetuned",
+        action="store_const",
+        const=True,
+    )
+    parser.set_defaults(use_finetuned=None)
     args = parser.parse_args()
 
     config_values = _load_pipeline_config(args.config)
@@ -475,6 +494,8 @@ def main() -> None:
     model_dir = Path(model_dir_value)
     has_model = _model_exists(model_dir)
 
+    prefer_finetuned = bool(_resolve_setting(args.use_finetuned, config_values, "use_finetuned"))
+
     if should_train:
         print("[1/4] Preparing training dataset split...")
         prep_info, _ = _prepare_dataset(
@@ -510,13 +531,20 @@ def main() -> None:
         print(f"Eval metrics: {metrics}")
         inference_model_dir: str | None = model_dir_value
     else:
-        if has_model:
-            print(f"[2/4] Using existing fine-tuned model from: {model_dir_value}")
-            inference_model_dir = model_dir_value
+        if prefer_finetuned:
+            if has_model:
+                print(f"[2/4] Using existing fine-tuned model from: {model_dir_value}")
+                inference_model_dir = model_dir_value
+            else:
+                print(
+                    f"[2/4] --use-finetuned requested but no fine-tuned model found in {model_dir_value}. "
+                    f"Falling back to KeyBERT or base model."
+                )
+                inference_model_dir = None
         else:
             print(
-                f"[2/4] No fine-tuned model found in {model_dir_value}. "
-                f"Using base model: {base_model_name}"
+                "[2/4] Using KeyBERT extractor by default. "
+                "Pass --use-finetuned to use the fine-tuned model instead."
             )
             inference_model_dir = None
 
@@ -602,9 +630,6 @@ def main() -> None:
             node2vec_workers=cluster_node2vec_workers,
             requirement_feature_weight=cluster_requirement_feature_weight,
             requirement_svd_dim=cluster_requirement_svd_dim,
-            model_dir=inference_model_dir,
-            base_model_name=base_model_name,
-            enable_cluster_labeling=True,
             isolated_nodes_removed=removed_isolated,
         )
         print(
@@ -640,8 +665,6 @@ def main() -> None:
                 requirement_ids=[str(source_id) for source_id in inference_df["source_id"].tolist()],
                 direct_clustering_result=direct_clustering_result,
                 output_path=direct_clustering_report_out,
-                model_dir=inference_model_dir,
-                base_model_name=base_model_name,
             )
             print(f"Direct clustering report saved in: {direct_report_path}")
             

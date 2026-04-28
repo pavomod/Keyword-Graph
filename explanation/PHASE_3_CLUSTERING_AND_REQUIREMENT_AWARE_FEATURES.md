@@ -22,16 +22,16 @@ This allows clustering to combine:
 
 - Cluster IDs assigned to graph nodes
 - 2D coordinates (`umap_x`, `umap_y`) for visualization
-- Cluster labels generated with FLAN-T5
 - Clustering diagnostics report in JSON
-- Elbow/silhouette image for k-selection interpretation
+- Elbow and cluster-quality image for k-selection interpretation
 
 Default outputs:
 - `results/clustering_report.json`
-- `results/elbow.png`
+- `results/K.png`
 
 Optional comparison output:
 - `results/direct_clustering_report.json`
+- `results/clustering_comparison.json`
 
 ## How This Step Works
 
@@ -78,8 +78,10 @@ Two modes:
 
 2. Automatic
 - Evaluate candidates in `[k_min, k_max]`
-- Compute inertia and silhouette for each
-- Select the k with highest silhouette
+- Compute inertia, Davies-Bouldin, and Calinski-Harabasz for each
+- Select the k with the best combined score from Davies-Bouldin and Calinski-Harabasz
+
+When `selected_k` is provided, the code still bounds it to the available sample count. If the graph has fewer than 2 nodes, the phase returns a single-cluster payload.
 
 ### 5. Run K-Means and annotate nodes
 
@@ -91,24 +93,15 @@ Then UMAP projects vectors to 2D and writes:
 
 These attributes are added directly to graph nodes.
 
-### 6. Generate cluster labels with FLAN-T5
+### 6. Export diagnostics and mappings
 
-For each cluster:
-- Collect top keywords (up to 20)
-- Prompt FLAN-T5 for a short descriptive label (2-5 words)
-- Clean and store the generated label
-
-Result example:
-- `"0": "user authentication"`
-
-### 7. Export diagnostics and mappings
-
-The report contains:
-- `clustering` summary (k, scores, feature dimensions)
+The keyword-graph report contains:
+- `clustering` summary (k, scores, feature dimensions, requirement feature metadata, isolated node count)
 - `cluster_requirements_mapping`
 - `requirement_to_cluster_mapping`
-- `cluster_labels`
-- `nodes` with cluster and UMAP fields
+- `nodes` with keyword, cluster, and UMAP fields
+
+The direct requirement clustering report uses the same top-level keys, but its `clustering` section includes `mode: "direct_requirement_clustering"` and its `nodes` entries contain `requirement_id` and the requirement text.
 
 ## Processing Order Summary
 
@@ -118,8 +111,7 @@ The report contains:
 4. Select k (manual or automatic)
 5. Run K-Means
 6. Project to 2D with UMAP
-7. Label clusters with FLAN-T5
-8. Export reports and plots
+7. Export reports and plots
 
 ## Main Code Entry Points
 
@@ -130,5 +122,5 @@ The report contains:
 
 After Phase 3, the graph is ready for interpretation and downstream analysis:
 - Each concept has a cluster assignment
-- Clusters have human-readable labels
 - Requirement-level traceability is preserved across the full pipeline
+- The optional direct comparison output can be used to measure how different the keyword-graph clusters are from direct requirement embedding clusters

@@ -5,7 +5,7 @@ from pathlib import Path
 
 import networkx as nx
 from sentence_transformers import SentenceTransformer, util
-from src.keywords.normalize import parse_keyword_text
+from src.phase1.finetune.normalize import parse_keyword_text
 from transformers import logging as hf_logging
 
 
@@ -14,9 +14,22 @@ def parse_keywords(keywords_text: str) -> list[str]:
 
 
 def build_cooccurrence_graph(keyword_lists: list[list[str]]) -> nx.Graph:
+    """
+    Build a co-occurrence graph from keyword lists.
+
+    Edge weight is Jaccard similarity between the sets of requirements
+    that contain each keyword pair, rather than raw co-occurrence count.
+    This avoids high-volume requirements artificially inflating edge weights.
+    """
     graph = nx.Graph()
 
-    for keywords in keyword_lists:
+    # Track which requirement index contains each keyword (by position in keyword_lists).
+    keyword_to_req_indices: dict[str, set[int]] = {}
+    for req_idx, keywords in enumerate(keyword_lists):
+        for keyword in keywords:
+            keyword_to_req_indices.setdefault(keyword, set()).add(req_idx)
+
+    for req_idx, keywords in enumerate(keyword_lists):
         if not keywords:
             continue
 
@@ -25,10 +38,19 @@ def build_cooccurrence_graph(keyword_lists: list[list[str]]) -> nx.Graph:
             continue
 
         for left, right in combinations(keywords, 2):
+            left_reqs = keyword_to_req_indices.get(left, set())
+            right_reqs = keyword_to_req_indices.get(right, set())
+            intersection = len(left_reqs & right_reqs)
+            union = len(left_reqs | right_reqs)
+            jaccard = intersection / union if union > 0 else 0.0
+
             if graph.has_edge(left, right):
-                graph[left][right]["weight"] += 1
+                # Keep the maximum Jaccard weight seen across requirements.
+                if jaccard > graph[left][right]["weight"]:
+                    graph[left][right]["weight"] = jaccard
+                    graph[left][right]["jaccard"] = jaccard
             else:
-                graph.add_edge(left, right, weight=1)
+                graph.add_edge(left, right, weight=jaccard, jaccard=jaccard)
 
     return graph
 
@@ -73,6 +95,50 @@ def build_semantic_similarity_graph(
             )
 
     return graph
+
+
+def build_combined_graph(
+    keyword_lists: list[list[str]],
+    semantic_threshold: float = 0.4,
+    model_name: str = "all-MiniLM-L6-v2",
+) -> nx.Graph:
+    """
+    Build a single graph that merges co-occurrence and semantic similarity edges.
+
+    Each edge carries:
+    - weight: max(jaccard, semantic_similarity) — used by Node2Vec
+    - edge_type: 'cooccurrence', 'semantic', or 'both'
+    - jaccard: Jaccard co-occurrence weight (if present)
+    - semantic_similarity: cosine similarity (if present)
+
+    Using a combined graph gives Node2Vec richer structural signal than
+    either graph alone.
+    """
+    cooccurrence = build_cooccurrence_graph(keyword_lists)
+    semantic = build_semantic_similarity_graph(
+        keyword_lists, threshold=semantic_threshold, model_name=model_name
+    )
+
+    combined = nx.Graph()
+    combined.add_nodes_from(cooccurrence.nodes(data=True))
+    combined.add_nodes_from(semantic.nodes(data=True))
+
+    # Add co-occurrence edges first.
+    for u, v, data in cooccurrence.edges(data=True):
+        combined.add_edge(u, v, edge_type="cooccurrence", jaccard=data.get("jaccard", 0.0), weight=data.get("weight", 0.0))
+
+    # Merge semantic edges.
+    for u, v, data in semantic.edges(data=True):
+        sim = data.get("semantic_similarity", 0.0)
+        if combined.has_edge(u, v):
+            combined[u][v]["semantic_similarity"] = sim
+            combined[u][v]["edge_type"] = "both"
+            # Use the stronger signal as the unified weight for Node2Vec.
+            combined[u][v]["weight"] = max(combined[u][v]["weight"], sim)
+        else:
+            combined.add_edge(u, v, edge_type="semantic", semantic_similarity=sim, weight=sim)
+
+    return combined
 
 
 def attach_requirement_references(
@@ -160,119 +226,90 @@ def reduce_graph_nodes(
     degree_threshold_high: int = 5,
 ) -> nx.Graph:
     """
-    Reduce the number of graph nodes by absorbing low-degree nodes into high-degree hub nodes.
-    
+    Reduce the number of graph nodes by absorbing low-degree nodes into
+    high-degree hub nodes.
+
     Strategy:
     - Identify hub nodes: degree > degree_threshold_high
-    - For each low-degree node (degree <= degree_threshold_low):
-      - If connected only to hub nodes, absorb it into the hub with highest weight connection
-      - Transfer requirement references to the absorbing hub
-      - Remove the low-degree node from the graph
-    
+    - For each low-degree node (degree <= degree_threshold_low) that is
+      connected ONLY to hub nodes: absorb it into the hub with the highest
+      edge weight and transfer its requirement references.
+    - Isolated nodes (degree == 0) are NOT reassigned to hubs — they carry
+      no structural relationship and should be removed beforehand with
+      remove_isolated_nodes(). If any remain, they are skipped.
+
     Args:
         graph: NetworkX graph with node attributes 'requirement_ids', 'requirement_count'
         degree_threshold_low: Maximum degree for a node to be considered "low"
         degree_threshold_high: Minimum degree for a node to be considered "hub"
-    
+
     Returns:
         Modified graph with reduced nodes
     """
     graph = graph.copy()
-    
-    # Identify hub nodes
-    hub_nodes = set(node for node in graph.nodes() if graph.degree(node) > degree_threshold_high)
-    
+
+    hub_nodes = {node for node in graph.nodes() if graph.degree(node) > degree_threshold_high}
+
     if not hub_nodes:
         return graph
-    
+
     nodes_to_remove = set()
-    node_absorption_map = {}  # Maps absorbed node -> target hub node
-    
-    # For each low-degree node, check if it should be absorbed
+    node_absorption_map: dict[str, str] = {}
+
     for node in list(graph.nodes()):
         if node in hub_nodes or node in nodes_to_remove:
             continue
-        
+
         degree = graph.degree(node)
+
+        # Isolated nodes are not reassigned — they should have been removed
+        # already by remove_isolated_nodes(). Skip them silently.
+        if degree == 0:
+            continue
+
         if degree > degree_threshold_low:
             continue
-        
-        # Get neighbors and check if all are hubs
+
         neighbors = list(graph.neighbors(node))
         hub_neighbors = [n for n in neighbors if n in hub_nodes]
-        
-        # Only absorb if connected ONLY to hubs or is isolated
-        if len(hub_neighbors) == len(neighbors) and (len(neighbors) > 0 or degree == 0):
-            # Find the hub with the strongest edge (highest weight)
-            if neighbors:
-                best_hub = max(
-                    hub_neighbors,
-                    key=lambda h: graph[node][h].get("weight", 0)
-                    if graph.has_edge(node, h)
-                    else 0,
-                )
-            else:
-                # Isolated node: attach to largest hub by requirement count
-                best_hub = max(
-                    hub_nodes,
-                    key=lambda h: graph.nodes[h].get("requirement_count", 0),
-                )
-            
-            node_absorption_map[node] = best_hub
-            nodes_to_remove.add(node)
-    
-    # Merge requirement references from absorbed nodes to target hubs
+
+        # Only absorb if ALL neighbors are hubs (no non-hub connections to lose).
+        if len(hub_neighbors) != len(neighbors):
+            continue
+
+        best_hub = max(
+            hub_neighbors,
+            key=lambda h: graph[node][h].get("weight", 0.0) if graph.has_edge(node, h) else 0.0,
+        )
+        node_absorption_map[node] = best_hub
+        nodes_to_remove.add(node)
+
+    # Merge requirement references from absorbed nodes into target hubs.
     for absorbed_node, target_hub in node_absorption_map.items():
-        absorbed_reqs = set(
-            graph.nodes[absorbed_node]
-            .get("requirement_ids", "")
-            .split(",")
-            if graph.nodes[absorbed_node].get("requirement_ids")
-            else []
-        )
-        absorbed_reqs = {r for r in absorbed_reqs if r}  # Remove empty strings
-        
-        current_reqs = set(
-            graph.nodes[target_hub]
-            .get("requirement_ids", "")
-            .split(",")
-            if graph.nodes[target_hub].get("requirement_ids")
-            else []
-        )
-        current_reqs = {r for r in current_reqs if r}  # Remove empty strings
-        
-        # Merge requirement sets
+        absorbed_reqs = {
+            r
+            for r in graph.nodes[absorbed_node].get("requirement_ids", "").split(",")
+            if r.strip()
+        }
+        current_reqs = {
+            r
+            for r in graph.nodes[target_hub].get("requirement_ids", "").split(",")
+            if r.strip()
+        }
         merged_reqs = _sort_requirement_ids(current_reqs | absorbed_reqs)
         graph.nodes[target_hub]["requirement_ids"] = ",".join(merged_reqs)
         graph.nodes[target_hub]["requirement_count"] = len(merged_reqs)
-    
-    # Remove absorbed nodes from graph
+
     graph.remove_nodes_from(nodes_to_remove)
-    
-    # Update edge shared_requirement_count after node removal
+
+    # Recompute shared_requirement_count on remaining edges after merges.
     for left, right in graph.edges():
-        left_ids = set(
-            graph.nodes[left]
-            .get("requirement_ids", "")
-            .split(",")
-            if graph.nodes[left].get("requirement_ids")
-            else []
-        )
-        left_ids = {r for r in left_ids if r}
-        
-        right_ids = set(
-            graph.nodes[right]
-            .get("requirement_ids", "")
-            .split(",")
-            if graph.nodes[right].get("requirement_ids")
-            else []
-        )
-        right_ids = {r for r in right_ids if r}
-        
+        left_ids = {r for r in graph.nodes[left].get("requirement_ids", "").split(",") if r.strip()}
+        right_ids = {r for r in graph.nodes[right].get("requirement_ids", "").split(",") if r.strip()}
         shared_ids = _sort_requirement_ids(left_ids & right_ids)
         graph.edges[left, right]["shared_requirement_ids"] = ",".join(shared_ids)
         graph.edges[left, right]["shared_requirement_count"] = len(shared_ids)
-    
+
     return graph
 
 

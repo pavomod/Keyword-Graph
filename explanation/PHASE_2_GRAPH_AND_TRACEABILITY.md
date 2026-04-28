@@ -124,4 +124,4 @@ The final enriched graph is written to GEXF.
 
 ## Next Step
 
-[Phase 3 - Clustering and Requirement-Aware Features](explanation/PHASE_3_CLUSTERING_AND_REQUIREMENT_AWARE_FEATURES.md)
+[Phase 3 - Clustering and Requirement-Aware Features](PHASE_3_CLUSTERING_AND_REQUIREMENT_AWARE_FEATURES.md)

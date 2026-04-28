@@ -6,6 +6,9 @@ import pandas as pd
 from datasets import Dataset, DatasetDict
 from sklearn.model_selection import train_test_split
 
+# Maximum number of keywords to extract — must match the prompt rule and fallback.
+MAX_KEYWORDS = 6
+
 
 def _pick_input_csv(explicit_path: str | None) -> Path:
     if explicit_path:
@@ -43,7 +46,7 @@ def _build_prompt(row: pd.Series) -> str:
     benefit = _clean_text(row.get("benefit", ""))
     return (
         "Task: Extract high-quality keywords from the following user story.\n"
-        
+
         "Rules:\n"
         "- Return ONLY a comma-separated list of keywords.\n"
         "- Use 1–3 words per keyword (noun phrases preferred).\n"
@@ -51,15 +54,15 @@ def _build_prompt(row: pd.Series) -> str:
         "- Avoid duplicates and synonyms.\n"
         "- Prefer domain-specific and meaningful terms.\n"
         "- Include actions only if they are essential (e.g., 'user authentication').\n"
-        "- Maximum 6 keywords.\n"
-        
+        f"- Maximum {MAX_KEYWORDS} keywords.\n"
+
         "Example:\n"
         "Input: As a user, I want to reset my password so that I can regain access.\n"
         "Output: password reset, account access, authentication\n\n"
-        
+
         "Input:\n"
         f"As a {role}, I want {feature} so that {benefit}\n"
-        
+
         "Output:"
     )
 
@@ -97,20 +100,6 @@ def prepare_inference_dataframe(df: pd.DataFrame) -> pd.DataFrame:
             "source_id": source_ids,
             "input": df.apply(_build_prompt, axis=1),
         }
-    )
-
-
-def split_dataset(df_formatted: pd.DataFrame, seed: int = 42) -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame]:
-    train_df, temp_df = train_test_split(
-        df_formatted, test_size=0.2, random_state=seed, shuffle=True
-    )
-    val_df, test_df = train_test_split(
-        temp_df, test_size=0.5, random_state=seed, shuffle=True
-    )
-    return (
-        train_df.reset_index(drop=True),
-        val_df.reset_index(drop=True),
-        test_df.reset_index(drop=True),
     )
 
 
