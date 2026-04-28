@@ -2,23 +2,23 @@
   "comparison": {
     "method": "keyword_graph_vs_direct_embedding",
     "num_requirements": 2966,
-    "total_compared": 2885,
-    "missing_in_keyword_graph": 81
+    "total_compared": 2858,
+    "missing_in_keyword_graph": 108
   },
   "keyword_graph_approach": {
-    "num_clusters": 10,
-    "requirements_mapped": 2885,
-    "multi_cluster_requirements": 1181
+    "num_clusters": 20,
+    "requirements_mapped": 2858,
+    "multi_cluster_requirements": 1071
   },
   "direct_embedding_approach": {
-    "num_clusters": 9,
-    "inertia": 1810.1641801173275,
-    "davies_bouldin": 3.3113870548144004,
-    "calinski_harabasz": 78.99591627181621
+    "num_clusters": 18,
+    "inertia": 1672.4623529674527,
+    "davies_bouldin": 3.078476642430981,
+    "calinski_harabasz": 54.39066634516197
   },
   "agreement": {
-    "adjusted_rand_index": 0.19093443718384076,
-    "normalized_mutual_info": 0.28054139775967263,
+    "adjusted_rand_index": 0.21218629838606687,
+    "normalized_mutual_info": 0.31927267369203166,
     "interpretation": {
       "ari": "1.0=perfect, ~0.0=random, <0=anti-correlated",
       "nmi": "1.0=identical, 0.0=independent"

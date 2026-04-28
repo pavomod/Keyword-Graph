@@ -29,14 +29,14 @@ def extract_requirement_text(prompt: str) -> str:
 def extract_keywords_keybert(
     text: str,
     keyphrase_ngram_range: Tuple[int, int] = (1, 2),
-    top_n: int = 4,
+    top_n: int = 3,
     stop_words: str | None = "english",
-    threshold: float = 0.50,
+    threshold: float = 0.60,
 ) -> List[str]:
-    # Pulizia del testo (mantenendo la tua logica di filtraggio)
+    # Text cleanup while preserving the existing filtering logic
     requirement_text = extract_requirement_text(text).replace("my smart home", "").replace("smart home", "").replace("I want", "").strip()
     
-    # Estrazione con KeyBERT
+    # Keyword extraction with KeyBERT
     raw = _kw_model.extract_keywords(
         requirement_text,
         keyphrase_ngram_range=keyphrase_ngram_range,

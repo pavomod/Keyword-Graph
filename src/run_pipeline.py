@@ -207,33 +207,33 @@ def _print_verification_summary(comparison_path: str, metrics: dict) -> None:
 
     print("[report] Comparison JSON saved")
     print(f"  path            : {comparison_path}")
-    print("[report] Verification metrics (rows with tags)")
-    print(f"  samples         : {int(metrics.get('samples', 0))}")
-    print(
-        "  exact_match     : "
-        f"{fmt_pct(float(metrics.get('exact_match', 0.0)))} "
-        f"(raw={float(metrics.get('exact_match', 0.0)):.6f})"
-    )
-    print(
-        "  precision_micro : "
-        f"{fmt_pct(float(metrics.get('precision_micro', 0.0)))} "
-        f"(raw={float(metrics.get('precision_micro', 0.0)):.6f})"
-    )
-    print(
-        "  recall_micro    : "
-        f"{fmt_pct(float(metrics.get('recall_micro', 0.0)))} "
-        f"(raw={float(metrics.get('recall_micro', 0.0)):.6f})"
-    )
-    print(
-        "  f1_micro        : "
-        f"{fmt_pct(float(metrics.get('f1_micro', 0.0)))} "
-        f"(raw={float(metrics.get('f1_micro', 0.0)):.6f})"
-    )
-    print(
-        "  mean_sample_f1  : "
-        f"{fmt_pct(float(metrics.get('mean_sample_f1', 0.0)))} "
-        f"(raw={float(metrics.get('mean_sample_f1', 0.0)):.6f})"
-    )
+    # print("[report] Verification metrics (rows with tags)")
+    # print(f"  samples         : {int(metrics.get('samples', 0))}")
+    # print(
+    #     "  exact_match     : "
+    #     f"{fmt_pct(float(metrics.get('exact_match', 0.0)))} "
+    #     f"(raw={float(metrics.get('exact_match', 0.0)):.6f})"
+    # )
+    # print(
+    #     "  precision_micro : "
+    #     f"{fmt_pct(float(metrics.get('precision_micro', 0.0)))} "
+    #     f"(raw={float(metrics.get('precision_micro', 0.0)):.6f})"
+    # )
+    # print(
+    #     "  recall_micro    : "
+    #     f"{fmt_pct(float(metrics.get('recall_micro', 0.0)))} "
+    #     f"(raw={float(metrics.get('recall_micro', 0.0)):.6f})"
+    # )
+    # print(
+    #     "  f1_micro        : "
+    #     f"{fmt_pct(float(metrics.get('f1_micro', 0.0)))} "
+    #     f"(raw={float(metrics.get('f1_micro', 0.0)):.6f})"
+    # )
+    # print(
+    #     "  mean_sample_f1  : "
+    #     f"{fmt_pct(float(metrics.get('mean_sample_f1', 0.0)))} "
+    #     f"(raw={float(metrics.get('mean_sample_f1', 0.0)):.6f})"
+    # )
 
 
 def main() -> None:
