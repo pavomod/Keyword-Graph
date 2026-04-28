@@ -156,21 +156,6 @@ This design choice:
 - Allows inconsistency detection to reference source material
 - Provides accountability: analysts can always see the evidence for any graph structure
 
-## Typical Graph Characteristics
-
-For a medium-sized requirement set (e.g., 2000 requirements):
-- **Nodes**: 300–500 unique concepts
-- **Edges**: 1000–2000 relationships
-- **Density**: ~0.01–0.05 (sparse, as expected)
-- **Hub clusters**: 5–10 major keyword groups
-- **Isolated nodes removed**: ~15–25% of extracted keywords
-- `relation_bucket`
-- `viz.color` (GEXF-compatible)
-
-### 7. Export graph
-
-The final enriched graph is written to GEXF.
-
 ## Processing Order Summary
 
 1. Parse normalized keywords

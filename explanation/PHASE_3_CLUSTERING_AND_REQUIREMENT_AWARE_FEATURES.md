@@ -215,39 +215,6 @@ The keyword graph is updated with:
 | Include comparison approach | Validates findings; simple vs complex trade-off |
 | Preserve 2D coordinates | Enables interactive visualization and qualitative exploration |
 
-## Typical Results
-
-For a moderate-sized requirement graph (500 nodes, 2000 requirements):
-
-| Metric | Typical Range |
-|--------|---|
-| Selected k | 5–12 clusters |
-| Cluster size (nodes) | 20–100 per cluster |
-| Graph approach agreement | 0.65–0.85 with direct approach |
-| Inertia reduction | ~60–80% when k increases from 2 to selected k |
-| UMAP variance captured | ~80–90% of high-D structure in 2D |
-
-## Troubleshooting
-
-**Q: Why do the two approaches disagree?**
-- A: Graph structure reveals relationships invisible in requirement embedding space
-- The graph captures co-occurrence and semantic similarity explicitly
-- Direct approach only sees overall requirement semantics
-- Disagreement is informative, not wrong
-
-**Q: Is a lower Davies-Bouldin always better?**
-- A: Generally yes, but context matters
-- Very low DB (< 0.5) might indicate overclustering (k too high)
-- Combined score (DB + CH) is more robust than any single metric
-
-**Q: How to choose between graph and direct clustering for final use?**
-- A: Recommendation depends on your use case:
-  - **Use graph clustering** if you care about concept relationships and want to understand *why* requirements are grouped
-  - **Use direct clustering** if you want a simpler, faster, easier-to-explain approach
-- `requirement_to_cluster_mapping`
-- `nodes` with keyword, cluster, and UMAP fields
-
-The direct requirement clustering report uses the same top-level keys, but its `clustering` section includes `mode: "direct_requirement_clustering"` and its `nodes` entries contain `requirement_id` and the requirement text.
 
 ## Processing Order Summary
 

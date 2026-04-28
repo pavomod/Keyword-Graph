@@ -53,7 +53,7 @@ The pipeline supports two modes:
 - Produces a reusable model artifact for future use
 - Activated with the `--train` flag
 
-### Step 2: Prepare Requirements as Prompts
+### Step 2 (Mode B): Prepare Requirements as Prompts
 
 Each requirement is converted into a structured prompt that guides the extraction model:
 
@@ -123,14 +123,6 @@ Training parameters are configurable:
 - Training/validation/test split proportions
 - Model optimization (LoRA, FP16)
 
-## Quality Indicators
-
-Phase 1 reports diagnostic information:
-- Number of requirements processed
-- Extraction success rate (model-based vs. fallback)
-- When comparison data is available, F1 scores showing extraction accuracy
-
-These metrics help validate whether the extraction quality is sufficient for downstream clustering.
 
 ## Key Design Decisions
 
@@ -141,41 +133,6 @@ These metrics help validate whether the extraction quality is sufficient for dow
 | Mandatory fallback | Ensures completeness even with model failures |
 | Normalization pipeline | Creates consistency for downstream graph building |
 | Requirement traceability | Every keyword can be traced back to source requirements |
-
-## Typical Outcomes
-
-Phase 1 typically produces:
-- 80–95% non-empty keyword lists (depending on fallback effectiveness)
-- 3–6 keywords per requirement
-- High consistency when evaluated against ground-truth (if available)
-- Deduplication
-- Lexicographic sorting
-
-The same parsing rule is applied for:
-- Predicted output
-- Evaluation metrics
-- Graph input parsing in Phase 2
-
-Stopword filtering happens only inside the deterministic fallback path, not in the shared keyword parser.
-
-### 5. Verification report
-
-If `tags` exists in `data/crowd.csv`, Phase 1 writes:
-- `results/real_case_comparison.json`
-
-Main sections include:
-- `metrics` (exact match, precision/recall/F1 variants)
-- `diagnostics.keyword_inference` (model vs fallback usage)
-- `records` (row-level predicted vs reference tags)
-
-If `tags` is missing, inference still runs and reporting is skipped gracefully.
-
-## Why This Step Is Important
-
-Phase 1 creates the semantic foundation of the pipeline:
-- Better keyword quality improves graph quality in Phase 2
-- Strong normalization keeps behavior consistent across all downstream steps
-- Diagnostics make extraction behavior transparent and auditable
 
 ## Main Code Entry Points
 
