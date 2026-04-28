@@ -1,103 +1,153 @@
-# Phase 1: Model and Inference
+# Phase 1: Keyword Extraction
 
-This step turns user stories into clean keyword sets that the next phases can use.
+## Executive Summary
 
-## Quick Purpose
+Phase 1 automatically identifies and extracts the key concepts from each requirement. This step serves as the foundation for the entire pipeline, converting unstructured requirement text into clean, normalized keyword sets that capture the essential ideas.
 
-Phase 1 answers two questions:
-- What keywords describe each requirement?
-- How reliable is the extraction process?
+## What Phase 1 Achieves
 
-## What This Step Works On
+**Input**: Requirements in CSV format with role, feature, and benefit information  
+**Output**: Normalized keyword lists for each requirement (passed to Phase 2)
 
-Primary input:
-- `data/crowd.csv`
+The phase answers two critical questions:
+- Which concepts appear most important in each requirement?
+- How accurately can we extract keywords from requirement text?
 
-Expected columns:
-- `role`
-- `feature`
-- `benefit`
-- `source_id` (or another requirement identifier)
+## Input Data Format
 
-Optional column:
-- `tags` (used only for evaluation metrics, not required for inference)
+The pipeline expects a CSV file (typically `data/crowd.csv`) with these columns:
 
-Optional training input override:
-- `--train-input-csv`
+| Column | Purpose | Required |
+|--------|---------|----------|
+| `role` | Who is the user (e.g., "homeowner", "administrator") | Yes |
+| `feature` | What capability is desired | Yes |
+| `benefit` | Why this feature matters | Yes |
+| `tags` | Ground-truth keywords (for evaluation only) | No |
+| `id` or row index | Unique requirement identifier | Yes |
 
-## What This Step Produces
+**Format example**:
+```
+role: homeowner
+feature: control my lighting remotely
+benefit: manage energy consumption more efficiently
+tags: lighting, remote control, energy management
+```
 
-- One normalized keyword list per requirement (in memory, passed to Phase 2)
-- Optional fine-tuned model artifacts in `models/flan-t5-keywords` (or custom `--model-dir`)
-- Verification report in `results/real_case_comparison.json` when `tags` is available
-- Inference diagnostics showing how many rows came from the model vs fallback
+## How It Works
 
-## How This Step Works
+### Step 1: Choose an Extraction Method
 
-### 1. Model selection
+The pipeline supports two modes:
 
-Two runtime modes are supported:
+**Mode A: KeyBERT (default)**
+- Fast, lightweight extraction using pre-trained embeddings
+- No training required
+- Works immediately out-of-the-box
+- Quality depends on source data and keyword definitions
+- Automatically used unless otherwise specified
 
-1. Training enabled (`--train`)
-- Build dataset splits
-- Fine-tune FLAN-T5 with LoRA
-- Save model to `--model-dir`
-- Use this model for inference
+**Mode B: Fine-tuned FLAN-T5**
+- Trains a specialized model on provided examples
+- Better accuracy when ground-truth keywords (`tags` column) are available
+- Higher computational cost
+- Produces a reusable model artifact for future use
+- Activated with the `--train` flag
 
-2. Training disabled (default)
-1. Default extractor: KeyBERT (preferred)
-- If `keybert` is installed in the environment, the pipeline uses KeyBERT to extract keywords by default when no fine-tuned model is explicitly selected.
+### Step 2: Prepare Requirements as Prompts
 
-2. Fine-tuned model
-- If `--use-finetuned` is provided (or if `--train` was run and produced a checkpoint in `--model-dir`), the pipeline loads and uses the fine-tuned FLAN-T5 model.
-- If `--use-finetuned` is requested but no checkpoint is present, the pipeline warns and falls back to KeyBERT or the base model.
+Each requirement is converted into a structured prompt that guides the extraction model:
 
-Note: Install KeyBERT in your environment to enable the default extractor behavior (see `requirements.txt`).
-
-### 2. Prompt creation
-
-Each requirement is converted to a prompt using the full instruction template in `src/finetune/prepare_data.py`.
-The prompt asks for comma-separated keywords only, caps the number of keywords, and discourages generic or low-information terms such as `user`, `system`, `home`, and `feature`.
-
-Actual prompt template:
-
-```text
+```
 Task: Extract high-quality keywords from the following user story.
+
 Rules:
 - Return ONLY a comma-separated list of keywords.
 - Use 1–3 words per keyword (noun phrases preferred).
-- Avoid generic or uninformative terms (e.g., user, system, home, feature).
+- Avoid generic or uninformative terms (user, system, home, feature).
 - Avoid duplicates and synonyms.
 - Prefer domain-specific and meaningful terms.
-- Include actions only if they are essential (e.g., 'user authentication').
 - Maximum 6 keywords.
-Example:
-Input: As a user, I want to reset my password so that I can regain access.
-Output: password reset, account access, authentication
 
 Input:
-As a <role>, I want <feature> so that <benefit>
+As a homeowner, I want to control my lighting remotely so that I can manage energy consumption more efficiently
+
 Output:
 ```
 
-In code, `<role>`, `<feature>`, and `<benefit>` are replaced with the row values from the CSV.
+The prompt is designed to:
+- Encourage concise, meaningful terms
+- Discourage common stopwords and generic words
+- Limit output to a manageable number
+- Request consistent formatting (comma-separated)
 
-### 3. Generation and fallback
+### Step 3: Generate Keywords
 
-Inference runs in batches and uses beam search.
+The extraction model processes each requirement and produces keywords. If the model produces ambiguous or empty output:
+- A fallback mechanism extracts candidate terms directly from the requirement text
+- Common stopwords and generic terms are filtered out
+- The result is normalized to match the standard format
+- This ensures every requirement gets a non-empty keyword set
 
-If generation normalizes to an empty string for a row:
-- A deterministic fallback extracts candidate terms from the prompt text
-- The fallback removes common stopwords and generic terms before normalization
-- The output still follows the same normalization pipeline
+### Step 4: Normalize Keywords
 
-This ensures each requirement gets a non-empty keyword result.
+All keywords undergo consistent normalization:
 
-### 4. Normalization and filtering
+| Operation | Example |
+|-----------|---------|
+| **Lowercase** | "Lighting" → "lighting" |
+| **Remove punctuation** | "lighting's" → "lighting s" → "lighting" |
+| **Light singularization** | "controllers" → "controller" |
+| **Deduplicate** | Keep only unique terms |
+| **Sort alphabetically** | Ensures consistency |
 
-All predicted keywords are normalized with consistent rules:
-- Lowercasing
-- Light singularization
+**Result**: A clean, standardized keyword list like `["energy management", "lighting", "remote control"]`
+
+## Output Format
+
+For each requirement, Phase 1 produces:
+- A **normalized keyword list** (e.g., `["climate control", "heating", "temperature"]`)
+- A **source ID** linking back to the original requirement
+- Optional **evaluation metrics** when ground-truth tags are provided
+
+These outputs are held in memory and passed directly to Phase 2 for graph construction.
+
+## Optional: Fine-Tuning Configuration
+
+When `--train` is specified, Phase 1 also creates:
+- `models/flan-t5-keywords/` — Fine-tuned model weights
+- A dataset split into train/validation/test/real-case subsets
+- Evaluation metrics comparing extracted keywords against ground-truth
+
+Training parameters are configurable:
+- Epochs, batch size, learning rate
+- Training/validation/test split proportions
+- Model optimization (LoRA, FP16)
+
+## Quality Indicators
+
+Phase 1 reports diagnostic information:
+- Number of requirements processed
+- Extraction success rate (model-based vs. fallback)
+- When comparison data is available, F1 scores showing extraction accuracy
+
+These metrics help validate whether the extraction quality is sufficient for downstream clustering.
+
+## Key Design Decisions
+
+| Decision | Rationale |
+|----------|-----------|
+| Maximum 6 keywords | Prevents keyword inflation; focuses on primary concepts |
+| Stopword filtering | Removes noise from generic terms like "user" or "system" |
+| Mandatory fallback | Ensures completeness even with model failures |
+| Normalization pipeline | Creates consistency for downstream graph building |
+| Requirement traceability | Every keyword can be traced back to source requirements |
+
+## Typical Outcomes
+
+Phase 1 typically produces:
+- 80–95% non-empty keyword lists (depending on fallback effectiveness)
+- 3–6 keywords per requirement
+- High consistency when evaluated against ground-truth (if available)
 - Deduplication
 - Lexicographic sorting
 

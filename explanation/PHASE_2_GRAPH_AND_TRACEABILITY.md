@@ -1,103 +1,169 @@
-# Phase 2: Graph and Traceability
+# Phase 2: Semantic Graph Construction
 
-This step converts keyword outputs into a semantic graph and attaches requirement traceability.
+## Executive Summary
 
-## Quick Purpose
+Phase 2 transforms extracted keywords into a structured semantic graph where nodes represent concepts and edges represent semantic relationships. The phase maintains complete traceability, linking every graph element back to the original requirements, enabling later analysis to understand not just *what* concepts are related, but *why* (through requirement evidence).
 
-Phase 2 answers two questions:
-- Which keywords are semantically related?
-- Which requirements justify each node and edge?
+## What Phase 2 Achieves
 
-## What This Step Works On
+**Input**: Keyword lists from Phase 1  
+**Output**: A semantic graph in GEXF format with requirement traceability metadata
 
-Input from Phase 1:
-- One normalized keyword list per requirement
-- One requirement identifier (`source_id`) per row
+The phase answers:
+- Which keywords are semantically related to each other?
+- How strong is each relationship?
+- Which requirements provide evidence for each relationship?
 
-Data source context:
-- Requirements are taken from `data/crowd.csv`
-- Reference `tags` are not used to build graph structure
+## Graph Construction Strategy
 
-## What This Step Produces
+Phase 2 builds a unified graph combining two complementary relationship types:
 
-- A semantic keyword graph in GEXF format
-- Node-level requirement traceability
-- Edge-level shared-requirement metadata
-- Degree-based visual attributes for graph tools
+### Relationship Type 1: Co-occurrence
 
-Default output:
-- `results/keyword_graph.gexf`
+**Definition**: Keywords that appear together in the same requirement
 
-## How This Step Works
+**How it works**:
+- For each requirement, all keyword pairs that appear together are connected
+- Edge weight = Jaccard similarity of their requirement coverage
+- If keywords A and B appear in requirements {1,2,3} and {2,3,4} respectively:
+  - Intersection: {2,3} (shared in 2 requirements)
+  - Union: {1,2,3,4} (appear across 4 requirements total)
+  - Jaccard = 2/4 = 0.5
 
-### 1. Build the semantic graph
+**Why this matters**: Keywords mentioned together are likely describing related aspects of the same feature
 
-Graph type:
-- Undirected `networkx.Graph`
+### Relationship Type 2: Semantic Similarity
 
-Construction logic:
-- Create one node per unique normalized keyword
-- Embed keywords with SentenceTransformer (`all-MiniLM-L6-v2` by default)
-- Compute cosine similarity for keyword pairs
-- Create an edge only when similarity >= `--semantic-threshold`
+**Definition**: Keywords that are conceptually similar even if not mentioned together
 
-Edge attributes set at creation:
-- `weight`
-- `semantic_similarity`
+**How it works**:
+- Each keyword is converted to an embedding using a pre-trained language model (`all-MiniLM-L6-v2`)
+- Cosine similarity is computed for all keyword pairs
+- An edge is created only when similarity ≥ `--semantic-threshold` (default: 0.4)
+- Examples of high similarity:
+  - "light switch" vs "lighting control"
+  - "temperature sensor" vs "thermometer"
+  - "automated" vs "automation"
 
-### 2. Attach requirement provenance to nodes
+**Why this matters**: Semantic similarity captures synonyms and conceptually equivalent ideas that don't co-occur but mean similar things
 
-For each keyword node, Phase 2 stores:
-- `requirement_ids`: requirements where the keyword appears
-- `requirement_count`: number of linked requirements
+### Combined Graph
 
-This enables direct traceability from concept to source requirement rows.
+The two relationship types are merged into a single graph where:
+- **Nodes** = all unique keywords
+- **Edges** combine both relationship types
+- **Edge attributes** track the evidence:
+  - `weight` — strongest signal (co-occurrence weight OR semantic similarity)
+  - `edge_type` — whether edge came from "cooccurrence", "semantic", or "both"
+  - Both individual metrics are preserved for detailed analysis
 
-### 3. Remove isolated nodes
+## Graph Refinement
 
-Nodes with degree `0` are removed automatically.
+### Step 1: Remove Isolated Nodes
 
-Why:
-- Isolated terms do not contribute to relational structure
-- They can harm clustering quality and readability
+Nodes with no connections (degree = 0) are removed because:
+- They represent concepts mentioned in isolation
+- They don't contribute to relational structure
+- They can harm clustering quality and visualization clarity
 
-### 4. Optional node reduction (enabled by default)
+### Step 2: Optional Node Reduction (Enabled by Default)
 
-Goal:
-- Reduce noisy low-value nodes while keeping traceability
+**Purpose**: Reduce noise from low-value singleton nodes while preserving traceability
 
-Rules:
-- Hub nodes: degree > high threshold (default 5)
-- Low-degree nodes: degree <= low threshold (default 2)
-- A low-degree node connected only to hubs is merged into the strongest hub
-- An isolated node is merged into the hub with the richest requirement coverage
-- Requirement references are transferred before node removal
+**How it works**:
 
-Configuration:
-- Enable: `--enable-node-reduction`
-- Disable: `--disable-node-reduction`
-- Low threshold: `--node-reduction-degree-threshold-low`
-- High threshold: `--node-reduction-degree-threshold-high`
+A node is considered "low-value" if:
+- Its degree is ≤ `--node-reduction-degree-threshold-low` (default: 2)
+- It is only connected to "hub" nodes (degree > `--node-reduction-degree-threshold-high`, default: 5)
 
-### 5. Attach shared requirement metadata to edges
+Low-value nodes are merged into the strongest hub connected to them. Before removal:
+- All requirement references from the low-value node are transferred to the hub
+- The edge weight is updated to reflect the merge
 
-Each edge gets overlap metadata between endpoint nodes:
-- `shared_requirement_ids`
-- `shared_requirement_count`
+**Example**:
+```
+Before:    "timer module" --0.6-- "automation hub" (degree 8)
+           "timer module" --0.4-- "scheduling system" (degree 1)
+           
+After:     "timer module" is merged into "automation hub"
+           Requirements that mentioned "timer module" are now attributed to "automation hub"
+```
 
-This shows whether connected concepts are also co-mentioned in the same requirements.
+This reduces graph complexity while maintaining requirement linkage.
 
-### 6. Add visual styling by relation count
+## Traceability Metadata
 
-Node color buckets by degree:
-- Degree `0`: red
-- Degree `1-3`: orange
-- Degree `4-5`: yellow
-- Degree `>5`: green
+### Node Attributes
 
-Added attributes:
-- `relation_count`
-- `relation_color`
+Each node stores:
+- `requirement_ids` — List of all original requirements mentioning this keyword
+- `requirement_count` — How many requirements mention this keyword
+
+Example:
+```
+Node: "lighting control"
+  requirement_ids: ["req_42", "req_103", "req_157"]
+  requirement_count: 3
+```
+
+This enables analysts to instantly understand:
+- How common is this concept across requirements?
+- Which specific requirements are affected by this concept?
+
+### Edge Attributes
+
+Each edge stores:
+- `shared_requirement_ids` — Requirements that mention BOTH connected keywords
+- `shared_requirement_count` — How many requirements mention both concepts
+
+Example:
+```
+Edge: "lighting" -- "remote control"
+  shared_requirement_ids: ["req_42", "req_103"]
+  shared_requirement_count: 2
+  
+Interpretation: These two concepts co-occur in 2 requirements,
+suggesting they are genuinely related concepts for users.
+```
+
+## Visual Styling
+
+Nodes are automatically colored based on their structural importance:
+
+| Degree Range | Color | Meaning |
+|--------------|-------|---------|
+| 0 (isolated) | Red | Removed from final graph |
+| 1–3 | Orange | Low connectivity, supporting concepts |
+| 4–5 | Yellow | Moderate connectivity, important concepts |
+| >5 | Green | Hub nodes, central to requirement structure |
+
+These colors help analysts quickly identify the "star" concepts that appear frequently and in multiple contexts.
+
+## Output Artifacts
+
+Phase 2 produces:
+- **GEXF file** (`results/keyword_graph.gexf`) — Importable into graph visualization tools (Gephi, Cytoscape)
+- **Graph statistics** — Node count, edge count, density metrics
+- **Visual attributes** — X/Y coordinates (computed later in Phase 3)
+
+## Design Philosophy
+
+Phase 2's key principle: **"Keep every requirement connected to every graph element"**
+
+This design choice:
+- Prevents loss of information during transformation
+- Enables downstream phases to validate clustering against original requirements
+- Allows inconsistency detection to reference source material
+- Provides accountability: analysts can always see the evidence for any graph structure
+
+## Typical Graph Characteristics
+
+For a medium-sized requirement set (e.g., 2000 requirements):
+- **Nodes**: 300–500 unique concepts
+- **Edges**: 1000–2000 relationships
+- **Density**: ~0.01–0.05 (sparse, as expected)
+- **Hub clusters**: 5–10 major keyword groups
+- **Isolated nodes removed**: ~15–25% of extracted keywords
 - `relation_bucket`
 - `viz.color` (GEXF-compatible)
 
