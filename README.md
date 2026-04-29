@@ -1,240 +1,297 @@
-# Keyword-Graph: Requirements Engineering Analysis Pipeline
+# Keyword-Graph: requirements analysis pipeline
 
-A comprehensive pipeline for extracting keywords from software requirements and performing semantic clustering to discover requirement themes and relationships.
+Keyword-Graph is an end-to-end pipeline that turns natural-language software requirements into normalized keywords, a semantic graph, thematic clusters, and comparison reports. The project is designed to support Requirements Engineering analysis, traceability, and semantic interpretation of requirements.
 
-## What This Project Does
+## Goal
 
-This pipeline transforms raw requirement datasets into structured semantic analysis outputs:
+The core idea is straightforward: start from a CSV of textual requirements, extract the important concepts, connect them in a graph, group them into coherent themes, and compare multiple clustering strategies to understand how stable the results are.
 
-- **Phase 1**: Extract keywords from unstructured requirement text (automatic or fine-tuned extraction)
-- **Phase 2**: Build a semantic graph showing how concepts relate across requirements
-- **Phase 3**: Cluster related keywords into themes and validate results with multiple approaches
-- **Phase 4** (planned): Detect inconsistencies and suggest improvements
+The full pipeline covers these stages:
 
-## Quick Start
+1. Keyword extraction from requirements
+2. Semantic graph construction with traceability back to the original requirements
+3. Clustering of keyword nodes with hybrid features
+4. Comparison against a direct approach based on the full requirement text
+5. Export of readable and visualizable artifacts
 
-### 1. Install Dependencies
+Phase 4 in the documentation is only planned: the current implementation goes as far as cluster comparison and validation.
+
+## How the pipeline works
+
+### High-level data flow
+
+```text
+Requirements CSV
+  -> preprocessing and normalization
+  -> keyword extraction
+  -> keyword-to-keyword semantic graph
+  -> node reduction and graph cleanup
+  -> hybrid clustering with Node2Vec + requirement features
+  -> comparison with direct requirement clustering
+  -> JSON + GEXF + plot reports
+```
+
+The entrypoint is [src/run_pipeline.py](src/run_pipeline.py). The main command is `python -m src.run_pipeline`, which reads configuration from [config/run_pipeline.json](config/run_pipeline.json) and can be overridden from the CLI.
+
+## Phase 1 - Keyword extraction
+
+The first phase converts each requirement into a clean, coherent list of keywords. This is the step that moves the text from narrative form to analyzable form.
+
+### Methodology
+
+The project supports two modes:
+
+1. KeyBERT as the default, lightweight, ready-to-use approach.
+2. FLAN-T5 fine-tuning when reference tags are available in the dataset.
+
+### Implementation choices
+
+- Pragmatic default: use KeyBERT when nothing is trained, so the pipeline remains immediately runnable.
+- Optional training: with `--train`, the system prepares train/validation/test splits, trains the model, and saves artifacts in `models/flan-t5-keywords/`.
+- Robust fallback: if the fine-tuned model is not available, the pipeline falls back to the default extractor.
+- Normalization: keywords are standardized before moving to the next phase.
+
+### Input and output
+
+Expected input: `data/crowd.csv`, with columns such as `role`, `feature`, `benefit`, and optionally `tags` for evaluation.
+
+Main outputs:
+
+- extracted keywords for each requirement
+- comparison report against ground-truth tags, when available
+- HuggingFace dataset saved to `data/hf_dataset/` when training is enabled
+
+### Why this choice
+
+The dual-mode approach balances quality and operational simplicity. Users who want immediate results can use KeyBERT; users with labeled data can improve extraction with a model adapted to the domain.
+
+## Phase 2 - Semantic graph and traceability
+
+In this phase, keywords become nodes in a semantic graph. The goal is not only to connect similar concepts, but also to keep the link to the original requirements at all times.
+
+### Methodology
+
+The graph combines two complementary signals:
+
+1. Co-occurrence: keywords that appear in the same requirement.
+2. Semantic similarity: keywords close in embedding space, computed with a Sentence-Transformers model.
+
+The default model is `all-MiniLM-L6-v2`. An edge is created only if similarity exceeds the threshold defined by `--semantic-threshold`.
+
+### Implementation choices
+
+- Combining co-occurrence and semantic similarity avoids relying on a single signal.
+- Every node keeps the IDs of the requirements that support it, so traceability stays complete.
+- Isolated nodes are removed because they do not add useful relational structure.
+- Node reduction is enabled by default: low-information keywords can be absorbed into stronger hubs while preserving requirement evidence.
+
+### Result
+
+The graph is exported as GEXF in [results/keyword_graph.gexf](results/keyword_graph.gexf), so it can be opened in Gephi or Cytoscape for visual analysis.
+
+## Phase 3 - Clustering and comparison
+
+The third phase groups keywords into semantic themes and checks the stability of the result with an alternative approach.
+
+### Main methodology
+
+Clustering does not rely only on graph structure. It combines two feature families:
+
+1. Structural graph embeddings with Node2Vec.
+2. Requirement-aware features, meaning vectors that represent which requirements each keyword appears in.
+
+The two components are fused with a configurable weight via `--cluster-requirement-feature-weight`.
+
+### Why this choice
+
+This is the most important point in the pipeline: clustering should not be purely topological, it should also reflect the requirement context. In practice, keywords that are close in the graph and often appear in the same requirements are more likely to end up in the same cluster.
+
+### Selecting k
+
+The number of clusters can be:
+
+- fixed manually with `--cluster-k`
+- selected automatically by testing a range of values and comparing multiple metrics
+
+The metrics used are:
+
+- Davies-Bouldin Index, which should be minimized
+- Calinski-Harabasz Index, which should be maximized
+- inertia, useful for trend reading but not as an absolute criterion
+
+### Visualization
+
+After clustering, nodes are projected into 2D with UMAP to make reading and visual inspection easier.
+
+### Direct baseline comparison
+
+The pipeline also computes a direct clustering of the requirements, without using the graph, to answer a very concrete methodological question: does the graph add value or not?
+
+The comparison produces metrics such as:
+
+- Adjusted Rand Index
+- Normalized Mutual Information
+- Purity
+
+If the metrics are high, the two approaches are coherent; if they diverge, the graph is likely capturing additional informative structure.
+
+## Phase 4 - Current status and future work
+
+In the project documentation, phase 4 is marked as planned. The idea is to use the clustering results to identify inconsistencies, ambiguities, or potentially conflicting requirements and provide support for correction.
+
+## Project structure
+
+```text
+README.md
+config/run_pipeline.json
+data/
+  crowd.csv
+  hf_dataset/
+explanation/
+  PHASE_1_MODEL_AND_INFERENCE.md
+  PHASE_2_GRAPH_AND_TRACEABILITY.md
+  PHASE_3_CLUSTERING_AND_REQUIREMENT_AWARE_FEATURES.md
+results/
+src/
+  run_pipeline.py
+  phase1/
+  phase2/
+  phase3/
+  phase4/
+```
+
+## Installation
 
 ```bash
 pip install -r requirements.txt
 ```
 
-Then install PyTorch for your hardware:
+On Windows, if you want to use an NVIDIA GPU with PyTorch, you may need to manually reinstall the correct torch build for your CUDA version. A typical example is:
 
 ```bash
-# NVIDIA CUDA on Windows (example)
 pip uninstall -y torch torchvision torchaudio
 pip install --index-url https://download.pytorch.org/whl/cu124 torch torchvision torchaudio
 ```
 
-### 2. Run the Pipeline
+## Running the pipeline
+
+### Standard run
 
 ```bash
 python -m src.run_pipeline
 ```
 
-This runs all phases using the default configuration in `config/run_pipeline.json`.
+This run:
 
-### 3. Inspect Results
+- uses the default configuration
+- extracts keywords from `data/crowd.csv`
+- builds the semantic graph
+- runs clustering, if enabled
+- saves outputs to `results/`
 
-Results are saved to `results/`:
-- `keyword_graph.gexf` — Semantic graph for visualization
-- `clustering_report.json` — Cluster assignments and metrics
-- `clustering_comparison.json` — Comparison with direct approach
-- `K.png` — Cluster optimization visualization
-
-## Technical Documentation
-
-Detailed explanations of each phase:
-
-- [Phase 1 - Keyword Extraction](explanation/PHASE_1_MODEL_AND_INFERENCE.md)
-- [Phase 2 - Semantic Graph Construction](explanation/PHASE_2_GRAPH_AND_TRACEABILITY.md)
-- [Phase 3 - Semantic Clustering and Comparison](explanation/PHASE_3_CLUSTERING_AND_REQUIREMENT_AWARE_FEATURES.md)
-- [Overview & Project Status](explanation/note.md)
-
-## Configuration
-
-Configuration is stored in `config/run_pipeline.json` and can be overridden via CLI arguments.
-
-### Command-Line Arguments
-
-Run with custom settings:
+### Run with custom parameters
 
 ```bash
-python -m src.run_pipeline --cluster-k 10 --semantic-threshold 0.5
+python -m src.run_pipeline --cluster-k 8 --semantic-threshold 0.5
 ```
 
-The following table lists all configurable options. **CLI arguments take precedence over config file values.**
+CLI parameters take precedence over the JSON file.
 
-### Phase 1: Keyword Extraction Arguments
-
-| Argument | Type | Default | Description |
-|---|---|---|---|
-| `--train` | flag | `False` | Fine-tune the model on provided training data. Recommended when ground-truth keyword tags are available. |
-| `--train-input-csv` | `str` | `None` | Path to training CSV (default: `data/crowd.csv`). |
-| `--model-dir` | `str` | `models/flan-t5-keywords` | Directory for fine-tuned model artifacts. |
-| `--base-model-name` | `str` | `google/flan-t5-base` | Base model for fine-tuning or fallback inference. |
-| `--use-finetuned` | flag | `False` | Force use of fine-tuned model instead of KeyBERT default. |
-| `--epochs` | `int` | `5` | Fine-tuning epochs. |
-| `--batch-size` | `int` | `8` | Training batch size per device. |
-| `--lr` | `float` | `3e-4` | Learning rate. |
-| `--max-input-len` | `int` | `256` | Max input prompt tokens. |
-| `--max-target-len` | `int` | `64` | Max keyword generation tokens. |
-| `--fp16` | flag | `False` | Enable mixed-precision training (requires CUDA). |
-| `--require-cuda` | flag | `False` | Fail if CUDA unavailable. |
-| `--seed` | `int` | `42` | Random seed for reproducibility. |
-| `--train-size` | `int` | `2000` | Training set size. |
-| `--validation-size` | `int` | `250` | Validation set size. |
-| `--test-size` | `int` | `250` | Test set size. |
-| `--hf-dataset-dir` | `str` | `data/hf_dataset` | HuggingFace dataset cache directory. |
-| `--comparison-json-out` | `str` | `results/real_case_comparison.json` | Output path for extraction quality report. |
-| `--inference-batch-size` | `int` | `16` | Batch size during full-dataset keyword extraction. |
-
-### Phase 2: Graph Construction Arguments
-
-| Argument | Type | Default | Description |
-|---|---|---|---|
-| `--semantic-threshold` | `float` | `0.4` | Minimum cosine similarity for creating graph edges (0.0–1.0). |
-| `--semantic-model` | `str` | `all-MiniLM-L6-v2` | Sentence-Transformers model for keyword embedding. |
-| `--enable-node-reduction` | flag | `True` | Merge low-degree nodes into hubs to reduce graph complexity. |
-| `--disable-node-reduction` | flag | `False` | Keep all nodes unchanged. |
-| `--node-reduction-degree-threshold-low` | `int` | `2` | Max degree for a node to be absorbed. |
-| `--node-reduction-degree-threshold-high` | `int` | `5` | Min degree to qualify as a hub node. |
-| `--graph-out` | `str` | `results/keyword_graph.gexf` | Output graph file path (GEXF format). |
-
-### Phase 3: Clustering Arguments
-
-| Argument | Type | Default | Description |
-|---|---|---|---|
-| `--enable-clustering` | flag | `True` | Enable clustering phase. |
-| `--no-clustering` | flag | `False` | Skip clustering. |
-| `--cluster-k` | `int` | `None` | Fixed number of clusters. If `None`, auto-select using Davies-Bouldin + Calinski-Harabasz. |
-| `--cluster-k-min` | `int` | `2` | Minimum k for automatic selection. |
-| `--cluster-k-max` | `int` | `15` | Maximum k for automatic selection. |
-| `--cluster-embedding-dim` | `int` | `64` | Node2Vec embedding dimension. |
-| `--cluster-node2vec-walk-length` | `int` | `30` | Length of random walks for Node2Vec. |
-| `--cluster-node2vec-num-walks` | `int` | `200` | Number of walks per node. |
-| `--cluster-node2vec-workers` | `int` | `4` | Parallel workers for Node2Vec (set to 1 for reproducibility). |
-| `--cluster-requirement-feature-weight` | `float` | `0.5` | Weight for requirement-aware features (0.0–1.0). |
-| `--cluster-requirement-svd-dim` | `int` | `16` | Dimensionality of reduced requirement features. |
-| `--cluster-random-state` | `int` | `42` | Random seed for reproducibility. |
-| `--cluster-report-out` | `str` | `results/clustering_report.json` | Clustering output report path. |
-| `--cluster-elbow-plot-out` | `str` | `results/k.png` | Elbow plot path. |
-
-### Phase 3: Clustering Comparison Arguments
-
-| Argument | Type | Default | Description |
-|---|---|---|---|
-| `--enable-clustering-comparison` | flag | `True` | Compare graph-based clustering with direct requirement clustering. |
-| `--disable-clustering-comparison` | flag | `False` | Skip comparison. |
-| `--clustering-comparison-out` | `str` | `results/clustering_comparison.json` | Comparison report output path. |
-| `--direct-clustering-report-out` | `str` | `results/direct_clustering_report.json` | Direct clustering report output path. |
-
-## Understanding the Results
-
-### Output Files
-
-After running the pipeline, the `results/` directory contains:
-
-| File | Purpose | Format |
-|------|---------|--------|
-| `keyword_graph.gexf` | Semantic graph with all keywords and relationships | GEXF (importable into Gephi, Cytoscape) |
-| `clustering_report.json` | Graph-based clustering results with cluster assignments | JSON |
-| `clustering_comparison.json` | Comparison metrics between graph and direct approaches | JSON |
-| `direct_clustering_report.json` | Direct requirement clustering results (parallel approach) | JSON |
-| `K.png` | Visualization of cluster quality metrics by k | PNG |
-| `real_case_comparison.json` | Phase 1 extraction quality vs ground-truth (if tags provided) | JSON |
-
-### Interpreting Key Metrics
-
-**Clustering Quality**:
-- **Davies-Bouldin Index** (lower is better): Cluster separation; target < 1.5
-- **Calinski-Harabasz Index** (higher is better): Compactness vs separation; no fixed target
-- **Inertia**: Within-cluster variance; only useful for trend, not absolute value
-
-**Approach Comparison**:
-- **Adjusted Rand Index** (0–1): Agreement between two clustering methods; >0.8 = strong agreement
-- **Normalized Mutual Information** (0–1): Information overlap; >0.7 = good agreement
-- **Purity** (0–1): Cluster homogeneity; >0.85 = high quality
-
-## Configuration File
-
-The `config/run_pipeline.json` file stores default parameters:
-
-```json
-{
-  "train": false,
-  "semantic_threshold": 0.4,
-  "cluster_k": null,
-  "cluster_k_min": 2,
-  "cluster_k_max": 15,
-  "cluster_requirement_feature_weight": 0.5,
-  "enable_clustering": true,
-  "enable_clustering_comparison": true
-}
-```
-
-**Priority order for parameters**:
-1. CLI arguments (highest priority) — `python -m src.run_pipeline --cluster-k 10`
-2. Config file values — loaded from `config/run_pipeline.json`
-3. Built-in defaults (lowest priority)
-
-This design lets you keep stable defaults in JSON and override specific values via CLI.
-
-## Common Workflows
-
-### Workflow 1: Extract Keywords Without Fine-Tuning
+### Training the extraction model
 
 ```bash
-# Uses KeyBERT by default
-python -m src.run_pipeline --no-clustering
-```
-
-Outputs: `keyword_graph.gexf` only (Phases 1–2)
-
-### Workflow 2: Fine-Tune on Labeled Data
-
-```bash
-# Trains on data/crowd.csv, extracts keywords, builds graph
 python -m src.run_pipeline --train --epochs 5
 ```
 
-Requires: `tags` column in input CSV
+This mode is useful when the CSV contains reference tags and you want to adapt the model to the specific requirement domain.
 
-### Workflow 3: Fixed k Clustering
-
-```bash
-# Use exactly 8 clusters instead of auto-selecting
-python -m src.run_pipeline --cluster-k 8
-```
-
-### Workflow 4: Experiment with Feature Weight
+### Disabling clustering
 
 ```bash
-# Emphasize graph structure over requirement linkage
-python -m src.run_pipeline --cluster-requirement-feature-weight 0.2
-
-# Emphasize requirement linkage over graph structure
-python -m src.run_pipeline --cluster-requirement-feature-weight 0.8
+python -m src.run_pipeline --no-clustering
 ```
 
-## Best Practices
+Useful if you want to stop after semantic graph construction.
 
-1. **Start with defaults** — Run `python -m src.run_pipeline` first to understand your data
-2. **Review K.png** — Inspect the elbow plot to validate automatic k selection
-3. **Check comparison metrics** — High agreement (ARI >0.8) between approaches validates results
-4. **Adjust semantic-threshold if needed**:
-   - Lower (0.2–0.3) for more lenient keyword relationships
-   - Higher (0.5–0.6) for stricter, more specific relationships
-5. **Use node reduction** — Enabled by default; reduces noise without losing traceability
-6. **Fine-tune only if** — You have ground-truth keyword tags and want to optimize extraction accuracy
+## Main parameters
 
-## Visualization with Gephi
+### Keyword extraction
 
-1. Open `results/keyword_graph.gexf` in Gephi (free software)
-2. Use the built-in layout algorithms (ForceAtlas2 recommended)
-3. Color nodes by `relation_color` attribute for quick visual analysis
-4. Use `cluster_id` to highlight clusters
+- `--train`: enables fine-tuning
+- `--use-finetuned`: forces the use of the already trained model
+- `--train-input-csv`: training CSV
+- `--model-dir`: fine-tuned model directory
+- `--base-model-name`: base model for training or fallback
+
+### Semantic graph
+
+- `--semantic-threshold`: minimum cosine similarity required to create an edge
+- `--semantic-model`: model used for keyword embeddings
+- `--enable-node-reduction` / `--disable-node-reduction`: enable or disable node reduction
+
+### Clustering
+
+- `--cluster-k`: fixed number of clusters
+- `--cluster-k-min`, `--cluster-k-max`: range for automatic selection
+- `--cluster-embedding-dim`: Node2Vec embedding dimension
+- `--cluster-requirement-feature-weight`: weight of requirement-aware features
+- `--cluster-requirement-svd-dim`: SVD reduction dimension
+
+### Comparison
+
+- `--enable-clustering-comparison` / `--disable-clustering-comparison`: enable comparison with direct clustering
+- `--clustering-comparison-out`: comparison report output
+- `--direct-clustering-report-out`: direct baseline report output
+
+## Configuration
+
+Defaults are defined in [config/run_pipeline.json](config/run_pipeline.json). Value precedence is:
+
+1. CLI parameters
+2. configuration file values
+3. hardcoded defaults in the code
+
+This keeps the pipeline reproducible while still making experimentation easy.
+
+## Generated outputs
+
+In the `results/` folder you will typically find:
+
+- [results/keyword_graph.gexf](results/keyword_graph.gexf): exportable semantic graph
+- [results/clustering_report.json](results/clustering_report.json): graph-based clustering report
+- [results/clustering_comparison.json](results/clustering_comparison.json): comparison between the two approaches
+- [results/direct_clustering_report.json](results/direct_clustering_report.json): direct clustering report
+- [results/K.png](results/K.png): visual support for selecting k
+- [results/real_case_comparison.json](results/real_case_comparison.json): keyword extraction comparison against ground-truth tags, when present
+
+## How to read the results
+
+### Clustering quality
+
+- Lower Davies-Bouldin means better-separated clusters
+- Higher Calinski-Harabasz means more compact and better-separated clusters
+- inertia is useful only for understanding the trend as k changes
+
+### Approach comparison
+
+- Higher ARI means strong agreement between graph-based and direct clustering
+- Higher NMI means strong information overlap
+- Higher Purity means more homogeneous clusters
+
+## When to use each mode
+
+Use the standard pipeline if you want a complete and fast reading of the requirements. Enable training only if you have a labeled dataset and want to improve extraction quality. Fix `k` manually when running controlled experiments; leave automatic selection on if you want a data-driven estimate.
+
+## Supporting documentation
+
+- [Phase 1 - Keyword extraction](explanation/PHASE_1_MODEL_AND_INFERENCE.md)
+- [Phase 2 - Semantic graph and traceability](explanation/PHASE_2_GRAPH_AND_TRACEABILITY.md)
+- [Phase 3 - Clustering and requirement-aware features](explanation/PHASE_3_CLUSTERING_AND_REQUIREMENT_AWARE_FEATURES.md)
+- [Project overview note](explanation/note.md)
+
+## Final summary
+
+Keyword-Graph combines NLP, graph analysis, and clustering to turn raw requirements into analyzable structure. The key design choice is to never lose traceability: every keyword, edge, and cluster remains connected to the original requirements, so the results are not only interesting, but also verifiable.
 
 
 
