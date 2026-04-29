@@ -2,13 +2,13 @@
   "comparison": {
     "method": "keyword_graph_vs_direct_embedding",
     "num_requirements": 250,
-    "total_compared": 180,
-    "missing_in_keyword_graph": 70
+    "total_compared": 234,
+    "missing_in_keyword_graph": 16
   },
   "keyword_graph_approach": {
-    "num_clusters": 4,
-    "requirements_mapped": 180,
-    "multi_cluster_requirements": 13
+    "num_clusters": 6,
+    "requirements_mapped": 234,
+    "multi_cluster_requirements": 1
   },
   "direct_embedding_approach": {
     "num_clusters": 8,
@@ -17,8 +17,8 @@
     "calinski_harabasz": 12.690214039522337
   },
   "agreement": {
-    "adjusted_rand_index": 0.1240870909201856,
-    "normalized_mutual_info": 0.29428226122506224,
+    "adjusted_rand_index": 0.3042780115118306,
+    "normalized_mutual_info": 0.3765934207311928,
     "interpretation": {
       "ari": "1.0=perfect, ~0.0=random, <0=anti-correlated",
       "nmi": "1.0=identical, 0.0=independent"

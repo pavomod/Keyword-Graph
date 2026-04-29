@@ -101,7 +101,8 @@
 
   /* Stats */
   .stats-grid {
-    display: grid;
+    display: flex;
+    justify-content: space-around;
     grid-template-columns: repeat(4, 1fr);
     gap: 10px;
     margin-bottom: 1.5rem;
@@ -112,6 +113,7 @@
     border-radius: var(--radius);
     padding: 14px 16px;
     box-shadow: var(--shadow);
+    width: 33%;
   }
   .stat-val {
     font-size: 26px;
@@ -314,7 +316,6 @@
   <div class="stat"><div class="stat-val" id="s-kg-k">—</div><div class="stat-lbl">cluster keyword graph</div></div>
   <div class="stat"><div class="stat-val" id="s-dir-k">—</div><div class="stat-lbl">cluster direct embedding</div></div>
   <div class="stat"><div class="stat-val" id="s-reqs">—</div><div class="stat-lbl">requisiti nel CSV</div></div>
-  <div class="stat"><div class="stat-val" id="s-diff">—</div><div class="stat-lbl">req. con cluster diverso</div></div>
 </div>
 
 <div class="ari-row" id="ari-row">
@@ -494,20 +495,6 @@ function esc(s) {
   return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
 }
 
-function computeDiff() {
-  if (!kgData || !dirData) return '—';
-  var kgMap = getReqMap(kgData), dirMap = getReqMap(dirData);
-  var diff = 0;
-  Object.keys(kgMap).forEach(function(id) {
-    var kc = Array.isArray(kgMap[id]) ? kgMap[id][0] : kgMap[id];
-    var dc = dirMap[id];
-    if (dc === undefined) return;
-    var dcFirst = Array.isArray(dc) ? dc[0] : dc;
-    if (kc !== dcFirst) diff++;
-  });
-  return diff;
-}
-
 function updateStats() {
   if (kgData) {
     var k = Object.keys(getMapping(kgData)).length;
@@ -521,8 +508,6 @@ function updateStats() {
   }
   var csvCount = Object.keys(csvMap).length;
   if (csvCount) document.getElementById('s-reqs').textContent = csvCount;
-  var diff = computeDiff();
-  document.getElementById('s-diff').textContent = diff;
 }
 
 function showARI(ari, nmi) {
