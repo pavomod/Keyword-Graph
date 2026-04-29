@@ -268,11 +268,11 @@ def style_nodes_by_degree(graph: nx.Graph) -> nx.Graph:
 def _degree_color(degree: int) -> tuple[str, str]:
     if degree == 0:
         return "#e53935", "0"
-    if 1 <= degree <= 3:
-        return "#fb8c00", "1-3"
-    if 4 <= degree <= 5:
-        return "#fdd835", "4-5"
-    return "#43a047", ">5"
+    if 1 <= degree <= 5:
+        return "#fb8c00", "1-5"
+    if 6 <= degree <= 10:
+        return "#fdd835", "6-10"
+    return "#43a047", ">10"
 
 
 def _sort_requirement_ids(requirement_ids: set[str]) -> list[str]:
