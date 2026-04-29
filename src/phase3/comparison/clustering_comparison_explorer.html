@@ -363,13 +363,21 @@ var COLORS_DIR = ['#0F6E56','#534AB7','#BA7517','#993556','#185FA5','#3B6D11','#
 function col(idx, palette) { return palette[idx % palette.length]; }
 
 function parseCSV(text) {
-  var lines = text.trim().split('\n');
-  var headers = splitLine(lines[0]);
+  var lines = text.trim().split(/\r?\n/);
+  var headers = splitLine(lines[0].replace(/^\uFEFF/, ''));
   var map = {};
   for (var i = 1; i < lines.length; i++) {
     var vals = splitLine(lines[i]);
     var row = {};
-    headers.forEach(function(h, j) { row[h] = (vals[j] || '').replace(/^"|"$/g, '').trim(); });
+    headers.forEach(function(h, j) {
+      var value = '';
+      if (j < vals.length) {
+        value = (j === headers.length - 1)
+          ? vals.slice(j).join(',')
+          : vals[j];
+      }
+      row[h] = String(value).replace(/^"|"$/g, '').trim();
+    });
     if (row.id) map[row.id] = row;
   }
   return map;
@@ -443,7 +451,7 @@ function renderReqs() {
   var filtered = ids.filter(function(id) {
     if (!q) return true;
     var row = csvMap[id] || {};
-    var story = ((row.role||'') + ' ' + (row.feature||'') + ' ' + (row.benefit||'')).toLowerCase();
+    var story = ((row.role||'') + ' ' + (row.feature||'')).toLowerCase();
     return story.includes(q) || id.includes(q);
   });
 
@@ -456,8 +464,7 @@ function renderReqs() {
   list.innerHTML = filtered.map(function(id) {
     var row = csvMap[id] || {};
     var role = row.role || '';
-    var feature = row.feature || '(testo non disponibile — carica il CSV)';
-    var benefit = row.benefit || '';
+    var feature = row.feature || row.input || '(testo non disponibile — carica il CSV)';
     var tags = (row.tags || '').split(',').map(function(t){ return t.trim(); }).filter(Boolean);
 
     var otherClusters = otherReqMap[id];
@@ -472,7 +479,7 @@ function renderReqs() {
 
     var tagsHtml = tags.map(function(t){ return '<span class="tag">' + t + '</span>'; }).join('');
     var storyHtml = role
-      ? 'As a <b>' + esc(role) + '</b>, I want ' + esc(feature) + (benefit ? ' so that ' + esc(benefit) : '')
+      ? 'As a <b>' + esc(role) + '</b>, I want ' + esc(feature)
       : esc(feature);
 
     return '<div class="req-card">' +

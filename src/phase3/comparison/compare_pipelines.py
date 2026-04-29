@@ -14,17 +14,6 @@ from sklearn.metrics import (
 )
 from sentence_transformers import SentenceTransformer
 
-# NOTE: These stopwords are duplicated from train.py/_STOPWORDS.
-# They should be centralised in src/keywords/stopwords.py and imported here
-# and in train.py to avoid divergence.
-_DIRECT_LABEL_STOPWORDS = {
-    "a", "an", "and", "are", "as", "at", "be", "by", "for", "from",
-    "i", "if", "in", "is", "it", "my", "of", "on", "or", "so",
-    "that", "the", "this", "to", "want", "with",
-    "user", "system", "feature", "home", "page", "screen",
-    "button", "menu", "view", "panel", "form", "field", "item", "data",
-}
-
 
 def _coerce_cluster_ids(value: object) -> list[int]:
     if value is None:

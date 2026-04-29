@@ -5,7 +5,7 @@ from pathlib import Path
 
 import networkx as nx
 from sentence_transformers import SentenceTransformer, util
-from src.phase1.finetune.normalize import parse_keyword_text
+from src.phase1.keyBERT.normalize import parse_keyword_text
 from transformers import logging as hf_logging
 
 

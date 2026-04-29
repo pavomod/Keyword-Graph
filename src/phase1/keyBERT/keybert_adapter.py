@@ -2,48 +2,52 @@ import re
 from typing import List, Tuple
 from keybert import KeyBERT
 
-# Initialize ONCE
-_kw_model = KeyBERT("BAAI/bge-m3")
+# Lazy model holder
+_kw_model = None
+_kw_model_name = None
 
 
-def extract_requirement_text(prompt: str) -> str:
-    """Extract the final user-story requirement from a full pipeline prompt."""
-    input_sections = re.split(r"(?im)^Input:\s*", prompt)
-    candidate = input_sections[-1] if len(input_sections) > 1 else prompt
+def _ensure_model(model_name: str | None = None):
+    """Initialize KeyBERT model lazily and reuse the instance.
 
-    candidate = re.split(r"(?im)^Output:\s*", candidate, maxsplit=1)[0].strip()
-    candidate = candidate.splitlines()[0].strip() if candidate else ""
-
-    if candidate:
-        match = re.search(r"I want .+? so that .+", candidate, re.DOTALL)
-        if match:
-            return match.group(0).strip()
-
-    match = re.search(r"I want .+? so that .+?(?=\n|$)", prompt, re.DOTALL)
-    if match:
-        return match.group(0).strip()
-
-    return prompt
+    If a different model_name is provided than the currently loaded one,
+    the model is reinitialized. Reinitialization is expensive; prefer
+    providing the desired model once at pipeline startup.
+    """
+    global _kw_model, _kw_model_name
+    target = model_name or "BAAI/bge-m3"
+    if _kw_model is None or _kw_model_name != target:
+        _kw_model = KeyBERT(target)
+        _kw_model_name = target
 
 
 def extract_keywords_keybert(
     text: str,
     keyphrase_ngram_range: Tuple[int, int] = (1, 2),
-    top_n: int = 3,
+    top_n: int = 6,
     stop_words: str | None = "english",
-    threshold: float = 0.60,
+    threshold: float = 0.50,
+    use_mmr: bool = True,
+    diversity: float = 0.7,
+    model_name: str | None = None,
 ) -> List[str]:
     # Text cleanup while preserving the existing filtering logic
-    requirement_text = extract_requirement_text(text).replace("my smart home", "").replace("smart home", "").replace("I want", "").strip()
+    requirement_text = re.sub(
+        r"(the system must|students must|user|system)",
+        "",
+        text,
+        flags=re.IGNORECASE
+    ).strip()
     
-    # Keyword extraction with KeyBERT
+    # Ensure model is loaded (lazy init) and run extraction
+    _ensure_model(model_name)
     raw = _kw_model.extract_keywords(
         requirement_text,
         keyphrase_ngram_range=keyphrase_ngram_range,
         stop_words=stop_words,
         top_n=top_n,
-        use_mmr=True,
-        diversity=0.7,
+        use_mmr=use_mmr,
+        diversity=diversity,
     )
 
     if not raw:
