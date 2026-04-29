@@ -10,10 +10,6 @@ import umap
 from node2vec import Node2Vec
 from sklearn.cluster import KMeans
 from sklearn.decomposition import TruncatedSVD
-from sklearn.metrics import (
-    calinski_harabasz_score,
-    davies_bouldin_score,
-)
 
 
 def compute_node2vec_embeddings(
@@ -82,36 +78,44 @@ def _resolve_k(
         km = KMeans(n_clusters=k, random_state=random_state, n_init=10)
         labels = km.fit_predict(vectors)
         inertia = float(km.inertia_)
-        # davies_bouldin_score requires: 2 <= n_labels < n_samples
-        davies_bouldin = float("inf")
-        if k > 1 and k < n_samples:
-            try:
-                davies_bouldin = float(davies_bouldin_score(vectors, labels))
-            except ValueError:
-                davies_bouldin = float("inf")
-        calinski_harabasz = float(calinski_harabasz_score(vectors, labels)) if k > 1 else 0.0
         candidates.append(
             {
                 "k": int(k),
                 "inertia": inertia,
-                "davies_bouldin": davies_bouldin,
-                "calinski_harabasz": calinski_harabasz,
             }
         )
 
-    # Rank by combined signal: min Davies-Bouldin, max Calinski-Harabasz.
-    candidates_sorted = sorted(
-        candidates,
-        key=lambda c: (
-            c["davies_bouldin"],
-            -c["calinski_harabasz"],
-        ),
-    )
-    best = candidates_sorted[0]
+    # Elbow method: find the elbow point using maximum distance from line
+    k_values = np.array([c["k"] for c in candidates])
+    inertias = np.array([c["inertia"] for c in candidates])
+    
+    # Fit a line between first and last points
+    coords = np.column_stack((k_values, inertias))
+    line_start = coords[0]
+    line_end = coords[-1]
+    line_vec = line_end - line_start
+    line_len = np.linalg.norm(line_vec)
+    
+    if line_len > 0:
+        # Calculate distance from each point to the line
+        distances = []
+        for coord in coords:
+            vec = coord - line_start
+            proj_len = np.dot(vec, line_vec) / line_len
+            proj = line_start + proj_len * (line_vec / line_len)
+            dist = np.linalg.norm(coord - proj)
+            distances.append(dist)
+        
+        elbow_idx = int(np.argmax(distances))
+    else:
+        # All points are the same, choose first non-trivial k
+        elbow_idx = 0
+    
+    best = candidates[elbow_idx]
 
     return int(best["k"]), {
         "selected_k": int(best["k"]),
-        "strategy": "auto-combined",   # DB + CH
+        "strategy": "elbow-method",
         "candidates": candidates,
     }
 
@@ -137,22 +141,14 @@ def _save_elbow_plot(candidates: list[dict], output_path: str) -> str | None:
 
     k_values = [item["k"] for item in candidates]
     inertias = [item["inertia"] for item in candidates]
-    davies_bouldins = [item["davies_bouldin"] for item in candidates]
-    calinski_harabaszs = [item["calinski_harabasz"] for item in candidates]
 
-    fig, axes = plt.subplots(2, 1, figsize=(12, 8))
+    fig, ax = plt.subplots(figsize=(10, 6))
 
-    axes[0].plot(k_values, inertias, "bo-")
-    axes[0].set_title("Elbow Method (Inertia)")
-    axes[0].set_xlabel("k")
-    axes[0].set_ylabel("Inertia")
-
-    axes[1].plot(k_values, davies_bouldins, "go-", label="Davies-Bouldin")
-    axes[1].plot(k_values, calinski_harabaszs, "mo-", label="Calinski-Harabasz")
-    axes[1].set_title("Cluster Quality Scores")
-    axes[1].set_xlabel("k")
-    axes[1].set_ylabel("Score")
-    axes[1].legend()
+    ax.plot(k_values, inertias, "bo-", linewidth=2, markersize=8)
+    ax.set_title("Elbow Method", fontsize=14)
+    ax.set_xlabel("k", fontsize=12)
+    ax.set_ylabel("Inertia", fontsize=12)
+    ax.grid(True, alpha=0.3)
 
     plt.tight_layout()
     plt.savefig(out_path, dpi=140)
