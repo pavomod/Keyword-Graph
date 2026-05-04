@@ -1,4 +1,6 @@
 {
+  "input_csv": null,
+  "csv_sep": ",",
   "graph_out": "results/keyword_graph.gexf",
   "extraction_out": "results/extraction.json",
   "semantic_threshold": 0.55,
@@ -10,6 +12,9 @@
   "keybert_threshold": 0.8,
   "keybert_use_mmr": true,
   "keybert_diversity": 0.8,
+  "enable_node_reduction": true,
+  "node_reduction_degree_threshold_low": 2,
+  "node_reduction_degree_threshold_high": 5,
   "enable_clustering": true,
   "cluster_k": null,
   "cluster_k_min": 4,
@@ -22,5 +27,19 @@
   "cluster_requirement_feature_weight": 0.8,
   "cluster_requirement_svd_dim": 16,
   "cluster_report_out": "results/clustering_report.json",
-  "cluster_elbow_plot_out": "results/k.png"
+  "cluster_elbow_plot_out": "results/k.png",
+  "enable_clustering_comparison": true,
+  "clustering_comparison_out": "results/clustering_comparison.json",
+  "direct_clustering_report_out": "results/direct_clustering_report.json",
+  "enable_phase4_analysis": false,
+  "phase4_clustering_report": "results/clustering_report.json",
+  "phase4_system_prompt": "src/phase4/llm/prompt/system_prompt.txt",
+  "phase4_output": "results/phase4_analysis.json",
+  "phase4_use_direct_clustering": false,
+  "phase4_preview": true,
+  "phase4_preview_output": "results/phase4_preview.txt",
+  "phase4_gemini_model": "gemini-2.5-pro",
+  "phase4_gemini_temperature": 0.2,
+  "phase4_gemini_top_p": 0.9,
+  "phase4_gemini_max_tokens": 16000
 }

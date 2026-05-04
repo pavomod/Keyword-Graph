@@ -1,0 +1,771 @@
+{
+  "clusters": [
+    {
+      "cluster_id": "0",
+      "duplicates": [
+        {
+          "requirements": [
+            "10",
+            "156",
+            "191"
+          ],
+          "type": "full",
+          "reason": "All three requirements state the general need for a points management system."
+        },
+        {
+          "requirements": [
+            "11",
+            "166",
+            "192",
+            "220",
+            "237"
+          ],
+          "type": "partial",
+          "reason": "All state that users receive points upon registration, but with varying levels of specificity."
+        },
+        {
+          "requirements": [
+            "12",
+            "90",
+            "213"
+          ],
+          "type": "full",
+          "reason": "All three require the system to allow users to view their points balance."
+        },
+        {
+          "requirements": [
+            "135",
+            "49",
+            "171",
+            "227",
+            "248",
+            "33",
+            "91",
+            "204"
+          ],
+          "type": "partial",
+          "reason": "All state that users can purchase points. Some add details like payment method (card) or interface (in-app shop)."
+        },
+        {
+          "requirements": [
+            "140",
+            "50",
+            "206",
+            "249"
+          ],
+          "type": "full",
+          "reason": "All state that users/students are not allowed to sell points."
+        },
+        {
+          "requirements": [
+            "167",
+            "193",
+            "48"
+          ],
+          "type": "partial",
+          "reason": "All describe the deduction of points when a student uses an accommodation/service."
+        },
+        {
+          "requirements": [
+            "134",
+            "169",
+            "32",
+            "83"
+          ],
+          "type": "partial",
+          "reason": "All describe a 10% commission for the system, but describe the basis for the commission differently (purchases, service use, payments)."
+        }
+      ],
+      "inconsistencies": [
+        {
+          "requirements": [
+            "2",
+            "60",
+            "129"
+          ],
+          "type": "logical",
+          "reason": "Contradictory amounts for the registration bonus: 100 points (req 2) vs. 50 points (req 60, 129)."
+        },
+        {
+          "requirements": [
+            "122",
+            "130",
+            "133"
+          ],
+          "type": "temporal",
+          "reason": "Contradictory timing for point deduction: 'not at booking' (122), 'once booking is completed' (130), and 'five hours before stay' (133) are conflicting."
+        },
+        {
+          "requirements": [
+            "125",
+            "218",
+            "85"
+          ],
+          "type": "logical",
+          "reason": "Contradictory refund policies: 'point refund' (125, implies full), '80% of the points' (218), and 'no refunds' if payment occurred (85)."
+        },
+        {
+          "requirements": [
+            "134",
+            "169",
+            "32"
+          ],
+          "type": "constraint",
+          "reason": "The basis for the 10% system commission is inconsistent: is it on 'point purchases' (134), 'points spent by a Guest' (169), or 'points paid by students' (32)? These are different financial models."
+        }
+      ],
+      "ambiguities": [
+        {
+          "requirement": "11",
+          "issue": "The term 'a certain number of points' is not specific.",
+          "suggestion": "Define the exact number of points given upon registration. This is partially addressed by other requirements but needs consolidation."
+        },
+        {
+          "requirement": "220",
+          "issue": "The variable 'N' for free points is undefined.",
+          "suggestion": "Specify the value of 'N' or the rule to calculate it."
+        },
+        {
+          "requirement": "45",
+          "issue": "The 'mechanism for earning points' is vague.",
+          "suggestion": "Specify all the ways a user can earn points (e.g., hosting, promotions, referrals)."
+        },
+        {
+          "requirement": "138",
+          "issue": "It's unclear if '50 100 150-point packages' is an exhaustive list.",
+          "suggestion": "Clarify if these are the only purchase options or just examples."
+        }
+      ],
+      "gaps": [
+        {
+          "description": "The conversion rate between real money and points is not defined for point purchases.",
+          "related_to": [
+            "135",
+            "171"
+          ]
+        },
+        {
+          "description": "The policy for what happens to a user's points when their account is deleted is missing.",
+          "related_to": [
+            "10"
+          ]
+        },
+        {
+          "description": "There is no mention of whether points have an expiration date.",
+          "related_to": [
+            "10"
+          ]
+        }
+      ],
+      "dependencies": [
+        {
+          "from": "205",
+          "to": "204",
+          "type": "requires",
+          "reason": "Registering a card (205) is a prerequisite for purchasing points with it (204)."
+        },
+        {
+          "from": "215",
+          "to": "12",
+          "type": "requires",
+          "reason": "Preventing overspending (215) requires the system to know and check the user's balance (12)."
+        },
+        {
+          "from": "125",
+          "to": "167",
+          "type": "influences",
+          "reason": "The refund process (125) is the reverse of the point deduction process (167)."
+        }
+      ]
+    },
+    {
+      "cluster_id": "1",
+      "duplicates": [
+        {
+          "requirements": [
+            "178",
+            "229",
+            "230",
+            "250",
+            "54"
+          ],
+          "type": "partial",
+          "reason": "All require a feedback mechanism for hosts and guests after a stay. Some are more specific (e.g., guest on host, host on guest)."
+        },
+        {
+          "requirements": [
+            "232",
+            "233",
+            "55",
+            "88",
+            "89"
+          ],
+          "type": "partial",
+          "reason": "All require the ability to view feedback related to users and/or listings."
+        },
+        {
+          "requirements": [
+            "175",
+            "235"
+          ],
+          "type": "full",
+          "reason": "Both require a messaging/chat feature for communication between users."
+        },
+        {
+          "requirements": [
+            "168",
+            "226",
+            "41"
+          ],
+          "type": "full",
+          "reason": "All describe the same commission model: the host receives 90% and the system retains 10%."
+        },
+        {
+          "requirements": [
+            "56",
+            "57",
+            "244"
+          ],
+          "type": "partial",
+          "reason": "All describe the host's ability to manage booking requests. 244 consolidates the actions of accepting (56) and rejecting (57)."
+        }
+      ],
+      "inconsistencies": [
+        {
+          "requirements": [
+            "225",
+            "245"
+          ],
+          "type": "temporal",
+          "reason": "Contradictory timing for point transfer. 225 states it happens 'once the booking is made', while 245 states it happens 'Only upon host confirmation'. This defines two different booking models."
+        }
+      ],
+      "ambiguities": [
+        {
+          "requirement": "145",
+          "issue": "The method to 'verify that the host has hosted the user' is not specified.",
+          "suggestion": "Define the verification mechanism: e.g., automatic after stay dates pass, manual confirmation by both parties, or a check-in/check-out feature."
+        },
+        {
+          "requirement": "176",
+          "issue": "How the system knows a guest 'has arrived at the location' is undefined.",
+          "suggestion": "Specify the mechanism, such as a manual 'Check-In' button in the app, QR code scan, or geolocation services."
+        },
+        {
+          "requirement": "180",
+          "issue": "The threshold for 'running low on points' is not defined.",
+          "suggestion": "Specify a default threshold (e.g., less than the average cost of one night) or allow users to configure it."
+        },
+        {
+          "requirement": "86",
+          "issue": "The phrase 'for one week' is ambiguous. Does it mean feedback is only possible during this window?",
+          "suggestion": "Clarify if this is a strict one-week window to leave feedback, after which it is no longer possible."
+        }
+      ],
+      "gaps": [
+        {
+          "description": "A time limit for hosts to accept or reject a booking request is not specified. The system behavior for an expired request is also undefined.",
+          "related_to": [
+            "244",
+            "73"
+          ]
+        },
+        {
+          "description": "There is no mention of a dispute resolution process for conflicts between hosts and guests (e.g., accommodation not as described).",
+          "related_to": [
+            "178",
+            "58"
+          ]
+        },
+        {
+          "description": "The system notifies users of rejected requests (75), but it's not specified what notification the rejected users receive.",
+          "related_to": [
+            "75"
+          ]
+        }
+      ],
+      "dependencies": [
+        {
+          "from": "245",
+          "to": "244",
+          "type": "requires",
+          "reason": "Deducting points (245) can only happen after the host confirms the booking (244)."
+        },
+        {
+          "from": "178",
+          "to": "245",
+          "type": "requires",
+          "reason": "Requesting feedback (178) is triggered after a stay is completed, which depends on a confirmed and paid booking (245)."
+        },
+        {
+          "from": "75",
+          "to": "56",
+          "type": "requires",
+          "reason": "Automatically rejecting other requests (75) is triggered by a host accepting one request (56)."
+        }
+      ]
+    },
+    {
+      "cluster_id": "2",
+      "duplicates": [
+        {
+          "requirements": [
+            "1",
+            "42",
+            "154",
+            "163",
+            "187"
+          ],
+          "type": "full",
+          "reason": "All state the general requirement for user/student registration."
+        },
+        {
+          "requirements": [
+            "8",
+            "43",
+            "59",
+            "188",
+            "219",
+            "236"
+          ],
+          "type": "full",
+          "reason": "All mandate that registration must be done using a university email address."
+        },
+        {
+          "requirements": [
+            "9",
+            "111",
+            "153",
+            "165",
+            "189"
+          ],
+          "type": "partial",
+          "reason": "All describe the process of using an external university authentication system for verification/login."
+        },
+        {
+          "requirements": [
+            "31",
+            "99",
+            "241"
+          ],
+          "type": "full",
+          "reason": "All describe the ability to add optional extras like sheets and towels for an additional point cost."
+        }
+      ],
+      "inconsistencies": [
+        {
+          "requirements": [
+            "100",
+            "102",
+            "159"
+          ],
+          "type": "logical",
+          "reason": "The term 'tenant' is used inconsistently, referring to the host in 100 and 102 ('renting the room') but to the guest in 159 ('to book a bed'). This creates role confusion."
+        },
+        {
+          "requirements": [
+            "99",
+            "241"
+          ],
+          "type": "logical",
+          "reason": "Contradiction on who adds extras. 99 states the 'tenant user' adds them, implying the guest. 241 implies the host applies costs, which is the standard model. The user role is conflicted."
+        }
+      ],
+      "ambiguities": [
+        {
+          "requirement": "104",
+          "issue": "The method to 'recognize a university email address' is not defined.",
+          "suggestion": "Specify the validation method, e.g., by checking against a configurable list of approved university domains."
+        },
+        {
+          "requirement": "113",
+          "issue": "The specific 'information related to the user' received from the university is not listed.",
+          "suggestion": "Define the exact data fields to be received, e.g., full name, student ID, active enrollment status. This is critical for privacy and functionality."
+        },
+        {
+          "requirement": "160",
+          "issue": "The term 'origin of the tenant' is highly ambiguous.",
+          "suggestion": "Clarify what 'origin' refers to: their university, their home city, or something else."
+        }
+      ],
+      "gaps": [
+        {
+          "description": "The system behavior is not defined for when a student graduates and their university email becomes inactive. Requirement 108 (Cluster 3) mentions periodic checks, but the consequences are missing.",
+          "related_to": [
+            "164",
+            "62"
+          ]
+        },
+        {
+          "description": "There is no alternative login mechanism defined for when a university's authentication service is unavailable.",
+          "related_to": [
+            "111",
+            "153"
+          ]
+        },
+        {
+          "description": "The system lacks a definition of what user profile data can be managed by the user beyond the information received from their university (e.g., profile picture, bio).",
+          "related_to": [
+            "1",
+            "113"
+          ]
+        }
+      ],
+      "dependencies": [
+        {
+          "from": "9",
+          "to": "8",
+          "type": "requires",
+          "reason": "Verifying an email (9) can only happen after the user provides it (8)."
+        },
+        {
+          "from": "62",
+          "to": "190",
+          "type": "requires",
+          "reason": "Invalidating a registration (62) depends on the failure of the university authentication (190)."
+        },
+        {
+          "from": "105",
+          "to": "104",
+          "type": "requires",
+          "reason": "Identifying the university (105) depends on first recognizing the email as a university address (104)."
+        }
+      ]
+    },
+    {
+      "cluster_id": "3",
+      "duplicates": [
+        {
+          "requirements": [
+            "69",
+            "209"
+          ],
+          "type": "full",
+          "reason": "Both requirements specify a search filtering mechanism with nearly identical parameters (dates, location/city, cost, reviews)."
+        },
+        {
+          "requirements": [
+            "211",
+            "212"
+          ],
+          "type": "full",
+          "reason": "These two requirements describe the same 'favorites' feature: adding a listing to a dedicated section."
+        }
+      ],
+      "inconsistencies": [],
+      "ambiguities": [
+        {
+          "requirement": "101",
+          "issue": "How the system allows a user to 'verify the reachability of the accommodation' is undefined.",
+          "suggestion": "Specify the feature, e.g., 'Display the accommodation on an interactive map with options for directions' or 'List nearby public transport stops'."
+        },
+        {
+          "requirement": "108",
+          "issue": "The frequency of 'periodically verify' is not defined, nor are the consequences of a user no longer being an active student.",
+          "suggestion": "Define the verification interval (e.g., once per semester) and the action to take on failure (e.g., suspend hosting/booking privileges, notify user)."
+        },
+        {
+          "requirement": "143",
+          "issue": "The mechanism to 'verify that the user has stayed in the accommodation' is not specified.",
+          "suggestion": "Define the verification process. For example, the system could automatically mark the stay as completed 24 hours after the checkout date."
+        }
+      ],
+      "gaps": [
+        {
+          "description": "The default sorting order for search results is not specified (e.g., by relevance, price, date posted).",
+          "related_to": [
+            "208",
+            "69"
+          ]
+        },
+        {
+          "description": "Rules for modifying a listing with active or pending bookings are missing. For example, can a host change the price for a period that already has a booking request?",
+          "related_to": [
+            "158"
+          ]
+        },
+        {
+          "description": "The system lacks a map-based search functionality, which is a standard feature for accommodation platforms.",
+          "related_to": [
+            "208",
+            "101"
+          ]
+        }
+      ],
+      "dependencies": [
+        {
+          "from": "209",
+          "to": "208",
+          "type": "requires",
+          "reason": "A filtering mechanism (209) is a component of a search engine (208)."
+        },
+        {
+          "from": "151",
+          "to": "69",
+          "type": "requires",
+          "reason": "Verifying availability (151) is a necessary step for filtering by dates (69)."
+        }
+      ]
+    },
+    {
+      "cluster_id": "4",
+      "duplicates": [
+        {
+          "requirements": [
+            "7",
+            "116",
+            "170",
+            "186",
+            "239",
+            "223"
+          ],
+          "type": "full",
+          "reason": "All six requirements enforce the same rule: a maximum booking duration of 7 nights."
+        },
+        {
+          "requirements": [
+            "3",
+            "63",
+            "157",
+            "194"
+          ],
+          "type": "full",
+          "reason": "All state that a user can create/publish/register a listing for an accommodation."
+        },
+        {
+          "requirements": [
+            "15",
+            "199"
+          ],
+          "type": "full",
+          "reason": "Both specify the same required information for a listing: availability period, address, and cost in points."
+        },
+        {
+          "requirements": [
+            "74",
+            "126",
+            "28"
+          ],
+          "type": "full",
+          "reason": "All describe the host's ability to accept or reject booking requests for their room."
+        },
+        {
+          "requirements": [
+            "82",
+            "198",
+            "47"
+          ],
+          "type": "partial",
+          "reason": "All describe the host receiving points for a stay. 82 and 198 specify the 90% share."
+        },
+        {
+          "requirements": [
+            "27",
+            "84",
+            "216"
+          ],
+          "type": "full",
+          "reason": "All state that a student/user can cancel a booking/request."
+        }
+      ],
+      "inconsistencies": [
+        {
+          "requirements": [
+            "85",
+            "217"
+          ],
+          "type": "logical",
+          "reason": "Contradictory refund policies. 217 states cancellation refunds the points spent (implying full refund), while 85 states there are no refunds after payment has occurred."
+        },
+        {
+          "requirements": [
+            "79",
+            "245"
+          ],
+          "type": "temporal",
+          "reason": "Contradictory payment timing. 79 specifies payment occurs automatically the day before check-in. 245 (from Cluster 1, but relevant context) states payment occurs upon host confirmation. These are fundamentally different process flows."
+        },
+        {
+          "requirements": [
+            "185",
+            "238"
+          ],
+          "type": "constraint",
+          "reason": "These requirements impose a major, potentially unintended constraint that a student can ONLY book accommodation in a city different from their own university city. This rule is not mentioned elsewhere and may conflict with the general purpose of the app."
+        }
+      ],
+      "ambiguities": [
+        {
+          "requirement": "195",
+          "issue": "The allowed 'type' of accommodation is not defined.",
+          "suggestion": "Provide an enumerated list of valid accommodation types, e.g., 'Private Room', 'Shared Room', 'Couch'."
+        },
+        {
+          "requirement": "78",
+          "issue": "The term 'payment day' is ambiguous.",
+          "suggestion": "Clarify the definition of 'payment day'. Based on req 79, it should be defined as 'the day before the check-in date'."
+        },
+        {
+          "requirement": "93",
+          "issue": "The contents of the 'personal data' section are not specified.",
+          "suggestion": "List the specific data fields that will be included, such as name, university, email, and points balance."
+        }
+      ],
+      "gaps": [
+        {
+          "description": "The system does not define what happens to a pending booking request when the host does not respond. An expiration time and automatic rejection/cancellation rule is needed.",
+          "related_to": [
+            "74",
+            "126"
+          ]
+        },
+        {
+          "description": "The system state for an accommodation with a pending booking request is undefined. It's unclear if the dates are blocked to prevent double-booking requests.",
+          "related_to": [
+            "77",
+            "124"
+          ]
+        },
+        {
+          "description": "The privacy model for the accommodation address is not specified. It's unclear if the full address is visible before a booking is confirmed.",
+          "related_to": [
+            "53",
+            "97"
+          ]
+        }
+      ],
+      "dependencies": [
+        {
+          "from": "81",
+          "to": "80",
+          "type": "requires",
+          "reason": "Automatically cancelling a booking (81) is a consequence of a failed payment attempt (80)."
+        },
+        {
+          "from": "77",
+          "to": "74",
+          "type": "requires",
+          "reason": "Updating bed availability (77) is triggered by the host's decision to accept or reject a request (74)."
+        },
+        {
+          "from": "95",
+          "to": "3",
+          "type": "blocks",
+          "reason": "Missing photos (95) prevents the publication of a listing (3)."
+        }
+      ]
+    },
+    {
+      "cluster_id": "5",
+      "duplicates": [
+        {
+          "requirements": [
+            "142",
+            "144",
+            "35",
+            "36"
+          ],
+          "type": "full",
+          "reason": "All describe the ability for users to leave reviews on both rooms and other students (hosts/guests)."
+        },
+        {
+          "requirements": [
+            "20",
+            "25",
+            "29"
+          ],
+          "type": "full",
+          "reason": "All state that students can view reviews related to rooms and other users."
+        },
+        {
+          "requirements": [
+            "22",
+            "68",
+            "148"
+          ],
+          "type": "partial",
+          "reason": "All describe the core feature of searching for accommodations. 148 specifies the UI component ('search bar')."
+        },
+        {
+          "requirements": [
+            "14",
+            "240"
+          ],
+          "type": "partial",
+          "reason": "Both describe making a room available (creating a listing). 240 is more specific about the required details."
+        }
+      ],
+      "inconsistencies": [
+        {
+          "requirements": [
+            "38",
+            "39"
+          ],
+          "type": "constraint",
+          "reason": "Allowing users to edit (38) and delete (39) their own reviews is a significant policy decision that can undermine the integrity of the feedback system. While not a direct logical contradiction, it conflicts with common platform governance principles."
+        }
+      ],
+      "ambiguities": [
+        {
+          "requirement": "18",
+          "issue": "The difference between 'unpublish' (18) and 'delete' (19) is not clear.",
+          "suggestion": "Define the states. For example, 'Unpublished' means the listing is saved as a draft and can be re-published, while 'Deleted' means it is permanently removed."
+        },
+        {
+          "requirement": "203",
+          "issue": "The 'star rating' scale is not defined, and it's unclear if the description is mandatory.",
+          "suggestion": "Specify the rating scale (e.g., 1 to 5 stars) and clarify if the text description is optional or required."
+        },
+        {
+          "requirement": "224",
+          "issue": "The term 'add-ons' is vague.",
+          "suggestion": "Provide examples or a defined list of possible add-ons (e.g., 'Breakfast', 'Towels provided', 'Late check-out')."
+        }
+      ],
+      "gaps": [
+        {
+          "description": "A mechanism for users to report inappropriate listings, reviews, or user behavior is missing. This is a critical safety feature.",
+          "related_to": [
+            "35",
+            "14"
+          ]
+        },
+        {
+          "description": "The consequences of account deletion (110) on a user's existing listings, reviews, and bookings are not defined.",
+          "related_to": [
+            "110",
+            "19",
+            "39"
+          ]
+        },
+        {
+          "description": "A content moderation policy for reviews is not mentioned. It's unclear how fake, offensive, or retaliatory reviews will be handled.",
+          "related_to": [
+            "35",
+            "36"
+          ]
+        }
+      ],
+      "dependencies": [
+        {
+          "from": "26",
+          "to": "24",
+          "type": "requires",
+          "reason": "A student must be able to view a room's details (24) before they can book it (26)."
+        },
+        {
+          "from": "17",
+          "to": "16",
+          "type": "requires",
+          "reason": "Editing a room (17) requires the ability to first view/access that room in a user's profile (16)."
+        },
+        {
+          "from": "146",
+          "to": "142",
+          "type": "requires",
+          "reason": "Managing an average rating (146) depends on the existence of individual ratings from reviews (142)."
+        }
+      ]
+    }
+  ]
+}

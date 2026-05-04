@@ -6,6 +6,10 @@ from pathlib import Path
 import os
 import logging as _py_logging
 from transformers import logging as hf_logging
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
 
 # Reduce verbosity from transformers / sentence-transformers to hide LOAD REPORT logs
 os.environ.setdefault("TRANSFORMERS_VERBOSITY", "error")
@@ -36,6 +40,7 @@ from src.phase2.graph.build_graph import (
     save_graph_gexf,
     style_nodes_by_degree,
 )
+from src.phase4.llm.analyzer import run_analysis as run_llm_analysis
 
 
 DEFAULT_PIPELINE_CONFIG = {
@@ -72,6 +77,18 @@ DEFAULT_PIPELINE_CONFIG = {
     "direct_clustering_report_out": "results/direct_clustering_report.json",
     "input_csv": None,
     "csv_sep": ",",
+    # Phase 4 - LLM Analysis defaults
+    "enable_phase4_analysis": False,
+    "phase4_clustering_report": "results/clustering_report.json",
+    "phase4_system_prompt": "src/phase4/llm/prompt/system_prompt.txt",
+    "phase4_output": "results/phase4_analysis.json",
+    "phase4_use_direct_clustering": False,
+    "phase4_preview": False,
+    "phase4_preview_output": "results/phase4_preview.txt",
+    "phase4_gemini_model": "gemini-2.5-pro",
+    "phase4_gemini_temperature": 0.2,
+    "phase4_gemini_top_p": 0.9,
+    "phase4_gemini_max_tokens": 16000,
 }
 
 
@@ -182,6 +199,35 @@ def main() -> None:
     parser.set_defaults(enable_clustering_comparison=None)
     parser.add_argument("--clustering-comparison-out", type=str, default=None)
     parser.add_argument("--direct-clustering-report-out", type=str, default=None)
+    
+    # Phase 4 - LLM Analysis arguments
+    phase4_group = parser.add_mutually_exclusive_group()
+    phase4_group.add_argument(
+        "--phase4-only",
+        dest="phase4_only",
+        action="store_true",
+        help="Run Phase 4 analysis only (skip phases 1-3)",
+    )
+    phase4_group.add_argument(
+        "--with-phase4",
+        dest="run_phase4",
+        action="store_true",
+        help="Run full pipeline including Phase 4",
+    )
+    parser.set_defaults(phase4_only=False, run_phase4=False)
+    parser.add_argument("--phase4-clustering-report", type=str, default=None, 
+                       help="Path to clustering report JSON for Phase 4")
+    parser.add_argument("--phase4-system-prompt", type=str, default=None,
+                       help="Path to system prompt file for Phase 4")
+    parser.add_argument("--phase4-output", type=str, default=None,
+                       help="Output path for Phase 4 analysis results")
+    parser.add_argument("--phase4-use-direct-clustering", action="store_true",
+                       help="Use direct clustering report instead of keyword-graph clustering")
+    parser.add_argument("--phase4-preview", action="store_true",
+                       help="Preview the input that will be sent to Gemini without sending it")
+    parser.add_argument("--phase4-preview-output", type=str, default=None,
+                       help="Path to save the preview output (default: results/phase4_preview.txt)")
+    
     args = parser.parse_args()
 
     config_values = _load_pipeline_config(args.config)
@@ -289,6 +335,96 @@ def main() -> None:
         config_values,
         "direct_clustering_report_out",
     )
+    
+    # Phase 4 - LLM Analysis parameters
+    phase4_clustering_report = _resolve_setting(
+        args.phase4_clustering_report, config_values, "phase4_clustering_report"
+    )
+    phase4_system_prompt = _resolve_setting(
+        args.phase4_system_prompt, config_values, "phase4_system_prompt"
+    )
+    phase4_output = _resolve_setting(
+        args.phase4_output, config_values, "phase4_output"
+    )
+    phase4_use_direct_clustering = args.phase4_use_direct_clustering or bool(
+        _resolve_setting(None, config_values, "phase4_use_direct_clustering")
+    )
+    phase4_preview = args.phase4_preview or bool(
+        _resolve_setting(None, config_values, "phase4_preview")
+    )
+    phase4_preview_output = args.phase4_preview_output or _resolve_setting(
+        None, config_values, "phase4_preview_output"
+    )
+    phase4_gemini_model = _resolve_setting(
+        None, config_values, "phase4_gemini_model"
+    )
+    phase4_gemini_temperature = float(
+        _resolve_setting(None, config_values, "phase4_gemini_temperature")
+    )
+    phase4_gemini_top_p = float(
+        _resolve_setting(None, config_values, "phase4_gemini_top_p")
+    )
+    phase4_gemini_max_tokens = int(
+        _resolve_setting(None, config_values, "phase4_gemini_max_tokens")
+    )
+    
+    # Phase 4 only mode
+    if args.phase4_only:
+        print("=" * 60)
+        print("Phase 4 Only Mode: Analyzing clusters with Gemini 2.5 Pro")
+        print("=" * 60)
+        
+        # Determine which clustering report to use
+        if phase4_use_direct_clustering:
+            clustering_report_path = direct_clustering_report_out
+            print(f"Using direct clustering report: {clustering_report_path}")
+        else:
+            clustering_report_path = phase4_clustering_report
+            print(f"Using keyword-graph clustering report: {clustering_report_path}")
+        
+        # Preview mode
+        if args.phase4_preview:
+            print("\n📋 PREVIEW MODE - Showing input without sending to API\n")
+            try:
+                run_llm_analysis(
+                    clustering_report_path=clustering_report_path,
+                    extraction_path=extraction_out,
+                    system_prompt_path=phase4_system_prompt,
+                    output_path=phase4_preview_output,
+                    gemini_model=phase4_gemini_model,
+                    gemini_temperature=phase4_gemini_temperature,
+                    gemini_top_p=phase4_gemini_top_p,
+                    gemini_max_tokens=phase4_gemini_max_tokens,
+                    dry_run=True,
+                )
+                print("=" * 60)
+                print("✓ Preview generated successfully!")
+                print(f"✓ View the preview in: {phase4_preview_output}")
+                print("=" * 60)
+            except Exception as e:
+                print(f"Error generating Phase 4 preview: {e}")
+                raise
+        else:
+            # Normal mode - send to API
+            try:
+                run_llm_analysis(
+                    clustering_report_path=clustering_report_path,
+                    extraction_path=extraction_out,
+                    system_prompt_path=phase4_system_prompt,
+                    output_path=phase4_output,
+                    gemini_model=phase4_gemini_model,
+                    gemini_temperature=phase4_gemini_temperature,
+                    gemini_top_p=phase4_gemini_top_p,
+                    gemini_max_tokens=phase4_gemini_max_tokens,
+                )
+                print("=" * 60)
+                print("Phase 4 analysis completed successfully!")
+                print("=" * 60)
+            except Exception as e:
+                print(f"Error during Phase 4 analysis: {e}")
+                raise
+        
+        return
 
     print("[1/3] Extracting keywords with KeyBERT...")
     inference_csv_path = _pick_input_csv(input_csv)
@@ -448,6 +584,62 @@ def main() -> None:
     print(
         f"Graph saved in: {graph_path} | nodes={graph.number_of_nodes()} | edges={graph.number_of_edges()}"
     )
+    
+    # Phase 4 - LLM Analysis (optional)
+    if args.run_phase4 or _resolve_setting(None, config_values, "enable_phase4_analysis"):
+        print("\n" + "=" * 60)
+        print("[Phase 4] Running LLM-based analysis with Gemini 2.5 Pro...")
+        print("=" * 60)
+        
+        # Determine which clustering report to use
+        if phase4_use_direct_clustering:
+            clustering_report_path = direct_clustering_report_out
+            print(f"Using direct clustering report: {clustering_report_path}")
+        else:
+            clustering_report_path = phase4_clustering_report
+            print(f"Using keyword-graph clustering report: {clustering_report_path}")
+        
+        # Preview mode
+        if args.phase4_preview:
+            print("\n📋 PREVIEW MODE - Showing input without sending to API\n")
+            try:
+                run_llm_analysis(
+                    clustering_report_path=clustering_report_path,
+                    extraction_path=extraction_out,
+                    system_prompt_path=phase4_system_prompt,
+                    output_path=phase4_preview_output,
+                    gemini_model=phase4_gemini_model,
+                    gemini_temperature=phase4_gemini_temperature,
+                    gemini_top_p=phase4_gemini_top_p,
+                    gemini_max_tokens=phase4_gemini_max_tokens,
+                    dry_run=True,
+                )
+                print("=" * 60)
+                print("[Phase 4] ✓ Preview generated successfully!")
+                print(f"[Phase 4] ✓ View the preview in: {phase4_preview_output}")
+                print("=" * 60)
+            except Exception as e:
+                print(f"[Phase 4] Error generating preview: {e}")
+                raise
+        else:
+            # Normal mode - send to API
+            try:
+                run_llm_analysis(
+                    clustering_report_path=clustering_report_path,
+                    extraction_path=extraction_out,
+                    system_prompt_path=phase4_system_prompt,
+                    output_path=phase4_output,
+                    gemini_model=phase4_gemini_model,
+                    gemini_temperature=phase4_gemini_temperature,
+                    gemini_top_p=phase4_gemini_top_p,
+                    gemini_max_tokens=phase4_gemini_max_tokens,
+                )
+                print("=" * 60)
+                print("[Phase 4] Analysis completed successfully!")
+                print("=" * 60)
+            except Exception as e:
+                print(f"[Phase 4] Error during analysis: {e}")
+                raise
 
 
 if __name__ == "__main__":
