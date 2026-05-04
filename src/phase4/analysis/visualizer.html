@@ -339,6 +339,7 @@
                         <div class="flex gap-2">
                             ${reqs.map(id => `<span class="bg-zinc-800 border border-zinc-700 text-zinc-300 text-[11px] mono px-2 py-0.5 rounded-sm">Req ${escapeHtml(id)}</span>`).join('')}
                         </div>
+                        ${item.type ? `<span class="ml-auto text-[9px] mono px-2 py-0.5 text-yellow-400 border border-dashed border-yellow-500/50 bg-yellow-500/10 rounded-xl lowercase">${escapeHtml(item.type)}</span>` : ''}
                     </div>
                     <div class="text-sm text-zinc-300 font-sans leading-relaxed pr-32">
                         ${item.reason || item.issue || item.description || "No description provided."}
