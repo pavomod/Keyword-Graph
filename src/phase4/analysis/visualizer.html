@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Requirement Navigator | Cluster Viewer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@300;400;600&display=swap');
+        
+        :root {
+            --bg-main: #0a0a0c;
+            --bg-sidebar: #111114;
+            --accent: #3b82f6;
+            --border: #27272a;
+        }
+
+        body {
+            background-color: var(--bg-main);
+            color: #d4d4d8;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .mono { font-family: 'JetBrains Mono', monospace; }
+        
+        .sidebar-item.active {
+            background-color: #1e1e24;
+            border-right: 2px solid var(--accent);
+            color: white;
+        }
+
+        .custom-scroll::-webkit-scrollbar { width: 4px; }
+        .custom-scroll::-webkit-scrollbar-track { background: transparent; }
+        .custom-scroll::-webkit-scrollbar-thumb { background: #3f3f46; border-radius: 2px; }
+
+        .req-badge:hover {
+            filter: brightness(1.2);
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body class="h-full overflow-hidden flex flex-col">
+
+    <header class="h-14 border-b border-gray-800 bg-[#0d0d0f] flex items-center justify-between px-6 shrink-0">
+        <div class="flex items-center gap-4">
+            <span class="mono text-blue-500 font-bold tracking-tighter text-lg">Requirement Navigator</span>
+            <div id="status-indicators" class="flex gap-3 text-[10px] mono">
+                <span id="stat-json" class="text-gray-600">[Analysis: offline]</span>
+                <span id="stat-csv" class="text-gray-600">[Dataset: offline]</span>
+            </div>
+        </div>
+
+        <div class="flex gap-2">
+            <label class="cursor-pointer bg-zinc-900 border border-zinc-700 hover:bg-zinc-800 text-[11px] mono py-1.5 px-3 transition-all flex items-center gap-2">
+                Upload analysis (JSON)
+                <input type="file" id="jsonInput" class="hidden" accept=".json">
+            </label>
+            <label class="cursor-pointer bg-zinc-900 border border-zinc-700 hover:bg-zinc-800 text-[11px] mono py-1.5 px-3 transition-all flex items-center gap-2">
+                Upload dataset (CSV)
+                <input type="file" id="csvInput" class="hidden" accept=".csv">
+            </label>
+        </div>
+    </header>
+
+    <div class="flex flex-1 overflow-hidden">
+        
+        <aside class="w-64 bg-[#111114] border-r border-gray-800 flex flex-col shrink-0">
+            <div class="p-4 border-b border-gray-800">
+                <h3 class="text-[10px] mono text-gray-500 uppercase font-bold tracking-widest">Available Clusters</h3>
+            </div>
+            <nav id="clusterList" class="flex-1 overflow-y-auto custom-scroll py-2">
+                <p class="p-4 text-xs italic text-gray-600">Waiting for JSON analysis file...</p>
+            </nav>
+        </aside>
+
+        <main class="flex-1 flex flex-col overflow-hidden relative">
+            
+            <div id="emptyState" class="absolute inset-0 flex items-center justify-center bg-gray-950 z-10">
+                <div class="text-center">
+                            <div class="mono text-zinc-700 text-4xl mb-4 opacity-20 font-bold">No cluster selected</div>
+                            <p class="text-zinc-500 text-sm">Select a cluster from the sidebar to begin the analysis.</p>
+                </div>
+            </div>
+
+            <div id="mainContent" class="flex-1 overflow-y-auto p-8 custom-scroll hidden">
+                <div id="clusterHeader" class="mb-8">
+                    </div>
+                
+                <div id="analysisGrid" class="grid grid-cols-1 gap-8 max-w-5xl">
+                    </div>
+            </div>
+
+            <div id="inspector" class="h-64 border-t border-gray-800 bg-[#0d0d0f] p-4 hidden flex flex-col shrink-0">
+                <div class="flex justify-between items-center mb-3 shrink-0">
+                    <h4 id="inspectorId" class="mono text-xs text-blue-500 font-bold tracking-widest uppercase">Requirement Details</h4>
+                    <button onclick="closeInspector()" class="text-zinc-400 hover:text-white text-[11px] mono bg-zinc-800 hover:bg-zinc-700 px-3 py-1.5 rounded transition-colors">Close</button>
+                </div>
+                <div id="inspectorContent" class="flex-1 overflow-y-auto custom-scroll grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 pb-2">
+                    <!-- populated dynamically -->
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // --- State Management ---
+        let appState = {
+            analysis: null,
+            requirements: {}, // Map: id -> text
+            selectedClusterIndex: null
+        };
+
+        // --- File Handling ---
+        document.getElementById('jsonInput').addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = (event) => {
+                try {
+                    appState.analysis = JSON.parse(event.target.result);
+                    document.getElementById('stat-json').innerText = `[Analysis: loaded — ${appState.analysis.clusters.length} clusters]`;
+                    document.getElementById('stat-json').className = "text-emerald-500";
+                    renderClusterSidebar();
+                } catch (err) { alert("Invalid JSON format"); }
+            };
+            reader.readAsText(file);
+        });
+
+        document.getElementById('csvInput').addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (!file) return;
+            Papa.parse(file, {
+                header: true,
+                skipEmptyLines: true,
+                transformHeader: (h) => h.trim().toLowerCase(),
+                complete: (results) => {
+                    appState.requirements = {};
+                    const findField = (row, candidates) => {
+                        for (const c of candidates) if (row[c] !== undefined) return row[c];
+                        return undefined;
+                    };
+
+                    results.data.forEach(row => {
+                        const id = (findField(row, ['id','req_id','requirement','identifier']) || '').toString().trim();
+                        const text = (findField(row, ['feature','text','description','content','requirement_text','requirementdescription']) || '').toString().trim();
+                        const role = (findField(row, ['role']) || '').toString().trim();
+                        if (id && text) appState.requirements[id] = { text: text, role: role };
+                    });
+
+                    const count = Object.keys(appState.requirements).length;
+                    document.getElementById('stat-csv').innerText = `[Dataset: loaded — ${count} entries]`;
+                    document.getElementById('stat-csv').className = "text-emerald-500";
+                    if (count === 0) alert('No valid id/feature pairs found in CSV. Please ensure your file has columns named "id" and "feature" (or a text column).');
+                },
+                error: (err) => { alert('Error parsing CSV: ' + (err && err.message ? err.message : err)); }
+            });
+        });
+
+        // --- Rendering Logic ---
+
+        function renderClusterSidebar() {
+            const list = document.getElementById('clusterList');
+            list.innerHTML = '';
+            appState.analysis.clusters.forEach((cluster, index) => {
+                const btn = document.createElement('button');
+                btn.className = "sidebar-item w-full text-left px-4 py-3 text-sm mono transition-all border-b border-zinc-900/50 hover:bg-zinc-800/50";
+                btn.innerHTML = `<span class="text-blue-500">#${index+1}</span> Cluster ${cluster.cluster_id}`;
+                btn.onclick = () => selectCluster(index);
+                list.appendChild(btn);
+            });
+        }
+
+        function selectCluster(index) {
+            appState.selectedClusterIndex = index;
+            document.querySelectorAll('.sidebar-item').forEach((el, i) => {
+                el.classList.toggle('active', i === index);
+            });
+            document.getElementById('emptyState').classList.add('hidden');
+            document.getElementById('mainContent').classList.remove('hidden');
+            renderActiveCluster();
+        }
+
+        function renderActiveCluster() {
+            const cluster = appState.analysis.clusters[appState.selectedClusterIndex];
+            const header = document.getElementById('clusterHeader');
+            const grid = document.getElementById('analysisGrid');
+
+            header.innerHTML = `
+                <div class="flex items-center gap-3 mb-1">
+                    <span class="bg-blue-500/10 text-blue-500 border border-blue-500/20 px-2 py-0.5 text-[10px] mono">Active node</span>
+                    <h2 class="text-2xl font-bold mono">Cluster ${cluster.cluster_id}</h2>
+                </div>
+                <p class="text-xs text-zinc-500 mono">Analysis time: ${new Date().toLocaleString()}</p>
+            `;
+
+            grid.innerHTML = '';
+
+            const sections = [
+                { title: 'Duplicates', data: cluster.duplicates, type: 'dup' },
+                { title: 'Conflicts', data: cluster.inconsistencies, type: 'inc' },
+                { title: 'Ambiguities', data: cluster.ambiguities, type: 'amb' },
+                { title: 'Missing items', data: cluster.gaps, type: 'gap' },
+                { title: 'Dependencies', data: cluster.dependencies, type: 'dep' }
+            ];
+
+            sections.forEach((sec, sidx) => {
+                if (sec.data && sec.data.length > 0) {
+                    const sectionEl = document.createElement('section');
+                    sectionEl.innerHTML = `
+                        <details class="mb-4" ${sidx===0? 'open': ''}>
+                          <summary class="mono text-sm font-bold text-zinc-400 mb-3 cursor-pointer">${sec.title} (${sec.data.length})</summary>
+                          <div class="space-y-3 mt-3">
+                            ${sec.data.map(item => renderComponent(item, sec.type)).join('')}
+                          </div>
+                        </details>
+                    `;
+                    grid.appendChild(sectionEl);
+                }
+            });
+        }
+
+        function renderComponent(item, type) {
+            let color = "zinc";
+            let tag = "Note";
+            if (type === 'dup') { color = "blue"; tag = "Duplicate"; }
+            if (type === 'inc') { color = "red"; tag = "Conflict"; }
+            if (type === 'amb') { color = "amber"; tag = "Ambiguity"; }
+            if (type === 'gap') { color = "purple"; tag = "Missing item"; }
+            if (type === 'dep') { color = "emerald"; tag = "Dependency"; }
+
+            const reqs = extractReqs(item);
+
+            const reqsArg = JSON.stringify(reqs).replace(/"/g, '&quot;');
+
+            return `
+                <div onclick="compare(${reqsArg})" class="bg-[#0d0d0f] border border-zinc-800 hover:border-zinc-700 p-4 rounded-sm cursor-pointer transition-colors relative group">
+                    <div class="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity">
+                        <span class="text-[10px] mono bg-zinc-800 text-zinc-400 px-2 py-1 rounded">Click to compare requirements</span>
+                    </div>
+                    <div class="flex flex-wrap items-center gap-3 mb-3">
+                        <span class="text-[10px] mono px-2 py-0.5 bg-${color}-500/10 text-${color}-500 border border-${color}-500/20 font-bold">${tag}</span>
+                        <div class="flex gap-2">
+                            ${reqs.map(id => `<span class="bg-zinc-800 border border-zinc-700 text-zinc-300 text-[11px] mono px-2 py-0.5 rounded-sm">Req ${escapeHtml(id)}</span>`).join('')}
+                        </div>
+                    </div>
+                    <div class="text-sm text-zinc-300 font-sans leading-relaxed pr-32">
+                        ${item.reason || item.issue || item.description || "No description provided."}
+                    </div>
+                    ${item.suggestion ? `<div class="mt-3 text-sm text-emerald-500/80 mono bg-emerald-500/5 p-2.5 border-l-2 border-emerald-500/50">Fix suggestion: ${escapeHtml(item.suggestion)}</div>` : ''}
+                </div>
+            `;
+        }
+
+        function extractReqs(item) {
+            if (item.requirements) return item.requirements;
+            if (item.requirement) return [item.requirement];
+            if (item.related_to) return item.related_to;
+            if (item.from && item.to) return [item.from, item.to];
+            return [];
+        }
+
+        // --- Inspector / Comparison Logic ---
+
+        function compare(ids) {
+            const panel = document.getElementById('inspector');
+            const content = document.getElementById('inspectorContent');
+            const title = document.getElementById('inspectorId');
+
+            panel.classList.remove('hidden');
+            title.innerText = `Comparing ${ids.length} Requirement${ids.length > 1 ? 's' : ''}`;
+
+            let html = '';
+            ids.forEach(id => {
+                const entry = appState.requirements[id];
+                if (entry) {
+                    const roleHtml = entry.role ? `<div class="text-[10px] text-zinc-500 uppercase tracking-widest mono mb-1">${escapeHtml(entry.role)}</div>` : '';
+                    html += `
+                        <div class="bg-[#111114] border border-zinc-800 p-4 rounded flex flex-col">
+                            <div class="flex justify-between items-center mb-3 border-b border-zinc-800 pb-2">
+                                <span class="mono text-xs text-blue-400 font-bold bg-blue-500/10 px-2 py-0.5 rounded">Req ${escapeHtml(id)}</span>
+                            </div>
+                            ${roleHtml}
+                            <div class="text-sm text-gray-300 leading-relaxed">${escapeHtml(entry.text)}</div>
+                        </div>
+                    `;
+                } else {
+                    html += `
+                        <div class="bg-[#111114] border border-red-900/30 p-4 rounded flex flex-col">
+                            <div class="flex justify-between items-center mb-3 border-b border-zinc-800 pb-2">
+                                <span class="mono text-xs text-red-400 font-bold bg-red-500/10 px-2 py-0.5 rounded">Req ${escapeHtml(id)}</span>
+                            </div>
+                            <div class="text-sm text-zinc-500 italic">[Missing in dataset. Verify CSV upload]</div>
+                        </div>
+                    `;
+                }
+            });
+            content.innerHTML = html;
+        }
+
+        // small helper to escape HTML when injecting dataset text
+        function escapeHtml(str) {
+            return String(str).replace(/[&<>"']/g, function (s) {
+                return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[s];
+            });
+        }
+
+        function closeInspector() {
+            document.getElementById('inspector').classList.add('hidden');
+        }
+    </script>
+</body>
+</html>
