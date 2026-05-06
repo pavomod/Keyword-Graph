@@ -11,7 +11,7 @@
   "phase4_preview_output": "results/phase4_preview.txt",
 
   "keyword_extractor": "gemini",
-  "phase1_gemini_model": "gemini-2.5-flash-lite",
+  "phase1_gemini_model": "gemini-2.5-flash",
   "phase1_gemini_temperature": 0.0,
   "phase1_gemini_top_p": 0.9,
   "phase1_gemini_max_tokens": 800,
@@ -26,7 +26,7 @@
   "keybert_diversity": 0.8,
 
   "semantic_model": "BAAI/bge-m3",
-  "semantic_threshold": 0.50,
+  "semantic_threshold": 0.7,
 
   "enable_node_reduction": false,
   "node_reduction_degree_threshold_low": 2,
@@ -35,14 +35,14 @@
   "enable_clustering": true,
   "cluster_k": null,
   "cluster_k_min": 3,
-  "cluster_k_max": 15,
-  "cluster_embedding_dim": 64,
+  "cluster_k_max": 30,
+  "cluster_embedding_dim": 128,
   "cluster_random_state": 42,
-  "cluster_node2vec_walk_length": 30,
-  "cluster_node2vec_num_walks": 200,
+  "cluster_node2vec_walk_length": 10,
+  "cluster_node2vec_num_walks": 10,
   "cluster_node2vec_workers": 4,
-  "cluster_requirement_feature_weight": 0.7,
-  "cluster_requirement_svd_dim": 16,
+  "cluster_requirement_feature_weight": 0.85,
+  "cluster_requirement_svd_dim": 128,
 
   "enable_clustering_comparison": true,
 

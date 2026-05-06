@@ -507,7 +507,8 @@ def main() -> None:
     print(f"Extraction saved in: {extraction_path}")
 
     print("[2/3] Building global semantic graph and exporting GEXF...")
-    predicted_keyword_lists = [parse_keywords(prediction) for prediction in predictions]
+    should_normalize = (keyword_extractor != "gemini")
+    predicted_keyword_lists = [parse_keywords(prediction, normalize=should_normalize) for prediction in predictions]
     graph = build_semantic_similarity_graph(
         keyword_lists=predicted_keyword_lists,
         threshold=semantic_threshold,

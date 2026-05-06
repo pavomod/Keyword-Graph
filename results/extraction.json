@@ -3,57 +3,57 @@
     {
       "source_id": "1",
       "input": "The system must allow user registration.",
-      "predicted_tags": "allow registration, registration"
+      "predicted_tags": "user registration"
     },
     {
       "source_id": "2",
       "input": "The system must automatically credit 100 points as an initial balance immediately after user registration.",
-      "predicted_tags": "automatically credit"
+      "predicted_tags": "initial balance, user registration"
     },
     {
       "source_id": "3",
       "input": "The system must allow a registered user to create a listing for an accommodation.",
-      "predicted_tags": "listing accommodation"
+      "predicted_tags": "listing creation, user registration"
     },
     {
       "source_id": "4",
       "input": "The system must allow a user (guest) to submit a booking request for a selected listing.",
-      "predicted_tags": "booking request"
+      "predicted_tags": "booking request, listing selection"
     },
     {
       "source_id": "5",
       "input": "The system must enable the ability for hosts and guests to leave reviews for each completed and completed booking.",
-      "predicted_tags": "completed booking"
+      "predicted_tags": "booking review"
     },
     {
       "source_id": "6",
       "input": "The system must provide an integrated payment interface to allow users to purchase points.",
-      "predicted_tags": "payment interface"
+      "predicted_tags": "payment interface, point purchase"
     },
     {
       "source_id": "7",
       "input": "The system must not allow accommodation for more than 7 nights",
-      "predicted_tags": "accommodation night"
+      "predicted_tags": "accommodation duration"
     },
     {
       "source_id": "8",
       "input": "Students must provide their institutional email address during registration",
-      "predicted_tags": "institutional email"
+      "predicted_tags": "institutional email, user registration"
     },
     {
       "source_id": "9",
       "input": "The system must verify the email provided through the corresponding university",
-      "predicted_tags": "verify email"
+      "predicted_tags": "email verification"
     },
     {
       "source_id": "10",
       "input": "The system must manage the use of points",
-      "predicted_tags": "use point"
+      "predicted_tags": "point management"
     },
     {
       "source_id": "11",
       "input": "The system must provide students with a certain number of points upon registration",
-      "predicted_tags": "point registration"
+      "predicted_tags": "point system, student registration"
     },
     {
       "source_id": "12",
@@ -63,62 +63,62 @@
     {
       "source_id": "13",
       "input": "Students must be able to view the bookings related to their room",
-      "predicted_tags": "view booking"
+      "predicted_tags": "room booking"
     },
     {
       "source_id": "14",
       "input": "Students must be able to make a room available",
-      "predicted_tags": "make room, room available"
+      "predicted_tags": "room availability"
     },
     {
       "source_id": "15",
       "input": "The system must require photos availability period address and cost in points per night for room publication",
-      "predicted_tags": "photo availability"
+      "predicted_tags": "room publication"
     },
     {
       "source_id": "16",
       "input": "Students must be able to view their room (if saved)",
-      "predicted_tags": "room saved"
+      "predicted_tags": "room assignment"
     },
     {
       "source_id": "17",
       "input": "Students must be able to edit the information of their room",
-      "predicted_tags": "edit information"
+      "predicted_tags": "room information editing"
     },
     {
       "source_id": "18",
       "input": "Students must be able to unpublish their room (saved not public)",
-      "predicted_tags": "unpublish room"
+      "predicted_tags": "room publishing"
     },
     {
       "source_id": "19",
       "input": "Students must be able to delete their room (if saved)",
-      "predicted_tags": "delete room"
+      "predicted_tags": "room deletion"
     },
     {
       "source_id": "20",
       "input": "Students must be able to view the reviews related to their room",
-      "predicted_tags": "review related"
+      "predicted_tags": "room review"
     },
     {
       "source_id": "21",
       "input": "Students must receive the corresponding points when their room is used",
-      "predicted_tags": "point room"
+      "predicted_tags": "point allocation"
     },
     {
       "source_id": "22",
       "input": "Students must be able to search for rooms",
-      "predicted_tags": "search room"
+      "predicted_tags": "room search"
     },
     {
       "source_id": "23",
       "input": "Students must be able to filter the search by city and accommodation period",
-      "predicted_tags": "search city"
+      "predicted_tags": "accommodation period, city filter, search filter"
     },
     {
       "source_id": "24",
       "input": "Students must be able to view a room",
-      "predicted_tags": "view room"
+      "predicted_tags": "room view"
     },
     {
       "source_id": "25",
@@ -128,447 +128,447 @@
     {
       "source_id": "26",
       "input": "Students must be able to book a room",
-      "predicted_tags": "room"
+      "predicted_tags": "room booking"
     },
     {
       "source_id": "27",
       "input": "Students must be able to cancel a booking",
-      "predicted_tags": "cancel booking"
+      "predicted_tags": "booking cancellation"
     },
     {
       "source_id": "28",
       "input": "Students must be able to reject a booking request for their room",
-      "predicted_tags": "reject booking"
+      "predicted_tags": "booking rejection"
     },
     {
       "source_id": "29",
       "input": "Students must be able to see the reviews related to the person booking the room",
-      "predicted_tags": "review related"
+      "predicted_tags": "room booking review"
     },
     {
       "source_id": "30",
       "input": "The system must ensure that students have enough points to book a room",
-      "predicted_tags": "ensure student"
+      "predicted_tags": "point balance, room booking"
     },
     {
       "source_id": "31",
       "input": "The system must allow the addition of bonuses such as towels and others with an appropriate additional cost in points per night",
-      "predicted_tags": "bonuse towel"
+      "predicted_tags": "bonu item, nightly rate"
     },
     {
       "source_id": "32",
       "input": "The system must retain 10% of the points paid by students",
-      "predicted_tags": "retain 10"
+      "predicted_tags": "point retention"
     },
     {
       "source_id": "33",
       "input": "Students can purchase points from UniRoomShare",
-      "predicted_tags": "point uniroomshare"
+      "predicted_tags": "point purchase"
     },
     {
       "source_id": "34",
       "input": "Points can only be used for room bookings",
-      "predicted_tags": "room booking"
+      "predicted_tags": "point usage"
     },
     {
       "source_id": "35",
       "input": "Students can leave reviews for rooms",
-      "predicted_tags": "review room"
+      "predicted_tags": "room review"
     },
     {
       "source_id": "36",
       "input": "Students can leave reviews for students",
-      "predicted_tags": "review student"
+      "predicted_tags": "student review"
     },
     {
       "source_id": "37",
       "input": "Students must be able to see the reviews they have written",
-      "predicted_tags": "review written"
+      "predicted_tags": "student review"
     },
     {
       "source_id": "38",
       "input": "Students must be able to edit the reviews they have written",
-      "predicted_tags": "edit review"
+      "predicted_tags": "review editing"
     },
     {
       "source_id": "39",
       "input": "Students must be able to delete the reviews they have written",
-      "predicted_tags": "delete review"
+      "predicted_tags": "review deletion"
     },
     {
       "source_id": "40",
       "input": "The system must allow stays of up to 7 nights.",
-      "predicted_tags": "allow stay"
+      "predicted_tags": "stay duration"
     },
     {
       "source_id": "41",
       "input": "The system must retain 10% of the points earned by the host per overnight stay.",
-      "predicted_tags": "earned host"
+      "predicted_tags": "host commission"
     },
     {
       "source_id": "42",
       "input": "The system must allow the user to register on the app.",
-      "predicted_tags": "allow register"
+      "predicted_tags": "user registration"
     },
     {
       "source_id": "43",
       "input": "The system must accept only registrations made through a university email.",
-      "predicted_tags": "university email"
+      "predicted_tags": "email validation, user registration"
     },
     {
       "source_id": "44",
       "input": "The system must assign x additional points for each linen supply.",
-      "predicted_tags": "linen supply"
+      "predicted_tags": "point assignment"
     },
     {
       "source_id": "45",
       "input": "The system must provide a mechanism for earning points.",
-      "predicted_tags": "earning point"
+      "predicted_tags": "point earning mechanism"
     },
     {
       "source_id": "46",
       "input": "The system must allow the host to specify the points per night.",
-      "predicted_tags": "allow host"
+      "predicted_tags": "point per night"
     },
     {
       "source_id": "47",
       "input": "The system must assign the points obtained from the overnight stay to the host.",
-      "predicted_tags": "overnight stay"
+      "predicted_tags": "point assignment"
     },
     {
       "source_id": "48",
       "input": "The system must subtract the points specified by the host from the guest who uses the accommodation.",
-      "predicted_tags": "subtract point"
+      "predicted_tags": "point deduction"
     },
     {
       "source_id": "49",
       "input": "The system must allow the user to purchase points.",
-      "predicted_tags": "purchase point"
+      "predicted_tags": "point purchase"
     },
     {
       "source_id": "50",
       "input": "The system must not allow the user to sell points.",
-      "predicted_tags": "sell point"
+      "predicted_tags": "point sale"
     },
     {
       "source_id": "51",
       "input": "The system must allow the host to upload photos of the property.",
-      "predicted_tags": "upload photo"
+      "predicted_tags": "photo upload"
     },
     {
       "source_id": "52",
       "input": "The system must allow the host to provide the availability period.",
-      "predicted_tags": "allow host"
+      "predicted_tags": "availability period"
     },
     {
       "source_id": "53",
       "input": "The system must allow the host to provide the address of the accommodation.",
-      "predicted_tags": "provide address"
+      "predicted_tags": "accommodation address"
     },
     {
       "source_id": "54",
       "input": "The system must allow users to leave feedback.",
-      "predicted_tags": "leave feedback"
+      "predicted_tags": "user feedback"
     },
     {
       "source_id": "55",
       "input": "The system must allow users to view feedback.",
-      "predicted_tags": "view feedback"
+      "predicted_tags": "feedback viewing"
     },
     {
       "source_id": "56",
       "input": "The system must allow the host to accept the guest.",
-      "predicted_tags": "accept guest"
+      "predicted_tags": "guest acceptance"
     },
     {
       "source_id": "57",
       "input": "The system must allow the host to reject the guest.",
-      "predicted_tags": "reject guest"
+      "predicted_tags": "guest rejection"
     },
     {
       "source_id": "58",
       "input": "The system must not allow monetary transactions between host and guest.",
-      "predicted_tags": "host guest"
+      "predicted_tags": "monetary transaction"
     },
     {
       "source_id": "59",
       "input": "The system must require users to register using a university email address first name and last name in order to use it",
-      "predicted_tags": "university email"
+      "predicted_tags": "university email, user registration"
     },
     {
       "source_id": "60",
       "input": "The system must assign 50 points to the user upon each new registration",
-      "predicted_tags": "50 point"
+      "predicted_tags": "point assignment, user registration"
     },
     {
       "source_id": "61",
       "input": "The system must require users to authenticate using their university email to access the system",
-      "predicted_tags": "university email"
+      "predicted_tags": "user authentication"
     },
     {
       "source_id": "62",
       "input": "If the user does not have a university email or the university authentication system does not issue a token the system must consider the registration invalid",
-      "predicted_tags": "university authentication"
+      "predicted_tags": "authentication token, registration statu, university email"
     },
     {
       "source_id": "63",
       "input": "The system must allow each user to register a bed/place to sleep",
-      "predicted_tags": "register bed"
+      "predicted_tags": "bed registration"
     },
     {
       "source_id": "64",
       "input": "The system must verify that the cost per night is between 0 and 30 points",
-      "predicted_tags": "verify cost"
+      "predicted_tags": "price validation"
     },
     {
       "source_id": "65",
       "input": "The system must allow the owner of a registered bed to modify it",
-      "predicted_tags": "bed modify"
+      "predicted_tags": "bed modification"
     },
     {
       "source_id": "66",
       "input": "The system must allow each user to view the beds they have registered",
-      "predicted_tags": "bed registered"
+      "predicted_tags": "user bed registration"
     },
     {
       "source_id": "67",
       "input": "The system must allow each user to indicate that a bed is available on specific dates",
-      "predicted_tags": "indicate bed"
+      "predicted_tags": "bed availability"
     },
     {
       "source_id": "68",
       "input": "The system must offer users a mechanism for searching available beds",
-      "predicted_tags": "searching available"
+      "predicted_tags": "bed search"
     },
     {
       "source_id": "69",
       "input": "The system must provide a filtering mechanism for beds based on one or more parameters specified by the user: dates location feedback average cost and requested services",
-      "predicted_tags": "provide filtering"
+      "predicted_tags": "bed filtering, user parameter"
     },
     {
       "source_id": "70",
       "input": "If the booking request is valid the system must allow the user to book another user?s bed",
-      "predicted_tags": "booking request"
+      "predicted_tags": "bed booking"
     },
     {
       "source_id": "71",
       "input": "If the booking request is invalid the system must reject it and request modifications",
-      "predicted_tags": "request invalid"
+      "predicted_tags": "booking rejection, modification request"
     },
     {
       "source_id": "72",
       "input": "The system must allow each user to view their booked beds past and future in some order",
-      "predicted_tags": "booked bed"
+      "predicted_tags": "bed booking, booking history"
     },
     {
       "source_id": "73",
       "input": "The system must send a notification to the owner of the bed for each new booking request",
-      "predicted_tags": "send notification"
+      "predicted_tags": "bed owner, booking notification"
     },
     {
       "source_id": "74",
       "input": "The system must allow the owner of the bed to accept or reject each booking request",
-      "predicted_tags": "reject booking"
+      "predicted_tags": "booking request"
     },
     {
       "source_id": "75",
       "input": "If the owner receives multiple booking requests for the same bed on the same dates once one is accepted the system must automatically reject all the others",
-      "predicted_tags": "automatically reject"
+      "predicted_tags": "booking conflict resolution, booking request"
     },
     {
       "source_id": "76",
       "input": "For each new booking the system must associate a unique identifier at the moment of acceptance",
-      "predicted_tags": "unique identifier"
+      "predicted_tags": "booking identifier"
     },
     {
       "source_id": "77",
       "input": "The system must update the availability of the bed when a booking request is accepted or canceled",
-      "predicted_tags": "bed booking"
+      "predicted_tags": "bed availability, booking management"
     },
     {
       "source_id": "78",
       "input": "On the payment day at 8:00 AM (Italian time) the system must notify the user who booked to check if their balance is sufficient",
-      "predicted_tags": "notify booked"
+      "predicted_tags": "balance check, payment notification"
     },
     {
       "source_id": "79",
       "input": "The system automatically processes the payment for the booking at 12:00 PM on the day before the check-in date",
-      "predicted_tags": "payment booking"
+      "predicted_tags": "booking date, payment processing"
     },
     {
       "source_id": "80",
       "input": "At the moment of payment the system must subtract from the user the total cost of the bed in points",
-      "predicted_tags": "payment subtract"
+      "predicted_tags": "payment processing, point deduction"
     },
     {
       "source_id": "81",
       "input": "If at the moment of payment the user cannot pay the system must automatically cancel the booking",
-      "predicted_tags": "automatically cancel"
+      "predicted_tags": "booking cancellation, payment failure"
     },
     {
       "source_id": "82",
       "input": "At the moment of payment the system must add to the host user 90% of the total cost of the bed in points",
-      "predicted_tags": "cost bed"
+      "predicted_tags": "payment processing, point accrual"
     },
     {
       "source_id": "83",
       "input": "At the moment of payment the system must deduct 10% of the total cost of the bed in points",
-      "predicted_tags": "deduct 10"
+      "predicted_tags": "payment processing, point deduction"
     },
     {
       "source_id": "84",
       "input": "The system must provide a mechanism to cancel future bookings",
-      "predicted_tags": "cancel"
+      "predicted_tags": "booking cancellation"
     },
     {
       "source_id": "85",
       "input": "If payment has already occurred the system does not provide refunds",
-      "predicted_tags": "refund"
+      "predicted_tags": "refund policy"
     },
     {
       "source_id": "86",
       "input": "At the end of the stay for one week the system must allow users who stayed to leave feedback about the stay",
-      "predicted_tags": "feedback stay"
+      "predicted_tags": "feedback submission, user stay"
     },
     {
       "source_id": "87",
       "input": "At the end of the stay for one week the system must allow users who offered a bed to leave feedback about the guest",
-      "predicted_tags": "offered bed"
+      "predicted_tags": "feedback submission, guest rating"
     },
     {
       "source_id": "88",
       "input": "For each user the system must allow other users to view the feedback they received",
-      "predicted_tags": "feedback received"
+      "predicted_tags": "feedback visibility"
     },
     {
       "source_id": "89",
       "input": "For each bed the system must allow the viewing of all feedback related to all users",
-      "predicted_tags": "viewing feedback"
+      "predicted_tags": "bed feedback, user feedback"
     },
     {
       "source_id": "90",
       "input": "The system must allow each user to view their balance",
-      "predicted_tags": "view balance"
+      "predicted_tags": "account balance"
     },
     {
       "source_id": "91",
       "input": "The system must allow each user to purchase points via card payment",
-      "predicted_tags": "point card"
+      "predicted_tags": "card payment, point purchase"
     },
     {
       "source_id": "92",
       "input": "The system must manage the payment of points",
-      "predicted_tags": "manage payment"
+      "predicted_tags": "payment management"
     },
     {
       "source_id": "93",
       "input": "For each user the system must provide a section containing their personal data",
-      "predicted_tags": "provide section"
+      "predicted_tags": "user data"
     },
     {
       "source_id": "94",
       "input": "The system must allow the landlord user to make their accommodation available for rent",
-      "predicted_tags": "allow landlord"
+      "predicted_tags": "accommodation availability"
     },
     {
       "source_id": "95",
       "input": "The system must prevent the publication of the accommodation if photos are not provided",
-      "predicted_tags": "accommodation photo"
+      "predicted_tags": "accommodation publication, photo requirement"
     },
     {
       "source_id": "96",
       "input": "The system must prevent the publication of the accommodation if the rental period is not provided",
-      "predicted_tags": "rental period"
+      "predicted_tags": "accommodation publication, rental period"
     },
     {
       "source_id": "97",
       "input": "The system must prevent the publication of the accommodation if the address is not provided",
-      "predicted_tags": "accommodation address"
+      "predicted_tags": "accommodation publication, address validation"
     },
     {
       "source_id": "98",
       "input": "The system must prevent the publication of the accommodation if the cost in points per night is not provided",
-      "predicted_tags": "accommodation cost"
+      "predicted_tags": "accommodation publication, point per night"
     },
     {
       "source_id": "99",
       "input": "The system must allow the tenant user to add sheets and towels as additional comforts",
-      "predicted_tags": "allow tenant"
+      "predicted_tags": "comfort, sheet, towel"
     },
     {
       "source_id": "100",
       "input": "The system must allow the tenant user to choose the rental cost before publishing the room",
-      "predicted_tags": "tenant choose"
+      "predicted_tags": "rental cost, room publishing"
     },
     {
       "source_id": "101",
       "input": "The system must allow the guest user to verify the reachability of the accommodation",
-      "predicted_tags": "verify reachability"
+      "predicted_tags": "accommodation reachability"
     },
     {
       "source_id": "102",
       "input": "The system must prevent the tenant from renting the room to multiple users on overlapping dates",
-      "predicted_tags": "prevent tenant"
+      "predicted_tags": "date overlap, room rental"
     },
     {
       "source_id": "103",
       "input": "The system must prevent the guest from renting multiple rooms on overlapping dates",
-      "predicted_tags": "prevent guest"
+      "predicted_tags": "date overlap, room rental"
     },
     {
       "source_id": "104",
       "input": "The system must recognize a university email address from a non-university one",
-      "predicted_tags": "university email"
+      "predicted_tags": "email validation"
     },
     {
       "source_id": "105",
       "input": "The system must identify the university associated with the email address",
-      "predicted_tags": "identify university"
+      "predicted_tags": "email domain identification"
     },
     {
       "source_id": "106",
       "input": "The system must verify whether the user is already registered",
-      "predicted_tags": "verify registered"
+      "predicted_tags": "user verification"
     },
     {
       "source_id": "107",
       "input": "The system must allow the creation of a new profile",
-      "predicted_tags": "new profile"
+      "predicted_tags": "user profile"
     },
     {
       "source_id": "108",
       "input": "The system must periodically verify that the user is still an active university student",
-      "predicted_tags": "periodically verify"
+      "predicted_tags": "student statu, user verification"
     },
     {
       "source_id": "109",
       "input": "The system must allow the user to log out",
-      "predicted_tags": "allow log"
+      "predicted_tags": "user logout"
     },
     {
       "source_id": "110",
       "input": "The system must allow the user to delete their account",
-      "predicted_tags": "allow delete, delete account"
+      "predicted_tags": "account deletion"
     },
     {
       "source_id": "111",
       "input": "The system must be able to redirect the user to the university?s authentication service",
-      "predicted_tags": "redirect university"
+      "predicted_tags": "authentication redirect"
     },
     {
       "source_id": "112",
       "input": "The system must be able to receive an authentication response from the university",
-      "predicted_tags": "receive authentication"
+      "predicted_tags": "authentication response"
     },
     {
       "source_id": "113",
       "input": "The system must receive from the university the information related to the user",
-      "predicted_tags": "university information"
+      "predicted_tags": "user information"
     },
     {
       "source_id": "114",
       "input": "The system must allow a user to book a room or a couch",
-      "predicted_tags": "room couch"
+      "predicted_tags": "couch booking, room booking"
     },
     {
       "source_id": "115",
@@ -578,22 +578,22 @@
     {
       "source_id": "116",
       "input": "The system must prevent the booking if the stay exceeds 7 consecutive days",
-      "predicted_tags": "prevent booking"
+      "predicted_tags": "booking restriction"
     },
     {
       "source_id": "117",
       "input": "The system must notify errors or unavailability during booking",
-      "predicted_tags": "notify error"
+      "predicted_tags": "error notification, system unavailability"
     },
     {
       "source_id": "118",
       "input": "The system must allow the viewing and selection of available options",
-      "predicted_tags": "available option"
+      "predicted_tags": "option selection, option viewing"
     },
     {
       "source_id": "119",
       "input": "The system must calculate the total price in points",
-      "predicted_tags": "total price"
+      "predicted_tags": "point calculation"
     },
     {
       "source_id": "120",
@@ -603,37 +603,37 @@
     {
       "source_id": "121",
       "input": "The system must request a second confirmation before purchase",
-      "predicted_tags": "second confirmation"
+      "predicted_tags": "purchase confirmation"
     },
     {
       "source_id": "122",
       "input": "The system must not deduct points at the moment of booking",
-      "predicted_tags": "deduct point"
+      "predicted_tags": "point deduction"
     },
     {
       "source_id": "123",
       "input": "The system must notify the confirmation of the booking",
-      "predicted_tags": "confirmation booking, notify confirmation"
+      "predicted_tags": "booking confirmation"
     },
     {
       "source_id": "124",
       "input": "The system must update the availability of the accommodation",
-      "predicted_tags": "accommodation"
+      "predicted_tags": "accommodation availability"
     },
     {
       "source_id": "125",
       "input": "The system must allow the cancellation of the booking with point refund",
-      "predicted_tags": "point refund"
+      "predicted_tags": "booking cancellation, point refund"
     },
     {
       "source_id": "126",
       "input": "The system must allow the host to view approve and reject bookings",
-      "predicted_tags": "reject booking"
+      "predicted_tags": "booking management"
     },
     {
       "source_id": "127",
       "input": "The system must make the accommodation available again in case of rejection",
-      "predicted_tags": "accommodation available"
+      "predicted_tags": "accommodation availability"
     },
     {
       "source_id": "128",
@@ -643,97 +643,97 @@
     {
       "source_id": "129",
       "input": "The system assigns 50 points at first authentication",
-      "predicted_tags": "50 point"
+      "predicted_tags": "authentication point"
     },
     {
       "source_id": "130",
       "input": "The system retains the points once the booking is completed",
-      "predicted_tags": "retain point"
+      "predicted_tags": "booking completion, point retention"
     },
     {
       "source_id": "131",
       "input": "The system rejects the booking if the points are not sufficient",
-      "predicted_tags": "reject booking"
+      "predicted_tags": "booking rejection, user point"
     },
     {
       "source_id": "132",
       "input": "The system sends 90% of the points to the landlord student",
-      "predicted_tags": "landlord student"
+      "predicted_tags": "point distribution"
     },
     {
       "source_id": "133",
       "input": "The system sends the points five hours before the start of the stay",
-      "predicted_tags": "send point"
+      "predicted_tags": "stay notification"
     },
     {
       "source_id": "134",
       "input": "The system retains 10% of the points on point purchases",
-      "predicted_tags": "point purchase"
+      "predicted_tags": "point purchase fee"
     },
     {
       "source_id": "135",
       "input": "The system must allow the purchase of points",
-      "predicted_tags": "purchase point"
+      "predicted_tags": "point purchase"
     },
     {
       "source_id": "136",
       "input": "The system allows the purchase of at least 20 points",
-      "predicted_tags": "20 point"
+      "predicted_tags": "point purchase"
     },
     {
       "source_id": "137",
       "input": "The system retains a 2% commission on single purchases",
-      "predicted_tags": "retain commission"
+      "predicted_tags": "platform commission"
     },
     {
       "source_id": "138",
       "input": "The system allows the purchase of 50 100 150-point packages",
-      "predicted_tags": "150 point"
+      "predicted_tags": "point package purchase"
     },
     {
       "source_id": "139",
       "input": "The system retains a 1% commission on package purchases",
-      "predicted_tags": "retain commission"
+      "predicted_tags": "platform commission"
     },
     {
       "source_id": "140",
       "input": "The system does not allow the sale of points between students",
-      "predicted_tags": "point student"
+      "predicted_tags": "point sale restriction"
     },
     {
       "source_id": "141",
       "input": "The system does not allow the conversion of points into currency",
-      "predicted_tags": "point currency"
+      "predicted_tags": "point conversion"
     },
     {
       "source_id": "142",
       "input": "The system must allow the user to review a room",
-      "predicted_tags": "review room"
+      "predicted_tags": "room review"
     },
     {
       "source_id": "143",
       "input": "The system must verify that the user has stayed in the accommodation",
-      "predicted_tags": "verify stayed"
+      "predicted_tags": "accommodation verification"
     },
     {
       "source_id": "144",
       "input": "The system must allow the host to review the student",
-      "predicted_tags": "review student"
+      "predicted_tags": "student review"
     },
     {
       "source_id": "145",
       "input": "The system must verify that the host has hosted the user",
-      "predicted_tags": "verify host"
+      "predicted_tags": "host verification"
     },
     {
       "source_id": "146",
       "input": "The system must manage the average rating of the room",
-      "predicted_tags": "rating room"
+      "predicted_tags": "room rating"
     },
     {
       "source_id": "147",
       "input": "The system must manage the average rating of the user",
-      "predicted_tags": "manage average"
+      "predicted_tags": "user rating"
     },
     {
       "source_id": "148",
@@ -743,17 +743,17 @@
     {
       "source_id": "149",
       "input": "The system must allow search filters",
-      "predicted_tags": "allow search, search filter"
+      "predicted_tags": "search filter"
     },
     {
       "source_id": "150",
       "input": "The system must allow the viewing of an accommodation in a selected period",
-      "predicted_tags": "viewing accommodation"
+      "predicted_tags": "accommodation detail, selected period"
     },
     {
       "source_id": "151",
       "input": "The system must verify the availability of the accommodation in the selected period",
-      "predicted_tags": "verify availability"
+      "predicted_tags": "accommodation availability"
     },
     {
       "source_id": "152",
@@ -763,167 +763,167 @@
     {
       "source_id": "153",
       "input": "The system must interact with the universities' authentication systems",
-      "predicted_tags": "university authentication"
+      "predicted_tags": "authentication integration"
     },
     {
       "source_id": "154",
       "input": "The system must allow student registration",
-      "predicted_tags": "allow student, student registration"
+      "predicted_tags": "student registration"
     },
     {
       "source_id": "155",
       "input": "The system must allow student access",
-      "predicted_tags": "allow student, student access"
+      "predicted_tags": "student access"
     },
     {
       "source_id": "156",
       "input": "The system must allow the assignment of points",
-      "predicted_tags": "allow assignment, assignment point"
+      "predicted_tags": "point assignment"
     },
     {
       "source_id": "157",
       "input": "The system must allow the owner to publish a listing for the bed",
-      "predicted_tags": "listing bed"
+      "predicted_tags": "listing publication"
     },
     {
       "source_id": "158",
       "input": "The system must allow the owner to modify the listing",
-      "predicted_tags": "modify listing"
+      "predicted_tags": "listing modification"
     },
     {
       "source_id": "159",
       "input": "The system must allow the tenant to book a bed",
-      "predicted_tags": "allow tenant"
+      "predicted_tags": "bed booking"
     },
     {
       "source_id": "160",
       "input": "The system must be able to verify the origin of the tenant",
-      "predicted_tags": "origin tenant"
+      "predicted_tags": "tenant verification"
     },
     {
       "source_id": "161",
       "input": "The system must allow the student to leave a review",
-      "predicted_tags": "allow student"
+      "predicted_tags": "student review"
     },
     {
       "source_id": "162",
       "input": "The system must allow the student to view the reviews",
-      "predicted_tags": "allow student"
+      "predicted_tags": "review viewing"
     },
     {
       "source_id": "163",
       "input": "The system must allow the registration of university students",
-      "predicted_tags": "registration university"
+      "predicted_tags": "student registration"
     },
     {
       "source_id": "164",
       "input": "The system must verify that the student is indeed a university student",
-      "predicted_tags": "verify student"
+      "predicted_tags": "student verification"
     },
     {
       "source_id": "165",
       "input": "The system must redirect to the student's university login page",
-      "predicted_tags": "redirect student, university login"
+      "predicted_tags": "university login"
     },
     {
       "source_id": "166",
       "input": "The system must assign points to each student at the moment of registration",
-      "predicted_tags": "assign point"
+      "predicted_tags": "point assignment, student registration"
     },
     {
       "source_id": "167",
       "input": "The system must deduct points when a service is used",
-      "predicted_tags": "deduct point"
+      "predicted_tags": "point deduction"
     },
     {
       "source_id": "168",
       "input": "The system must give the Host 90% of the points that the Guest uses for a service",
-      "predicted_tags": "host 90"
+      "predicted_tags": "host commission"
     },
     {
       "source_id": "169",
       "input": "The system must reserve for UniRoomShare 10% of the points spent by a Guest for a service",
-      "predicted_tags": "reserve uniroomshare"
+      "predicted_tags": "point reservation"
     },
     {
       "source_id": "170",
       "input": "The system must prevent service bookings from exceeding 7 consecutive nights",
-      "predicted_tags": "booking exceeding"
+      "predicted_tags": "booking limit"
     },
     {
       "source_id": "171",
       "input": "The system must handle the purchase of points by a user using real money",
-      "predicted_tags": "purchase point"
+      "predicted_tags": "point purchase"
     },
     {
       "source_id": "172",
       "input": "The system must ensure that all fields of a post are filled in",
-      "predicted_tags": "ensure field"
+      "predicted_tags": "post validation"
     },
     {
       "source_id": "173",
       "input": "The system must allow specifying whether the service includes any extras in the fields",
-      "predicted_tags": "extra field"
+      "predicted_tags": "service extra"
     },
     {
       "source_id": "174",
       "input": "The system must manage user notifications in a dedicated section of the app",
-      "predicted_tags": "manage notification"
+      "predicted_tags": "user notification management"
     },
     {
       "source_id": "175",
       "input": "The system must manage messages between users in a dedicated section of the app with a chat",
-      "predicted_tags": "manage message"
+      "predicted_tags": "chat system, message management"
     },
     {
       "source_id": "176",
       "input": "The system must notify the Host of the service when the Guest has arrived at the location",
-      "predicted_tags": "notify host"
+      "predicted_tags": "guest arrival, service notification"
     },
     {
       "source_id": "177",
       "input": "The system must notify the Host of the service when the Guest has vacated the place",
-      "predicted_tags": "notify host"
+      "predicted_tags": "guest statu, service notification"
     },
     {
       "source_id": "178",
       "input": "The system must request feedback from both Guest and Host after the conclusion of the service",
-      "predicted_tags": "feedback guest"
+      "predicted_tags": "feedback request, service completion"
     },
     {
       "source_id": "179",
       "input": "The system must have a dedicated section for each user profile containing contact information description services offered chat number of services provided average ratings as host and guest and list of received feedback",
-      "predicted_tags": "description service"
+      "predicted_tags": "contact information, service catalog, user profile"
     },
     {
       "source_id": "180",
       "input": "The system must notify the user when they are running low on points",
-      "predicted_tags": "notify running"
+      "predicted_tags": "point balance notification"
     },
     {
       "source_id": "181",
       "input": "The system must notify the user when they have run out of points",
-      "predicted_tags": "notify run"
+      "predicted_tags": "notification system, point balance"
     },
     {
       "source_id": "182",
       "input": "The system must show the user the history of their points with date time point change and description",
-      "predicted_tags": "history point"
+      "predicted_tags": "point history"
     },
     {
       "source_id": "183",
       "input": "The app must allow students to request shared accommodation",
-      "predicted_tags": "shared accommodation"
+      "predicted_tags": "accommodation request"
     },
     {
       "source_id": "184",
       "input": "The request must include the accommodation period and the university city of the accommodation",
-      "predicted_tags": "accommodation period"
+      "predicted_tags": "accommodation detail"
     },
     {
       "source_id": "185",
       "input": "The requested accommodation must be located in a university city where the requesting student does not study",
-      "predicted_tags": "requested accommodation"
+      "predicted_tags": "accommodation location, student location"
     },
     {
       "source_id": "186",
@@ -933,42 +933,42 @@
     {
       "source_id": "187",
       "input": "The app must allow students to register",
-      "predicted_tags": "student register"
+      "predicted_tags": "student registration"
     },
     {
       "source_id": "188",
       "input": "The student must register with their university email",
-      "predicted_tags": "university email"
+      "predicted_tags": "university email, user registration"
     },
     {
       "source_id": "189",
       "input": "The app must redirect the student to the authentication page of the university where they study",
-      "predicted_tags": "student authentication"
+      "predicted_tags": "authentication page, university redirection"
     },
     {
       "source_id": "190",
       "input": "The app must verify that authentication on the university?s authentication page was successful",
-      "predicted_tags": "university authentication"
+      "predicted_tags": "authentication verification"
     },
     {
       "source_id": "191",
       "input": "The app must have a points system",
-      "predicted_tags": "app point"
+      "predicted_tags": "point system"
     },
     {
       "source_id": "192",
       "input": "The student must receive a fixed number of points after registration",
-      "predicted_tags": "point registration"
+      "predicted_tags": "point allocation, student registration"
     },
     {
       "source_id": "193",
       "input": "The student must spend points when occupying accommodation",
-      "predicted_tags": "point occupying"
+      "predicted_tags": "accommodation occupancy, point expenditure"
     },
     {
       "source_id": "194",
       "input": "The student must be able to offer their own accommodation through a listing",
-      "predicted_tags": "offer accommodation"
+      "predicted_tags": "accommodation listing"
     },
     {
       "source_id": "195",
@@ -978,77 +978,77 @@
     {
       "source_id": "196",
       "input": "The type must be room or couch",
-      "predicted_tags": "room couch"
+      "predicted_tags": "couch type, room type"
     },
     {
       "source_id": "197",
       "input": "The app must take 10% of the points paid by a student who occupied an accommodation",
-      "predicted_tags": "student occupied"
+      "predicted_tags": "accommodation fee"
     },
     {
       "source_id": "198",
       "input": "The student offering the accommodation must earn 90% of the points paid by the student who occupied it",
-      "predicted_tags": "accommodation earn"
+      "predicted_tags": "payment distribution"
     },
     {
       "source_id": "199",
       "input": "The student must specify the availability period address and cost in points per night of the offered accommodation",
-      "predicted_tags": "offered accommodation"
+      "predicted_tags": "accommodation detail"
     },
     {
       "source_id": "200",
       "input": "The student must publish images related to the offered accommodation",
-      "predicted_tags": "publish image"
+      "predicted_tags": "accommodation image"
     },
     {
       "source_id": "201",
       "input": "The presence of towels and/or sheets must be able to result in a different price for the accommodation",
-      "predicted_tags": "price accommodation"
+      "predicted_tags": "accommodation pricing"
     },
     {
       "source_id": "202",
       "input": "The student offering or occupying accommodation must be able to leave reviews about the student who occupied or offered the accommodation",
-      "predicted_tags": "student occupied"
+      "predicted_tags": "accommodation review, review system"
     },
     {
       "source_id": "203",
       "input": "The review must have a star rating and a description",
-      "predicted_tags": "rating description"
+      "predicted_tags": "review description, review rating"
     },
     {
       "source_id": "204",
       "input": "The student must be able to purchase points via credit or debit card",
-      "predicted_tags": "point credit"
+      "predicted_tags": "payment method, point purchase"
     },
     {
       "source_id": "205",
       "input": "The student must be able to register their credit or debit cards",
-      "predicted_tags": "register credit"
+      "predicted_tags": "card registration"
     },
     {
       "source_id": "206",
       "input": "The student must not be able to sell points",
-      "predicted_tags": "sell point"
+      "predicted_tags": "point sale"
     },
     {
       "source_id": "207",
       "input": "The student requesting accommodation must be able to message the student offering it and vice versa",
-      "predicted_tags": "requesting accommodation"
+      "predicted_tags": "messaging system"
     },
     {
       "source_id": "208",
       "input": "The app must have a listing search engine",
-      "predicted_tags": "app listing"
+      "predicted_tags": "search engine"
     },
     {
       "source_id": "209",
       "input": "The search engine must allow filtering listings by city cost in points per night availability period type and reviews",
-      "predicted_tags": "filtering listing"
+      "predicted_tags": "listing attribute, search filtering"
     },
     {
       "source_id": "210",
       "input": "The student must be able to view the accommodation details of a listing",
-      "predicted_tags": "view accommodation"
+      "predicted_tags": "accommodation detail"
     },
     {
       "source_id": "211",
@@ -1058,7 +1058,7 @@
     {
       "source_id": "212",
       "input": "The student must be able to add listings to favorites",
-      "predicted_tags": "listing favorite"
+      "predicted_tags": "favorite listing"
     },
     {
       "source_id": "213",
@@ -1073,182 +1073,182 @@
     {
       "source_id": "215",
       "input": "The student must not be able to spend more points than they possess",
-      "predicted_tags": "spend point"
+      "predicted_tags": "point balance"
     },
     {
       "source_id": "216",
       "input": "The student must be able to cancel a submitted request",
-      "predicted_tags": "cancel submitted"
+      "predicted_tags": "request cancellation"
     },
     {
       "source_id": "217",
       "input": "A cancellation must refund the requesting student the points spent",
-      "predicted_tags": "cancellation refund"
+      "predicted_tags": "refund policy"
     },
     {
       "source_id": "218",
       "input": "A refund must return 80% of the points spent",
-      "predicted_tags": "refund"
+      "predicted_tags": "refund policy"
     },
     {
       "source_id": "219",
       "input": "The system must allow registration through an official university email",
-      "predicted_tags": "university email"
+      "predicted_tags": "user registration"
     },
     {
       "source_id": "220",
       "input": "The system must give N free points to the user upon their first registration",
-      "predicted_tags": "free point"
+      "predicted_tags": "free point, user registration"
     },
     {
       "source_id": "221",
       "input": "The system must allow users to create listings related to rooms",
-      "predicted_tags": "create listing"
+      "predicted_tags": "listing creation, room listing"
     },
     {
       "source_id": "222",
       "input": "The system must allow users to add a mandatory room description to the listings",
-      "predicted_tags": "mandatory room"
+      "predicted_tags": "room description"
     },
     {
       "source_id": "223",
       "input": "The system must allow users to book a stay of up to 7 nights through a dedicated section",
-      "predicted_tags": "stay night"
+      "predicted_tags": "booking system, stay duration"
     },
     {
       "source_id": "224",
       "input": "The system must allow users to add add-ons to the room listing",
-      "predicted_tags": "room listing"
+      "predicted_tags": "add-on management"
     },
     {
       "source_id": "225",
       "input": "The system must transfer the room?s cost in points from the buyer to the host once the booking is made",
-      "predicted_tags": "buyer host"
+      "predicted_tags": "booking completion, point transfer"
     },
     {
       "source_id": "226",
       "input": "The system must retain 10% of the points transferred to the host for each purchased listing",
-      "predicted_tags": "host purchased"
+      "predicted_tags": "host commission, listing purchase"
     },
     {
       "source_id": "227",
       "input": "The system must allow users to purchase points through an in-app shop",
-      "predicted_tags": "purchase point"
+      "predicted_tags": "in-app shop, point purchase"
     },
     {
       "source_id": "228",
       "input": "The system must allow users to redeem gift cards with points through the shop",
-      "predicted_tags": "gift card"
+      "predicted_tags": "gift card redemption, shop"
     },
     {
       "source_id": "229",
       "input": "The system must allow the host to leave feedback for the guest",
-      "predicted_tags": "feedback guest"
+      "predicted_tags": "feedback submission"
     },
     {
       "source_id": "230",
       "input": "The system must allow the guest to leave feedback for the host",
-      "predicted_tags": "allow guest"
+      "predicted_tags": "guest feedback, host feedback"
     },
     {
       "source_id": "231",
       "input": "The system must allow the guest to leave feedback on the accommodation",
-      "predicted_tags": "feedback accommodation"
+      "predicted_tags": "accommodation feedback, guest feedback"
     },
     {
       "source_id": "232",
       "input": "The system must allow the viewing of feedback related to a listing",
-      "predicted_tags": "viewing feedback"
+      "predicted_tags": "listing feedback"
     },
     {
       "source_id": "233",
       "input": "The system must allow the viewing of feedback related to each user as host and as guest",
-      "predicted_tags": "viewing feedback"
+      "predicted_tags": "guest feedback, host feedback, user feedback"
     },
     {
       "source_id": "234",
       "input": "The system must allow reporting certain users for inappropriate behavior",
-      "predicted_tags": "allow reporting"
+      "predicted_tags": "user reporting"
     },
     {
       "source_id": "235",
       "input": "The system must provide a simple messaging mechanism to enable communication between users",
-      "predicted_tags": "simple messaging"
+      "predicted_tags": "messaging system"
     },
     {
       "source_id": "236",
       "input": "The system allows registration only with an official university email",
-      "predicted_tags": "university email"
+      "predicted_tags": "email validation, user registration"
     },
     {
       "source_id": "237",
       "input": "The system credits a points bonus to the user upon completing registration",
-      "predicted_tags": "point bonu"
+      "predicted_tags": "point bonu, user registration"
     },
     {
       "source_id": "238",
       "input": "The system allows a student to request accommodation in a city different from their study city",
-      "predicted_tags": "accommodation city"
+      "predicted_tags": "accommodation request, study city"
     },
     {
       "source_id": "239",
       "input": "The system rejects accommodation requests lasting more than 7 nights",
-      "predicted_tags": "reject accommodation"
+      "predicted_tags": "accommodation request duration"
     },
     {
       "source_id": "240",
       "input": "The system allows a host to publish an offer with photos address city availability periods and points per night",
-      "predicted_tags": "city availability"
+      "predicted_tags": "availability period, offer publishing"
     },
     {
       "source_id": "241",
       "input": "The system allows indicating whether sheets and towels are provided and applying additional point costs",
-      "predicted_tags": "towel provided"
+      "predicted_tags": "amenity provision, point cost"
     },
     {
       "source_id": "242",
       "input": "The system supports points per night chosen by the host and variable by date",
-      "predicted_tags": "support point"
+      "predicted_tags": "date-based pricing, point per night"
     },
     {
       "source_id": "243",
       "input": "The system allows the guest to send a booking request for an available offer",
-      "predicted_tags": "booking request"
+      "predicted_tags": "booking request, offer availability"
     },
     {
       "source_id": "244",
       "input": "The system allows the host to confirm or reject a booking request",
-      "predicted_tags": "allow host"
+      "predicted_tags": "booking confirmation"
     },
     {
       "source_id": "245",
       "input": "Only upon host confirmation does the system deduct points from the guest credit the host and retain the 10% commission",
-      "predicted_tags": "guest credit"
+      "predicted_tags": "host confirmation, platform commission, point deduction"
     },
     {
       "source_id": "246",
       "input": "The system decreases a student?s points when they use a room",
-      "predicted_tags": "decrease student"
+      "predicted_tags": "point deduction, room usage"
     },
     {
       "source_id": "247",
       "input": "The system increases a student?s points when they let someone use their room",
-      "predicted_tags": "increase student"
+      "predicted_tags": "room sharing, student point"
     },
     {
       "source_id": "248",
       "input": "The system allows students to purchase points from UniRoomShare",
-      "predicted_tags": "point uniroomshare"
+      "predicted_tags": "point purchase"
     },
     {
       "source_id": "249",
       "input": "The system does not allow students to sell points",
-      "predicted_tags": "sell point"
+      "predicted_tags": "point sale"
     },
     {
       "source_id": "250",
       "input": "The system allows hosts and guests to leave feedback after the stay is completed",
-      "predicted_tags": "allow host"
+      "predicted_tags": "feedback system, stay completion"
     }
   ]
 }

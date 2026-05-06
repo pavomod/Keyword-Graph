@@ -9,7 +9,10 @@ from src.phase1.keyBERT.normalize import parse_keyword_text
 from transformers import logging as hf_logging
 
 
-def parse_keywords(keywords_text: str) -> list[str]:
+def parse_keywords(keywords_text: str, normalize: bool = True) -> list[str]:
+    if not normalize:
+        pieces = [piece.strip() for piece in str(keywords_text).split(",")]
+        return sorted(set(piece for piece in pieces if piece))
     return parse_keyword_text(keywords_text)
 
 

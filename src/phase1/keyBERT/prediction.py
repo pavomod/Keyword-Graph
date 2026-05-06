@@ -105,7 +105,7 @@ def predict_keywords(
                     kws = extract_keywords_gemini(prompt, **gemini_kwargs)
                     if kws:
                         joined = ", ".join(kws[:MAX_KEYWORDS])
-                        normalized = normalize_keyword_text(joined)
+                        normalized = joined if backend_name == "gemini" else normalize_keyword_text(joined)
                         predictions.append(normalized)
                         model_generated_count += 1
                         continue

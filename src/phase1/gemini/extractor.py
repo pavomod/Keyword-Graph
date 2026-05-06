@@ -50,14 +50,6 @@ def extract_keywords_gemini(
     )
 
     user_prompt = (
-        "Extract keywords from the requirement below.\n"
-        f"- Return between {MIN_KEYWORDS} and {MAX_KEYWORDS} keywords\n"
-        f"- Each keyword must have at most {MAX_WORDS_PER_KEYWORD} words\n"
-        "- Use generic canonical forms (e.g., 'booked' -> 'booking system')\n"
-        "- Prefer noun phrases\n"
-        "- Ignore project names or irrelevant context\n"
-        "- Avoid redundancy\n"
-        "- Output ONLY a JSON array of strings\n\n"
         f"REQUIREMENT:\n{text}"
     )
 
