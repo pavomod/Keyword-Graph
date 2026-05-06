@@ -5,7 +5,7 @@ A comprehensive pipeline for analyzing software requirements through keyword ext
 ## Pipeline Overview
 
 ```
-Phase 1: Keyword Extraction from Requirements (KeyBERT)
+Phase 1: Keyword Extraction from Requirements (KeyBERT or Gemini)
    ↓
 Phase 2: Semantic Graph Construction (NetworkX)
    ↓
@@ -18,7 +18,8 @@ Phase 4: LLM-based Inconsistency Detection (Gemini 2.5 Pro)
 
 ### Phase 1: Keyword Extraction
 - Extracts important keywords and keyphrases from requirements
-- Uses **KeyBERT** with BAAI/bge-m3 model
+- Uses **KeyBERT** with BAAI/bge-m3 model or **Gemini 2.5 Flash-Lite**
+- Gemini mode sends the requirement text directly without the KeyBERT-style cleanup step
 - Produces: `results/extraction.json`
 
 ### Phase 2: Semantic Graph Construction
@@ -80,6 +81,14 @@ python -m src.run_pipeline.py
 ```bash
 python -m src.run_pipeline.py --with-phase4
 ```
+
+### Using Gemini in Phase 1
+
+```bash
+python -m src.run_pipeline --keyword-extractor gemini
+```
+
+You can configure the Gemini model for Phase 1 in `config/run_pipeline.json` with `phase1_gemini_model`, which defaults to `gemini-2.5-flash-lite`.
 
 ### Phase 4 Only
 

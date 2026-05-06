@@ -11,6 +11,14 @@ except Exception:
     extract_keywords_keybert = None  # type: ignore
     _KEYBERT_AVAILABLE = False
 
+try:
+    from src.phase1.gemini.extractor import extract_keywords_gemini
+
+    _GEMINI_AVAILABLE = True
+except Exception:
+    extract_keywords_gemini = None  # type: ignore
+    _GEMINI_AVAILABLE = False
+
 # Maximum keywords: must stay aligned with prepare_data.MAX_KEYWORDS and the prompt rule.
 MAX_KEYWORDS = 6
 
@@ -78,15 +86,39 @@ _STOPWORDS = {
 def predict_keywords(
     inputs: list[str],
     keybert_kwargs: dict | None = None,
+    gemini_kwargs: dict | None = None,
+    backend: str = "keybert",
 ) -> tuple[list[str], dict[str, float | int]]:
-    """Extract keywords using KeyBERT. Falls back to a heuristic extractor on failure."""
+    """Extract keywords using the selected backend and fall back to a heuristic extractor on failure."""
     predictions: list[str] = []
     model_generated_count = 0
     fallback_generated_count = 0
 
     keybert_kwargs = keybert_kwargs or {}
+    gemini_kwargs = gemini_kwargs or {}
+    backend_name = str(backend).strip().lower()
 
-    if _KEYBERT_AVAILABLE:
+    if backend_name == "gemini":
+        if _GEMINI_AVAILABLE:
+            for prompt in inputs:
+                try:
+                    kws = extract_keywords_gemini(prompt, **gemini_kwargs)
+                    if kws:
+                        joined = ", ".join(kws[:MAX_KEYWORDS])
+                        normalized = normalize_keyword_text(joined)
+                        predictions.append(normalized)
+                        model_generated_count += 1
+                        continue
+                except Exception:
+                    pass
+
+                predictions.append(_fallback_keywords_from_prompt(prompt, max_keywords=MAX_KEYWORDS))
+                fallback_generated_count += 1
+        else:
+            for prompt in inputs:
+                predictions.append(_fallback_keywords_from_prompt(prompt, max_keywords=MAX_KEYWORDS))
+                fallback_generated_count += 1
+    elif _KEYBERT_AVAILABLE:
         for prompt in inputs:
             try:
                 kws = extract_keywords_keybert(prompt, **keybert_kwargs)
@@ -125,6 +157,7 @@ def predict_keywords(
         "from_keybert": model_generated_count,
         "from_fallback": fallback_generated_count,
         "fallback_ratio": fallback_ratio,
+        "backend": backend_name,
     }
 
     return predictions, diagnostics

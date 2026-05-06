@@ -46,7 +46,8 @@ from src.phase4.llm.analyzer import run_analysis as run_llm_analysis
 DEFAULT_PIPELINE_CONFIG = {
     "graph_out": "results/keyword_graph.gexf",
     "extraction_out": "results/extraction.json",
-    # KeyBERT defaults
+    # Phase 1 defaults
+    "keyword_extractor": "keybert",
     "keybert_model": "BAAI/bge-m3",
     "keybert_top_n": 6,
     "keybert_keyphrase_ngram_range": [1, 2],
@@ -54,6 +55,11 @@ DEFAULT_PIPELINE_CONFIG = {
     "keybert_threshold": 0.5,
     "keybert_use_mmr": True,
     "keybert_diversity": 0.7,
+    "phase1_gemini_model": "gemini-2.5-flash-lite",
+    "phase1_gemini_temperature": 0.0,
+    "phase1_gemini_top_p": 0.95,
+    "phase1_gemini_max_tokens": 256,
+    "phase1_gemini_system_prompt": "src/phase1/gemini/prompt/system_prompt.txt",
     "semantic_threshold": 0.4,
     "semantic_model": "all-MiniLM-L6-v2",
     "enable_node_reduction": True,
@@ -128,6 +134,13 @@ def main() -> None:
     )
     parser.add_argument("--input-csv", type=str, default=None, help="Path to input CSV")
     parser.add_argument("--csv-sep", type=str, default=None, help="CSV separator (default: ',')")
+    parser.add_argument(
+        "--keyword-extractor",
+        type=str,
+        choices=("keybert", "gemini"),
+        default=None,
+        help="Phase 1 backend used to extract keywords",
+    )
     parser.add_argument(
         "--graph-out",
         type=str,
@@ -239,6 +252,7 @@ def main() -> None:
     csv_sep = _resolve_setting(args.csv_sep, config_values, "csv_sep")
     graph_out = _resolve_setting(args.graph_out, config_values, "graph_out")
     extraction_out = _resolve_setting(None, config_values, "extraction_out")
+    keyword_extractor = _resolve_setting(args.keyword_extractor, config_values, "keyword_extractor")
     semantic_threshold = float(
         _resolve_setting(args.semantic_threshold, config_values, "semantic_threshold")
     )
@@ -253,6 +267,15 @@ def main() -> None:
     keybert_threshold = _resolve_setting(None, config_values, "keybert_threshold")
     keybert_use_mmr = _resolve_setting(None, config_values, "keybert_use_mmr")
     keybert_diversity = _resolve_setting(None, config_values, "keybert_diversity")
+    phase1_gemini_model = _resolve_setting(None, config_values, "phase1_gemini_model")
+    phase1_gemini_temperature = float(
+        _resolve_setting(None, config_values, "phase1_gemini_temperature")
+    )
+    phase1_gemini_top_p = float(_resolve_setting(None, config_values, "phase1_gemini_top_p"))
+    phase1_gemini_max_tokens = int(_resolve_setting(None, config_values, "phase1_gemini_max_tokens"))
+    phase1_gemini_system_prompt = _resolve_setting(
+        None, config_values, "phase1_gemini_system_prompt"
+    )
     enable_node_reduction = bool(
         _resolve_setting(args.enable_node_reduction, config_values, "enable_node_reduction")
     )
@@ -426,7 +449,7 @@ def main() -> None:
         
         return
 
-    print("[1/3] Extracting keywords with KeyBERT...")
+    print(f"[1/3] Extracting keywords with {keyword_extractor.title()}...")
     inference_csv_path = _pick_input_csv(input_csv)
     raw_df = pd.read_csv(inference_csv_path, sep=csv_sep)
     inference_df = prepare_inference_dataframe(raw_df)
@@ -442,10 +465,19 @@ def main() -> None:
         "diversity": float(keybert_diversity) if keybert_diversity is not None else None,
         "model_name": keybert_model,
     }
+    gemini_kwargs = {
+        "model_name": phase1_gemini_model,
+        "temperature": phase1_gemini_temperature,
+        "top_p": phase1_gemini_top_p,
+        "max_output_tokens": phase1_gemini_max_tokens,
+        "system_prompt_path": phase1_gemini_system_prompt,
+    }
 
     predictions, _ = predict_keywords(
         inputs=model_inputs,
         keybert_kwargs=keybert_kwargs,
+        gemini_kwargs=gemini_kwargs,
+        backend=keyword_extractor,
     )
     print(f"Keywords extracted for {len(predictions)} requirements.")
 
