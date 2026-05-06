@@ -147,7 +147,7 @@ def predict_keywords(
     print(
         "[diagnostic] keyword_inference "
         f"total={total_predictions} | "
-        f"from_keybert={model_generated_count} | "
+        f"from_model={model_generated_count} | "
         f"from_fallback={fallback_generated_count} | "
         f"fallback_ratio={fallback_ratio:.2f}%"
     )

@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import time
 from pathlib import Path
 import os
 import logging as _py_logging
@@ -63,8 +64,8 @@ DEFAULT_PIPELINE_CONFIG = {
     "semantic_threshold": 0.4,
     "semantic_model": "all-MiniLM-L6-v2",
     "enable_node_reduction": True,
-    "node_reduction_degree_threshold_low": 2,
-    "node_reduction_degree_threshold_high": 5,
+    "node_reduction_max_degree_ratio": 0.15,
+    "node_reduction_min_hub_degree": 5,
     "enable_clustering": True,
     "cluster_k": None,
     "cluster_k_min": 2,
@@ -121,6 +122,8 @@ def _resolve_setting(cli_value, config: dict, key: str):
 
 
 def main() -> None:
+    start_time = time.time()
+    
     parser = argparse.ArgumentParser(
         description=(
             "Keyword extraction pipeline using KeyBERT and semantic graph generation."
@@ -170,8 +173,8 @@ def main() -> None:
         dest="enable_node_reduction",
         action="store_false",
     )
-    parser.add_argument("--node-reduction-degree-threshold-low", type=int, default=None)
-    parser.add_argument("--node-reduction-degree-threshold-high", type=int, default=None)
+    parser.add_argument("--node-reduction-max-degree-ratio", type=float, default=None)
+    parser.add_argument("--node-reduction-min-hub-degree", type=int, default=None)
     cluster_group = parser.add_mutually_exclusive_group()
     cluster_group.add_argument(
         "--enable-clustering",
@@ -279,18 +282,18 @@ def main() -> None:
     enable_node_reduction = bool(
         _resolve_setting(args.enable_node_reduction, config_values, "enable_node_reduction")
     )
-    node_reduction_degree_threshold_low = int(
+    node_reduction_max_degree_ratio = float(
         _resolve_setting(
-            args.node_reduction_degree_threshold_low,
+            args.node_reduction_max_degree_ratio,
             config_values,
-            "node_reduction_degree_threshold_low",
+            "node_reduction_max_degree_ratio",
         )
     )
-    node_reduction_degree_threshold_high = int(
+    node_reduction_min_hub_degree = int(
         _resolve_setting(
-            args.node_reduction_degree_threshold_high,
+            args.node_reduction_min_hub_degree,
             config_values,
-            "node_reduction_degree_threshold_high",
+            "node_reduction_min_hub_degree",
         )
     )
     enable_clustering = bool(
@@ -449,8 +452,12 @@ def main() -> None:
         
         return
 
-    print(f"[1/3] Extracting keywords with {keyword_extractor.title()}...")
+    print("\n" + "=" * 60)
+    print("▶ Phase 1: Keyword Extraction")
+    print("=" * 60)
+    print(f"[i] Model: {keyword_extractor.title()}")
     inference_csv_path = _pick_input_csv(input_csv)
+    print(f"[i] Target dataset: {inference_csv_path}")
     raw_df = pd.read_csv(inference_csv_path, sep=csv_sep)
     inference_df = prepare_inference_dataframe(raw_df)
     model_inputs = raw_df["feature"].fillna("").astype(str).tolist()
@@ -479,7 +486,7 @@ def main() -> None:
         gemini_kwargs=gemini_kwargs,
         backend=keyword_extractor,
     )
-    print(f"Keywords extracted for {len(predictions)} requirements.")
+    print(f"[✓] Keywords extracted for {len(predictions)} requirements.")
 
     predictions_by_source = {
         str(source_id): prediction
@@ -504,9 +511,11 @@ def main() -> None:
         json.dumps({"records": extraction_records}, indent=2, ensure_ascii=False),
         encoding="utf-8",
     )
-    print(f"Extraction saved in: {extraction_path}")
+    print(f"[✓] Extraction saved in: {extraction_path}")
 
-    print("[2/3] Building global semantic graph and exporting GEXF...")
+    print("\n" + "=" * 60)
+    print("▶ Phase 2: Semantic Graph Construction")
+    print("=" * 60)
     should_normalize = (keyword_extractor != "gemini")
     predicted_keyword_lists = [parse_keywords(prediction, normalize=should_normalize) for prediction in predictions]
     graph = build_semantic_similarity_graph(
@@ -515,7 +524,7 @@ def main() -> None:
         model_name=semantic_model,
     )
     print(
-        "[diagnostic] semantic graph before pruning | "
+        "[diagnostic] Graph before pruning: "
         f"nodes={graph.number_of_nodes()} | edges={graph.number_of_edges()} | "
         f"threshold={semantic_threshold}"
     )
@@ -527,31 +536,31 @@ def main() -> None:
 
     graph, removed_isolated = remove_isolated_nodes(graph)
     if removed_isolated:
-        print(f"Removed {removed_isolated} isolated nodes with zero relations")
+        print(f"[i] Removed {removed_isolated} isolated nodes with zero relations")
     if graph.number_of_nodes() == 0:
         print(
-            "[diagnostic] graph is empty after removing isolated nodes; "
-            "lower semantic_threshold or add co-occurrence edges to keep keywords connected"
+            "[!] Warning: Graph is empty after removing isolated nodes. "
+            "Lower the --semantic-threshold to keep keywords connected."
         )
 
     if enable_node_reduction:
-        print(
-            "[2/3] Reducing graph nodes "
-        )
+        print("[i] Performing node reduction...")
         initial_nodes = graph.number_of_nodes()
         graph = reduce_graph_nodes(
             graph=graph,
-            degree_threshold_low=node_reduction_degree_threshold_low,
-            degree_threshold_high=node_reduction_degree_threshold_high,
+            max_degree_ratio=node_reduction_max_degree_ratio,
+            min_hub_degree=node_reduction_min_hub_degree,
         )
         reduced_nodes = graph.number_of_nodes()
         print(
-            f"Node reduction completed: {initial_nodes} nodes -> {reduced_nodes} nodes "
+            f"[✓] Node reduction completed: {initial_nodes} -> {reduced_nodes} nodes "
             f"({initial_nodes - reduced_nodes} absorbed)"
         )
 
     if enable_clustering:
-        print("[3/3] Running clustering phase (Node2Vec -> K-Means -> UMAP)...")
+        print("\n" + "=" * 60)
+        print("▶ Phase 3: Clustering (Node2Vec -> K-Means -> UMAP)")
+        print("=" * 60)
         clustering_payload, graph = run_clustering_phase(
             graph=graph,
             output_json_path=cluster_report_out,
@@ -569,15 +578,15 @@ def main() -> None:
             isolated_nodes_removed=removed_isolated,
         )
         print(
-            "Clustering report saved in: "
-            f"{cluster_report_out} | selected_k={clustering_payload['clustering'].get('selected_k')}"
+            f"[✓] Clustering completed: assigned elements to {clustering_payload['clustering'].get('selected_k')} clusters."
         )
+        print(f"[✓] Clustering report saved in: {cluster_report_out}")
         elbow_plot_path = clustering_payload["clustering"].get("elbow_plot")
         if elbow_plot_path:
-            print(f"Clustering elbow plot saved in: {elbow_plot_path}")
+            print(f"[✓] Elbow plot saved in: {elbow_plot_path}")
 
         if enable_clustering_comparison:
-            print("[+] Running clustering comparison (keyword-graph vs direct embedding)...")
+            print("\n[i] Running clustering comparison (keyword-graph vs direct embedding)...")
             raw_requirement_data = raw_df.to_dict(orient="records")
             direct_requirement_texts = [
                 f"As a {str(row.get('role', 'user')).strip()}, "
@@ -600,7 +609,7 @@ def main() -> None:
                 direct_clustering_result=direct_clustering_result,
                 output_path=direct_clustering_report_out,
             )
-            print(f"Direct clustering report saved in: {direct_report_path}")
+            print(f"[✓] Direct clustering report saved in: {direct_report_path}")
 
             comparison_path = compare_clustering_approaches(
                 keyword_graph_clustering=clustering_payload,
@@ -608,20 +617,20 @@ def main() -> None:
                 requirement_ids=[str(source_id) for source_id in inference_df["source_id"].tolist()],
                 output_path=clustering_comparison_out,
             )
-            print(f"Clustering comparison report saved in: {comparison_path}")
+            print(f"[✓] Clustering comparison report saved in: {comparison_path}")
     else:
-        print("[3/3] Clustering phase skipped (--no-clustering).")
+        print("\n[!] Phase 3 skipped (--no-clustering).")
 
     graph = style_nodes_by_degree(graph)
     graph_path = save_graph_gexf(graph, graph_out)
     print(
-        f"Graph saved in: {graph_path} | nodes={graph.number_of_nodes()} | edges={graph.number_of_edges()}"
+        f"[✓] GEXF Graph saved in: {graph_path} (Nodes: {graph.number_of_nodes()}, Edges: {graph.number_of_edges()})"
     )
     
     # Phase 4 - LLM Analysis (optional)
     if args.run_phase4 or _resolve_setting(None, config_values, "enable_phase4_analysis"):
         print("\n" + "=" * 60)
-        print("[Phase 4] Running LLM-based analysis with Gemini 2.5 Pro...")
+        print("▶ Phase 4: LLM-based Analysis with Gemini")
         print("=" * 60)
         
         # Determine which clustering report to use
@@ -671,9 +680,23 @@ def main() -> None:
                 print("[Phase 4] Analysis completed successfully!")
                 print("=" * 60)
             except Exception as e:
-                print(f"[Phase 4] Error during analysis: {e}")
+                print(f"[!] Error during Phase 4 analysis: {e}")
                 raise
 
+    elapsed_time = time.time() - start_time
+    print("\n" + "=" * 60)
+    print(f"🏁 PIPELINE COMPLETED IN {elapsed_time:.2f}s")
+    print("=" * 60)
+    print(f" • Input          : {inference_csv_path}")
+    print(f" • Records        : {len(predictions)}")
+    print(f" • Keyword Engine : {keyword_extractor.title()}")
+    print(" • Phase 1 Output : " + str(extraction_out))
+    print(" • Phase 2 Output : " + str(graph_out))
+    if enable_clustering:
+        print(" • Phase 3 Output : " + str(cluster_report_out))
+    if args.run_phase4 or _resolve_setting(None, config_values, "enable_phase4_analysis"):
+        print(" • Phase 4 Output : " + str(phase4_output if not args.phase4_preview else phase4_preview_output))
+    print("=" * 60 + "\n")
 
 if __name__ == "__main__":
     main()

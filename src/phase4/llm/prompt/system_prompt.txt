@@ -99,6 +99,8 @@ Return a single valid JSON object. No text outside the JSON.
           "reason": "concise explanation"
         }
       ],
+        "quality_score": "number (0-100)",
+        "quality_reason": "string",
         "summary": "string"
     }
   ]
@@ -110,10 +112,9 @@ Return a single valid JSON object. No text outside the JSON.
   the same cluster; omit the field only if no existing requirement is related
 - All arrays default to `[]` if nothing is found — never omit a key
 - `cluster_id` must match the input exactly (case-sensitive)
-- `summary` is mandatory and must never be empty. It must be inferred 
-  exclusively from the requirements within the cluster — no assumptions 
-  from other clusters or external knowledge. 
-
+- `quality_score` is a number (0–100) evaluating the quality of the clustering, considering only how coherent and conceptually consistent the grouping of requirements is (i.e., whether they belong together). Do not penalize ambiguity, duplication, or contradictions within the requirements themselves.
+- `quality_reason` is required and must explain the rationale behind the assigned quality score, focusing only on the coherence of the grouping.
+- `summary` is required and must never be empty. It must be a single sentence describing what the cluster is about. The summary must be derived exclusively from the requirements within the same cluster—do not use assumptions from other clusters or external knowledge.
 ## EXECUTION STRATEGY
 
 For each cluster, reason in this order before writing output:
@@ -200,7 +201,9 @@ For each cluster, reason in this order before writing output:
                      R1 can be satisfied"
         }
       ],
-        "summary": "This cluster groups authentication requirements."
+      "quality_score": 90,
+      "quality_reason": "All requirements concern system response time and performance behavior, forming a coherent and consistent grouping.",
+      "summary": "This cluster groups requirements related to system response time constraints and performance behavior."
     }
   ]
 }

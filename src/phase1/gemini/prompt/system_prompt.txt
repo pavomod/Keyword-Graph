@@ -1,68 +1,44 @@
-You are an expert in requirements analysis, semantic keyword extraction, and concept clustering.
+You are an expert in requirements analysis and concept normalization.
 
-Your task is to extract concise, semantically stable keywords that capture the **core functional concept** of each requirement — so that requirements sharing the same concept receive the **same keyword**, enabling accurate clustering.
+Your task is to extract **canonical keywords** for a set of functional requirements, so that requirements expressing the same concept receive EXACTLY the same keyword. This output will be used for clustering.
 
-━━━ EXTRACTION RULES ━━━
+--- PRE-PROCESSING (perform internally) ---
+1. Read the entire list of requirements.
+2. Identify all unique functional concepts (e.g., "user registration", "data export", "access control", "notification delivery").
+3. For each concept, decide on ONE canonical keyword (noun phrase, max 3 words) that best captures its core meaning in the simplest, most generic form. Prefer terms that are reusable across many requirements.
+4. Map every requirement to one or more of these canonical concepts (up to 3 concepts per requirement). If a requirement contains multiple independent concepts, list them separated by " , " (space-comma-space); otherwise, only one keyword.
 
-1. Extract 1 to 3 keywords per requirement.
-2. Each keyword must be at most 3 words long.
-3. Keywords must be **nouns or noun phrases** — never verbs or verb phrases.
-   - ✗ "register user"     →  ✓ "user registration"
-   - ✗ "send notification" →  ✓ "notification system"
-   - ✗ "approve request"   →  ✓ "request approval"
-4. **Strip boilerplate**: ignore phrases like "The system must", "The app shall allow", "Users should be able to" — they carry no semantic value.
-5. **Normalize to canonical form**: always choose the most generic, stable version of a concept. Variations of the same concept must produce the **exact same keyword**.
-   - "email alert", "email confirmation", "email reminder" → "email notification"
-   - "account ban", "account suspension", "account lock" → "account status"
-   - "download report", "export data", "generate CSV" → "data export"
-6. **Prioritize specificity**: if a requirement contains both a general and a specific concept, prefer the specific one.
-   - "The system must send an invoice after payment" → "invoice generation" (not "payment")
-7. **Multi-concept requirements**: if a requirement covers multiple unrelated concepts, extract one keyword per concept (up to 3). Prioritize the most specific concepts.
-8. **Avoid redundancy**: keywords on the same line must not overlap in meaning.
-9. **Domain-agnostic normalization**: infer the domain from the requirements themselves, then apply consistent terminology throughout. Do not assume any specific domain upfront.
-10. **Cluster-friendliness**: prefer keywords that are **reusable across requirements**. A keyword that appears only once is less valuable than one that groups multiple requirements together.
+--- KEYWORD RULES (applied during mapping) ---
+- Use nouns or noun phrases only: "account balance", not "check balance".
+- Strip boilerplate: ignore "The system must", "Users should be able to", etc.
+- Canonicalise aggressively:
+    - "email alert", "email confirmation", "email reminder" → "email notification"
+    - "account ban", "account suspension" → "account status"
+    - "file download", "data export", "report generation" → "data export" *(if they refer to the same core action)*
+    - "item creation", "record addition" → "item creation"
+    - "schedule meeting", "appointment booking" → "meeting scheduling"
+- Prefer the most specific concept when multiple are present. Example: "The system must generate a PDF after transaction" → "document generation" (not "transaction").
+- Avoid numeric values, prepositions, or negative forms: "7 days" → "duration limit"; "no access" → "access restriction".
+- If a concept could be named in two ways, choose the one already used elsewhere in the list, ensuring consistency.
+- The keyword must be **complete** (no truncated words).
 
-━━━ CANONICAL NORMALIZATION STRATEGY ━━━
+--- OUTPUT FORMAT ---
+- One line per requirement, in the same order as the input.
+- Each line contains 1‑3 keywords separated by " , ".
+- No numbers, labels, explanations or blank lines.
+- Only the keywords.
 
-Since the domain is unknown in advance, apply this strategy:
-- On your first pass, identify the recurring concepts across ALL requirements.
-- Choose one canonical term per concept cluster and apply it consistently.
-- When in doubt between two equally valid terms, choose the simpler, more generic one.
+--- GENERIC EXAMPLES ---
+Input: "The system must send a confirmation email after a new account is created."
+Output: email notification , user registration
 
-━━━ OUTPUT FORMAT ━━━
+Input: "Administrators must be able to permanently remove any content flagged as inappropriate."
+Output: content moderation
 
-- One line per requirement, in input order.
-- Keywords on each line separated by " , " (space-comma-space).
-- No numbering, labels, explanations, preamble, or blank lines.
-- Output only the keywords — nothing else.
+Input: "The platform must automatically apply a fee to every completed transaction."
+Output: transaction fee
 
-━━━ EXAMPLES ━━━
+Input: "Users must be able to view their current account balance at any time."
+Output: account balance
 
-Input:
-"The system must send the user an email as soon as their account has been successfully created."
-Output:
-email notification , user registration
-
-Input:
-"Administrators must be able to permanently remove any content flagged as inappropriate."
-Output:
-content moderation
-
-Input:
-"The platform must automatically apply a percentage fee to every completed transaction."
-Output:
-platform commission
-
-━━━ COUNTER-EXAMPLES (what NOT to do) ━━━
-
-Input: "Users must be able to see their current account balance."
-✗ Wrong:  view balance , check funds     ← verb phrase + redundancy
-✓ Correct: account balance
-
-Input: "The system must allow the creation of a new user profile."
-✗ Wrong:  profile creation , new user    ← redundant + non-canonical
-✓ Correct: user profile
-
-Input: "If the order has already been processed, no refund will be issued."
-✗ Wrong:  processed order , no refund   ← fragments, not concepts
-✓ Correct: refund policy
+Now process the requirements below:

@@ -265,7 +265,25 @@
                 summaryHtml = `
                     <div class="mt-4 mb-4 p-4 bg-indigo-500/10 border border-indigo-500/20 rounded-sm">
                         <h3 class="text-[10px] text-indigo-400 font-bold mono uppercase tracking-widest mb-2">Cluster Summary</h3>
-                        <p class="text-sm text-indigo-100/80 leading-relaxed">${escapeHtml(cluster.summary)}</p>
+                        <p class="text-sm text-indigo-100/80 leading-relaxed max-w-4xl">${escapeHtml(cluster.summary)}</p>
+                    </div>
+                `;
+            }
+
+            let qualityHtml = '';
+            if (cluster.quality_score !== undefined || cluster.quality_reason) {
+                const score = cluster.quality_score !== undefined ? cluster.quality_score : '?';
+                const scoreColor = cluster.quality_score >= 80 ? 'emerald' : (cluster.quality_score >= 50 ? 'yellow' : 'red');
+                qualityHtml = `
+                    <div class="mt-4 mb-6 p-4 bg-zinc-900 border border-zinc-800 flex items-start gap-4 rounded-sm">
+                        <div class="flex flex-col items-center justify-center shrink-0 w-16 h-16 bg-zinc-950 border border-zinc-800 rounded-full">
+                            <span class="text-xl font-bold mono text-${scoreColor}-500">${score}</span>
+                            <span class="text-[9px] mono text-zinc-500 uppercase">Score</span>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-[11px] text-zinc-400 font-bold mono uppercase tracking-widest mb-1.5">Quality Assessment</h3>
+                            <p class="text-sm text-zinc-300 leading-relaxed">${escapeHtml(cluster.quality_reason || 'No reasoning provided.')}</p>
+                        </div>
                     </div>
                 `;
             }
@@ -276,6 +294,7 @@
                     <h2 class="text-2xl font-bold mono">Cluster ${cluster.cluster_id}</h2>
                 </div>
                 <p class="text-xs text-zinc-500 mono mb-4">Analysis time: ${new Date().toLocaleString()}</p>
+                ${qualityHtml}
                 ${summaryHtml}
             `;
 

@@ -29,8 +29,6 @@
   "semantic_threshold": 0.7,
 
   "enable_node_reduction": false,
-  "node_reduction_degree_threshold_low": 2,
-  "node_reduction_degree_threshold_high": 5,
 
   "enable_clustering": true,
   "cluster_k": null,
@@ -41,7 +39,7 @@
   "cluster_node2vec_walk_length": 10,
   "cluster_node2vec_num_walks": 10,
   "cluster_node2vec_workers": 4,
-  "cluster_requirement_feature_weight": 0.85,
+  "cluster_requirement_feature_weight": 0.75,
   "cluster_requirement_svd_dim": 128,
 
   "enable_clustering_comparison": true,
@@ -54,5 +52,5 @@
   "phase4_gemini_model": "gemini-2.5-pro",
   "phase4_gemini_temperature": 0.2,
   "phase4_gemini_top_p": 0.9,
-  "phase4_gemini_max_tokens": 16000
+  "phase4_gemini_max_tokens": 50000
 }

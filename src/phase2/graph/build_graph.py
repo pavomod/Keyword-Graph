@@ -239,13 +239,9 @@ def attach_requirement_references(
 
 
 def remove_isolated_nodes(graph: nx.Graph) -> tuple[nx.Graph, int]:
-    isolated_nodes = [node for node in graph.nodes if graph.degree(node) == 0]
-    if not isolated_nodes:
-        return graph, 0
-
-    graph = graph.copy()
-    graph.remove_nodes_from(isolated_nodes)
-    return graph, len(isolated_nodes)
+    # We no longer remove isolated nodes. We return the original graph unmodified.
+    # The signature is kept for backward compatibility with src/run_pipeline.py.
+    return graph, 0
 
 
 def style_nodes_by_degree(graph: nx.Graph) -> nx.Graph:
@@ -289,98 +285,22 @@ def reduce_graph_nodes(
     graph: nx.Graph,
     max_degree_ratio: float = 0.15,
     min_hub_degree: int = 5,
-    degree_threshold_low: int | None = None,
-    degree_threshold_high: int | None = None,
 ) -> nx.Graph:
     """
     Reduce graph nodes by absorbing low-value nodes into hubs.
 
-    Two modes are supported for backward compatibility:
-    1) Legacy absolute-threshold mode (if `degree_threshold_low` and
-       `degree_threshold_high` are provided): a node is absorbed if its
-       degree <= `degree_threshold_low` and all its neighbours are hubs
-       (degree > `degree_threshold_high`). This preserves previous
-       behaviour used by older CLI flags.
-    2) Relative-degree mode (default): a node is absorbed when its
-       degree is small relative to a candidate hub (degree/hub_degree <=
-       `max_degree_ratio`) and the candidate hub meets `min_hub_degree`.
+    A node is absorbed when its degree is small relative to a candidate hub 
+    (degree/hub_degree <= `max_degree_ratio`) and the candidate hub meets `min_hub_degree`.
 
     Args:
         graph: NetworkX graph with node attributes 'requirement_ids'.
         max_degree_ratio: relative threshold for satellite-to-hub absorption.
         min_hub_degree: minimum absolute degree for a node to be considered a hub.
-        degree_threshold_low: (optional) legacy absolute low-degree threshold.
-        degree_threshold_high: (optional) legacy absolute hub-degree threshold.
 
     Returns:
         Modified graph with reduced nodes.
     """
     graph = graph.copy()
-
-    # If legacy absolute thresholds are provided, run the original algorithm
-    if degree_threshold_low is not None and degree_threshold_high is not None:
-        hub_nodes = {node for node in graph.nodes() if graph.degree(node) > degree_threshold_high}
-
-        if not hub_nodes:
-            return graph
-
-        nodes_to_remove = set()
-        node_absorption_map: dict[str, str] = {}
-
-        for node in list(graph.nodes()):
-            if node in hub_nodes or node in nodes_to_remove:
-                continue
-
-            degree = graph.degree(node)
-
-            # Isolated nodes are not reassigned
-            if degree == 0:
-                continue
-
-            if degree > degree_threshold_low:
-                continue
-
-            neighbors = list(graph.neighbors(node))
-            hub_neighbors = [n for n in neighbors if n in hub_nodes]
-
-            # Only absorb if ALL neighbors are hubs (no non-hub connections to lose).
-            if len(hub_neighbors) != len(neighbors):
-                continue
-
-            best_hub = max(
-                hub_neighbors,
-                key=lambda h: graph[node][h].get("weight", 0.0) if graph.has_edge(node, h) else 0.0,
-            )
-            node_absorption_map[node] = best_hub
-            nodes_to_remove.add(node)
-
-        # Merge requirement references from absorbed nodes into target hubs.
-        for absorbed_node, target_hub in node_absorption_map.items():
-            absorbed_reqs = {
-                r
-                for r in graph.nodes[absorbed_node].get("requirement_ids", "").split(",")
-                if r.strip()
-            }
-            current_reqs = {
-                r
-                for r in graph.nodes[target_hub].get("requirement_ids", "").split(",")
-                if r.strip()
-            }
-            merged_reqs = _sort_requirement_ids(current_reqs | absorbed_reqs)
-            graph.nodes[target_hub]["requirement_ids"] = ",".join(merged_reqs)
-            graph.nodes[target_hub]["requirement_count"] = len(merged_reqs)
-
-        graph.remove_nodes_from(nodes_to_remove)
-
-        # Recompute shared_requirement_count on remaining edges after merges.
-        for left, right in graph.edges():
-            left_ids = {r for r in graph.nodes[left].get("requirement_ids", "").split(",") if r.strip()}
-            right_ids = {r for r in graph.nodes[right].get("requirement_ids", "").split(",") if r.strip()}
-            shared_ids = _sort_requirement_ids(left_ids & right_ids)
-            graph.edges[left, right]["shared_requirement_ids"] = ",".join(shared_ids)
-            graph.edges[left, right]["shared_requirement_count"] = len(shared_ids)
-
-        return graph
 
     # Default: relative-degree absorption algorithm
     nodes_sorted = sorted(graph.nodes(), key=lambda n: graph.degree(n))
