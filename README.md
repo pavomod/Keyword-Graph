@@ -1,3 +1,9 @@
+# TODO
+- Aggiungi la label al cluster oltre il sumamry
+- Ridistributire i cluster con punteggio sotto una soglia negli altri cluster
+- conversione di un documento in requsiti
+- convertire ogni cluster in sequenza di task
+
 # Keyword-Graph: Requirement Analysis Pipeline
 
 A comprehensive pipeline for analyzing software requirements through keyword extraction, graph construction, clustering, and LLM-based inconsistency detection.
