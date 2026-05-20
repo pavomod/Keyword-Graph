@@ -1,0 +1,1987 @@
+{
+  "clustering": {
+    "enabled": true,
+    "mode": "direct_requirement_clustering",
+    "selected_k": 29,
+    "num_nodes": 157,
+    "embedding_dim": 1024,
+    "effective_feature_dim": 1024,
+    "inertia": 38.68863821057927,
+    "davies_bouldin": 2.0187732092561714,
+    "calinski_harabasz": 3.293357800312053,
+    "k_selection": {
+      "selected_k": 29,
+      "strategy": "auto-combined",
+      "candidates": [
+        {
+          "k": 3,
+          "inertia": 59.1710869482674,
+          "davies_bouldin": 3.3550820296198025,
+          "calinski_harabasz": 9.616297141205008
+        },
+        {
+          "k": 4,
+          "inertia": 56.717201883201,
+          "davies_bouldin": 2.9616821470042365,
+          "calinski_harabasz": 8.851331256165535
+        },
+        {
+          "k": 5,
+          "inertia": 54.358051708441025,
+          "davies_bouldin": 2.942636317124494,
+          "calinski_harabasz": 8.530546121818611
+        },
+        {
+          "k": 6,
+          "inertia": 53.43212094975887,
+          "davies_bouldin": 2.837432515635603,
+          "calinski_harabasz": 7.420361553089529
+        },
+        {
+          "k": 7,
+          "inertia": 52.344831995541824,
+          "davies_bouldin": 2.8235777885801787,
+          "calinski_harabasz": 6.789568577296735
+        },
+        {
+          "k": 8,
+          "inertia": 51.27070476712343,
+          "davies_bouldin": 2.73968836872895,
+          "calinski_harabasz": 6.347879981440963
+        },
+        {
+          "k": 9,
+          "inertia": 50.50964781693518,
+          "davies_bouldin": 2.8643210829795454,
+          "calinski_harabasz": 5.878996424426823
+        },
+        {
+          "k": 10,
+          "inertia": 49.748688806323614,
+          "davies_bouldin": 2.613236814739247,
+          "calinski_harabasz": 5.519694662509112
+        },
+        {
+          "k": 11,
+          "inertia": 48.62111498982568,
+          "davies_bouldin": 2.787496038918012,
+          "calinski_harabasz": 5.3869431627542
+        },
+        {
+          "k": 12,
+          "inertia": 48.88025597596608,
+          "davies_bouldin": 2.7955250709803443,
+          "calinski_harabasz": 4.768009394229364
+        },
+        {
+          "k": 13,
+          "inertia": 48.01107503431819,
+          "davies_bouldin": 2.8738278309208285,
+          "calinski_harabasz": 4.636357759037047
+        },
+        {
+          "k": 14,
+          "inertia": 47.402168830334915,
+          "davies_bouldin": 2.4413174783704443,
+          "calinski_harabasz": 4.445888947232421
+        },
+        {
+          "k": 15,
+          "inertia": 46.683312241272375,
+          "davies_bouldin": 2.5894730103485717,
+          "calinski_harabasz": 4.318767401817799
+        },
+        {
+          "k": 16,
+          "inertia": 46.058847477822255,
+          "davies_bouldin": 2.3367779109777405,
+          "calinski_harabasz": 4.184173590614982
+        },
+        {
+          "k": 17,
+          "inertia": 45.35165397193824,
+          "davies_bouldin": 2.429386707178479,
+          "calinski_harabasz": 4.0920204827952515
+        },
+        {
+          "k": 18,
+          "inertia": 45.068392147535384,
+          "davies_bouldin": 2.3110692926990106,
+          "calinski_harabasz": 3.899227598537381
+        },
+        {
+          "k": 19,
+          "inertia": 44.194824919608806,
+          "davies_bouldin": 2.376406885879854,
+          "calinski_harabasz": 3.8799194555994276
+        },
+        {
+          "k": 20,
+          "inertia": 43.598935737152864,
+          "davies_bouldin": 2.2611077738493486,
+          "calinski_harabasz": 3.7975013832408964
+        },
+        {
+          "k": 21,
+          "inertia": 43.041331798943624,
+          "davies_bouldin": 2.2868802647314532,
+          "calinski_harabasz": 3.7157837701716394
+        },
+        {
+          "k": 22,
+          "inertia": 42.35345752947603,
+          "davies_bouldin": 2.2350658236041907,
+          "calinski_harabasz": 3.674281703873679
+        },
+        {
+          "k": 23,
+          "inertia": 41.77508941629574,
+          "davies_bouldin": 2.264772687725185,
+          "calinski_harabasz": 3.6138143808471797
+        },
+        {
+          "k": 24,
+          "inertia": 41.17627062668395,
+          "davies_bouldin": 2.190001083959348,
+          "calinski_harabasz": 3.564886077280711
+        },
+        {
+          "k": 25,
+          "inertia": 40.770518905636635,
+          "davies_bouldin": 2.162905799414752,
+          "calinski_harabasz": 3.479142959964767
+        },
+        {
+          "k": 26,
+          "inertia": 39.819520154971954,
+          "davies_bouldin": 2.056384655142324,
+          "calinski_harabasz": 3.5189833411806952
+        },
+        {
+          "k": 27,
+          "inertia": 39.67182596322521,
+          "davies_bouldin": 2.067132084356768,
+          "calinski_harabasz": 3.3889238066927256
+        },
+        {
+          "k": 28,
+          "inertia": 39.30649499673282,
+          "davies_bouldin": 2.053892583730993,
+          "calinski_harabasz": 3.3128097888927814
+        },
+        {
+          "k": 29,
+          "inertia": 38.68863821057927,
+          "davies_bouldin": 2.0187732092561714,
+          "calinski_harabasz": 3.293357800312053
+        },
+        {
+          "k": 30,
+          "inertia": 38.451572222255976,
+          "davies_bouldin": 2.02764509921712,
+          "calinski_harabasz": 3.201402684768768
+        }
+      ]
+    },
+    "elbow_plot": null,
+    "requirement_features": {
+      "enabled": false,
+      "reason": "direct_requirement_clustering",
+      "num_requirements": 157,
+      "raw_dim": 1024,
+      "reduced_dim": 1024,
+      "weight": 0.0
+    }
+  },
+  "cluster_requirements_mapping": {
+    "14": [
+      "1",
+      "121",
+      "2",
+      "29",
+      "51",
+      "6"
+    ],
+    "12": [
+      "3",
+      "5",
+      "78"
+    ],
+    "26": [
+      "111",
+      "12",
+      "20",
+      "30",
+      "4"
+    ],
+    "15": [
+      "33",
+      "47",
+      "7"
+    ],
+    "17": [
+      "62",
+      "64",
+      "70",
+      "72",
+      "8"
+    ],
+    "8": [
+      "28",
+      "35",
+      "41",
+      "43",
+      "45",
+      "53",
+      "57",
+      "9"
+    ],
+    "3": [
+      "10",
+      "122",
+      "123",
+      "124",
+      "125",
+      "126",
+      "127",
+      "128",
+      "129",
+      "130",
+      "131",
+      "133",
+      "134",
+      "135",
+      "142",
+      "143",
+      "144",
+      "145",
+      "146",
+      "147",
+      "149",
+      "155",
+      "158",
+      "160"
+    ],
+    "1": [
+      "11",
+      "38",
+      "59"
+    ],
+    "7": [
+      "13",
+      "55",
+      "66"
+    ],
+    "13": [
+      "14",
+      "140",
+      "141",
+      "150",
+      "154",
+      "19"
+    ],
+    "2": [
+      "136",
+      "137",
+      "138",
+      "148",
+      "15",
+      "151"
+    ],
+    "18": [
+      "101",
+      "103",
+      "139",
+      "16"
+    ],
+    "9": [
+      "106",
+      "17",
+      "18",
+      "37",
+      "69"
+    ],
+    "21": [
+      "21",
+      "71"
+    ],
+    "11": [
+      "22",
+      "23",
+      "25",
+      "26",
+      "34"
+    ],
+    "20": [
+      "113",
+      "24",
+      "58",
+      "65"
+    ],
+    "10": [
+      "27",
+      "36",
+      "49"
+    ],
+    "24": [
+      "156",
+      "31",
+      "61"
+    ],
+    "16": [
+      "32",
+      "39",
+      "44",
+      "46",
+      "48",
+      "50",
+      "52",
+      "54",
+      "56",
+      "60"
+    ],
+    "28": [
+      "40",
+      "63"
+    ],
+    "4": [
+      "42",
+      "73",
+      "79",
+      "80",
+      "81",
+      "82",
+      "84",
+      "86",
+      "87",
+      "88"
+    ],
+    "22": [
+      "74",
+      "75",
+      "83",
+      "85"
+    ],
+    "19": [
+      "77",
+      "89",
+      "90"
+    ],
+    "27": [
+      "109",
+      "91",
+      "92",
+      "93"
+    ],
+    "6": [
+      "100",
+      "108",
+      "110",
+      "94",
+      "96",
+      "97",
+      "98",
+      "99"
+    ],
+    "23": [
+      "132",
+      "95"
+    ],
+    "5": [
+      "102",
+      "104",
+      "105",
+      "107",
+      "116",
+      "117",
+      "118",
+      "120"
+    ],
+    "25": [
+      "112",
+      "114",
+      "115",
+      "119"
+    ],
+    "0": [
+      "152",
+      "153",
+      "157",
+      "159"
+    ]
+  },
+  "requirement_to_cluster_mapping": {
+    "6": [
+      14
+    ],
+    "121": [
+      14
+    ],
+    "29": [
+      14
+    ],
+    "2": [
+      14
+    ],
+    "51": [
+      14
+    ],
+    "1": [
+      14
+    ],
+    "78": [
+      12
+    ],
+    "5": [
+      12
+    ],
+    "3": [
+      12
+    ],
+    "12": [
+      26
+    ],
+    "111": [
+      26
+    ],
+    "30": [
+      26
+    ],
+    "4": [
+      26
+    ],
+    "20": [
+      26
+    ],
+    "7": [
+      15
+    ],
+    "33": [
+      15
+    ],
+    "47": [
+      15
+    ],
+    "64": [
+      17
+    ],
+    "70": [
+      17
+    ],
+    "72": [
+      17
+    ],
+    "62": [
+      17
+    ],
+    "8": [
+      17
+    ],
+    "35": [
+      8
+    ],
+    "28": [
+      8
+    ],
+    "57": [
+      8
+    ],
+    "9": [
+      8
+    ],
+    "43": [
+      8
+    ],
+    "45": [
+      8
+    ],
+    "41": [
+      8
+    ],
+    "53": [
+      8
+    ],
+    "134": [
+      3
+    ],
+    "124": [
+      3
+    ],
+    "130": [
+      3
+    ],
+    "142": [
+      3
+    ],
+    "147": [
+      3
+    ],
+    "160": [
+      3
+    ],
+    "126": [
+      3
+    ],
+    "144": [
+      3
+    ],
+    "123": [
+      3
+    ],
+    "135": [
+      3
+    ],
+    "143": [
+      3
+    ],
+    "10": [
+      3
+    ],
+    "149": [
+      3
+    ],
+    "155": [
+      3
+    ],
+    "125": [
+      3
+    ],
+    "133": [
+      3
+    ],
+    "158": [
+      3
+    ],
+    "122": [
+      3
+    ],
+    "127": [
+      3
+    ],
+    "131": [
+      3
+    ],
+    "129": [
+      3
+    ],
+    "128": [
+      3
+    ],
+    "146": [
+      3
+    ],
+    "145": [
+      3
+    ],
+    "59": [
+      1
+    ],
+    "11": [
+      1
+    ],
+    "38": [
+      1
+    ],
+    "66": [
+      7
+    ],
+    "55": [
+      7
+    ],
+    "13": [
+      7
+    ],
+    "150": [
+      13
+    ],
+    "14": [
+      13
+    ],
+    "154": [
+      13
+    ],
+    "141": [
+      13
+    ],
+    "19": [
+      13
+    ],
+    "140": [
+      13
+    ],
+    "136": [
+      2
+    ],
+    "137": [
+      2
+    ],
+    "138": [
+      2
+    ],
+    "148": [
+      2
+    ],
+    "151": [
+      2
+    ],
+    "15": [
+      2
+    ],
+    "16": [
+      18
+    ],
+    "139": [
+      18
+    ],
+    "103": [
+      18
+    ],
+    "101": [
+      18
+    ],
+    "69": [
+      9
+    ],
+    "18": [
+      9
+    ],
+    "106": [
+      9
+    ],
+    "37": [
+      9
+    ],
+    "17": [
+      9
+    ],
+    "21": [
+      21
+    ],
+    "71": [
+      21
+    ],
+    "23": [
+      11
+    ],
+    "25": [
+      11
+    ],
+    "22": [
+      11
+    ],
+    "26": [
+      11
+    ],
+    "34": [
+      11
+    ],
+    "24": [
+      20
+    ],
+    "58": [
+      20
+    ],
+    "65": [
+      20
+    ],
+    "113": [
+      20
+    ],
+    "49": [
+      10
+    ],
+    "36": [
+      10
+    ],
+    "27": [
+      10
+    ],
+    "156": [
+      24
+    ],
+    "31": [
+      24
+    ],
+    "61": [
+      24
+    ],
+    "39": [
+      16
+    ],
+    "50": [
+      16
+    ],
+    "54": [
+      16
+    ],
+    "52": [
+      16
+    ],
+    "46": [
+      16
+    ],
+    "44": [
+      16
+    ],
+    "56": [
+      16
+    ],
+    "32": [
+      16
+    ],
+    "60": [
+      16
+    ],
+    "48": [
+      16
+    ],
+    "63": [
+      28
+    ],
+    "40": [
+      28
+    ],
+    "82": [
+      4
+    ],
+    "86": [
+      4
+    ],
+    "80": [
+      4
+    ],
+    "84": [
+      4
+    ],
+    "79": [
+      4
+    ],
+    "81": [
+      4
+    ],
+    "88": [
+      4
+    ],
+    "87": [
+      4
+    ],
+    "42": [
+      4
+    ],
+    "73": [
+      4
+    ],
+    "74": [
+      22
+    ],
+    "83": [
+      22
+    ],
+    "75": [
+      22
+    ],
+    "85": [
+      22
+    ],
+    "89": [
+      19
+    ],
+    "90": [
+      19
+    ],
+    "77": [
+      19
+    ],
+    "109": [
+      27
+    ],
+    "92": [
+      27
+    ],
+    "93": [
+      27
+    ],
+    "91": [
+      27
+    ],
+    "96": [
+      6
+    ],
+    "108": [
+      6
+    ],
+    "100": [
+      6
+    ],
+    "97": [
+      6
+    ],
+    "110": [
+      6
+    ],
+    "99": [
+      6
+    ],
+    "94": [
+      6
+    ],
+    "98": [
+      6
+    ],
+    "95": [
+      23
+    ],
+    "132": [
+      23
+    ],
+    "116": [
+      5
+    ],
+    "105": [
+      5
+    ],
+    "117": [
+      5
+    ],
+    "102": [
+      5
+    ],
+    "120": [
+      5
+    ],
+    "107": [
+      5
+    ],
+    "118": [
+      5
+    ],
+    "104": [
+      5
+    ],
+    "114": [
+      25
+    ],
+    "119": [
+      25
+    ],
+    "112": [
+      25
+    ],
+    "115": [
+      25
+    ],
+    "159": [
+      0
+    ],
+    "152": [
+      0
+    ],
+    "153": [
+      0
+    ],
+    "157": [
+      0
+    ]
+  },
+  "nodes": [
+    {
+      "requirement_id": "1",
+      "input": "As a Francesco, I want The system must regulate the duration of the green traffic light based on the vehicle flow detected by lane sensors in real time.",
+      "cluster_id": 14,
+      "umap_x": -1.23030424118042,
+      "umap_y": 8.399348258972168
+    },
+    {
+      "requirement_id": "2",
+      "input": "As a Francesco, I want The smart traffic light must activate the immediate green phase when an emergency vehicle (ambulance or fire truck) is within a 500-meter radius.",
+      "cluster_id": 14,
+      "umap_x": -1.3007396459579468,
+      "umap_y": 8.38731575012207
+    },
+    {
+      "requirement_id": "3",
+      "input": "As a Francesco, I want The system must transmit to approaching vehicles the remaining time (countdown) before the traffic light changes state.",
+      "cluster_id": 12,
+      "umap_x": -1.1127632856369019,
+      "umap_y": 7.751082420349121
+    },
+    {
+      "requirement_id": "4",
+      "input": "As a Francesco, I want The infrastructure must suggest to drivers a recommended speed (GLOSA - Green Light Optimal Speed Advisory) to meet the green wave.",
+      "cluster_id": 26,
+      "umap_x": -1.056759238243103,
+      "umap_y": 8.692343711853027
+    },
+    {
+      "requirement_id": "5",
+      "input": "As a Francesco, I want The system must detect and report to connected vehicles the presence of pedestrians or cyclists on crosswalks during nighttime hours.",
+      "cluster_id": 12,
+      "umap_x": -1.6718754768371582,
+      "umap_y": 8.084738731384277
+    },
+    {
+      "requirement_id": "6",
+      "input": "As a Francesco, I want In case of critical congestion the system must automatically reconfigure traffic light timings at nearby intersections to drain traffic.",
+      "cluster_id": 14,
+      "umap_x": -1.4321637153625488,
+      "umap_y": 8.355015754699707
+    },
+    {
+      "requirement_id": "7",
+      "input": "As a Francesco, I want The system must detect the presence of obstacles on the roadway (e.g. debris or lost loads) within 3 seconds of the camera signal.",
+      "cluster_id": 15,
+      "umap_x": -1.8867692947387695,
+      "umap_y": 9.57682991027832
+    },
+    {
+      "requirement_id": "8",
+      "input": "As a Francesco, I want The infrastructure must send a Wrong-Way Vehicle alert to all drivers within a 2-kilometer radius of the detection point.",
+      "cluster_id": 17,
+      "umap_x": -1.1510785818099976,
+      "umap_y": 9.397401809692383
+    },
+    {
+      "requirement_id": "9",
+      "input": "As a Francesco, I want Smart roads must monitor road surface conditions and report the presence of ice or standing water to passing vehicles.",
+      "cluster_id": 8,
+      "umap_x": -0.5779775977134705,
+      "umap_y": 9.208148002624512
+    },
+    {
+      "requirement_id": "10",
+      "input": "As a Francesco, I want The system must alert incoming vehicles if another vehicle has performed a sudden emergency braking beyond a blind curve.",
+      "cluster_id": 3,
+      "umap_x": -1.0174188613891602,
+      "umap_y": 7.646124362945557
+    },
+    {
+      "requirement_id": "11",
+      "input": "As a Francesco, I want The system must notify vehicles of the presence of mobile worksites or road workers via push notifications on the on-board display.",
+      "cluster_id": 1,
+      "umap_x": -0.7249022126197815,
+      "umap_y": 7.649795055389404
+    },
+    {
+      "requirement_id": "12",
+      "input": "As a Francesco, I want Cameras must automatically identify road accidents and send the exact GPS coordinates to emergency services within 5 seconds.",
+      "cluster_id": 26,
+      "umap_x": -1.8838542699813843,
+      "umap_y": 9.209979057312012
+    },
+    {
+      "requirement_id": "13",
+      "input": "As a Francesco, I want The parking system must update the number of available spaces every 10 seconds and transmit it to vehicle navigation systems.",
+      "cluster_id": 7,
+      "umap_x": -1.272537350654602,
+      "umap_y": 9.778243064880371
+    },
+    {
+      "requirement_id": "14",
+      "input": "As a Francesco, I want The infrastructure must allow the reservation of a parking space through direct communication between the vehicle and the parking sensor.",
+      "cluster_id": 13,
+      "umap_x": -0.18764628469944,
+      "umap_y": 8.341840744018555
+    },
+    {
+      "requirement_id": "15",
+      "input": "As a Francesco, I want The system must identify electric vehicles and guide them as a priority to spaces equipped with a free charging station.",
+      "cluster_id": 2,
+      "umap_x": -0.08957823365926743,
+      "umap_y": 8.152398109436035
+    },
+    {
+      "requirement_id": "16",
+      "input": "As a Francesco, I want Parking sensors must detect unauthorized occupation of disabled parking spaces and immediately notify the local police.",
+      "cluster_id": 18,
+      "umap_x": 0.06973592191934586,
+      "umap_y": 8.206146240234375
+    },
+    {
+      "requirement_id": "17",
+      "input": "As a Francesco, I want The toll system must identify the vehicle and process the charge without the vehicle needing to slow below 60 km/h.",
+      "cluster_id": 9,
+      "umap_x": 0.9624894261360168,
+      "umap_y": 7.775265693664551
+    },
+    {
+      "requirement_id": "18",
+      "input": "As a Francesco, I want The infrastructure must automatically calculate the access fee for restricted traffic zones (ZTL) based on the vehicle's environmental class.",
+      "cluster_id": 9,
+      "umap_x": -0.6865124702453613,
+      "umap_y": 8.497940063476562
+    },
+    {
+      "requirement_id": "19",
+      "input": "As a Francesco, I want The system must allow automatic payment for fuel refueling or electric charging via secure V2I authentication.",
+      "cluster_id": 13,
+      "umap_x": 0.08680061250925064,
+      "umap_y": 8.833473205566406
+    },
+    {
+      "requirement_id": "20",
+      "input": "As a Francesco, I want Communication between infrastructure and vehicle for critical safety messages must occur with a latency of less than 20 milliseconds.",
+      "cluster_id": 26,
+      "umap_x": -1.6270922422409058,
+      "umap_y": 9.347137451171875
+    },
+    {
+      "requirement_id": "21",
+      "input": "As a Francesco, I want The system must guarantee an operational availability of 99.99% on an annual basis for emergency management functions.",
+      "cluster_id": 21,
+      "umap_x": -2.1619322299957275,
+      "umap_y": 10.078936576843262
+    },
+    {
+      "requirement_id": "22",
+      "input": "As a Francesco, I want The system must prevent access and communication to any vehicle not equipped with a valid and up-to-date authentication certificate.",
+      "cluster_id": 11,
+      "umap_x": 0.08854362368583679,
+      "umap_y": 9.510984420776367
+    },
+    {
+      "requirement_id": "23",
+      "input": "As a Francesco, I want All data exchanged between vehicle and infrastructure must be end-to-end encrypted and anonymized before being stored for statistical analysis.",
+      "cluster_id": 11,
+      "umap_x": 0.4364292621612549,
+      "umap_y": 10.691048622131348
+    },
+    {
+      "requirement_id": "24",
+      "input": "As a Francesco, I want The software architecture must be capable of simultaneously managing connections from at least 10.000 vehicles per square kilometer.",
+      "cluster_id": 20,
+      "umap_x": -0.8448017835617065,
+      "umap_y": 9.528003692626953
+    },
+    {
+      "requirement_id": "25",
+      "input": "As a Francesco, I want The system must support both the European communication standard (ETSI ITS-G5) and the cellular network-based one (C-V2X).",
+      "cluster_id": 11,
+      "umap_x": 0.05776594579219818,
+      "umap_y": 9.155405044555664
+    },
+    {
+      "requirement_id": "26",
+      "input": "As a Francesco, I want The system must validate every message received from road sensors to prevent spoofing attacks (data falsification).",
+      "cluster_id": 11,
+      "umap_x": -0.036521341651678085,
+      "umap_y": 9.568178176879883
+    },
+    {
+      "requirement_id": "27",
+      "input": "As a Francesco, I want In case of global internet connectivity loss local infrastructure nodes (Edge) must continue to manage traffic in autonomous mode.",
+      "cluster_id": 10,
+      "umap_x": 0.18562661111354828,
+      "umap_y": 10.322122573852539
+    },
+    {
+      "requirement_id": "28",
+      "input": "As a Francesco, I want The software of roadside units (RSU - Road Side Units) must be updatable remotely via secure Over-The-Air (OTA) protocols.",
+      "cluster_id": 8,
+      "umap_x": -0.21369275450706482,
+      "umap_y": 9.489818572998047
+    },
+    {
+      "requirement_id": "29",
+      "input": "As a Francesco, I want The system must maintain an immutable log of all decisions made by smart traffic lights for post-incident audit purposes.",
+      "cluster_id": 14,
+      "umap_x": -1.244323968887329,
+      "umap_y": 7.874515056610107
+    },
+    {
+      "requirement_id": "30",
+      "input": "As a Francesco, I want Road sensors powered by battery or solar panels must operate in low-power mode when no traffic is detected for more than 5 minutes.",
+      "cluster_id": 26,
+      "umap_x": -1.6726629734039307,
+      "umap_y": 9.351266860961914
+    },
+    {
+      "requirement_id": "31",
+      "input": "As a Aldo, I want The V2I system must update the status of smart traffic lights in real time every 500 milliseconds.",
+      "cluster_id": 24,
+      "umap_x": -0.7366129159927368,
+      "umap_y": 10.498252868652344
+    },
+    {
+      "requirement_id": "32",
+      "input": "As a Aldo, I want The system must automatically give priority to emergency vehicles at controlled intersections.",
+      "cluster_id": 16,
+      "umap_x": -0.9103599786758423,
+      "umap_y": 11.485047340393066
+    },
+    {
+      "requirement_id": "33",
+      "input": "As a Aldo, I want I sensori stradali devono rilevare incidenti o ostacoli entro 3 secondi dal verificarsi dell\u2019evento.",
+      "cluster_id": 15,
+      "umap_x": -1.6222840547561646,
+      "umap_y": 10.157690048217773
+    },
+    {
+      "requirement_id": "34",
+      "input": "As a Aldo, I want Il sistema deve impedire l\u2019accesso ai dati di traffico ai veicoli non autenticati.",
+      "cluster_id": 11,
+      "umap_x": -0.37785574793815613,
+      "umap_y": 11.715941429138184
+    },
+    {
+      "requirement_id": "35",
+      "input": "As a Aldo, I want Smart parking lots must communicate available spaces in real time to nearby vehicles.",
+      "cluster_id": 8,
+      "umap_x": -0.7871553301811218,
+      "umap_y": 10.026403427124023
+    },
+    {
+      "requirement_id": "36",
+      "input": "As a Aldo, I want The system must maintain V2I communication active even under heavy traffic conditions.",
+      "cluster_id": 10,
+      "umap_x": -0.02911214530467987,
+      "umap_y": 10.81135368347168
+    },
+    {
+      "requirement_id": "37",
+      "input": "As a Aldo, I want Automatic toll booths must complete payment without stopping the vehicle.",
+      "cluster_id": 9,
+      "umap_x": 1.4091471433639526,
+      "umap_y": 7.641482830047607
+    },
+    {
+      "requirement_id": "38",
+      "input": "As a Aldo, I want The system must immediately notify drivers in case of roadworks or diversions.",
+      "cluster_id": 1,
+      "umap_x": -0.7492888569831848,
+      "umap_y": 11.026269912719727
+    },
+    {
+      "requirement_id": "39",
+      "input": "As a Aldo, I want The system must send an alert to drivers when an accident is detected nearby.",
+      "cluster_id": 16,
+      "umap_x": -0.47273018956184387,
+      "umap_y": 11.365143775939941
+    },
+    {
+      "requirement_id": "40",
+      "input": "As a Aldo, I want The system must save traffic data for at least 30 days for analysis purposes.",
+      "cluster_id": 28,
+      "umap_x": -0.2588021159172058,
+      "umap_y": 11.535698890686035
+    },
+    {
+      "requirement_id": "41",
+      "input": "As a Aldo, I want Smart roads must send real-time speed limit updates to connected vehicles.",
+      "cluster_id": 8,
+      "umap_x": -0.47870174050331116,
+      "umap_y": 10.261331558227539
+    },
+    {
+      "requirement_id": "42",
+      "input": "As a Aldo, I want The system must automatically reduce waiting times at traffic lights during peak hours.",
+      "cluster_id": 4,
+      "umap_x": -1.3196005821228027,
+      "umap_y": 11.530108451843262
+    },
+    {
+      "requirement_id": "43",
+      "input": "As a Aldo, I want Road sensors must operate correctly even in adverse weather conditions.",
+      "cluster_id": 8,
+      "umap_x": -0.5119270086288452,
+      "umap_y": 10.67963981628418
+    },
+    {
+      "requirement_id": "44",
+      "input": "As a Aldo, I want The system must encrypt all communications between infrastructure and vehicles.",
+      "cluster_id": 16,
+      "umap_x": 0.1585598737001419,
+      "umap_y": 11.078328132629395
+    },
+    {
+      "requirement_id": "45",
+      "input": "As a Aldo, I want Smart parking lots must allow space reservation via a mobile application.",
+      "cluster_id": 8,
+      "umap_x": -0.5873926281929016,
+      "umap_y": 9.943869590759277
+    },
+    {
+      "requirement_id": "46",
+      "input": "As a Aldo, I want The system must alert drivers when a vehicle is traveling the wrong way.",
+      "cluster_id": 16,
+      "umap_x": -0.4972790777683258,
+      "umap_y": 11.146761894226074
+    },
+    {
+      "requirement_id": "47",
+      "input": "As a Aldo, I want I caselli automatici devono riconoscere il veicolo entro 1 secondo dall\u2019ingresso nella corsia di pagamento.",
+      "cluster_id": 15,
+      "umap_x": 1.0789916515350342,
+      "umap_y": 8.127583503723145
+    },
+    {
+      "requirement_id": "48",
+      "input": "As a Aldo, I want The system must send notifications to vehicles in case of dangerous weather conditions on the road.",
+      "cluster_id": 16,
+      "umap_x": -0.6481872797012329,
+      "umap_y": 11.208722114562988
+    },
+    {
+      "requirement_id": "49",
+      "input": "As a Aldo, I want V2I infrastructures must continue to operate even in case of temporary loss of internet connection.",
+      "cluster_id": 10,
+      "umap_x": -0.03107517398893833,
+      "umap_y": 10.571556091308594
+    },
+    {
+      "requirement_id": "50",
+      "input": "As a Aldo, I want The system must automatically identify areas with congested traffic.",
+      "cluster_id": 16,
+      "umap_x": -1.0558292865753174,
+      "umap_y": 11.37668514251709
+    },
+    {
+      "requirement_id": "51",
+      "input": "As a Aldo, I want Smart traffic lights must adapt waiting times based on the number of vehicles present.",
+      "cluster_id": 14,
+      "umap_x": -0.9579941034317017,
+      "umap_y": 10.514451026916504
+    },
+    {
+      "requirement_id": "52",
+      "input": "As a Aldo, I want The system must allow municipal operators to monitor traffic via a centralized dashboard.",
+      "cluster_id": 16,
+      "umap_x": -0.8237271308898926,
+      "umap_y": 11.903200149536133
+    },
+    {
+      "requirement_id": "53",
+      "input": "As a Aldo, I want Data collected by sensors must be synchronized with the central server every minute.",
+      "cluster_id": 8,
+      "umap_x": -0.36120548844337463,
+      "umap_y": 10.557904243469238
+    },
+    {
+      "requirement_id": "54",
+      "input": "As a Aldo, I want The system must reduce the risk of collisions at intersections through preventive alerts to drivers.",
+      "cluster_id": 16,
+      "umap_x": -0.672876238822937,
+      "umap_y": 11.512443542480469
+    },
+    {
+      "requirement_id": "55",
+      "input": "As a Aldo, I want Connected vehicles must receive updates on parking availability within 5 seconds of the request.",
+      "cluster_id": 7,
+      "umap_x": -1.0112740993499756,
+      "umap_y": 10.144927978515625
+    },
+    {
+      "requirement_id": "56",
+      "input": "As a Aldo, I want The system must log all administrative accesses for security and traceability reasons.",
+      "cluster_id": 16,
+      "umap_x": -0.1413116604089737,
+      "umap_y": 11.709488868713379
+    },
+    {
+      "requirement_id": "57",
+      "input": "As a Aldo, I want Smart roads must automatically detect vehicles stopped in the emergency lane.",
+      "cluster_id": 8,
+      "umap_x": -0.6707196831703186,
+      "umap_y": 10.336941719055176
+    },
+    {
+      "requirement_id": "58",
+      "input": "As a Aldo, I want The system must support at least 10.000 simultaneous communications between vehicles and infrastructure.",
+      "cluster_id": 20,
+      "umap_x": -0.06337077170610428,
+      "umap_y": 10.091619491577148
+    },
+    {
+      "requirement_id": "59",
+      "input": "As a Aldo, I want Automatic toll booths must immediately report any payment errors to users.",
+      "cluster_id": 1,
+      "umap_x": 1.6018544435501099,
+      "umap_y": 8.01739501953125
+    },
+    {
+      "requirement_id": "60",
+      "input": "As a Aldo, I want The system must ensure the protection of drivers' personal data in accordance with privacy regulations.",
+      "cluster_id": 16,
+      "umap_x": -0.14649993181228638,
+      "umap_y": 11.59235668182373
+    },
+    {
+      "requirement_id": "61",
+      "input": "As a Daniel, I want Il sistema deve aggiornare lo stato dei semafori intelligenti ogni 500 ms sulla base dei dati ricevuti dai sensori di traffico presenti nell\u2019incrocio.",
+      "cluster_id": 24,
+      "umap_x": -1.460985541343689,
+      "umap_y": 9.941633224487305
+    },
+    {
+      "requirement_id": "62",
+      "input": "As a Daniel, I want The system must send emergency vehicles a priority route within 2 seconds of receiving the priority request.",
+      "cluster_id": 17,
+      "umap_x": -2.018181562423706,
+      "umap_y": 10.92674446105957
+    },
+    {
+      "requirement_id": "63",
+      "input": "As a Daniel, I want The system must log all critical traffic events in a centralized database maintaining logs for at least 365 days.",
+      "cluster_id": 28,
+      "umap_x": -1.5194299221038818,
+      "umap_y": 12.023104667663574
+    },
+    {
+      "requirement_id": "64",
+      "input": "As a Daniel, I want The system must notify vehicles of accidents within a 2 km radius within 3 seconds of detection.",
+      "cluster_id": 17,
+      "umap_x": -1.9007424116134644,
+      "umap_y": 10.620965003967285
+    },
+    {
+      "requirement_id": "65",
+      "input": "As a Daniel, I want The system must support at least 50.000 simultaneously connected vehicles without degrading the average response time beyond 2 seconds.",
+      "cluster_id": 20,
+      "umap_x": -1.9081635475158691,
+      "umap_y": 10.969983100891113
+    },
+    {
+      "requirement_id": "66",
+      "input": "As a Daniel, I want The system must allow smart parking lots to update parking space availability every 10 seconds.",
+      "cluster_id": 7,
+      "umap_x": -1.2808862924575806,
+      "umap_y": 10.054823875427246
+    },
+    {
+      "requirement_id": "69",
+      "input": "As a Daniel, I want The system must allow automatic toll booths to process a toll payment in less than 1 second.",
+      "cluster_id": 9,
+      "umap_x": 1.4040971994400024,
+      "umap_y": 7.926580905914307
+    },
+    {
+      "requirement_id": "70",
+      "input": "As a Daniel, I want The system must send an immediate report to the control center when a camera detects a vehicle stopped on the roadway for more than 30 seconds.",
+      "cluster_id": 17,
+      "umap_x": -1.8744927644729614,
+      "umap_y": 10.638903617858887
+    },
+    {
+      "requirement_id": "71",
+      "input": "As a Daniel, I want The system must guarantee a service availability of at least 99.95% on a monthly basis.",
+      "cluster_id": 21,
+      "umap_x": -2.4593629837036133,
+      "umap_y": 11.096884727478027
+    },
+    {
+      "requirement_id": "72",
+      "input": "As a Daniel, I want The system must save vehicle GPS positions with a maximum accuracy of \u00b15 meters.",
+      "cluster_id": 17,
+      "umap_x": -2.099755048751831,
+      "umap_y": 10.710750579833984
+    },
+    {
+      "requirement_id": "73",
+      "input": "As a Daniel, I want The system must allow traffic operators to view in real time the status of all traffic lights in the city via a web dashboard.",
+      "cluster_id": 4,
+      "umap_x": -1.7797770500183105,
+      "umap_y": 12.158817291259766
+    },
+    {
+      "requirement_id": "74",
+      "input": "As a Daniel, I want Il sistema deve generare automaticamente una deviazione del traffico quando il livello di congestione supera l\u201985% della capacit\u00e0 stradale.",
+      "cluster_id": 22,
+      "umap_x": -1.7504534721374512,
+      "umap_y": 11.459602355957031
+    },
+    {
+      "requirement_id": "75",
+      "input": "As a Daniel, I want The system must send notifications to drivers when the estimated travel time increases by at least 20% compared to the expected average.",
+      "cluster_id": 22,
+      "umap_x": -1.4038130044937134,
+      "umap_y": 11.072220802307129
+    },
+    {
+      "requirement_id": "77",
+      "input": "As a Daniel, I want The system must allow full service recovery within 15 minutes in case of central node failure.",
+      "cluster_id": 19,
+      "umap_x": -2.3202550411224365,
+      "umap_y": 11.236915588378906
+    },
+    {
+      "requirement_id": "78",
+      "input": "As a Daniel, I want The system must automatically detect the presence of pedestrians on crosswalks using cameras with a minimum accuracy of 95%.",
+      "cluster_id": 12,
+      "umap_x": -2.0742483139038086,
+      "umap_y": 8.77098274230957
+    },
+    {
+      "requirement_id": "79",
+      "input": "As a Daniel, I want The system should manage traffic quickly during peak hours.",
+      "cluster_id": 4,
+      "umap_x": -2.236755609512329,
+      "umap_y": 11.589841842651367
+    },
+    {
+      "requirement_id": "80",
+      "input": "As a Daniel, I want The system must ensure that all traffic lights remain green for as long as possible to improve vehicle flow.",
+      "cluster_id": 4,
+      "umap_x": -2.2049427032470703,
+      "umap_y": 11.8716459274292
+    },
+    {
+      "requirement_id": "81",
+      "input": "As a Daniel, I want The system must always give absolute priority to public transport at all urban intersections.",
+      "cluster_id": 4,
+      "umap_x": -2.121570110321045,
+      "umap_y": 11.950153350830078
+    },
+    {
+      "requirement_id": "82",
+      "input": "As a Daniel, I want The system must drastically reduce traffic in urban areas.",
+      "cluster_id": 4,
+      "umap_x": -1.9667047262191772,
+      "umap_y": 11.823286056518555
+    },
+    {
+      "requirement_id": "83",
+      "input": "As a Daniel, I want The system must send notifications to drivers only when necessary.",
+      "cluster_id": 22,
+      "umap_x": -1.21052086353302,
+      "umap_y": 11.362540245056152
+    },
+    {
+      "requirement_id": "84",
+      "input": "As a Daniel, I want The system must record all vehicle movements without time limits.",
+      "cluster_id": 4,
+      "umap_x": -1.8798695802688599,
+      "umap_y": 11.7618408203125
+    },
+    {
+      "requirement_id": "85",
+      "input": "As a Daniel, I want The system must not store sensitive data related to vehicles or drivers.",
+      "cluster_id": 22,
+      "umap_x": -1.363465666770935,
+      "umap_y": 11.811575889587402
+    },
+    {
+      "requirement_id": "86",
+      "input": "As a Daniel, I want Il sistema deve consentire l\u2019accesso immediato a tutti i dati di traffico a qualsiasi ente autorizzato.",
+      "cluster_id": 4,
+      "umap_x": -1.5731737613677979,
+      "umap_y": 12.034701347351074
+    },
+    {
+      "requirement_id": "87",
+      "input": "As a Daniel, I want The system must automatically block all roads considered congested.",
+      "cluster_id": 4,
+      "umap_x": -1.9857935905456543,
+      "umap_y": 11.669723510742188
+    },
+    {
+      "requirement_id": "88",
+      "input": "As a Daniel, I want The system should minimize waiting times at traffic lights for all vehicles simultaneously.",
+      "cluster_id": 4,
+      "umap_x": -2.1635966300964355,
+      "umap_y": 12.0007963180542
+    },
+    {
+      "requirement_id": "89",
+      "input": "As a Daniel, I want The system must be easy to use for any user.",
+      "cluster_id": 19,
+      "umap_x": -2.4287219047546387,
+      "umap_y": 11.676403045654297
+    },
+    {
+      "requirement_id": "90",
+      "input": "As a Daniel, I want The system must operate correctly even in case of network problems or infrastructure failures without any interruption.",
+      "cluster_id": 19,
+      "umap_x": -2.452470302581787,
+      "umap_y": 11.53908920288086
+    },
+    {
+      "requirement_id": "91",
+      "input": "As a Matilde, I want The traffic light must turn green for ambulances.",
+      "cluster_id": 27,
+      "umap_x": 1.2703121900558472,
+      "umap_y": 9.370797157287598
+    },
+    {
+      "requirement_id": "92",
+      "input": "As a Matilde, I want The traffic light must count how many cars are in the queue.",
+      "cluster_id": 27,
+      "umap_x": 1.4750865697860718,
+      "umap_y": 9.137453079223633
+    },
+    {
+      "requirement_id": "93",
+      "input": "As a Matilde, I want The traffic light must tell the vehicle when the red light will activate.",
+      "cluster_id": 27,
+      "umap_x": 1.1800320148468018,
+      "umap_y": 9.250972747802734
+    },
+    {
+      "requirement_id": "94",
+      "input": "As a Matilde, I want The system must illuminate the crosswalk if it detects a pedestrian.",
+      "cluster_id": 6,
+      "umap_x": 1.46834397315979,
+      "umap_y": 9.424806594848633
+    },
+    {
+      "requirement_id": "95",
+      "input": "As a Matilde, I want The system must lower the speed limit if it is raining.",
+      "cluster_id": 23,
+      "umap_x": 2.327564239501953,
+      "umap_y": 9.514195442199707
+    },
+    {
+      "requirement_id": "96",
+      "input": "As a Matilde, I want La strada deve avvisare l\u2019auto se c\u2019\u00e8 un incidente avanti.",
+      "cluster_id": 6,
+      "umap_x": 1.0158257484436035,
+      "umap_y": 9.286523818969727
+    },
+    {
+      "requirement_id": "97",
+      "input": "As a Matilde, I want The road must signal the presence of ice on the road surface.",
+      "cluster_id": 6,
+      "umap_x": 1.3196748495101929,
+      "umap_y": 9.642149925231934
+    },
+    {
+      "requirement_id": "98",
+      "input": "As a Matilde, I want Il sistema deve avvisare l\u2019auto se c\u2019\u00e8 un cantiere tra 1 km.",
+      "cluster_id": 6,
+      "umap_x": 0.8006874918937683,
+      "umap_y": 9.047703742980957
+    },
+    {
+      "requirement_id": "99",
+      "input": "As a Matilde, I want Cameras must signal if a vehicle is going the wrong way.",
+      "cluster_id": 6,
+      "umap_x": 1.4591712951660156,
+      "umap_y": 9.796804428100586
+    },
+    {
+      "requirement_id": "100",
+      "input": "As a Matilde, I want The system must alert if an animal crosses the road.",
+      "cluster_id": 6,
+      "umap_x": 1.566867709159851,
+      "umap_y": 9.656455993652344
+    },
+    {
+      "requirement_id": "101",
+      "input": "As a Matilde, I want Il parcheggio deve dire all\u2019auto dove sono i posti liberi",
+      "cluster_id": 18,
+      "umap_x": 0.36200186610221863,
+      "umap_y": 8.101792335510254
+    },
+    {
+      "requirement_id": "102",
+      "input": "As a Matilde, I want The system must reserve the space for electric vehicles.",
+      "cluster_id": 5,
+      "umap_x": 2.0445327758789062,
+      "umap_y": 9.226837158203125
+    },
+    {
+      "requirement_id": "103",
+      "input": "As a Matilde, I want The parking lot must report who occupies disabled spaces without permission.",
+      "cluster_id": 18,
+      "umap_x": 0.6422265768051147,
+      "umap_y": 8.25046157836914
+    },
+    {
+      "requirement_id": "104",
+      "input": "As a Matilde, I want The system must open the parking barrier automatically.",
+      "cluster_id": 5,
+      "umap_x": 2.1390457153320312,
+      "umap_y": 9.27282428741455
+    },
+    {
+      "requirement_id": "105",
+      "input": "As a Matilde, I want The system must send the parking receipt to the mobile phone.",
+      "cluster_id": 5,
+      "umap_x": 2.091541290283203,
+      "umap_y": 8.970516204833984
+    },
+    {
+      "requirement_id": "106",
+      "input": "As a Matilde, I want The toll booth must read the license plate without stopping the vehicle.",
+      "cluster_id": 9,
+      "umap_x": 1.476884126663208,
+      "umap_y": 7.533212184906006
+    },
+    {
+      "requirement_id": "107",
+      "input": "As a Matilde, I want The system must deduct the toll cost from the online account.",
+      "cluster_id": 5,
+      "umap_x": 2.0661473274230957,
+      "umap_y": 8.67324161529541
+    },
+    {
+      "requirement_id": "108",
+      "input": "As a Matilde, I want The toll booth must notify if the payment was unsuccessful.",
+      "cluster_id": 6,
+      "umap_x": 1.7900570631027222,
+      "umap_y": 8.249917030334473
+    },
+    {
+      "requirement_id": "109",
+      "input": "As a Matilde, I want The system must count how many trucks pass over a bridge.",
+      "cluster_id": 27,
+      "umap_x": 1.7416688203811646,
+      "umap_y": 9.079863548278809
+    },
+    {
+      "requirement_id": "110",
+      "input": "As a Matilde, I want The system must send automatic SOS alerts if it detects a violent impact.",
+      "cluster_id": 6,
+      "umap_x": 1.2956700325012207,
+      "umap_y": 9.882841110229492
+    },
+    {
+      "requirement_id": "111",
+      "input": "As a Matilde, I want The system must transmit data in less than 0.1 seconds.",
+      "cluster_id": 26,
+      "umap_x": 2.306777238845825,
+      "umap_y": 10.016437530517578
+    },
+    {
+      "requirement_id": "112",
+      "input": "As a Matilde, I want The system must operate even in dense fog.",
+      "cluster_id": 25,
+      "umap_x": 2.3130738735198975,
+      "umap_y": 9.679675102233887
+    },
+    {
+      "requirement_id": "113",
+      "input": "As a Matilde, I want The system must connect 500 vehicles simultaneously.",
+      "cluster_id": 20,
+      "umap_x": 1.9792221784591675,
+      "umap_y": 9.289453506469727
+    },
+    {
+      "requirement_id": "114",
+      "input": "As a Matilde, I want Sensors must withstand heat and frost.",
+      "cluster_id": 25,
+      "umap_x": 2.191256523132324,
+      "umap_y": 9.950350761413574
+    },
+    {
+      "requirement_id": "115",
+      "input": "As a Matilde, I want The system must stay on if power is lost.",
+      "cluster_id": 25,
+      "umap_x": 2.4782445430755615,
+      "umap_y": 9.569724082946777
+    },
+    {
+      "requirement_id": "116",
+      "input": "As a Matilde, I want All driver data must remain anonymous.",
+      "cluster_id": 5,
+      "umap_x": 1.9266968965530396,
+      "umap_y": 10.100140571594238
+    },
+    {
+      "requirement_id": "117",
+      "input": "As a Matilde, I want Only authorized personnel may view the cameras.",
+      "cluster_id": 5,
+      "umap_x": 1.8303929567337036,
+      "umap_y": 9.9202880859375
+    },
+    {
+      "requirement_id": "118",
+      "input": "As a Matilde, I want The system must use a secure password for each vehicle.",
+      "cluster_id": 5,
+      "umap_x": 2.1133248805999756,
+      "umap_y": 9.602234840393066
+    },
+    {
+      "requirement_id": "119",
+      "input": "As a Matilde, I want Sent messages must be very short and lightweight.",
+      "cluster_id": 25,
+      "umap_x": 2.2850265502929688,
+      "umap_y": 9.966623306274414
+    },
+    {
+      "requirement_id": "120",
+      "input": "As a Matilde, I want The system must work with all vehicle brands.",
+      "cluster_id": 5,
+      "umap_x": 2.090036153793335,
+      "umap_y": 9.423596382141113
+    },
+    {
+      "requirement_id": "121",
+      "input": "As a Luca, I want The smart traffic light must adapt the green light duration based on the number of vehicles detected at intersections.",
+      "cluster_id": 14,
+      "umap_x": -1.4723916053771973,
+      "umap_y": 8.270271301269531
+    },
+    {
+      "requirement_id": "122",
+      "input": "As a Luca, I want The system must assign traffic light priority to approaching emergency vehicles.",
+      "cluster_id": 3,
+      "umap_x": -1.2247992753982544,
+      "umap_y": 7.208874702453613
+    },
+    {
+      "requirement_id": "123",
+      "input": "As a Luca, I want The system must communicate to vehicles the remaining time before the traffic light changes.",
+      "cluster_id": 3,
+      "umap_x": -0.956948459148407,
+      "umap_y": 7.402471542358398
+    },
+    {
+      "requirement_id": "124",
+      "input": "As a Luca, I want The system must detect queues longer than 500 meters and redirect traffic to alternative routes.",
+      "cluster_id": 3,
+      "umap_x": -1.2737358808517456,
+      "umap_y": 6.786181926727295
+    },
+    {
+      "requirement_id": "125",
+      "input": "As a Luca, I want The system must detect vehicles stopped in the emergency lane.",
+      "cluster_id": 3,
+      "umap_x": -1.3101404905319214,
+      "umap_y": 6.560896873474121
+    },
+    {
+      "requirement_id": "126",
+      "input": "As a Luca, I want The system must warn vehicles of accidents along the route.",
+      "cluster_id": 3,
+      "umap_x": -0.9289432168006897,
+      "umap_y": 6.831169605255127
+    },
+    {
+      "requirement_id": "127",
+      "input": "As a Luca, I want The system must detect pedestrian crossings and activate light signals on the roadway.",
+      "cluster_id": 3,
+      "umap_x": -1.6425265073776245,
+      "umap_y": 7.30382776260376
+    },
+    {
+      "requirement_id": "128",
+      "input": "As a Luca, I want The system must detect bicycles near intersections.",
+      "cluster_id": 3,
+      "umap_x": -1.5110727548599243,
+      "umap_y": 6.891844272613525
+    },
+    {
+      "requirement_id": "129",
+      "input": "As a Luca, I want The system must notify vehicles of active road construction sites.",
+      "cluster_id": 3,
+      "umap_x": -0.6953262090682983,
+      "umap_y": 6.8903679847717285
+    },
+    {
+      "requirement_id": "130",
+      "input": "As a Luca, I want The system must warn vehicles of obstacles on the roadway.",
+      "cluster_id": 3,
+      "umap_x": -0.9500189423561096,
+      "umap_y": 6.57135534286499
+    },
+    {
+      "requirement_id": "131",
+      "input": "As a Luca, I want Il sistema deve segnalare ai veicoli condizioni di ghiaccio sull\u2019asfalto.",
+      "cluster_id": 3,
+      "umap_x": -1.6292674541473389,
+      "umap_y": 6.577725410461426
+    },
+    {
+      "requirement_id": "132",
+      "input": "As a Luca, I want The system must automatically lower speed limits in case of heavy rain.",
+      "cluster_id": 23,
+      "umap_x": -0.7000196576118469,
+      "umap_y": 6.488568305969238
+    },
+    {
+      "requirement_id": "133",
+      "input": "As a Luca, I want The system must communicate to vehicles the presence of fog along the route.",
+      "cluster_id": 3,
+      "umap_x": -0.8164525032043457,
+      "umap_y": 6.81171178817749
+    },
+    {
+      "requirement_id": "134",
+      "input": "As a Luca, I want The system must signal the presence of animals crossing the road.",
+      "cluster_id": 3,
+      "umap_x": -1.2392476797103882,
+      "umap_y": 6.68405818939209
+    },
+    {
+      "requirement_id": "135",
+      "input": "As a Luca, I want The system must detect vehicles traveling in the wrong direction.",
+      "cluster_id": 3,
+      "umap_x": -1.12594473361969,
+      "umap_y": 6.346356391906738
+    },
+    {
+      "requirement_id": "136",
+      "input": "As a Luca, I want The system must communicate available spaces in nearby parking lots to vehicles.",
+      "cluster_id": 2,
+      "umap_x": -0.2096564620733261,
+      "umap_y": 7.7854838371276855
+    },
+    {
+      "requirement_id": "137",
+      "input": "As a Luca, I want The smart parking lot must guide the vehicle to the nearest free space.",
+      "cluster_id": 2,
+      "umap_x": -0.2995603680610657,
+      "umap_y": 7.9471025466918945
+    },
+    {
+      "requirement_id": "138",
+      "input": "As a Luca, I want The system must reserve parking spaces for electric vehicles that are charging.",
+      "cluster_id": 2,
+      "umap_x": -0.037881750613451004,
+      "umap_y": 7.949224472045898
+    },
+    {
+      "requirement_id": "139",
+      "input": "As a Luca, I want Il parcheggio deve segnalare l\u2019occupazione abusiva dei posti riservati ai disabili.",
+      "cluster_id": 18,
+      "umap_x": 0.31601065397262573,
+      "umap_y": 7.993908405303955
+    },
+    {
+      "requirement_id": "140",
+      "input": "As a Luca, I want The system must allow automatic parking payment through vehicle identification.",
+      "cluster_id": 13,
+      "umap_x": 0.1960749328136444,
+      "umap_y": 7.861522674560547
+    },
+    {
+      "requirement_id": "141",
+      "input": "As a Luca, I want The automatic toll booth must allow authorized vehicles to pass without stopping.",
+      "cluster_id": 13,
+      "umap_x": 1.2368980646133423,
+      "umap_y": 7.402121543884277
+    },
+    {
+      "requirement_id": "142",
+      "input": "As a Luca, I want The system must communicate the expected waiting time at highway toll booths to vehicles.",
+      "cluster_id": 3,
+      "umap_x": -0.46605193614959717,
+      "umap_y": 7.246717929840088
+    },
+    {
+      "requirement_id": "143",
+      "input": "As a Luca, I want The system must direct vehicles to the least congested highway lane.",
+      "cluster_id": 3,
+      "umap_x": -1.0006647109985352,
+      "umap_y": 6.314713478088379
+    },
+    {
+      "requirement_id": "144",
+      "input": "As a Luca, I want The system must warn vehicles of construction work in tunnels.",
+      "cluster_id": 3,
+      "umap_x": -0.84909987449646,
+      "umap_y": 6.660102844238281
+    },
+    {
+      "requirement_id": "145",
+      "input": "As a Luca, I want The system must communicate temporary urban traffic diversions to vehicles.",
+      "cluster_id": 3,
+      "umap_x": -0.9397433400154114,
+      "umap_y": 7.117538928985596
+    },
+    {
+      "requirement_id": "146",
+      "input": "As a Luca, I want Il sistema deve rilevare attraversamenti ferroviari chiusi e bloccare l\u2019accesso ai veicoli.",
+      "cluster_id": 3,
+      "umap_x": -1.719744324684143,
+      "umap_y": 6.703733921051025
+    },
+    {
+      "requirement_id": "147",
+      "input": "As a Luca, I want The system must activate priority routes for buses and public transport during peak hours.",
+      "cluster_id": 3,
+      "umap_x": -1.25083327293396,
+      "umap_y": 7.0214128494262695
+    },
+    {
+      "requirement_id": "148",
+      "input": "As a Luca, I want The system must signal to vehicles the available electric charging stations nearby.",
+      "cluster_id": 2,
+      "umap_x": -0.3334961533546448,
+      "umap_y": 7.5739359855651855
+    },
+    {
+      "requirement_id": "149",
+      "input": "As a Luca, I want The system must communicate to vehicles the traffic level on the main road arteries.",
+      "cluster_id": 3,
+      "umap_x": -0.9402521848678589,
+      "umap_y": 7.153655052185059
+    },
+    {
+      "requirement_id": "150",
+      "input": "As a Luca, I want The system must detect the presence of stolen vehicles through automatic license plate reading.",
+      "cluster_id": 13,
+      "umap_x": -0.030601773411035538,
+      "umap_y": 7.143924713134766
+    },
+    {
+      "requirement_id": "151",
+      "input": "As a Laura, I want The system must signal the presence of free parking spaces throughout the city.",
+      "cluster_id": 2,
+      "umap_x": -0.04599303379654884,
+      "umap_y": 7.535086631774902
+    },
+    {
+      "requirement_id": "152",
+      "input": "As a Laura, I want The system must detect when it receives a communication from the vehicle whether it is compliant or not.",
+      "cluster_id": 0,
+      "umap_x": -0.15537314116954803,
+      "umap_y": 6.78127384185791
+    },
+    {
+      "requirement_id": "153",
+      "input": "As a Laura, I want Il sistema deve comunicarmi se c\u2019\u00e8 l\u2019arrivo di un ambulanza nei dintorni in maniera che ci si possa preparare",
+      "cluster_id": 0,
+      "umap_x": -0.16245965659618378,
+      "umap_y": 6.590382099151611
+    },
+    {
+      "requirement_id": "154",
+      "input": "As a Laura, I want The automatic toll booth must allow me to pass without stopping to pay and without using a transponder by simply reading the license plate.",
+      "cluster_id": 13,
+      "umap_x": 1.1587694883346558,
+      "umap_y": 7.238376140594482
+    },
+    {
+      "requirement_id": "155",
+      "input": "As a Laura, I want Cameras must notify me of the presence of road impediments (ongoing works or slowdowns or motorcycles etc.).",
+      "cluster_id": 3,
+      "umap_x": -0.4265845715999603,
+      "umap_y": 6.34220027923584
+    },
+    {
+      "requirement_id": "156",
+      "input": "As a Laura, I want I semafori intelligenti devono automaticamente diventare verdi appena non rilevano pi\u00f9 macchine davanti l\u2019altro semaforo (senza aspettare inutilmente)",
+      "cluster_id": 24,
+      "umap_x": -1.5467352867126465,
+      "umap_y": 8.78815746307373
+    },
+    {
+      "requirement_id": "157",
+      "input": "As a Laura, I want Le telecamere (o sensori stradali) devono darmi il via libera a un dare precedenza ancora prima che io arrivi alle linee se non c\u2019\u00e8 nessuno che sta arrivando",
+      "cluster_id": 0,
+      "umap_x": -0.32402747869491577,
+      "umap_y": 6.683624744415283
+    },
+    {
+      "requirement_id": "158",
+      "input": "As a Laura, I want Automatic toll booths must detect the presence of suspicious goods in trucks.",
+      "cluster_id": 3,
+      "umap_x": 0.35086265206336975,
+      "umap_y": 6.716763019561768
+    },
+    {
+      "requirement_id": "159",
+      "input": "As a Laura, I want The system must be able to tell me whether I can overtake safely or not even on bends.",
+      "cluster_id": 0,
+      "umap_x": -0.2637130320072174,
+      "umap_y": 6.548981666564941
+    },
+    {
+      "requirement_id": "160",
+      "input": "As a Laura, I want The system must not respond to stolen vehicles.",
+      "cluster_id": 3,
+      "umap_x": -0.12296286970376968,
+      "umap_y": 6.357144832611084
+    }
+  ]
+}

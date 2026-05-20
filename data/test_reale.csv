@@ -1,0 +1,158 @@
+id,role,feature
+1,Francesco,The system must regulate the duration of the green traffic light based on the vehicle flow detected by lane sensors in real time.
+2,Francesco,The smart traffic light must activate the immediate green phase when an emergency vehicle (ambulance or fire truck) is within a 500-meter radius.
+3,Francesco,The system must transmit to approaching vehicles the remaining time (countdown) before the traffic light changes state.
+4,Francesco,The infrastructure must suggest to drivers a recommended speed (GLOSA - Green Light Optimal Speed Advisory) to meet the green wave.
+5,Francesco,The system must detect and report to connected vehicles the presence of pedestrians or cyclists on crosswalks during nighttime hours.
+6,Francesco,In case of critical congestion the system must automatically reconfigure traffic light timings at nearby intersections to drain traffic.
+7,Francesco,The system must detect the presence of obstacles on the roadway (e.g. debris or lost loads) within 3 seconds of the camera signal.
+8,Francesco,The infrastructure must send a Wrong-Way Vehicle alert to all drivers within a 2-kilometer radius of the detection point.
+9,Francesco,Smart roads must monitor road surface conditions and report the presence of ice or standing water to passing vehicles.
+10,Francesco,The system must alert incoming vehicles if another vehicle has performed a sudden emergency braking beyond a blind curve.
+11,Francesco,The system must notify vehicles of the presence of mobile worksites or road workers via push notifications on the on-board display.
+12,Francesco,Cameras must automatically identify road accidents and send the exact GPS coordinates to emergency services within 5 seconds.
+13,Francesco,The parking system must update the number of available spaces every 10 seconds and transmit it to vehicle navigation systems.
+14,Francesco,The infrastructure must allow the reservation of a parking space through direct communication between the vehicle and the parking sensor.
+15,Francesco,The system must identify electric vehicles and guide them as a priority to spaces equipped with a free charging station.
+16,Francesco,Parking sensors must detect unauthorized occupation of disabled parking spaces and immediately notify the local police.
+17,Francesco,The toll system must identify the vehicle and process the charge without the vehicle needing to slow below 60 km/h.
+18,Francesco,The infrastructure must automatically calculate the access fee for restricted traffic zones (ZTL) based on the vehicle's environmental class.
+19,Francesco,The system must allow automatic payment for fuel refueling or electric charging via secure V2I authentication.
+20,Francesco,Communication between infrastructure and vehicle for critical safety messages must occur with a latency of less than 20 milliseconds.
+21,Francesco,The system must guarantee an operational availability of 99.99% on an annual basis for emergency management functions.
+22,Francesco,The system must prevent access and communication to any vehicle not equipped with a valid and up-to-date authentication certificate.
+23,Francesco,All data exchanged between vehicle and infrastructure must be end-to-end encrypted and anonymized before being stored for statistical analysis.
+24,Francesco,The software architecture must be capable of simultaneously managing connections from at least 10.000 vehicles per square kilometer.
+25,Francesco,The system must support both the European communication standard (ETSI ITS-G5) and the cellular network-based one (C-V2X).
+26,Francesco,The system must validate every message received from road sensors to prevent spoofing attacks (data falsification).
+27,Francesco,In case of global internet connectivity loss local infrastructure nodes (Edge) must continue to manage traffic in autonomous mode.
+28,Francesco,The software of roadside units (RSU - Road Side Units) must be updatable remotely via secure Over-The-Air (OTA) protocols.
+29,Francesco,The system must maintain an immutable log of all decisions made by smart traffic lights for post-incident audit purposes.
+30,Francesco,Road sensors powered by battery or solar panels must operate in low-power mode when no traffic is detected for more than 5 minutes.
+31,Aldo,The V2I system must update the status of smart traffic lights in real time every 500 milliseconds.
+32,Aldo,The system must automatically give priority to emergency vehicles at controlled intersections.
+33,Aldo,I sensori stradali devono rilevare incidenti o ostacoli entro 3 secondi dal verificarsi dell’evento.
+34,Aldo,Il sistema deve impedire l’accesso ai dati di traffico ai veicoli non autenticati.
+35,Aldo,Smart parking lots must communicate available spaces in real time to nearby vehicles.
+36,Aldo,The system must maintain V2I communication active even under heavy traffic conditions.
+37,Aldo,Automatic toll booths must complete payment without stopping the vehicle.
+38,Aldo,The system must immediately notify drivers in case of roadworks or diversions.
+39,Aldo,The system must send an alert to drivers when an accident is detected nearby.
+40,Aldo,The system must save traffic data for at least 30 days for analysis purposes.
+41,Aldo,Smart roads must send real-time speed limit updates to connected vehicles.
+42,Aldo,The system must automatically reduce waiting times at traffic lights during peak hours.
+43,Aldo,Road sensors must operate correctly even in adverse weather conditions.
+44,Aldo,The system must encrypt all communications between infrastructure and vehicles.
+45,Aldo,Smart parking lots must allow space reservation via a mobile application.
+46,Aldo,The system must alert drivers when a vehicle is traveling the wrong way.
+47,Aldo,I caselli automatici devono riconoscere il veicolo entro 1 secondo dall’ingresso nella corsia di pagamento.
+48,Aldo,The system must send notifications to vehicles in case of dangerous weather conditions on the road.
+49,Aldo,V2I infrastructures must continue to operate even in case of temporary loss of internet connection.
+50,Aldo,The system must automatically identify areas with congested traffic.
+51,Aldo,Smart traffic lights must adapt waiting times based on the number of vehicles present.
+52,Aldo,The system must allow municipal operators to monitor traffic via a centralized dashboard.
+53,Aldo,Data collected by sensors must be synchronized with the central server every minute.
+54,Aldo,The system must reduce the risk of collisions at intersections through preventive alerts to drivers.
+55,Aldo,Connected vehicles must receive updates on parking availability within 5 seconds of the request.
+56,Aldo,The system must log all administrative accesses for security and traceability reasons.
+57,Aldo,Smart roads must automatically detect vehicles stopped in the emergency lane.
+58,Aldo,The system must support at least 10.000 simultaneous communications between vehicles and infrastructure.
+59,Aldo,Automatic toll booths must immediately report any payment errors to users.
+60,Aldo,The system must ensure the protection of drivers' personal data in accordance with privacy regulations.
+61,Daniel,Il sistema deve aggiornare lo stato dei semafori intelligenti ogni 500 ms sulla base dei dati ricevuti dai sensori di traffico presenti nell’incrocio.
+62,Daniel,The system must send emergency vehicles a priority route within 2 seconds of receiving the priority request.
+63,Daniel,The system must log all critical traffic events in a centralized database maintaining logs for at least 365 days.
+64,Daniel,The system must notify vehicles of accidents within a 2 km radius within 3 seconds of detection.
+65,Daniel,The system must support at least 50.000 simultaneously connected vehicles without degrading the average response time beyond 2 seconds.
+66,Daniel,The system must allow smart parking lots to update parking space availability every 10 seconds.
+69,Daniel,The system must allow automatic toll booths to process a toll payment in less than 1 second.
+70,Daniel,The system must send an immediate report to the control center when a camera detects a vehicle stopped on the roadway for more than 30 seconds.
+71,Daniel,The system must guarantee a service availability of at least 99.95% on a monthly basis.
+72,Daniel,The system must save vehicle GPS positions with a maximum accuracy of ±5 meters.
+73,Daniel,The system must allow traffic operators to view in real time the status of all traffic lights in the city via a web dashboard.
+74,Daniel,Il sistema deve generare automaticamente una deviazione del traffico quando il livello di congestione supera l’85% della capacità stradale.
+75,Daniel,The system must send notifications to drivers when the estimated travel time increases by at least 20% compared to the expected average.
+77,Daniel,The system must allow full service recovery within 15 minutes in case of central node failure.
+78,Daniel,The system must automatically detect the presence of pedestrians on crosswalks using cameras with a minimum accuracy of 95%.
+79,Daniel,The system should manage traffic quickly during peak hours.
+80,Daniel,The system must ensure that all traffic lights remain green for as long as possible to improve vehicle flow.
+81,Daniel,The system must always give absolute priority to public transport at all urban intersections.
+82,Daniel,The system must drastically reduce traffic in urban areas.
+83,Daniel,The system must send notifications to drivers only when necessary.
+84,Daniel,The system must record all vehicle movements without time limits.
+85,Daniel,The system must not store sensitive data related to vehicles or drivers.
+86,Daniel,Il sistema deve consentire l’accesso immediato a tutti i dati di traffico a qualsiasi ente autorizzato.
+87,Daniel,The system must automatically block all roads considered congested.
+88,Daniel,The system should minimize waiting times at traffic lights for all vehicles simultaneously.
+89,Daniel,The system must be easy to use for any user.
+90,Daniel,The system must operate correctly even in case of network problems or infrastructure failures without any interruption.
+91,Matilde,The traffic light must turn green for ambulances.
+92,Matilde,The traffic light must count how many cars are in the queue.
+93,Matilde,The traffic light must tell the vehicle when the red light will activate.
+94,Matilde,The system must illuminate the crosswalk if it detects a pedestrian.
+95,Matilde,The system must lower the speed limit if it is raining.
+96,Matilde,La strada deve avvisare l’auto se c’è un incidente avanti.
+97,Matilde,The road must signal the presence of ice on the road surface.
+98,Matilde,Il sistema deve avvisare l’auto se c’è un cantiere tra 1 km.
+99,Matilde,Cameras must signal if a vehicle is going the wrong way.
+100,Matilde,The system must alert if an animal crosses the road.
+101,Matilde,Il parcheggio deve dire all’auto dove sono i posti liberi
+102,Matilde,The system must reserve the space for electric vehicles.
+103,Matilde,The parking lot must report who occupies disabled spaces without permission.
+104,Matilde,The system must open the parking barrier automatically.
+105,Matilde,The system must send the parking receipt to the mobile phone.
+106,Matilde,The toll booth must read the license plate without stopping the vehicle.
+107,Matilde,The system must deduct the toll cost from the online account.
+108,Matilde,The toll booth must notify if the payment was unsuccessful.
+109,Matilde,The system must count how many trucks pass over a bridge.
+110,Matilde,The system must send automatic SOS alerts if it detects a violent impact.
+111,Matilde,The system must transmit data in less than 0.1 seconds.
+112,Matilde,The system must operate even in dense fog.
+113,Matilde,The system must connect 500 vehicles simultaneously.
+114,Matilde,Sensors must withstand heat and frost.
+115,Matilde,The system must stay on if power is lost.
+116,Matilde,All driver data must remain anonymous.
+117,Matilde,Only authorized personnel may view the cameras.
+118,Matilde,The system must use a secure password for each vehicle.
+119,Matilde,Sent messages must be very short and lightweight.
+120,Matilde,The system must work with all vehicle brands.
+121,Luca,The smart traffic light must adapt the green light duration based on the number of vehicles detected at intersections.
+122,Luca,The system must assign traffic light priority to approaching emergency vehicles.
+123,Luca,The system must communicate to vehicles the remaining time before the traffic light changes.
+124,Luca,The system must detect queues longer than 500 meters and redirect traffic to alternative routes.
+125,Luca,The system must detect vehicles stopped in the emergency lane.
+126,Luca,The system must warn vehicles of accidents along the route.
+127,Luca,The system must detect pedestrian crossings and activate light signals on the roadway.
+128,Luca,The system must detect bicycles near intersections.
+129,Luca,The system must notify vehicles of active road construction sites.
+130,Luca,The system must warn vehicles of obstacles on the roadway.
+131,Luca,Il sistema deve segnalare ai veicoli condizioni di ghiaccio sull’asfalto.
+132,Luca,The system must automatically lower speed limits in case of heavy rain.
+133,Luca,The system must communicate to vehicles the presence of fog along the route.
+134,Luca,The system must signal the presence of animals crossing the road.
+135,Luca,The system must detect vehicles traveling in the wrong direction.
+136,Luca,The system must communicate available spaces in nearby parking lots to vehicles.
+137,Luca,The smart parking lot must guide the vehicle to the nearest free space.
+138,Luca,The system must reserve parking spaces for electric vehicles that are charging.
+139,Luca,Il parcheggio deve segnalare l’occupazione abusiva dei posti riservati ai disabili.
+140,Luca,The system must allow automatic parking payment through vehicle identification.
+141,Luca,The automatic toll booth must allow authorized vehicles to pass without stopping.
+142,Luca,The system must communicate the expected waiting time at highway toll booths to vehicles.
+143,Luca,The system must direct vehicles to the least congested highway lane.
+144,Luca,The system must warn vehicles of construction work in tunnels.
+145,Luca,The system must communicate temporary urban traffic diversions to vehicles.
+146,Luca,Il sistema deve rilevare attraversamenti ferroviari chiusi e bloccare l’accesso ai veicoli.
+147,Luca,The system must activate priority routes for buses and public transport during peak hours.
+148,Luca,The system must signal to vehicles the available electric charging stations nearby.
+149,Luca,The system must communicate to vehicles the traffic level on the main road arteries.
+150,Luca,The system must detect the presence of stolen vehicles through automatic license plate reading.
+151,Laura,The system must signal the presence of free parking spaces throughout the city.
+152,Laura,The system must detect when it receives a communication from the vehicle whether it is compliant or not.
+153,Laura,Il sistema deve comunicarmi se c’è l’arrivo di un ambulanza nei dintorni in maniera che ci si possa preparare
+154,Laura,The automatic toll booth must allow me to pass without stopping to pay and without using a transponder by simply reading the license plate.
+155,Laura,Cameras must notify me of the presence of road impediments (ongoing works or slowdowns or motorcycles etc.).
+156,Laura,I semafori intelligenti devono automaticamente diventare verdi appena non rilevano più macchine davanti l’altro semaforo (senza aspettare inutilmente)
+157,Laura,Le telecamere (o sensori stradali) devono darmi il via libera a un dare precedenza ancora prima che io arrivi alle linee se non c’è nessuno che sta arrivando
+158,Laura,Automatic toll booths must detect the presence of suspicious goods in trucks.
+159,Laura,The system must be able to tell me whether I can overtake safely or not even on bends.
+160,Laura,The system must not respond to stolen vehicles.

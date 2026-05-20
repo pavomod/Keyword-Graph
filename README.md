@@ -79,13 +79,13 @@ Main configuration: `config/run_pipeline.json`
 ### Pipeline whitout Phase 4
 
 ```bash
-python -m src.run_pipeline.py
+python -m src.run_pipeline
 ```
 
 ### Full Pipeline Including Phase 4
 
 ```bash
-python -m src.run_pipeline.py --with-phase4
+python -m src.run_pipeline --with-phase4
 ```
 
 ### Using Gemini in Phase 1
@@ -101,7 +101,7 @@ You can configure the Gemini model for Phase 1 in `config/run_pipeline.json` wit
 Analyze existing clusters without re-running phases 1-3:
 
 ```bash
-python -m src.run_pipeline.py --phase4-only
+python -m src.run_pipeline --phase4-only
 ```
 
 ### Phase 4 Input Preview
@@ -115,7 +115,7 @@ python -m src.run_pipeline --phase4-only --phase4-preview
 ### Using Direct Clustering for Phase 4
 
 ```bash
-python -m src.run_pipeline.py --phase4-only \
+python -m src.run_pipeline. --phase4-only \
   --phase4-use-direct-clustering \
   --phase4-clustering-report results/direct_clustering_report.json
 ```
@@ -124,12 +124,12 @@ python -m src.run_pipeline.py --phase4-only \
 
 | File | Phase | Description |
 |------|-------|-------------|
-| `results/extraction.json` | 1 | Extracted keywords for each requirement |
-| `results/keyword_graph.gexf` | 2 | Semantic graph in GEXF format |
-| `results/clustering_report.json` | 3 | Keyword-graph clustering analysis |
-| `results/direct_clustering_report.json` | 3 | Direct requirement clustering |
-| `results/clustering_comparison.json` | 3 | Comparison of two approaches |
-| `results/phase4_analysis.json` | 4 | LLM-based inconsistency analysis |
+| `results/requirements_file_name/extraction.json` | 1 | Extracted keywords for each requirement |
+| `results/requirements_file_name/keyword_graph.gexf` | 2 | Semantic graph in GEXF format |
+| `results/requirements_file_name/clustering_report.json` | 3 | Keyword-graph clustering analysis |
+| `results/requirements_file_name/direct_clustering_report.json` | 3 | Direct requirement clustering |
+| `results/requirements_file_name/clustering_comparison.json` | 3 | Comparison of two approaches |
+| `results/requirements_file_name/phase4_analysis.json` | 4 | LLM-based inconsistency analysis |
 
 
 ### What Phase 4 Analyzes

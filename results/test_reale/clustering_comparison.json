@@ -1,0 +1,28 @@
+{
+  "comparison": {
+    "method": "keyword_graph_vs_direct_embedding",
+    "num_requirements": 157,
+    "total_compared": 157,
+    "missing_in_keyword_graph": 0
+  },
+  "keyword_graph_approach": {
+    "num_clusters": 10,
+    "requirements_mapped": 157,
+    "multi_cluster_requirements": 70
+  },
+  "direct_embedding_approach": {
+    "num_clusters": 29,
+    "inertia": 38.68863821057927,
+    "davies_bouldin": 2.0187732092561714,
+    "calinski_harabasz": 3.293357800312053
+  },
+  "agreement": {
+    "adjusted_rand_index": 0.048209300374026945,
+    "normalized_mutual_info": 0.3562303076130598,
+    "interpretation": {
+      "ari": "1.0=perfect, ~0.0=random, <0=anti-correlated",
+      "nmi": "1.0=identical, 0.0=independent"
+    }
+  },
+  "notes": "Multi-cluster requirements in the keyword graph are resolved to their first (lowest) cluster ID for the purpose of ARI/NMI computation. Different cluster counts between approaches indicate different granularity."
+}

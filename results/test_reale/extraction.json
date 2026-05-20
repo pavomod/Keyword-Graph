@@ -1,0 +1,789 @@
+{
+  "records": [
+    {
+      "source_id": "1",
+      "input": "The system must regulate the duration of the green traffic light based on the vehicle flow detected by lane sensors in real time.",
+      "predicted_tags": "traffic light control, vehicle detection"
+    },
+    {
+      "source_id": "2",
+      "input": "The smart traffic light must activate the immediate green phase when an emergency vehicle (ambulance or fire truck) is within a 500-meter radius.",
+      "predicted_tags": "emergency vehicle detection, signal priority"
+    },
+    {
+      "source_id": "3",
+      "input": "The system must transmit to approaching vehicles the remaining time (countdown) before the traffic light changes state.",
+      "predicted_tags": "vehicle communication, signal timing"
+    },
+    {
+      "source_id": "4",
+      "input": "The infrastructure must suggest to drivers a recommended speed (GLOSA - Green Light Optimal Speed Advisory) to meet the green wave.",
+      "predicted_tags": "speed advisory, traffic flow optimization"
+    },
+    {
+      "source_id": "5",
+      "input": "The system must detect and report to connected vehicles the presence of pedestrians or cyclists on crosswalks during nighttime hours.",
+      "predicted_tags": "pedestrian detection, vehicle communication"
+    },
+    {
+      "source_id": "6",
+      "input": "In case of critical congestion the system must automatically reconfigure traffic light timings at nearby intersections to drain traffic.",
+      "predicted_tags": "traffic signal control, traffic management"
+    },
+    {
+      "source_id": "7",
+      "input": "The system must detect the presence of obstacles on the roadway (e.g. debris or lost loads) within 3 seconds of the camera signal.",
+      "predicted_tags": "obstacle detection, response time"
+    },
+    {
+      "source_id": "8",
+      "input": "The infrastructure must send a Wrong-Way Vehicle alert to all drivers within a 2-kilometer radius of the detection point.",
+      "predicted_tags": "alert notification, proximity notification"
+    },
+    {
+      "source_id": "9",
+      "input": "Smart roads must monitor road surface conditions and report the presence of ice or standing water to passing vehicles.",
+      "predicted_tags": "road condition monitoring, vehicle notification"
+    },
+    {
+      "source_id": "10",
+      "input": "The system must alert incoming vehicles if another vehicle has performed a sudden emergency braking beyond a blind curve.",
+      "predicted_tags": "braking event detection, vehicle notification, vehicle safety"
+    },
+    {
+      "source_id": "11",
+      "input": "The system must notify vehicles of the presence of mobile worksites or road workers via push notifications on the on-board display.",
+      "predicted_tags": "road hazard notification"
+    },
+    {
+      "source_id": "12",
+      "input": "Cameras must automatically identify road accidents and send the exact GPS coordinates to emergency services within 5 seconds.",
+      "predicted_tags": "accident detection, emergency notification, location data transmission"
+    },
+    {
+      "source_id": "13",
+      "input": "The parking system must update the number of available spaces every 10 seconds and transmit it to vehicle navigation systems.",
+      "predicted_tags": "space availability, data transmission"
+    },
+    {
+      "source_id": "14",
+      "input": "The infrastructure must allow the reservation of a parking space through direct communication between the vehicle and the parking sensor.",
+      "predicted_tags": "parking space reservation, vehicle communication"
+    },
+    {
+      "source_id": "15",
+      "input": "The system must identify electric vehicles and guide them as a priority to spaces equipped with a free charging station.",
+      "predicted_tags": "vehicle identification, charging station guidance, priority allocation"
+    },
+    {
+      "source_id": "16",
+      "input": "Parking sensors must detect unauthorized occupation of disabled parking spaces and immediately notify the local police.",
+      "predicted_tags": "violation detection, police notification"
+    },
+    {
+      "source_id": "17",
+      "input": "The toll system must identify the vehicle and process the charge without the vehicle needing to slow below 60 km/h.",
+      "predicted_tags": "vehicle identification, toll processing"
+    },
+    {
+      "source_id": "18",
+      "input": "The infrastructure must automatically calculate the access fee for restricted traffic zones (ZTL) based on the vehicle's environmental class.",
+      "predicted_tags": "access fee calculation, zone access control"
+    },
+    {
+      "source_id": "19",
+      "input": "The system must allow automatic payment for fuel refueling or electric charging via secure V2I authentication.",
+      "predicted_tags": "automatic payment, vehicle service, authentication"
+    },
+    {
+      "source_id": "20",
+      "input": "Communication between infrastructure and vehicle for critical safety messages must occur with a latency of less than 20 milliseconds.",
+      "predicted_tags": "message exchange, safety message, latency"
+    },
+    {
+      "source_id": "21",
+      "input": "The system must guarantee an operational availability of 99.99% on an annual basis for emergency management functions.",
+      "predicted_tags": "system availability, emergency function"
+    },
+    {
+      "source_id": "22",
+      "input": "The system must prevent access and communication to any vehicle not equipped with a valid and up-to-date authentication certificate.",
+      "predicted_tags": "access control, authentication"
+    },
+    {
+      "source_id": "23",
+      "input": "All data exchanged between vehicle and infrastructure must be end-to-end encrypted and anonymized before being stored for statistical analysis.",
+      "predicted_tags": "data encryption, data anonymization, statistical analysi"
+    },
+    {
+      "source_id": "24",
+      "input": "The software architecture must be capable of simultaneously managing connections from at least 10.000 vehicles per square kilometer.",
+      "predicted_tags": "connection management, system capacity"
+    },
+    {
+      "source_id": "25",
+      "input": "The system must support both the European communication standard (ETSI ITS-G5) and the cellular network-based one (C-V2X).",
+      "predicted_tags": "communication protocol"
+    },
+    {
+      "source_id": "26",
+      "input": "The system must validate every message received from road sensors to prevent spoofing attacks (data falsification).",
+      "predicted_tags": "sensor data validation, data integrity"
+    },
+    {
+      "source_id": "27",
+      "input": "In case of global internet connectivity loss local infrastructure nodes (Edge) must continue to manage traffic in autonomous mode.",
+      "predicted_tags": "traffic management, autonomou operation"
+    },
+    {
+      "source_id": "28",
+      "input": "The software of roadside units (RSU - Road Side Units) must be updatable remotely via secure Over-The-Air (OTA) protocols.",
+      "predicted_tags": "ota update, data security"
+    },
+    {
+      "source_id": "29",
+      "input": "The system must maintain an immutable log of all decisions made by smart traffic lights for post-incident audit purposes.",
+      "predicted_tags": "audit log"
+    },
+    {
+      "source_id": "30",
+      "input": "Road sensors powered by battery or solar panels must operate in low-power mode when no traffic is detected for more than 5 minutes.",
+      "predicted_tags": "power management, traffic detection, time threshold"
+    },
+    {
+      "source_id": "31",
+      "input": "The V2I system must update the status of smart traffic lights in real time every 500 milliseconds.",
+      "predicted_tags": "traffic light statu, real-time update"
+    },
+    {
+      "source_id": "32",
+      "input": "The system must automatically give priority to emergency vehicles at controlled intersections.",
+      "predicted_tags": "emergency vehicle priority, intersection control"
+    },
+    {
+      "source_id": "33",
+      "input": "I sensori stradali devono rilevare incidenti o ostacoli entro 3 secondi dal verificarsi dell’evento.",
+      "predicted_tags": "event detection, response time"
+    },
+    {
+      "source_id": "34",
+      "input": "Il sistema deve impedire l’accesso ai dati di traffico ai veicoli non autenticati.",
+      "predicted_tags": "access control"
+    },
+    {
+      "source_id": "35",
+      "input": "Smart parking lots must communicate available spaces in real time to nearby vehicles.",
+      "predicted_tags": "parking availability"
+    },
+    {
+      "source_id": "36",
+      "input": "The system must maintain V2I communication active even under heavy traffic conditions.",
+      "predicted_tags": "v2i communication, communication reliability, load handling"
+    },
+    {
+      "source_id": "37",
+      "input": "Automatic toll booths must complete payment without stopping the vehicle.",
+      "predicted_tags": "payment processing"
+    },
+    {
+      "source_id": "38",
+      "input": "The system must immediately notify drivers in case of roadworks or diversions.",
+      "predicted_tags": "driver notification, traffic information"
+    },
+    {
+      "source_id": "39",
+      "input": "The system must send an alert to drivers when an accident is detected nearby.",
+      "predicted_tags": "notification, incident detection"
+    },
+    {
+      "source_id": "40",
+      "input": "The system must save traffic data for at least 30 days for analysis purposes.",
+      "predicted_tags": "traffic data, data retention, data analysi"
+    },
+    {
+      "source_id": "41",
+      "input": "Smart roads must send real-time speed limit updates to connected vehicles.",
+      "predicted_tags": "traffic information"
+    },
+    {
+      "source_id": "42",
+      "input": "The system must automatically reduce waiting times at traffic lights during peak hours.",
+      "predicted_tags": "traffic light control"
+    },
+    {
+      "source_id": "43",
+      "input": "Road sensors must operate correctly even in adverse weather conditions.",
+      "predicted_tags": "operational resilience"
+    },
+    {
+      "source_id": "44",
+      "input": "The system must encrypt all communications between infrastructure and vehicles.",
+      "predicted_tags": "communication security"
+    },
+    {
+      "source_id": "45",
+      "input": "Smart parking lots must allow space reservation via a mobile application.",
+      "predicted_tags": "parking reservation"
+    },
+    {
+      "source_id": "46",
+      "input": "The system must alert drivers when a vehicle is traveling the wrong way.",
+      "predicted_tags": "wrong-way detection, driver notification"
+    },
+    {
+      "source_id": "47",
+      "input": "I caselli automatici devono riconoscere il veicolo entro 1 secondo dall’ingresso nella corsia di pagamento.",
+      "predicted_tags": "vehicle recognition"
+    },
+    {
+      "source_id": "48",
+      "input": "The system must send notifications to vehicles in case of dangerous weather conditions on the road.",
+      "predicted_tags": "notification delivery, road hazard"
+    },
+    {
+      "source_id": "49",
+      "input": "V2I infrastructures must continue to operate even in case of temporary loss of internet connection.",
+      "predicted_tags": "offline operation"
+    },
+    {
+      "source_id": "50",
+      "input": "The system must automatically identify areas with congested traffic.",
+      "predicted_tags": "traffic analysi"
+    },
+    {
+      "source_id": "51",
+      "input": "Smart traffic lights must adapt waiting times based on the number of vehicles present.",
+      "predicted_tags": "traffic light control, vehicle detection"
+    },
+    {
+      "source_id": "52",
+      "input": "The system must allow municipal operators to monitor traffic via a centralized dashboard.",
+      "predicted_tags": "traffic monitoring, dashboard display"
+    },
+    {
+      "source_id": "53",
+      "input": "Data collected by sensors must be synchronized with the central server every minute.",
+      "predicted_tags": "sensor data, data synchronization"
+    },
+    {
+      "source_id": "54",
+      "input": "The system must reduce the risk of collisions at intersections through preventive alerts to drivers.",
+      "predicted_tags": "collision prevention, driver alert"
+    },
+    {
+      "source_id": "55",
+      "input": "Connected vehicles must receive updates on parking availability within 5 seconds of the request.",
+      "predicted_tags": "parking availability, data update"
+    },
+    {
+      "source_id": "56",
+      "input": "The system must log all administrative accesses for security and traceability reasons.",
+      "predicted_tags": "audit trail"
+    },
+    {
+      "source_id": "57",
+      "input": "Smart roads must automatically detect vehicles stopped in the emergency lane.",
+      "predicted_tags": "incident detection"
+    },
+    {
+      "source_id": "58",
+      "input": "The system must support at least 10.000 simultaneous communications between vehicles and infrastructure.",
+      "predicted_tags": "vehicle communication, system capacity"
+    },
+    {
+      "source_id": "59",
+      "input": "Automatic toll booths must immediately report any payment errors to users.",
+      "predicted_tags": "payment error notification"
+    },
+    {
+      "source_id": "60",
+      "input": "The system must ensure the protection of drivers' personal data in accordance with privacy regulations.",
+      "predicted_tags": "data privacy"
+    },
+    {
+      "source_id": "61",
+      "input": "Il sistema deve aggiornare lo stato dei semafori intelligenti ogni 500 ms sulla base dei dati ricevuti dai sensori di traffico presenti nell’incrocio.",
+      "predicted_tags": "traffic light control, sensor data processing"
+    },
+    {
+      "source_id": "62",
+      "input": "The system must send emergency vehicles a priority route within 2 seconds of receiving the priority request.",
+      "predicted_tags": "emergency routing"
+    },
+    {
+      "source_id": "63",
+      "input": "The system must log all critical traffic events in a centralized database maintaining logs for at least 365 days.",
+      "predicted_tags": "event logging, data retention"
+    },
+    {
+      "source_id": "64",
+      "input": "The system must notify vehicles of accidents within a 2 km radius within 3 seconds of detection.",
+      "predicted_tags": "accident notification, proximity detection, response time"
+    },
+    {
+      "source_id": "65",
+      "input": "The system must support at least 50.000 simultaneously connected vehicles without degrading the average response time beyond 2 seconds.",
+      "predicted_tags": "concurrent connection, response time"
+    },
+    {
+      "source_id": "66",
+      "input": "The system must allow smart parking lots to update parking space availability every 10 seconds.",
+      "predicted_tags": "parking space availability, data update, data refresh rate"
+    },
+    {
+      "source_id": "69",
+      "input": "The system must allow automatic toll booths to process a toll payment in less than 1 second.",
+      "predicted_tags": "toll payment processing"
+    },
+    {
+      "source_id": "70",
+      "input": "The system must send an immediate report to the control center when a camera detects a vehicle stopped on the roadway for more than 30 seconds.",
+      "predicted_tags": "alert notification, vehicle detection, time threshold"
+    },
+    {
+      "source_id": "71",
+      "input": "The system must guarantee a service availability of at least 99.95% on a monthly basis.",
+      "predicted_tags": "service availability"
+    },
+    {
+      "source_id": "72",
+      "input": "The system must save vehicle GPS positions with a maximum accuracy of ±5 meters.",
+      "predicted_tags": "location data storage, data accuracy"
+    },
+    {
+      "source_id": "73",
+      "input": "The system must allow traffic operators to view in real time the status of all traffic lights in the city via a web dashboard.",
+      "predicted_tags": "traffic light statu, real-time data, dashboard display"
+    },
+    {
+      "source_id": "74",
+      "input": "Il sistema deve generare automaticamente una deviazione del traffico quando il livello di congestione supera l’85% della capacità stradale.",
+      "predicted_tags": "traffic deviation, congestion detection"
+    },
+    {
+      "source_id": "75",
+      "input": "The system must send notifications to drivers when the estimated travel time increases by at least 20% compared to the expected average.",
+      "predicted_tags": "notification delivery, travel time monitoring"
+    },
+    {
+      "source_id": "77",
+      "input": "The system must allow full service recovery within 15 minutes in case of central node failure.",
+      "predicted_tags": "disaster recovery, recovery time"
+    },
+    {
+      "source_id": "78",
+      "input": "The system must automatically detect the presence of pedestrians on crosswalks using cameras with a minimum accuracy of 95%.",
+      "predicted_tags": "pedestrian detection"
+    },
+    {
+      "source_id": "79",
+      "input": "The system should manage traffic quickly during peak hours.",
+      "predicted_tags": "traffic management"
+    },
+    {
+      "source_id": "80",
+      "input": "The system must ensure that all traffic lights remain green for as long as possible to improve vehicle flow.",
+      "predicted_tags": "traffic light control, traffic flow optimization"
+    },
+    {
+      "source_id": "81",
+      "input": "The system must always give absolute priority to public transport at all urban intersections.",
+      "predicted_tags": "public transport priority"
+    },
+    {
+      "source_id": "82",
+      "input": "The system must drastically reduce traffic in urban areas.",
+      "predicted_tags": "traffic management"
+    },
+    {
+      "source_id": "83",
+      "input": "The system must send notifications to drivers only when necessary.",
+      "predicted_tags": "notification delivery, notification condition"
+    },
+    {
+      "source_id": "84",
+      "input": "The system must record all vehicle movements without time limits.",
+      "predicted_tags": "vehicle tracking, data retention"
+    },
+    {
+      "source_id": "85",
+      "input": "The system must not store sensitive data related to vehicles or drivers.",
+      "predicted_tags": "data privacy"
+    },
+    {
+      "source_id": "86",
+      "input": "Il sistema deve consentire l’accesso immediato a tutti i dati di traffico a qualsiasi ente autorizzato.",
+      "predicted_tags": "data access, traffic data, access control"
+    },
+    {
+      "source_id": "87",
+      "input": "The system must automatically block all roads considered congested.",
+      "predicted_tags": "route restriction"
+    },
+    {
+      "source_id": "88",
+      "input": "The system should minimize waiting times at traffic lights for all vehicles simultaneously.",
+      "predicted_tags": "traffic optimization, traffic signal control"
+    },
+    {
+      "source_id": "89",
+      "input": "The system must be easy to use for any user.",
+      "predicted_tags": "usability"
+    },
+    {
+      "source_id": "90",
+      "input": "The system must operate correctly even in case of network problems or infrastructure failures without any interruption.",
+      "predicted_tags": "system resilience"
+    },
+    {
+      "source_id": "91",
+      "input": "The traffic light must turn green for ambulances.",
+      "predicted_tags": "traffic signal priority"
+    },
+    {
+      "source_id": "92",
+      "input": "The traffic light must count how many cars are in the queue.",
+      "predicted_tags": "vehicle counting"
+    },
+    {
+      "source_id": "93",
+      "input": "The traffic light must tell the vehicle when the red light will activate.",
+      "predicted_tags": "signal prediction, vehicle communication"
+    },
+    {
+      "source_id": "94",
+      "input": "The system must illuminate the crosswalk if it detects a pedestrian.",
+      "predicted_tags": "pedestrian detection, crosswalk illumination"
+    },
+    {
+      "source_id": "95",
+      "input": "The system must lower the speed limit if it is raining.",
+      "predicted_tags": "speed limit adjustment, weather condition"
+    },
+    {
+      "source_id": "96",
+      "input": "La strada deve avvisare l’auto se c’è un incidente avanti.",
+      "predicted_tags": "incident notification"
+    },
+    {
+      "source_id": "97",
+      "input": "The road must signal the presence of ice on the road surface.",
+      "predicted_tags": "ice detection"
+    },
+    {
+      "source_id": "98",
+      "input": "Il sistema deve avvisare l’auto se c’è un cantiere tra 1 km.",
+      "predicted_tags": "vehicle notification, road hazard"
+    },
+    {
+      "source_id": "99",
+      "input": "Cameras must signal if a vehicle is going the wrong way.",
+      "predicted_tags": "wrong way detection"
+    },
+    {
+      "source_id": "100",
+      "input": "The system must alert if an animal crosses the road.",
+      "predicted_tags": "event detection, notification"
+    },
+    {
+      "source_id": "101",
+      "input": "Il parcheggio deve dire all’auto dove sono i posti liberi",
+      "predicted_tags": "parking guidance"
+    },
+    {
+      "source_id": "102",
+      "input": "The system must reserve the space for electric vehicles.",
+      "predicted_tags": "space reservation"
+    },
+    {
+      "source_id": "103",
+      "input": "The parking lot must report who occupies disabled spaces without permission.",
+      "predicted_tags": "parking violation reporting"
+    },
+    {
+      "source_id": "104",
+      "input": "The system must open the parking barrier automatically.",
+      "predicted_tags": "access control"
+    },
+    {
+      "source_id": "105",
+      "input": "The system must send the parking receipt to the mobile phone.",
+      "predicted_tags": "receipt delivery"
+    },
+    {
+      "source_id": "106",
+      "input": "The toll booth must read the license plate without stopping the vehicle.",
+      "predicted_tags": "license plate recognition"
+    },
+    {
+      "source_id": "107",
+      "input": "The system must deduct the toll cost from the online account.",
+      "predicted_tags": "fund deduction, user account"
+    },
+    {
+      "source_id": "108",
+      "input": "The toll booth must notify if the payment was unsuccessful.",
+      "predicted_tags": "notification, payment failure"
+    },
+    {
+      "source_id": "109",
+      "input": "The system must count how many trucks pass over a bridge.",
+      "predicted_tags": "vehicle counting"
+    },
+    {
+      "source_id": "110",
+      "input": "The system must send automatic SOS alerts if it detects a violent impact.",
+      "predicted_tags": "emergency notification, impact detection"
+    },
+    {
+      "source_id": "111",
+      "input": "The system must transmit data in less than 0.1 seconds.",
+      "predicted_tags": "data transmission, response time"
+    },
+    {
+      "source_id": "112",
+      "input": "The system must operate even in dense fog.",
+      "predicted_tags": "environmental resilience"
+    },
+    {
+      "source_id": "113",
+      "input": "The system must connect 500 vehicles simultaneously.",
+      "predicted_tags": "vehicle connection"
+    },
+    {
+      "source_id": "114",
+      "input": "Sensors must withstand heat and frost.",
+      "predicted_tags": "environmental resistance"
+    },
+    {
+      "source_id": "115",
+      "input": "The system must stay on if power is lost.",
+      "predicted_tags": "power continuity"
+    },
+    {
+      "source_id": "116",
+      "input": "All driver data must remain anonymous.",
+      "predicted_tags": "data anonymity"
+    },
+    {
+      "source_id": "117",
+      "input": "Only authorized personnel may view the cameras.",
+      "predicted_tags": "access control, video viewing"
+    },
+    {
+      "source_id": "118",
+      "input": "The system must use a secure password for each vehicle.",
+      "predicted_tags": "password security, vehicle management"
+    },
+    {
+      "source_id": "119",
+      "input": "Sent messages must be very short and lightweight.",
+      "predicted_tags": "data volume"
+    },
+    {
+      "source_id": "120",
+      "input": "The system must work with all vehicle brands.",
+      "predicted_tags": "system compatibility"
+    },
+    {
+      "source_id": "121",
+      "input": "The smart traffic light must adapt the green light duration based on the number of vehicles detected at intersections.",
+      "predicted_tags": "signal timing adjustment, vehicle detection"
+    },
+    {
+      "source_id": "122",
+      "input": "The system must assign traffic light priority to approaching emergency vehicles.",
+      "predicted_tags": "traffic priority"
+    },
+    {
+      "source_id": "123",
+      "input": "The system must communicate to vehicles the remaining time before the traffic light changes.",
+      "predicted_tags": "vehicle communication, traffic light timing"
+    },
+    {
+      "source_id": "124",
+      "input": "The system must detect queues longer than 500 meters and redirect traffic to alternative routes.",
+      "predicted_tags": "traffic monitoring, traffic redirection"
+    },
+    {
+      "source_id": "125",
+      "input": "The system must detect vehicles stopped in the emergency lane.",
+      "predicted_tags": "stopped vehicle detection"
+    },
+    {
+      "source_id": "126",
+      "input": "The system must warn vehicles of accidents along the route.",
+      "predicted_tags": "hazard notification"
+    },
+    {
+      "source_id": "127",
+      "input": "The system must detect pedestrian crossings and activate light signals on the roadway.",
+      "predicted_tags": "pedestrian detection, signal activation"
+    },
+    {
+      "source_id": "128",
+      "input": "The system must detect bicycles near intersections.",
+      "predicted_tags": "object detection"
+    },
+    {
+      "source_id": "129",
+      "input": "The system must notify vehicles of active road construction sites.",
+      "predicted_tags": "construction zone notification"
+    },
+    {
+      "source_id": "130",
+      "input": "The system must warn vehicles of obstacles on the roadway.",
+      "predicted_tags": "obstacle warning"
+    },
+    {
+      "source_id": "131",
+      "input": "Il sistema deve segnalare ai veicoli condizioni di ghiaccio sull’asfalto.",
+      "predicted_tags": "hazard warning"
+    },
+    {
+      "source_id": "132",
+      "input": "The system must automatically lower speed limits in case of heavy rain.",
+      "predicted_tags": "speed limit adjustment, environmental monitoring"
+    },
+    {
+      "source_id": "133",
+      "input": "The system must communicate to vehicles the presence of fog along the route.",
+      "predicted_tags": "hazard notification, vehicle communication"
+    },
+    {
+      "source_id": "134",
+      "input": "The system must signal the presence of animals crossing the road.",
+      "predicted_tags": "animal detection"
+    },
+    {
+      "source_id": "135",
+      "input": "The system must detect vehicles traveling in the wrong direction.",
+      "predicted_tags": "wrong-way detection"
+    },
+    {
+      "source_id": "136",
+      "input": "The system must communicate available spaces in nearby parking lots to vehicles.",
+      "predicted_tags": "parking availability"
+    },
+    {
+      "source_id": "137",
+      "input": "The smart parking lot must guide the vehicle to the nearest free space.",
+      "predicted_tags": "parking guidance"
+    },
+    {
+      "source_id": "138",
+      "input": "The system must reserve parking spaces for electric vehicles that are charging.",
+      "predicted_tags": "parking reservation"
+    },
+    {
+      "source_id": "139",
+      "input": "Il parcheggio deve segnalare l’occupazione abusiva dei posti riservati ai disabili.",
+      "predicted_tags": "parking violation, alert notification"
+    },
+    {
+      "source_id": "140",
+      "input": "The system must allow automatic parking payment through vehicle identification.",
+      "predicted_tags": "parking payment, vehicle identification"
+    },
+    {
+      "source_id": "141",
+      "input": "The automatic toll booth must allow authorized vehicles to pass without stopping.",
+      "predicted_tags": "vehicle authorization"
+    },
+    {
+      "source_id": "142",
+      "input": "The system must communicate the expected waiting time at highway toll booths to vehicles.",
+      "predicted_tags": "traffic information"
+    },
+    {
+      "source_id": "143",
+      "input": "The system must direct vehicles to the least congested highway lane.",
+      "predicted_tags": "traffic guidance, traffic optimization"
+    },
+    {
+      "source_id": "144",
+      "input": "The system must warn vehicles of construction work in tunnels.",
+      "predicted_tags": "hazard alert, road condition"
+    },
+    {
+      "source_id": "145",
+      "input": "The system must communicate temporary urban traffic diversions to vehicles.",
+      "predicted_tags": "traffic information, vehicle communication"
+    },
+    {
+      "source_id": "146",
+      "input": "Il sistema deve rilevare attraversamenti ferroviari chiusi e bloccare l’accesso ai veicoli.",
+      "predicted_tags": "crossing statu detection, access restriction"
+    },
+    {
+      "source_id": "147",
+      "input": "The system must activate priority routes for buses and public transport during peak hours.",
+      "predicted_tags": "public transport priority, time scheduling"
+    },
+    {
+      "source_id": "148",
+      "input": "The system must signal to vehicles the available electric charging stations nearby.",
+      "predicted_tags": "vehicle communication, charging station availability"
+    },
+    {
+      "source_id": "149",
+      "input": "The system must communicate to vehicles the traffic level on the main road arteries.",
+      "predicted_tags": "traffic information, vehicle communication"
+    },
+    {
+      "source_id": "150",
+      "input": "The system must detect the presence of stolen vehicles through automatic license plate reading.",
+      "predicted_tags": "stolen item detection, license plate recognition"
+    },
+    {
+      "source_id": "151",
+      "input": "The system must signal the presence of free parking spaces throughout the city.",
+      "predicted_tags": "parking availability"
+    },
+    {
+      "source_id": "152",
+      "input": "The system must detect when it receives a communication from the vehicle whether it is compliant or not.",
+      "predicted_tags": "vehicle communication, compliance check"
+    },
+    {
+      "source_id": "153",
+      "input": "Il sistema deve comunicarmi se c’è l’arrivo di un ambulanza nei dintorni in maniera che ci si possa preparare",
+      "predicted_tags": "emergency notification"
+    },
+    {
+      "source_id": "154",
+      "input": "The automatic toll booth must allow me to pass without stopping to pay and without using a transponder by simply reading the license plate.",
+      "predicted_tags": "license plate recognition, toll collection, automated passage"
+    },
+    {
+      "source_id": "155",
+      "input": "Cameras must notify me of the presence of road impediments (ongoing works or slowdowns or motorcycles etc.).",
+      "predicted_tags": "hazard detection, notification"
+    },
+    {
+      "source_id": "156",
+      "input": "I semafori intelligenti devono automaticamente diventare verdi appena non rilevano più macchine davanti l’altro semaforo (senza aspettare inutilmente)",
+      "predicted_tags": "traffic light control, vehicle detection"
+    },
+    {
+      "source_id": "157",
+      "input": "Le telecamere (o sensori stradali) devono darmi il via libera a un dare precedenza ancora prima che io arrivi alle linee se non c’è nessuno che sta arrivando",
+      "predicted_tags": "traffic detection, traffic signal"
+    },
+    {
+      "source_id": "158",
+      "input": "Automatic toll booths must detect the presence of suspicious goods in trucks.",
+      "predicted_tags": "cargo screening"
+    },
+    {
+      "source_id": "159",
+      "input": "The system must be able to tell me whether I can overtake safely or not even on bends.",
+      "predicted_tags": "overtaking guidance"
+    },
+    {
+      "source_id": "160",
+      "input": "The system must not respond to stolen vehicles.",
+      "predicted_tags": "security response"
+    }
+  ]
+}
