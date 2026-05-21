@@ -1,9 +1,3 @@
-# TODO
-- Aggiungi la label al cluster oltre il sumamry
-- Ridistributire i cluster con punteggio sotto una soglia negli altri cluster
-- conversione di un documento in requsiti
-- convertire ogni cluster in sequenza di task
-
 # Keyword-Graph: Requirement Analysis Pipeline
 
 A comprehensive pipeline for analyzing software requirements through keyword extraction, graph construction, clustering, and LLM-based inconsistency detection.
@@ -11,7 +5,7 @@ A comprehensive pipeline for analyzing software requirements through keyword ext
 ## Pipeline Overview
 
 ```
-Phase 1: Keyword Extraction from Requirements (KeyBERT or Gemini)
+Phase 1: Keyword Extraction from Requirements (KeyBERT or Gemini 2.5 Pro)
    ↓
 Phase 2: Semantic Graph Construction (NetworkX)
    ↓
@@ -170,17 +164,12 @@ For each cluster, detects:
 
 ```
 Keyword-Graph/
-├── README.md                          # This file
-├── requirements.txt                   # Python dependencies
+├── README.md                         # This file
+├── requirements.txt                  # Python dependencies
 ├── config/
 │   └── run_pipeline.json             # Pipeline configuration
-├── data/
-│   └── crowd.csv                     # Input requirements
+├── data/                             # Input requirements
 ├── results/                          # Output files
-│   ├── extraction.json
-│   ├── keyword_graph.gexf
-│   ├── clustering_report.json
-│   └── phase4_analysis.json
 └── src/
     ├── run_pipeline.py               # Main entry point
     ├── phase1/                       # Keyword extraction

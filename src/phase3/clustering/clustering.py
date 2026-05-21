@@ -85,19 +85,28 @@ def _resolve_k(
             }
         )
 
-    # Elbow method: find the elbow point using maximum distance from line
     k_values = np.array([c["k"] for c in candidates])
     inertias = np.array([c["inertia"] for c in candidates])
-    
-    # Fit a line between first and last points
-    coords = np.column_stack((k_values, inertias))
+
+    # Normalize both axes to [0, 1] before computing perpendicular distances.
+    # Without normalization the inertia scale (tens of thousands) completely
+    # dominates the tiny k range, making the "elbow" detection arbitrary.
+    k_range = float(k_values[-1] - k_values[0])
+    i_range = float(inertias[0] - inertias[-1])  # inertia decreases, so [0] is max
+
+    if k_range > 0 and i_range > 0:
+        k_norm = (k_values - k_values[0]) / k_range
+        i_norm = (inertias - inertias[-1]) / i_range
+        coords = np.column_stack((k_norm, i_norm))
+    else:
+        coords = np.column_stack((k_values, inertias))
+
     line_start = coords[0]
     line_end = coords[-1]
     line_vec = line_end - line_start
     line_len = np.linalg.norm(line_vec)
-    
+
     if line_len > 0:
-        # Calculate distance from each point to the line
         distances = []
         for coord in coords:
             vec = coord - line_start
@@ -105,12 +114,21 @@ def _resolve_k(
             proj = line_start + proj_len * (line_vec / line_len)
             dist = np.linalg.norm(coord - proj)
             distances.append(dist)
-        
         elbow_idx = int(np.argmax(distances))
     else:
-        # All points are the same, choose first non-trivial k
         elbow_idx = 0
-    
+
+    # Conservative guard: if every marginal step improves inertia by less than
+    # 1 % the curve is essentially flat and a small k is preferable.
+    if len(candidates) > 1:
+        marginal = [
+            (inertias[i] - inertias[i + 1]) / inertias[i]
+            for i in range(len(inertias) - 1)
+        ]
+        flat_idx = next((i for i, m in enumerate(marginal) if m < 0.01), None)
+        if flat_idx is not None and flat_idx < elbow_idx:
+            elbow_idx = flat_idx
+
     best = candidates[elbow_idx]
 
     return int(best["k"]), {

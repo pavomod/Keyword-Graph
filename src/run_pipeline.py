@@ -594,9 +594,10 @@ def main() -> None:
                 for row in raw_requirement_data
             ]
 
+            graph_selected_k = clustering_payload["clustering"]["selected_k"]
             direct_clustering_result = cluster_requirements_directly(
                 requirement_texts=direct_requirement_texts,
-                selected_k=cluster_k,
+                selected_k=graph_selected_k,
                 k_min=cluster_k_min,
                 k_max=cluster_k_max,
                 embedding_model=semantic_model,

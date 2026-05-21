@@ -88,12 +88,44 @@ def cluster_requirements_directly(
                 "calinski_harabasz": calinski_harabasz,
             })
 
-        best = sorted(
-            candidates,
-            key=lambda c: (c["davies_bouldin"], -c["calinski_harabasz"]),
-        )[0]
-        k = int(best["k"])
-        k_selection = {"selected_k": int(k), "strategy": "auto-combined", "candidates": candidates}
+        # Use normalized elbow on inertia (same kneedle approach as Phase 3).
+        # The old "minimize davies_bouldin" strategy systematically picked k_max
+        # because DB improves monotonically with more clusters.
+        k_arr = np.array([c["k"] for c in candidates])
+        i_arr = np.array([c["inertia"] for c in candidates])
+
+        k_range = float(k_arr[-1] - k_arr[0])
+        i_range = float(i_arr[0] - i_arr[-1])
+
+        if k_range > 0 and i_range > 0:
+            k_norm = (k_arr - k_arr[0]) / k_range
+            i_norm = (i_arr - i_arr[-1]) / i_range
+            coords = np.column_stack((k_norm, i_norm))
+        else:
+            coords = np.column_stack((k_arr, i_arr))
+
+        line_start, line_end = coords[0], coords[-1]
+        line_vec = line_end - line_start
+        line_len = float(np.linalg.norm(line_vec))
+
+        if line_len > 0:
+            distances = []
+            for coord in coords:
+                vec = coord - line_start
+                proj = line_start + (np.dot(vec, line_vec) / line_len) * (line_vec / line_len)
+                distances.append(float(np.linalg.norm(coord - proj)))
+            elbow_idx = int(np.argmax(distances))
+        else:
+            elbow_idx = 0
+
+        if len(candidates) > 1:
+            marginal = [(i_arr[i] - i_arr[i + 1]) / i_arr[i] for i in range(len(i_arr) - 1)]
+            flat_idx = next((i for i, m in enumerate(marginal) if m < 0.01), None)
+            if flat_idx is not None and flat_idx < elbow_idx:
+                elbow_idx = flat_idx
+
+        k = int(candidates[elbow_idx]["k"])
+        k_selection = {"selected_k": k, "strategy": "elbow-method", "candidates": candidates}
 
     k = max(1, k)
 
