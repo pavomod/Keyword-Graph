@@ -40,16 +40,21 @@ def load_extraction_data(extraction_path: str) -> dict[str, str]:
     return requirement_texts
 
 
-def load_clustering_report(clustering_report_path: str) -> dict[str, list[str]]:
-    """Load clustering report and return mapping of cluster_id to requirement IDs."""
+def load_clustering_report(clustering_report_path: str) -> tuple[dict[str, list[str]], dict[str, int]]:
+    """Load clustering report and return (cluster_requirements_mapping, requirement_to_cluster_mapping)."""
     path = Path(clustering_report_path)
     if not path.exists():
         raise FileNotFoundError(f"Clustering report not found: {clustering_report_path}")
-    
+
     data = json.loads(path.read_text(encoding="utf-8"))
     cluster_mapping = data.get("cluster_requirements_mapping", {})
-    
-    return cluster_mapping
+    req_to_cluster_raw = data.get("requirement_to_cluster_mapping", {})
+    # Flatten list values to single int (majority-vote produces [cluster_id])
+    req_to_cluster: dict[str, int] = {
+        req_id: (v[0] if isinstance(v, list) else int(v))
+        for req_id, v in req_to_cluster_raw.items()
+    }
+    return cluster_mapping, req_to_cluster
 
 
 def build_cluster_input(
@@ -111,9 +116,9 @@ def preview_analysis_input(
     print(f"✓ Loaded {len(requirement_texts)} requirement texts from {extraction_path}")
     
     # Load clustering report
-    cluster_mapping = load_clustering_report(clustering_report_path)
+    cluster_mapping, _ = load_clustering_report(clustering_report_path)
     print(f"✓ Loaded {len(cluster_mapping)} clusters from {clustering_report_path}")
-    
+
     # Build input for LLM
     print("[Phase 4 Preview] Building cluster input for LLM...")
     clusters = build_cluster_input(cluster_mapping, requirement_texts)
@@ -299,9 +304,9 @@ def run_analysis(
     print(f"✓ Loaded {len(requirement_texts)} requirement texts from {extraction_path}")
     
     # Load clustering report
-    cluster_mapping = load_clustering_report(clustering_report_path)
+    cluster_mapping, req_to_cluster = load_clustering_report(clustering_report_path)
     print(f"✓ Loaded {len(cluster_mapping)} clusters from {clustering_report_path}")
-    
+
     # Build input for LLM
     print("[Phase 4] Building cluster input for LLM...")
     clusters = build_cluster_input(cluster_mapping, requirement_texts)
@@ -345,6 +350,10 @@ def run_analysis(
     )
     print("✓ Analysis complete")
     
+    # Inject requirement_to_cluster_mapping so the visualizer can show all requirements
+    if isinstance(analysis_result, dict) and "error" not in analysis_result:
+        analysis_result["requirement_to_cluster_mapping"] = req_to_cluster
+
     # Save results
     output_file = Path(output_path)
     output_file.parent.mkdir(parents=True, exist_ok=True)
@@ -353,5 +362,5 @@ def run_analysis(
         encoding="utf-8"
     )
     print(f"✓ Analysis saved to {output_path}")
-    
+
     return analysis_result

@@ -6,19 +6,19 @@
     "missing_in_keyword_graph": 0
   },
   "keyword_graph_approach": {
-    "num_clusters": 13,
+    "num_clusters": 5,
     "requirements_mapped": 250,
-    "multi_cluster_requirements": 83
+    "multi_cluster_requirements": 0
   },
   "direct_embedding_approach": {
-    "num_clusters": 30,
-    "inertia": 50.28993843470122,
-    "davies_bouldin": 1.9988855971524666,
-    "calinski_harabasz": 6.3212046428963085
+    "num_clusters": 8,
+    "inertia": 68.18885927166356,
+    "davies_bouldin": 2.7437735225433864,
+    "calinski_harabasz": 12.170500063359961
   },
   "agreement": {
-    "adjusted_rand_index": 0.0929147278776434,
-    "normalized_mutual_info": 0.4025844997205196,
+    "adjusted_rand_index": 0.06960763101109901,
+    "normalized_mutual_info": 0.156589792556905,
     "interpretation": {
       "ari": "1.0=perfect, ~0.0=random, <0=anti-correlated",
       "nmi": "1.0=identical, 0.0=independent"

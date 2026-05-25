@@ -77,6 +77,7 @@ DEFAULT_PIPELINE_CONFIG = {
     "cluster_node2vec_workers": 4,
     "cluster_requirement_feature_weight": 0.5,
     "cluster_requirement_svd_dim": 16,
+    "cluster_min_requirements": 0,
     "cluster_report_out": "results/clustering_report.json",
     "cluster_elbow_plot_out": "results/K.png",
     "enable_clustering_comparison": True,
@@ -129,11 +130,18 @@ def main() -> None:
             "Keyword extraction pipeline using KeyBERT and semantic graph generation."
         )
     )
-    parser.add_argument(
+    config_source = parser.add_mutually_exclusive_group()
+    config_source.add_argument(
         "--config",
         type=str,
-        default="config/run_pipeline.json",
+        default=None,
         help="JSON config path. CLI args override config values.",
+    )
+    config_source.add_argument(
+        "--dataset",
+        type=str,
+        default=None,
+        help="Dataset name. Loads config/{name}.json (e.g. --dataset crowd).",
     )
     parser.add_argument("--input-csv", type=str, default=None, help="Path to input CSV")
     parser.add_argument("--csv-sep", type=str, default=None, help="CSV separator (default: ',')")
@@ -199,6 +207,8 @@ def main() -> None:
     parser.add_argument("--cluster-node2vec-workers", type=int, default=None)
     parser.add_argument("--cluster-requirement-feature-weight", type=float, default=None)
     parser.add_argument("--cluster-requirement-svd-dim", type=int, default=None)
+    parser.add_argument("--cluster-min-requirements", type=int, default=None,
+                        help="Merge clusters with fewer requirements than this threshold into nearest cluster")
     parser.add_argument("--cluster-report-out", type=str, default=None)
     parser.add_argument("--cluster-elbow-plot-out", type=str, default=None)
     comparison_group = parser.add_mutually_exclusive_group()
@@ -243,10 +253,24 @@ def main() -> None:
                        help="Preview the input that will be sent to Gemini without sending it")
     parser.add_argument("--phase4-preview-output", type=str, default=None,
                        help="Path to save the preview output (default: results/phase4_preview.txt)")
-    
+    parser.add_argument(
+        "--skip-phase1",
+        dest="skip_phase1",
+        action="store_true",
+        default=False,
+        help="Skip keyword extraction and reuse existing extraction.json",
+    )
+
     args = parser.parse_args()
 
-    config_values = _load_pipeline_config(args.config)
+    if args.dataset is not None:
+        resolved_config_path = f"config/{args.dataset}.json"
+    elif args.config is not None:
+        resolved_config_path = args.config
+    else:
+        resolved_config_path = "config/run_pipeline.json"
+
+    config_values = _load_pipeline_config(resolved_config_path)
     unknown_config_keys = sorted(set(config_values) - set(DEFAULT_PIPELINE_CONFIG))
     if unknown_config_keys:
         print(f"[config] Ignoring unknown keys: {unknown_config_keys}")
@@ -343,6 +367,9 @@ def main() -> None:
             config_values,
             "cluster_requirement_svd_dim",
         )
+    )
+    cluster_min_requirements = int(
+        _resolve_setting(args.cluster_min_requirements, config_values, "cluster_min_requirements")
     )
     cluster_report_out = _resolve_setting(args.cluster_report_out, config_values, "cluster_report_out")
     cluster_elbow_plot_out = _resolve_setting(
@@ -455,63 +482,74 @@ def main() -> None:
     print("\n" + "=" * 60)
     print("▶ Phase 1: Keyword Extraction")
     print("=" * 60)
-    print(f"[i] Model: {keyword_extractor.title()}")
     inference_csv_path = _pick_input_csv(input_csv)
     print(f"[i] Target dataset: {inference_csv_path}")
     raw_df = pd.read_csv(inference_csv_path, sep=csv_sep)
     inference_df = prepare_inference_dataframe(raw_df)
-    model_inputs = raw_df["feature"].fillna("").astype(str).tolist()
-    keybert_kwargs = {
-        "top_n": int(keybert_top_n) if keybert_top_n is not None else None,
-        "keyphrase_ngram_range": tuple(keybert_keyphrase_ngram_range)
-        if keybert_keyphrase_ngram_range
-        else None,
-        "stop_words": keybert_stop_words,
-        "threshold": float(keybert_threshold) if keybert_threshold is not None else None,
-        "use_mmr": bool(keybert_use_mmr) if keybert_use_mmr is not None else None,
-        "diversity": float(keybert_diversity) if keybert_diversity is not None else None,
-        "model_name": keybert_model,
-    }
-    gemini_kwargs = {
-        "model_name": phase1_gemini_model,
-        "temperature": phase1_gemini_temperature,
-        "top_p": phase1_gemini_top_p,
-        "max_output_tokens": phase1_gemini_max_tokens,
-        "system_prompt_path": phase1_gemini_system_prompt,
-    }
 
-    predictions, _ = predict_keywords(
-        inputs=model_inputs,
-        keybert_kwargs=keybert_kwargs,
-        gemini_kwargs=gemini_kwargs,
-        backend=keyword_extractor,
-    )
-    print(f"[✓] Keywords extracted for {len(predictions)} requirements.")
-
-    predictions_by_source = {
-        str(source_id): prediction
-        for source_id, prediction in zip(inference_df["source_id"].tolist(), predictions)
-    }
-
-    extraction_records = [
-        {
-            "source_id": str(source_id),
-            "input": str(feature).strip(),
-            "predicted_tags": predictions_by_source.get(str(source_id), ""),
+    if args.skip_phase1:
+        extraction_path = Path(extraction_out)
+        if not extraction_path.exists():
+            raise FileNotFoundError(
+                f"--skip-phase1 requires an existing extraction file: {extraction_path}"
+            )
+        records = json.loads(extraction_path.read_text(encoding="utf-8"))["records"]
+        predictions = [r["predicted_tags"] for r in records]
+        print(f"[✓] Phase 1 skipped — loaded {len(predictions)} extractions from: {extraction_path}")
+    else:
+        print(f"[i] Model: {keyword_extractor.title()}")
+        model_inputs = raw_df["feature"].fillna("").astype(str).tolist()
+        keybert_kwargs = {
+            "top_n": int(keybert_top_n) if keybert_top_n is not None else None,
+            "keyphrase_ngram_range": tuple(keybert_keyphrase_ngram_range)
+            if keybert_keyphrase_ngram_range
+            else None,
+            "stop_words": keybert_stop_words,
+            "threshold": float(keybert_threshold) if keybert_threshold is not None else None,
+            "use_mmr": bool(keybert_use_mmr) if keybert_use_mmr is not None else None,
+            "diversity": float(keybert_diversity) if keybert_diversity is not None else None,
+            "model_name": keybert_model,
         }
-        for source_id, feature in zip(
-            raw_df["id"].astype(str) if "id" in raw_df.columns else raw_df.index.astype(str),
-            raw_df["feature"].tolist(),
-        )
-    ]
+        gemini_kwargs = {
+            "model_name": phase1_gemini_model,
+            "temperature": phase1_gemini_temperature,
+            "top_p": phase1_gemini_top_p,
+            "max_output_tokens": phase1_gemini_max_tokens,
+            "system_prompt_path": phase1_gemini_system_prompt,
+        }
 
-    extraction_path = Path(extraction_out)
-    extraction_path.parent.mkdir(parents=True, exist_ok=True)
-    extraction_path.write_text(
-        json.dumps({"records": extraction_records}, indent=2, ensure_ascii=False),
-        encoding="utf-8",
-    )
-    print(f"[✓] Extraction saved in: {extraction_path}")
+        predictions, _ = predict_keywords(
+            inputs=model_inputs,
+            keybert_kwargs=keybert_kwargs,
+            gemini_kwargs=gemini_kwargs,
+            backend=keyword_extractor,
+        )
+        print(f"[✓] Keywords extracted for {len(predictions)} requirements.")
+
+        predictions_by_source = {
+            str(source_id): prediction
+            for source_id, prediction in zip(inference_df["source_id"].tolist(), predictions)
+        }
+
+        extraction_records = [
+            {
+                "source_id": str(source_id),
+                "input": str(feature).strip(),
+                "predicted_tags": predictions_by_source.get(str(source_id), ""),
+            }
+            for source_id, feature in zip(
+                raw_df["id"].astype(str) if "id" in raw_df.columns else raw_df.index.astype(str),
+                raw_df["feature"].tolist(),
+            )
+        ]
+
+        extraction_path = Path(extraction_out)
+        extraction_path.parent.mkdir(parents=True, exist_ok=True)
+        extraction_path.write_text(
+            json.dumps({"records": extraction_records}, indent=2, ensure_ascii=False),
+            encoding="utf-8",
+        )
+        print(f"[✓] Extraction saved in: {extraction_path}")
 
     print("\n" + "=" * 60)
     print("▶ Phase 2: Semantic Graph Construction")
@@ -576,6 +614,7 @@ def main() -> None:
             requirement_feature_weight=cluster_requirement_feature_weight,
             requirement_svd_dim=cluster_requirement_svd_dim,
             isolated_nodes_removed=removed_isolated,
+            min_cluster_requirements=cluster_min_requirements,
         )
         print(
             f"[✓] Clustering completed: assigned elements to {clustering_payload['clustering'].get('selected_k')} clusters."

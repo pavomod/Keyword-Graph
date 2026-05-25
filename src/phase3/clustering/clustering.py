@@ -241,22 +241,29 @@ def _combine_clustering_features(
     Concatenate normalized Node2Vec embeddings with (optionally weighted)
     normalized requirement membership vectors.
 
-    Returns node2vec_vectors alone when requirement_vectors is None or
-    weight is 0. Otherwise returns a horizontally stacked matrix where the
-    requirement block is scaled by requirement_weight before concatenation.
+    requirement_weight is the fraction [0, 1) of total KMeans L2 distance
+    contributed by the requirement block. After per-feature z-score normalization
+    a d-dimensional block contributes ~sqrt(d) to L2 distance; the scale factor
+    corrects for dimensionality so the weight parameter is accurate regardless of
+    embedding_dim vs svd_dim.
     """
     left = _normalize_block(node2vec_vectors)
     if requirement_vectors is None:
         return left
 
-    weight = max(0.0, float(requirement_weight))
-    if weight == 0.0:
+    weight = float(requirement_weight)
+    if weight <= 0.0:
         return left
 
+    weight = min(weight, 0.9999)
     right = _normalize_block(requirement_vectors)
-    # Scale the requirement block so its contribution to KMeans distance is
-    # proportional to requirement_weight relative to the node2vec block.
-    return np.hstack([left, right * weight])
+    # Derive scale so right contributes exactly `weight` fraction of L2 distance:
+    #   scale * sqrt(d_right) / (sqrt(d_left) + scale * sqrt(d_right)) = weight
+    #   => scale = weight * sqrt(d_left) / ((1 - weight) * sqrt(d_right))
+    d_left = float(left.shape[1])
+    d_right = float(right.shape[1])
+    scale = weight * np.sqrt(d_left) / ((1.0 - weight) * np.sqrt(d_right))
+    return np.hstack([left, right * scale])
 
 
 def run_clustering_phase(
@@ -274,6 +281,7 @@ def run_clustering_phase(
     requirement_feature_weight: float = 0.5,
     requirement_svd_dim: int = 16,
     isolated_nodes_removed: int = 0,
+    min_cluster_requirements: int = 0,
 ) -> tuple[dict, nx.Graph]:
     embeddings = compute_node2vec_embeddings(
         graph,
@@ -321,6 +329,7 @@ def run_clustering_phase(
         random_state=random_state,
     )
 
+    kmeans: KMeans | None = None
     if selected_k <= 1:
         labels = np.zeros(len(nodes), dtype=int)
         inertia = 0.0
@@ -332,7 +341,8 @@ def run_clustering_phase(
     umap_coords = _compute_umap(vectors, random_state=random_state)
 
     node_records = []
-    cluster_to_requirements: dict[int, set[str]] = {i: set() for i in range(selected_k)} if selected_k > 0 else {}
+    # First pass: tally keyword votes per requirement per cluster
+    req_cluster_votes: dict[str, dict[int, int]] = {}
 
     for idx, node in enumerate(nodes):
         cluster_id = int(labels[idx])
@@ -345,8 +355,9 @@ def run_clustering_phase(
 
         raw = str(graph.nodes[node].get("requirement_ids", "")).strip()
         req_ids = [piece.strip() for piece in raw.split(",") if piece.strip()]
-        if cluster_id in cluster_to_requirements:
-            cluster_to_requirements[cluster_id].update(req_ids)
+        for req_id in req_ids:
+            req_cluster_votes.setdefault(req_id, {})
+            req_cluster_votes[req_id][cluster_id] = req_cluster_votes[req_id].get(cluster_id, 0) + 1
 
         node_records.append(
             {
@@ -357,20 +368,36 @@ def run_clustering_phase(
             }
         )
 
+    # Second pass: assign each requirement to its majority-vote cluster.
+    # Ties broken by lowest cluster ID. Each requirement belongs to exactly one cluster.
+    cluster_to_requirements: dict[int, set[str]] = {i: set() for i in range(selected_k)} if selected_k > 0 else {}
+    requirement_to_cluster_mapping: dict[str, list[int]] = {}
+
+    for req_id, votes in req_cluster_votes.items():
+        best_cluster = max(votes, key=lambda k: (votes[k], -k))
+        if best_cluster in cluster_to_requirements:
+            cluster_to_requirements[best_cluster].add(req_id)
+        requirement_to_cluster_mapping[req_id] = [best_cluster]
+
+    # Post-processing: merge tiny clusters (< min_cluster_requirements) into nearest by centroid distance.
+    tiny_clusters_merged = 0
+    if min_cluster_requirements > 0 and kmeans is not None:
+        tiny = [cid for cid, reqs in cluster_to_requirements.items() if 0 < len(reqs) < min_cluster_requirements]
+        non_tiny = [cid for cid in cluster_to_requirements if cid not in tiny and cluster_to_requirements[cid]]
+        if tiny and non_tiny:
+            centers = kmeans.cluster_centers_
+            for tiny_cid in tiny:
+                best = min(non_tiny, key=lambda c: float(np.linalg.norm(centers[tiny_cid] - centers[c])))
+                for req_id in cluster_to_requirements[tiny_cid]:
+                    cluster_to_requirements[best].add(req_id)
+                    requirement_to_cluster_mapping[req_id] = [best]
+                cluster_to_requirements[tiny_cid] = set()
+                tiny_clusters_merged += 1
+
     cluster_requirements_mapping = {
         str(cluster_id): sorted(list(req_ids))
         for cluster_id, req_ids in cluster_to_requirements.items()
-    }
-
-    requirement_to_cluster_mapping: dict[str, list[int]] = {}
-    for cluster_id, req_ids in cluster_to_requirements.items():
-        for req_id in req_ids:
-            requirement_to_cluster_mapping.setdefault(str(req_id), [])
-            requirement_to_cluster_mapping[str(req_id)].append(int(cluster_id))
-
-    requirement_to_cluster_mapping = {
-        req_id: sorted(clusters)
-        for req_id, clusters in requirement_to_cluster_mapping.items()
+        if req_ids
     }
 
     elbow_plot = (
@@ -394,6 +421,7 @@ def run_clustering_phase(
                 "weight": float(requirement_feature_weight),
             },
             "isolated_nodes_removed": int(isolated_nodes_removed),
+            "tiny_clusters_merged": int(tiny_clusters_merged),
         },
         "cluster_requirements_mapping": cluster_requirements_mapping,
         "requirement_to_cluster_mapping": requirement_to_cluster_mapping,

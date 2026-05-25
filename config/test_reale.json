@@ -41,6 +41,8 @@
   "cluster_node2vec_workers": 1,
   "cluster_requirement_feature_weight": 0.3,
   "cluster_requirement_svd_dim": 64,
+  "cluster_min_requirements": 5,
+  "cluster_max_requirements": 0,
 
   "enable_clustering_comparison": true,
 

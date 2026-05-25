@@ -201,7 +201,19 @@
 
         function getReqToClusterMap() {
             const map = {};
-            if (appState.analysis && appState.analysis.clusters) {
+            if (!appState.analysis) return map;
+
+            // Primary: use the authoritative mapping injected by the pipeline
+            if (appState.analysis.requirement_to_cluster_mapping) {
+                const raw = appState.analysis.requirement_to_cluster_mapping;
+                Object.entries(raw).forEach(([reqId, clusterId]) => {
+                    map[reqId] = String(clusterId);
+                });
+                return map;
+            }
+
+            // Fallback: scan analysis fields (older phase4 JSONs without the mapping)
+            if (appState.analysis.clusters) {
                 appState.analysis.clusters.forEach(cluster => {
                     const fields = ['duplicates', 'inconsistencies', 'ambiguities', 'gaps', 'dependencies'];
                     fields.forEach(f => {
@@ -231,7 +243,7 @@
             appState.analysis.clusters.forEach((cluster, index) => {
                 const btn = document.createElement('button');
                 btn.className = "sidebar-item w-full text-left px-4 py-3 text-sm mono transition-all border-b border-zinc-900/50 hover:bg-zinc-800/50";
-                btn.innerHTML = `<span class="text-blue-500">#${index+1}</span> Cluster ${cluster.cluster_id}`;
+                btn.innerHTML = `<span class="text-blue-500">#${index+1}</span> Cluster ${cluster.cluster_id}${cluster.label ? `<div class="text-[9px] text-zinc-400 mt-0.5 truncate">${escapeHtml(cluster.label)}</div>` : ''}`;
                 btn.onclick = () => selectCluster(index);
                 list.appendChild(btn);
             });
@@ -264,7 +276,7 @@
                     <div class="analysis-card bg-[#0d0d0f] border border-zinc-800 p-4 flex gap-4 items-start cursor-pointer hover:border-zinc-700 transition-colors" onclick="compare(['${escapeHtml(id)}'], this)">
                         <div class="flex flex-col gap-2 shrink-0 w-24">
                             <span class="mono text-xs text-blue-400 font-bold bg-blue-500/10 px-2 py-0.5 rounded border border-blue-500/20 truncate text-center">Req ${escapeHtml(id)}</span>
-                            <span class="mono text-[10px] text-emerald-500 bg-emerald-500/10 border border-emerald-500/20 px-2 py-0.5 rounded truncate text-center">Cl. ${escapeHtml(clusterId)}</span>
+                            <span class="mono text-[10px] text-emerald-500 bg-emerald-500/10 border border-emerald-500/20 px-2 py-0.5 rounded truncate text-center" title="Cluster ${escapeHtml(clusterId)}">${escapeHtml(getClusterLabel(clusterId))}</span>
                         </div>
                         <div class="text-sm text-gray-300 leading-relaxed">${escapeHtml(req.text)}</div>
                     </div>
@@ -321,7 +333,7 @@
             header.innerHTML = `
                 <div class="flex items-center gap-3 mb-1">
                     <span class="bg-blue-500/10 text-blue-500 border border-blue-500/20 px-2 py-0.5 text-[10px] mono">Active node</span>
-                    <h2 class="text-2xl font-bold mono">Cluster ${cluster.cluster_id}</h2>
+                    <h2 class="text-2xl font-bold mono">Cluster ${cluster.cluster_id}${cluster.label ? ` <span class="text-zinc-500 text-xl font-normal">— ${escapeHtml(cluster.label)}</span>` : ''}</h2>
                 </div>
                 <p class="text-xs text-zinc-500 mono mb-4">Analysis time: ${new Date().toLocaleString()}</p>
                 ${qualityHtml}
@@ -462,6 +474,12 @@
                 }
             });
             content.innerHTML = html;
+        }
+
+        function getClusterLabel(clusterId) {
+            if (!appState.analysis) return `Cl. ${clusterId}`;
+            const cluster = appState.analysis.clusters.find(c => c.cluster_id === clusterId);
+            return (cluster && cluster.label) ? cluster.label : `Cl. ${clusterId}`;
         }
 
         // small helper to escape HTML when injecting dataset text

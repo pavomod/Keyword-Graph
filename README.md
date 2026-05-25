@@ -99,6 +99,12 @@ python -m src.run_pipeline --dataset test_reale --with-phase4
 python -m src.run_pipeline --dataset test_reale --keyword-extractor gemini
 ```
 
+### Skip Phase 1 (reuse existing extraction.json)
+
+```bash
+python -m src.run_pipeline --dataset test_reale --skip-phase1
+```
+
 ### Phase 4 only (phases 1–3 already computed)
 ```bash
 python -m src.run_pipeline --dataset test_reale --phase4-only

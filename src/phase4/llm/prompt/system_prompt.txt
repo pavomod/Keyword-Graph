@@ -64,6 +64,7 @@ Return a single valid JSON object. No text outside the JSON.
   "clusters": [
     {
       "cluster_id": "string — exactly as provided",
+      "label": "string — 2 to 5 words naming the cluster topic",
       "duplicates": [
         {
           "requirements": ["id1", "id2"],
@@ -112,6 +113,7 @@ Return a single valid JSON object. No text outside the JSON.
   the same cluster; omit the field only if no existing requirement is related
 - All arrays default to `[]` if nothing is found — never omit a key
 - `cluster_id` must match the input exactly (case-sensitive)
+- `label` is required. A short phrase (2–5 words) naming the dominant topic or functional area of the cluster. Derived exclusively from the cluster's requirements. Examples: "User Authentication", "Payment Processing", "Notification System".
 - `quality_score` is a number (0–100) evaluating the quality of the clustering, considering only how coherent and conceptually consistent the grouping of requirements is (i.e., whether they belong together). Do not penalize ambiguity, duplication, or contradictions within the requirements themselves.
 - `quality_reason` is required and must explain the rationale behind the assigned quality score, focusing only on the coherence of the grouping.
 - `summary` is required and must never be empty. It must be a single sentence describing what the cluster is about. The summary must be derived exclusively from the requirements within the same cluster—do not use assumptions from other clusters or external knowledge.
@@ -153,6 +155,7 @@ For each cluster, reason in this order before writing output:
   "clusters": [
     {
       "cluster_id": "C1",
+      "label": "System Response Time",
       "duplicates": [
         {
           "requirements": ["R1", "R2"],
