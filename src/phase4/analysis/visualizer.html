@@ -53,6 +53,8 @@
 
         <div class="flex gap-2 items-center">
             <span id="global-quality" class="hidden text-[10px] mono"></span>
+            <button onclick="loadPreset('crowd')" class="cursor-pointer bg-blue-900/40 border border-blue-700/60 hover:bg-blue-800/60 text-[11px] mono py-1.5 px-3 transition-all text-blue-300">Load crowd</button>
+            <button onclick="loadPreset('test_reale')" class="cursor-pointer bg-purple-900/40 border border-purple-700/60 hover:bg-purple-800/60 text-[11px] mono py-1.5 px-3 transition-all text-purple-300">Load test_reale</button>
             <label class="cursor-pointer bg-zinc-900 border border-zinc-700 hover:bg-zinc-800 text-[11px] mono py-1.5 px-3 transition-all flex items-center gap-2">
                 Upload analysis (JSON)
                 <input type="file" id="jsonInput" class="hidden" accept=".json">
@@ -124,40 +126,46 @@
             globalQualityScore: null
         };
 
-        // --- File Handling ---
-        document.getElementById('jsonInput').addEventListener('change', (e) => {
-            const file = e.target.files[0];
-            if (!file) return;
-            const reader = new FileReader();
-            reader.onload = (event) => {
-                try {
-                    appState.analysis = JSON.parse(event.target.result);
-                    
-                    // Calculate global quality score
-                    const validScores = appState.analysis.clusters
-                        .map(c => c.quality_score)
-                        .filter(score => score !== undefined && score !== null && !isNaN(score));
-                    
-                    appState.globalQualityScore = validScores.length > 0 
-                        ? (validScores.reduce((a, b) => a + b, 0) / validScores.length).toFixed(1)
-                        : null;
-                    
-                    document.getElementById('stat-json').innerText = `[Analysis: loaded — ${appState.analysis.clusters.length} clusters]`;
-                    document.getElementById('stat-json').className = "text-emerald-500";
-                    
-                    // Update global quality score display
-                    updateGlobalQualityDisplay();
-                    
-                    renderClusterSidebar();
-                } catch (err) { alert("Invalid JSON format"); }
-            };
-            reader.readAsText(file);
-        });
+        // --- Preset Loader ---
+        const PRESETS = {
+            crowd:      { json: '../../../results/crowd/phase4_analysis.json',      csv: '../../../data/crowd.csv' },
+            test_reale: { json: '../../../results/test_reale/phase4_analysis.json', csv: '../../../data/test_reale.csv' },
+        };
 
-        document.getElementById('csvInput').addEventListener('change', (e) => {
-            const file = e.target.files[0];
-            if (!file) return;
-            Papa.parse(file, {
+        async function loadPreset(name) {
+            const preset = PRESETS[name];
+            if (!preset) return;
+            try {
+                const [jsonRes, csvRes] = await Promise.all([fetch(preset.json), fetch(preset.csv)]);
+                if (!jsonRes.ok) throw new Error(`JSON fetch failed: ${jsonRes.status} ${jsonRes.statusText}`);
+                if (!csvRes.ok) throw new Error(`CSV fetch failed: ${csvRes.status} ${csvRes.statusText}`);
+                const jsonText = await jsonRes.text();
+                const csvText = await csvRes.text();
+                processJsonText(jsonText);
+                processCsvText(csvText);
+            } catch (err) {
+                alert(`Cannot load preset "${name}".\n\n${err.message}\n\nRun the visualizer via a local HTTP server:\n  python -m http.server 8000\nthen open http://localhost:8000/src/phase4/analysis/visualizer.html`);
+            }
+        }
+
+        function processJsonText(text) {
+            try {
+                appState.analysis = JSON.parse(text);
+                const validScores = appState.analysis.clusters
+                    .map(c => c.quality_score)
+                    .filter(score => score !== undefined && score !== null && !isNaN(score));
+                appState.globalQualityScore = validScores.length > 0
+                    ? (validScores.reduce((a, b) => a + b, 0) / validScores.length).toFixed(1)
+                    : null;
+                document.getElementById('stat-json').innerText = `[Analysis: loaded — ${appState.analysis.clusters.length} clusters]`;
+                document.getElementById('stat-json').className = "text-emerald-500";
+                updateGlobalQualityDisplay();
+                renderClusterSidebar();
+            } catch (err) { alert("Invalid JSON format"); }
+        }
+
+        function processCsvText(text) {
+            Papa.parse(text, {
                 header: true,
                 skipEmptyLines: true,
                 transformHeader: (h) => h.trim().toLowerCase(),
@@ -167,21 +175,35 @@
                         for (const c of candidates) if (row[c] !== undefined) return row[c];
                         return undefined;
                     };
-
                     results.data.forEach(row => {
                         const id = (findField(row, ['id','req_id','requirement','identifier']) || '').toString().trim();
                         const text = (findField(row, ['feature','text','description','content','requirement_text','requirementdescription']) || '').toString().trim();
                         const role = (findField(row, ['role']) || '').toString().trim();
-                        if (id && text) appState.requirements[id] = { text: text, role: role };
+                        if (id && text) appState.requirements[id] = { text, role };
                     });
-
                     const count = Object.keys(appState.requirements).length;
                     document.getElementById('stat-csv').innerText = `[Dataset: loaded — ${count} entries]`;
                     document.getElementById('stat-csv').className = "text-emerald-500";
-                    if (count === 0) alert('No valid id/feature pairs found in CSV. Please ensure your file has columns named "id" and "feature" (or a text column).');
                 },
                 error: (err) => { alert('Error parsing CSV: ' + (err && err.message ? err.message : err)); }
             });
+        }
+
+        // --- File Handling ---
+        document.getElementById('jsonInput').addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = (event) => processJsonText(event.target.result);
+            reader.readAsText(file);
+        });
+
+        document.getElementById('csvInput').addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = (event) => processCsvText(event.target.result);
+            reader.readAsText(file);
         });
 
         // --- Rendering Logic ---

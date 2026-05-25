@@ -121,6 +121,20 @@ python -m src.run_pipeline --dataset test_reale --phase4-only \
   --phase4-use-direct-clustering
 ```
 
+## Visualizer
+
+The Phase 4 visualizer (`src/phase4/analysis/visualizer.html`) includes **Load crowd** and **Load test_reale** buttons that fetch files automatically. These require a local HTTP server — browsers block `fetch()` on `file://` URLs.
+
+Start the server from the repo root:
+```bash
+python -m http.server 8000
+```
+
+Then open:
+```
+http://localhost:8000/src/phase4/analysis/visualizer.html
+```
+
 ## Output Files
 
 | File | Phase | Description |
