@@ -1,0 +1,56 @@
+{
+  "input_csv": "data/test_reale.csv",
+  "csv_sep": ",",
+  "graph_out": "results/test_reale/keyword_graph.gexf",
+  "extraction_out": "results/test_reale/extraction.json",
+  "cluster_report_out": "results/test_reale/clustering_report.json",
+  "cluster_elbow_plot_out": "results/test_reale/k.png",
+  "clustering_comparison_out": "results/test_reale/clustering_comparison.json",
+  "direct_clustering_report_out": "results/test_reale/direct_clustering_report.json",
+  "phase4_output": "results/test_reale/phase4_analysis.json",
+  "phase4_preview_output": "results/test_reale/phase4_preview.txt",
+
+  "keyword_extractor": "gemini",
+  "phase1_gemini_model": "gemini-2.5-flash",
+  "phase1_gemini_temperature": 0.0,
+  "phase1_gemini_top_p": 0.9,
+  "phase1_gemini_max_tokens": 800,
+  "phase1_gemini_system_prompt": "src/phase1/gemini/prompt/system_prompt.txt",
+
+  "keybert_model": "BAAI/bge-m3",
+  "keybert_top_n": 4,
+  "keybert_keyphrase_ngram_range": [1, 2],
+  "keybert_stop_words": "english",
+  "keybert_threshold": 0.8,
+  "keybert_use_mmr": true,
+  "keybert_diversity": 0.8,
+
+  "semantic_model": "BAAI/bge-m3",
+  "semantic_threshold": 0.65,
+
+  "enable_node_reduction": false,
+
+  "enable_clustering": true,
+  "cluster_k": null,
+  "cluster_k_min": 5,
+  "cluster_k_max": 20,
+  "cluster_embedding_dim": 128,
+  "cluster_random_state": 42,
+  "cluster_node2vec_walk_length": 30,
+  "cluster_node2vec_num_walks": 200,
+  "cluster_node2vec_workers": 1,
+  "cluster_requirement_feature_weight": 0.3,
+  "cluster_requirement_svd_dim": 64,
+
+  "enable_clustering_comparison": true,
+
+  "enable_phase4_analysis": false,
+  "phase4_clustering_report": "results/test_reale/clustering_report.json",
+  "phase4_system_prompt": "src/phase4/llm/prompt/system_prompt.txt",
+  "phase4_use_direct_clustering": false,
+  "phase4_preview": true,
+  "phase4_gemini_model": "gemini-2.5-pro",
+  "phase4_gemini_temperature": 0.2,
+  "phase4_gemini_top_p": 0.9,
+  "phase4_gemini_max_tokens": 50000
+}
