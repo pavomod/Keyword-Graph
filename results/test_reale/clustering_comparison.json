@@ -6,7 +6,7 @@
     "missing_in_keyword_graph": 0
   },
   "keyword_graph_approach": {
-    "num_clusters": 7,
+    "num_clusters": 6,
     "requirements_mapped": 157,
     "multi_cluster_requirements": 0
   },
@@ -17,8 +17,8 @@
     "calinski_harabasz": 4.768009394229364
   },
   "agreement": {
-    "adjusted_rand_index": 0.09384015381251297,
-    "normalized_mutual_info": 0.2505132953541526,
+    "adjusted_rand_index": 0.04851712574386013,
+    "normalized_mutual_info": 0.1647905100450477,
     "interpretation": {
       "ari": "1.0=perfect, ~0.0=random, <0=anti-correlated",
       "nmi": "1.0=identical, 0.0=independent"

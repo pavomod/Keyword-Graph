@@ -1,391 +1,181 @@
 {
   "clusters": [
     {
-      "cluster_id": "0",
-      "label": "Smart Parking System Functionality",
+      "cluster_id": "1",
+      "label": "Smart Road Hazard and Event Notifications",
       "duplicates": [
         {
           "requirements": [
-            "101",
-            "137"
+            "39",
+            "126",
+            "96"
           ],
-          "type": "partial",
-          "reason": "Both requirements are about guiding a vehicle to a free space. R137 is more specific by mentioning the 'nearest' free space, while R101 (in Italian) is a general statement about being told where free spots are."
+          "type": "full",
+          "reason": "All three requirements mandate warning vehicles about accidents on the route, expressing the same core function."
         },
         {
           "requirements": [
-            "13",
-            "35"
+            "11",
+            "38",
+            "129"
           ],
-          "type": "partial",
-          "reason": "Both requirements concern communicating available parking spaces. R13 specifies a 10-second update interval, while R35 uses the more general term 'real time'."
+          "type": "full",
+          "reason": "All three requirements mandate notifying vehicles about road construction sites or roadworks."
         },
         {
           "requirements": [
-            "102",
-            "138"
+            "130",
+            "155"
           ],
-          "type": "partial",
-          "reason": "Both requirements are about reserving spaces for electric vehicles. R138 is a more specific case, limiting the reservation to EVs that are actively charging."
+          "type": "full",
+          "reason": "Both requirements mandate warning vehicles of obstacles or impediments on the roadway."
         },
         {
           "requirements": [
-            "136",
-            "151"
+            "46",
+            "8"
           ],
           "type": "partial",
-          "reason": "Both requirements are about signaling available parking. R136 is scoped to 'nearby' lots, while R151 has a much broader scope of 'throughout the city'."
+          "reason": "Both requirements mandate alerting drivers to a wrong-way vehicle. R8 is more specific, defining a 2-kilometer radius for the alert."
+        },
+        {
+          "requirements": [
+            "9",
+            "131"
+          ],
+          "type": "full",
+          "reason": "Both requirements, one in English and one in Italian, mandate reporting the presence of ice on the road surface to vehicles."
+        },
+        {
+          "requirements": [
+            "108",
+            "59"
+          ],
+          "type": "full",
+          "reason": "Both requirements mandate notifying users about unsuccessful toll payments or payment errors."
+        },
+        {
+          "requirements": [
+            "154",
+            "37"
+          ],
+          "type": "full",
+          "reason": "Both requirements specify that automatic toll booths must process payments without the vehicle having to stop."
+        },
+        {
+          "requirements": [
+            "16",
+            "139"
+          ],
+          "type": "partial",
+          "reason": "Both requirements concern the detection of unauthorized parking in disabled spaces. R16 is more specific as it includes the action of notifying the local police."
         }
       ],
-      "inconsistencies": [
-        {
-          "requirements": [
-            "13",
-            "55"
-          ],
-          "type": "constraint",
-          "reason": "R13 states the system updates and transmits parking availability every 10 seconds. R55 requires that a vehicle receives an update within 5 seconds of a request. A vehicle's request cannot be fulfilled with data fresher than the 10-second system update cycle, making the 5-second requirement potentially misleading or conflicting with the system's data freshness."
-        },
-        {
-          "requirements": [
-            "21",
-            "71"
-          ],
-          "type": "constraint",
-          "reason": "R21 specifies 99.99% availability annually for emergency functions (~52 mins downtime/year), while R71 specifies 99.95% monthly for general service (~22 mins downtime/month or ~4.4 hours/year). While not a direct contradiction as they apply to different functions, the significant difference in specified uptime levels for potentially overlapping systems requires clarification."
-        }
-      ],
+      "inconsistencies": [],
       "ambiguities": [
         {
-          "requirement": "35",
-          "issue": "The term 'real time' is not quantified.",
-          "suggestion": "Specify a maximum latency for the communication, e.g., 'within 1 second of a space status change'."
+          "requirement": "83",
+          "issue": "The term 'only when necessary' is highly subjective and lacks objective criteria.",
+          "suggestion": "Define specific rules or user-configurable profiles that determine when a notification is considered necessary (e.g., based on event severity, proximity, or driver preferences)."
         },
         {
-          "requirement": "89",
-          "issue": "The terms 'easy to use' and 'any user' are subjective and undefined.",
-          "suggestion": "Define specific usability goals, such as 'A new user must be able to find and reserve a parking space in under 60 seconds without training', and specify user personas."
+          "requirement": "110",
+          "issue": "The term 'violent impact' is not defined.",
+          "suggestion": "Specify a quantifiable threshold for detection, such as a G-force measurement or airbag deployment signal."
         },
         {
-          "requirement": "95",
-          "issue": "The condition 'if it is raining' is not quantified.",
-          "suggestion": "Specify a measurable threshold, such as a rainfall rate (e.g., > 2 mm/hour) detected by a road sensor."
+          "requirement": "38",
+          "issue": "The term 'immediately' is not a measurable time frame.",
+          "suggestion": "Replace with a maximum latency, for example, 'within 500 milliseconds'."
         },
         {
-          "requirement": "136",
-          "issue": "The term 'nearby' is not defined.",
-          "suggestion": "Specify a maximum radius, e.g., 'within a 5 km radius'."
+          "requirement": "39",
+          "issue": "The term 'nearby' is vague.",
+          "suggestion": "Define a specific distance or radius, for example, 'within a 2 km radius'."
+        },
+        {
+          "requirement": "48",
+          "issue": "The term 'dangerous weather conditions' is subjective.",
+          "suggestion": "List the specific, measurable conditions that trigger a notification, such as 'fog with visibility under 100 meters' or 'crosswinds exceeding 60 km/h'."
+        },
+        {
+          "requirement": "153",
+          "issue": "The term 'nei dintorni' (nearby) is undefined.",
+          "suggestion": "Specify a precise radius in meters or kilometers for detecting and alerting about approaching ambulances."
         }
       ],
       "gaps": [
         {
-          "description": "Requirements R14 and R45 specify two different methods for reserving a parking space (direct vehicle-sensor vs. mobile app), but there are no requirements defining the reservation lifecycle, such as reservation duration, cancellation policy, or behavior if a user fails to arrive.",
+          "description": "The cluster mandates numerous alerts and notifications (e.g., for accidents, roadworks, obstacles) but lacks requirements defining the format, priority, or delivery mechanism (e.g., visual, audio, haptic) for these messages.",
           "related_to": [
-            "14",
-            "45"
+            "100",
+            "11",
+            "39",
+            "46",
+            "48"
           ]
         },
         {
-          "description": "R140 specifies automatic payment, but there are no associated requirements for managing payment methods, handling failed transactions, or issuing receipts.",
+          "description": "Requirements R108 and R59 state that payment errors should be reported, but there is no defined process for the user to follow to resolve the payment issue.",
           "related_to": [
-            "140"
+            "108",
+            "59"
           ]
         },
         {
-          "description": "R139 requires reporting unauthorized occupation of disabled spaces, but it does not specify what action should follow the report (e.g., alert law enforcement, issue a fine).",
+          "description": "Requirements R154 and R37 specify drive-through tolling, but the underlying payment mechanism (e.g., linking a bank account, billing by mail based on license plate) is not defined.",
           "related_to": [
-            "139"
+            "154",
+            "37"
           ]
         }
       ],
       "dependencies": [
         {
-          "from": "137",
-          "to": "35",
+          "from": "12",
+          "to": "64",
           "type": "requires",
-          "reason": "Guiding a vehicle to a free space (R137) requires the system to first know where available spaces are (R35)."
+          "reason": "Notifying vehicles of an accident (R64) requires the initial detection of that accident, a process described in R12."
         },
         {
-          "from": "15",
-          "to": "148",
-          "type": "requires",
-          "reason": "Guiding an electric vehicle to a charging station (R15) requires the system to first know the location of available stations (R148)."
+          "from": "20",
+          "to": "110",
+          "type": "influences",
+          "reason": "The low-latency requirement of R20 is a critical performance constraint for implementing the 'automatic SOS alerts' in R110."
         }
       ],
       "quality_score": 65,
-      "quality_reason": "The cluster is mostly focused on smart parking systems, but includes several unrelated requirements concerning road speed limits (R95) and generic system availability (R21, R71), which dilute its thematic coherence.",
-      "summary": "This cluster defines functionalities for a smart parking system, including finding and reserving spaces, handling payments, and catering to special vehicle types, but also contains unrelated requirements."
+      "quality_reason": "The cluster is predominantly focused on vehicle notifications but also includes distinct functional areas like automated tolling, parking management, and high-level performance metrics, which reduces its overall thematic coherence.",
+      "summary": "This cluster defines requirements for a system that notifies drivers about various road events, hazards, and conditions, and also covers some automated toll and parking functionalities."
     },
     {
-      "cluster_id": "1",
-      "label": "V2I Security and Data Management",
+      "cluster_id": "2",
+      "label": "Intelligent Traffic Flow Management",
       "duplicates": [
+        {
+          "requirements": [
+            "1",
+            "51",
+            "156"
+          ],
+          "type": "partial",
+          "reason": "All three requirements describe the same core concept of adaptive traffic lights that adjust timing based on real-time vehicle detection, just with slightly different phrasing."
+        },
         {
           "requirements": [
             "31",
             "61"
           ],
           "type": "full",
-          "reason": "Both requirements specify that smart traffic light status must be updated every 500ms. R61 is the Italian version of R31 and adds context that the update is based on sensor data."
+          "reason": "Both requirements specify that the system must update the status of smart traffic lights every 500 milliseconds."
         },
         {
           "requirements": [
-            "22",
-            "34"
-          ],
-          "type": "full",
-          "reason": "Both requirements mandate that unauthenticated vehicles be denied access to the system/data. R34 is the Italian version of R22."
-        },
-        {
-          "requirements": [
-            "23",
-            "44"
+            "91",
+            "122"
           ],
           "type": "partial",
-          "reason": "Both require encryption of communications. R23 is more specific, mandating end-to-end encryption and adding an anonymization requirement before storage."
-        },
-        {
-          "requirements": [
-            "23",
-            "116",
-            "60"
-          ],
-          "type": "partial",
-          "reason": "These requirements all relate to data privacy. R60 is a general statement on protecting personal data, which is partially implemented by R116 (data must be anonymous) and R23 (data must be anonymized before storage)."
-        }
-      ],
-      "inconsistencies": [
-        {
-          "requirements": [
-            "40",
-            "63",
-            "84"
-          ],
-          "type": "constraint",
-          "reason": "These requirements provide conflicting data retention policies. R40 mandates saving data for 'at least 30 days', R63 for 'at least 365 days', and R84 'without time limits'. These policies cannot all be satisfied simultaneously."
-        },
-        {
-          "requirements": [
-            "84",
-            "85"
-          ],
-          "type": "logical",
-          "reason": "R84 requires recording all vehicle movements indefinitely, while R85 forbids storing sensitive data. Vehicle movement history is typically considered sensitive personal data under privacy regulations like GDPR, creating a direct conflict."
-        },
-        {
-          "requirements": [
-            "116",
-            "86"
-          ],
-          "type": "indirect",
-          "reason": "R116 states all driver data must be anonymous, while R86 requires giving authorized entities immediate access to 'all traffic data'. If 'all traffic data' includes information that could identify a driver or vehicle for law enforcement or auditing purposes, this would conflict with the absolute anonymity required by R116."
-        }
-      ],
-      "ambiguities": [
-        {
-          "requirement": "119",
-          "issue": "The terms 'very short' and 'lightweight' are subjective.",
-          "suggestion": "Specify a maximum message size in bytes."
-        },
-        {
-          "requirement": "85",
-          "issue": "The term 'sensitive data' is not defined.",
-          "suggestion": "Provide a precise definition of what constitutes sensitive data, referencing applicable privacy laws (e.g., GDPR, CCPA)."
-        },
-        {
-          "requirement": "86",
-          "issue": "The term 'any authorized entity' is vague.",
-          "suggestion": "Specify the roles or organizations that can be authorized (e.g., law enforcement, road operators) and the process for authorization."
-        },
-        {
-          "requirement": "160",
-          "issue": "The condition 'stolen vehicles' is undefined.",
-          "suggestion": "Specify the source for the stolen vehicle list (e.g., a national police database) and the required update frequency for this list."
-        }
-      ],
-      "gaps": [
-        {
-          "description": "R22 and R34 mandate the use of authentication certificates, but there are no requirements defining the Certificate Authority (CA), certificate lifecycle management (issuance, revocation, renewal), or the process for a vehicle to obtain a certificate.",
-          "related_to": [
-            "22",
-            "34"
-          ]
-        },
-        {
-          "description": "R28 specifies secure Over-The-Air (OTA) updates for roadside units, but there is no requirement for a fail-safe or rollback mechanism in case an update fails, which is critical for infrastructure components.",
-          "related_to": [
-            "28"
-          ]
-        },
-        {
-          "description": "R40, R63, and R84 define data storage durations, but there are no requirements specifying what happens to the data after the retention period (e.g., secure deletion, aggregation).",
-          "related_to": [
-            "40",
-            "63",
-            "84"
-          ]
-        }
-      ],
-      "dependencies": [
-        {
-          "from": "19",
-          "to": "22",
-          "type": "requires",
-          "reason": "Automatic payment for services (R19) requires a secure authentication mechanism (R22) to identify the vehicle and authorize the transaction."
-        },
-        {
-          "from": "26",
-          "to": "22",
-          "type": "requires",
-          "reason": "Validating messages to prevent spoofing (R26) depends on an underlying authentication system that can verify the sender's identity, as specified in R22."
-        }
-      ],
-      "quality_score": 90,
-      "quality_reason": "The requirements are strongly themed around V2I communication, security, and data management, forming a very logical and coherent group.",
-      "summary": "This cluster defines requirements for V2I communication, focusing heavily on security, data privacy, and performance, covering aspects like authentication, encryption, and data retention policies."
-    },
-    {
-      "cluster_id": "4",
-      "label": "Road Event Detection and Response",
-      "duplicates": [
-        {
-          "requirements": [
-            "1",
-            "51",
-            "121",
-            "156"
-          ],
-          "type": "full",
-          "reason": "All four requirements describe the same functionality: adapting traffic light timing based on real-time vehicle flow or count. R156 is a colloquial Italian version of the same concept."
-        },
-        {
-          "requirements": [
-            "2",
-            "32"
-          ],
-          "type": "partial",
-          "reason": "Both requirements concern giving priority to emergency vehicles. R32 is the general principle, while R2 provides a specific implementation rule (immediate green within a 500m radius)."
-        },
-        {
-          "requirements": [
-            "46",
-            "99",
-            "135"
-          ],
-          "type": "partial",
-          "reason": "R99 and R135 both describe the detection of wrong-way vehicles and are duplicates. R46 describes the action to be taken upon detection (alerting drivers), making it functionally dependent but not a duplicate."
-        },
-        {
-          "requirements": [
-            "57",
-            "125"
-          ],
-          "type": "full",
-          "reason": "Both requirements specify the detection of vehicles stopped in the emergency lane."
-        },
-        {
-          "requirements": [
-            "100",
-            "134"
-          ],
-          "type": "full",
-          "reason": "Both requirements specify the detection and signaling of animals crossing the road."
-        }
-      ],
-      "inconsistencies": [
-        {
-          "requirements": [
-            "7",
-            "33"
-          ],
-          "type": "temporal",
-          "reason": "R33 requires detecting an obstacle within 3 seconds of the event's occurrence, while R7 requires detection within 3 seconds of the camera signal. If there is any delay in the camera capturing or processing the event, these two time constraints could conflict."
-        }
-      ],
-      "ambiguities": [
-        {
-          "requirement": "152",
-          "issue": "The term 'compliant or not' is completely undefined.",
-          "suggestion": "Specify the compliance standard being checked (e.g., 'compliant with Euro 6 emissions standards', 'compliant with the V2X authentication protocol')."
-        },
-        {
-          "requirement": "54",
-          "issue": "The goal 'reduce the risk of collisions' is not a verifiable requirement.",
-          "suggestion": "Rephrase as a specific, measurable function, such as 'The system shall issue a forward collision warning if the time-to-collision is less than 2.5 seconds'."
-        },
-        {
-          "requirement": "155",
-          "issue": "The actor 'me' is not defined, and 'road impediments' is vague.",
-          "suggestion": "Specify the recipient of the notification (e.g., 'the driver', 'a central control room') and provide a clear definition or exhaustive list of what constitutes an impediment."
-        }
-      ],
-      "gaps": [
-        {
-          "description": "R2 and R32 mandate giving emergency vehicles a green light, but there is no corresponding safety requirement to ensure all conflicting traffic directions are shown a red light to prevent collisions at the intersection.",
-          "related_to": [
-            "2",
-            "32"
-          ]
-        },
-        {
-          "description": "R150 requires detecting stolen vehicles via license plate, but there is no requirement defining the source of the stolen vehicle list (e.g., a police database) or the frequency at which this list must be updated.",
-          "related_to": [
-            "150"
-          ]
-        },
-        {
-          "description": "Multiple requirements (e.g., R10, R39, R46) mandate sending alerts to drivers, but there are no requirements defining the alert modality (visual, audible), format, or prioritization scheme to prevent driver distraction or alert fatigue.",
-          "related_to": [
-            "10",
-            "39",
-            "46",
-            "64"
-          ]
-        }
-      ],
-      "dependencies": [
-        {
-          "from": "39",
-          "to": "33",
-          "type": "requires",
-          "reason": "Sending an alert to drivers about a nearby accident (R39) can only occur after the system has detected that accident (R33)."
-        },
-        {
-          "from": "94",
-          "to": "78",
-          "type": "requires",
-          "reason": "Illuminating a crosswalk (R94) is triggered by the detection of a pedestrian on that crosswalk (R78)."
-        },
-        {
-          "from": "74",
-          "to": "1",
-          "type": "influences",
-          "reason": "The decision to generate a traffic deviation when congestion is high (R74) is a macro-level action that influences or overrides the micro-level traffic light regulation based on local vehicle flow (R1)."
-        }
-      ],
-      "quality_score": 95,
-      "quality_reason": "The cluster is exceptionally well-focused on a single functional area: real-time road event detection and automated response. All requirements contribute directly to this theme.",
-      "summary": "This cluster focuses on the detection of various road events—such as accidents, obstacles, and traffic conditions—and the corresponding system responses, including traffic light adjustments and driver alerts."
-    },
-    {
-      "cluster_id": "5",
-      "label": "Traffic Flow Management and Optimization",
-      "duplicates": [
-        {
-          "requirements": [
-            "122",
-            "91"
-          ],
-          "type": "full",
-          "reason": "Both requirements state that traffic lights should give priority to approaching emergency vehicles. R91 specifically mentions ambulances, which is a type of emergency vehicle."
-        },
-        {
-          "requirements": [
-            "38",
-            "145"
-          ],
-          "type": "full",
-          "reason": "Both requirements mandate that the system notify drivers of roadworks or diversions."
+          "reason": "R91 (green light for ambulances) is a specific instance of the more general requirement R122 (priority for emergency vehicles)."
         },
         {
           "requirements": [
@@ -393,15 +183,7 @@
             "73"
           ],
           "type": "partial",
-          "reason": "Both requirements specify a monitoring dashboard for traffic operators. R73 is a more specific instance, focusing on the real-time status of traffic lights, while R52 is a general traffic monitoring capability."
-        },
-        {
-          "requirements": [
-            "147",
-            "81"
-          ],
-          "type": "partial",
-          "reason": "Both requirements concern giving priority to public transport. R147 is about activating priority routes, while R81 is a much stronger and more absolute rule of giving priority at all intersections."
+          "reason": "Both requirements describe a monitoring dashboard for operators. R73 is more specific, mentioning a 'web dashboard' for viewing 'all traffic lights'."
         }
       ],
       "inconsistencies": [
@@ -411,7 +193,7 @@
             "88"
           ],
           "type": "logical",
-          "reason": "R80 aims to keep lights green 'for as long as possible' to improve flow in one direction, while R88 aims to 'minimize waiting times for all vehicles simultaneously'. These are contradictory goals in traffic management, as extending a green light for one direction necessarily increases the waiting time for all other directions."
+          "reason": "R80 aims to keep lights green 'for as long as possible', while R88 aims to 'minimize waiting times for all vehicles simultaneously'. These are contradictory goals in traffic management, as a green light for one direction necessitates a red light (and waiting time) for crossing traffic."
         },
         {
           "requirements": [
@@ -419,53 +201,69 @@
             "122"
           ],
           "type": "logical",
-          "reason": "R81 gives 'absolute priority' to public transport, while R122 gives priority to emergency vehicles. These rules conflict when a bus and an ambulance approach the same intersection. The system lacks a rule to resolve this conflict."
+          "reason": "R81 gives 'absolute priority' to public transport, while R122 gives priority to emergency vehicles. This creates a conflict when a bus and an ambulance approach an intersection simultaneously, as their priorities are not ranked."
         },
         {
           "requirements": [
-            "82",
-            "87"
+            "87",
+            "6"
           ],
-          "type": "indirect",
-          "reason": "The goal of R82 is to 'drastically reduce traffic'. The method proposed in R87, to 'block all roads considered congested', is likely to worsen overall traffic by displacing vehicles and creating new bottlenecks, thus conflicting with the primary goal."
+          "type": "logical",
+          "reason": "R87 suggests 'blocking' congested roads, which is a contradictory traffic management strategy to R6, which aims to 'drain traffic' from congested areas by reconfiguring traffic lights."
+        },
+        {
+          "requirements": [
+            "113",
+            "24",
+            "65"
+          ],
+          "type": "constraint",
+          "reason": "These requirements define system capacity using different and potentially conflicting metrics (500 vehicles total, 10,000 vehicles/km², 50,000 vehicles total). Without a defined system scope (e.g., total area covered), it's impossible to know if these constraints can be met simultaneously."
         }
       ],
       "ambiguities": [
         {
           "requirement": "79",
-          "issue": "The term 'quickly' is subjective and unmeasurable.",
-          "suggestion": "Define specific performance metrics, such as 'reduce average intersection waiting time by 25% during peak hours'."
+          "issue": "The phrase 'manage traffic quickly' is subjective and not measurable.",
+          "suggestion": "Define specific performance metrics, such as 'reduce average intersection wait time by 25% during peak hours'."
         },
         {
           "requirement": "82",
-          "issue": "The term 'drastically reduce' is vague.",
-          "suggestion": "Specify a quantifiable target, such as 'reduce vehicle volume in the city center by 15% during peak hours'."
+          "issue": "The term 'drastically reduce' is unquantified.",
+          "suggestion": "Specify a measurable target, such as 'reduce vehicle volume in the city center by 15% compared to baseline'."
         },
         {
-          "requirement": "158",
-          "issue": "The term 'suspicious goods' is extremely vague and likely unimplementable.",
-          "suggestion": "Define specific criteria for what constitutes suspicious goods, or reference a specific screening technology or database (e.g., 'detect radiation signatures above background levels')."
+          "requirement": "115",
+          "issue": "The requirement to 'stay on if power is lost' is underspecified.",
+          "suggestion": "Specify the required duration of backup power and which specific functions must remain operational during an outage."
         },
         {
           "requirement": "159",
-          "issue": "The condition 'overtake safely' is ambiguous.",
-          "suggestion": "Define the specific parameters the system must check to determine if an overtake is safe (e.g., 'no oncoming traffic detected within 500 meters', 'sufficient acceleration capability')."
+          "issue": "The ability to 'tell me whether I can overtake safely or not even on bends' is extremely complex and ambiguous.",
+          "suggestion": "This requirement is likely infeasible. It should be removed or drastically re-scoped to define the exact conditions, sensor inputs, and liabilities involved."
         }
       ],
       "gaps": [
         {
-          "description": "R50 requires the system to identify traffic congestion, but there are no requirements specifying the data sources or methods for this detection (e.g., road sensors, floating car data, camera analytics).",
+          "description": "Multiple requirements grant priority to different vehicle types (R122: emergency, R147: public transport, R81: public transport). A clear hierarchy of these priorities is missing, creating ambiguity in conflict scenarios (e.g., an ambulance vs. a bus).",
           "related_to": [
-            "50",
-            "6",
-            "124"
+            "122",
+            "147",
+            "81",
+            "91"
           ]
         },
         {
-          "description": "R124 and R145 specify redirecting traffic to alternative routes, but there is no requirement to first assess the capacity of these alternative routes to ensure the diverted traffic does not create new congestion.",
+          "description": "The system is required to redirect traffic (R124, R74), but there are no requirements defining how these diversions are communicated to drivers.",
           "related_to": [
             "124",
-            "145"
+            "74"
+          ]
+        },
+        {
+          "description": "Requirement R107 ('deduct the toll cost from the online account') is functionally isolated and implies a complete payment subsystem that is otherwise undefined in this traffic-management-focused cluster.",
+          "related_to": [
+            "107"
           ]
         }
       ],
@@ -474,22 +272,22 @@
           "from": "6",
           "to": "50",
           "type": "requires",
-          "reason": "Reconfiguring traffic light timings to drain traffic (R6) can only be triggered after the system has identified critical congestion (R50)."
+          "reason": "Reconfiguring traffic lights to drain traffic (R6) first requires the system to identify the areas with congested traffic (R50)."
         },
         {
-          "from": "4",
-          "to": "123",
+          "from": "62",
+          "to": "122",
           "type": "requires",
-          "reason": "To suggest an optimal speed to meet a green wave (GLOSA) as in R4, the system must first know and be able to communicate the remaining time before a traffic light changes (R123)."
+          "reason": "Sending a priority route to an emergency vehicle (R62) depends on the system's fundamental ability to assign traffic light priority to it (R122)."
         }
       ],
       "quality_score": 75,
-      "quality_reason": "While the majority of requirements focus on traffic flow optimization, the cluster's coherence is weakened by the inclusion of several unrelated functionalities concerning parking enforcement (R103), cargo inspection (R158), and in-vehicle driver assistance (R159).",
-      "summary": "This cluster specifies requirements for advanced traffic management systems, focusing on optimizing traffic flow, providing driver guidance, and managing intersection priorities."
+      "quality_reason": "The cluster has a strong, coherent core focused on intelligent traffic management and adaptive traffic lights, but its quality is diminished by several unrelated requirements concerning toll payments, cargo inspection, and vehicle-specific safety features.",
+      "summary": "This cluster specifies requirements for an intelligent traffic management system, focusing on adaptive traffic lights, congestion detection and mitigation, and providing priority for emergency and public transport vehicles."
     },
     {
-      "cluster_id": "6",
-      "label": "System Capacity and Performance",
+      "cluster_id": "4",
+      "label": "Vehicle-to-Infrastructure (V2I) Communication",
       "duplicates": [
         {
           "requirements": [
@@ -497,394 +295,565 @@
             "93"
           ],
           "type": "full",
-          "reason": "Both requirements specify that the system must communicate the traffic light countdown to vehicles."
-        }
-      ],
-      "inconsistencies": [
-        {
-          "requirements": [
-            "113",
-            "24",
-            "58",
-            "65"
-          ],
-          "type": "constraint",
-          "reason": "These requirements provide four different and conflicting specifications for the system's capacity to handle simultaneous vehicle connections: 500 vehicles (R113), 10,000 vehicles/km² (R24), 10,000 vehicles total (R58), and 50,000 vehicles total (R65). These values must be reconciled."
-        }
-      ],
-      "ambiguities": [
-        {
-          "requirement": "115",
-          "issue": "The requirement 'stay on if power is lost' is underspecified.",
-          "suggestion": "Specify the required duration of backup power (e.g., 'for at least 60 minutes') and which functions must remain operational during the outage."
-        },
-        {
-          "requirement": "36",
-          "issue": "The term 'heavy traffic conditions' is not quantified.",
-          "suggestion": "Define the conditions based on measurable metrics, such as 'up to a density of 10,000 vehicles per square kilometer' or 'while processing up to 1,000 messages per second'."
-        },
-        {
-          "requirement": "141",
-          "issue": "The term 'authorized vehicles' is undefined.",
-          "suggestion": "Specify the mechanism or criteria for authorization (e.g., 'vehicles subscribed to the tolling service', 'vehicles with a valid authentication certificate')."
-        }
-      ],
-      "gaps": [
-        {
-          "description": "R109 requires the system to count trucks on a bridge, but does not state the purpose of this count. The implementation depends on the goal (e.g., structural health monitoring, traffic analysis, billing), which is missing.",
-          "related_to": [
-            "109"
-          ]
-        },
-        {
-          "description": "The cluster specifies multiple high-level capacity requirements (R24, R58, R65) but lacks detailed performance requirements, such as maximum latency for different message types or acceptable packet loss rates under load.",
-          "related_to": [
-            "24",
-            "58",
-            "65",
-            "36"
-          ]
-        }
-      ],
-      "dependencies": [],
-      "quality_score": 65,
-      "quality_reason": "The cluster is a loose collection of non-functional capacity and reliability requirements mixed with a few unrelated functional requirements (e.g., fog alerts, truck counting), resulting in low thematic coherence.",
-      "summary": "This cluster groups non-functional requirements related to system capacity and resilience, alongside a few specific communication and sensing functions."
-    },
-    {
-      "cluster_id": "7",
-      "label": "System Robustness and Reliability",
-      "duplicates": [
-        {
-          "requirements": [
-            "112",
-            "43"
-          ],
-          "type": "partial",
-          "reason": "Both requirements concern operation in poor weather. R43 is a general statement about 'adverse weather', while R112 is a specific instance for 'dense fog'."
-        },
-        {
-          "requirements": [
-            "49",
-            "90"
-          ],
-          "type": "partial",
-          "reason": "Both requirements concern fault tolerance. R49 specifies continued operation during a loss of internet connectivity, whereas R90 is a much broader and stronger requirement for operation during any network or infrastructure failure 'without any interruption'."
-        }
-      ],
-      "inconsistencies": [
-        {
-          "requirements": [
-            "90"
-          ],
-          "type": "constraint",
-          "reason": "R90's demand for operation 'without any interruption' during infrastructure failures is an absolute that is physically impossible. A failure is an interruption. While the system can be designed for high availability and fast recovery, zero interruption is not a realistic or testable requirement."
-        }
-      ],
-      "ambiguities": [
-        {
-          "requirement": "114",
-          "issue": "The terms 'heat' and 'frost' are not quantified.",
-          "suggestion": "Specify a precise operational temperature range, for example, '-25°C to +70°C'."
-        },
-        {
-          "requirement": "43",
-          "issue": "The term 'adverse weather conditions' is vague.",
-          "suggestion": "List the specific conditions the system must withstand, such as heavy rain (e.g., >25 mm/hr), snow, hail, and high winds (e.g., up to 120 km/h)."
-        },
-        {
-          "requirement": "120",
-          "issue": "The phrase 'all vehicle brands' is an unachievable absolute.",
-          "suggestion": "Rephrase to require compliance with specific, widely-adopted automotive or communication standards, such as 'ETSI ITS-G5' or 'C-V2X'."
-        },
-        {
-          "requirement": "132",
-          "issue": "The term 'heavy rain' is not quantified.",
-          "suggestion": "Specify a measurable threshold, such as a rainfall rate of '> 10 mm/hour'."
-        }
-      ],
-      "gaps": [
-        {
-          "description": "The cluster specifies that the system must operate under various failure and environmental stress conditions (R43, R49, R90), but it lacks requirements for monitoring and reporting the system's status. For example, it should specify if the system must log data locally during a network outage or send an alert when a component is failing due to heat.",
-          "related_to": [
-            "43",
-            "49",
-            "90",
-            "114"
-          ]
-        }
-      ],
-      "dependencies": [
-        {
-          "from": "132",
-          "to": "43",
-          "type": "requires",
-          "reason": "The ability to lower speed limits in heavy rain (R132) depends on the system's underlying capability to operate correctly in adverse weather conditions (R43)."
-        }
-      ],
-      "quality_score": 90,
-      "quality_reason": "The cluster is highly coherent, grouping together non-functional requirements that define the system's operational robustness, environmental resilience, and fault tolerance.",
-      "summary": "This cluster defines non-functional requirements for system robustness, focusing on environmental resilience, fault tolerance, and compatibility."
-    },
-    {
-      "cluster_id": "9",
-      "label": "Driver Notifications and Automated Tolling",
-      "duplicates": [
-        {
-          "requirements": [
-            "108",
-            "59"
-          ],
-          "type": "full",
-          "reason": "Both requirements specify that the system must notify the user in case of a toll payment error or failure."
-        },
-        {
-          "requirements": [
-            "11",
-            "129",
-            "98"
-          ],
-          "type": "full",
-          "reason": "All three requirements are about notifying drivers of upcoming road work or construction sites. R98 adds a specific distance of 1 km."
-        },
-        {
-          "requirements": [
-            "126",
-            "96"
-          ],
-          "type": "full",
-          "reason": "Both requirements specify that the system must warn drivers of accidents on the road ahead."
-        },
-        {
-          "requirements": [
-            "154",
-            "37"
-          ],
-          "type": "full",
-          "reason": "Both requirements describe an automated tolling system that allows vehicles to pay without stopping."
+          "reason": "Both requirements describe the same function: transmitting the traffic light's remaining time or upcoming state change to the vehicle."
         }
       ],
       "inconsistencies": [],
       "ambiguities": [
         {
-          "requirement": "83",
-          "issue": "The condition 'only when necessary' is subjective and undefined.",
-          "suggestion": "Define a clear set of rules for notification priority and frequency to avoid alert fatigue. For example, 'Critical safety alerts must always be sent; informational alerts should not be sent more than once every 5 minutes'."
+          "requirement": "120",
+          "issue": "The phrase 'work with all vehicle brands' is an absolute statement that is likely infeasible and untestable.",
+          "suggestion": "Rephrase to specify compliance with open, industry-wide communication standards, such as those mentioned in R25."
         },
         {
-          "requirement": "48",
-          "issue": "The term 'dangerous weather conditions' is vague.",
-          "suggestion": "Provide a specific list of conditions that trigger a notification, such as 'ice on road', 'fog with visibility under 100m', or 'crosswinds exceeding 60 km/h'."
+          "requirement": "152",
+          "issue": "The criteria for a vehicle being 'compliant or not' are undefined.",
+          "suggestion": "Specify the rules for compliance, such as 'must possess a valid and unrevoked security certificate' or 'must support ETSI ITS-G5 protocol version X.Y'."
         },
         {
-          "requirement": "153",
-          "issue": "The term 'nei dintorni' (nearby) is not quantified.",
-          "suggestion": "Specify a clear radius for the alert, e.g., 'within a 2-kilometer radius'."
+          "requirement": "160",
+          "issue": "The mechanism for identifying a vehicle as 'stolen' is not defined.",
+          "suggestion": "Specify that the system must interface with an authoritative database (e.g., from law enforcement) and define the update frequency for this data."
+        },
+        {
+          "requirement": "89",
+          "issue": "The phrase 'easy to use for any user' is subjective and non-functional.",
+          "suggestion": "Define specific, measurable usability goals, such as 'A driver must be able to configure notification preferences in under 60 seconds with no prior training'."
         }
       ],
       "gaps": [
         {
-          "description": "The cluster mandates numerous driver notifications (R11, R126, R48, etc.) but lacks any requirements for the Human-Machine Interface (HMI). It does not specify how alerts should be prioritized (e.g., accident vs. roadwork) or presented (e.g., visual, audio) to the driver safely.",
+          "description": "R160 states the system must not respond to stolen vehicles, but it fails to specify if any other action should be taken, such as logging the vehicle's location or notifying authorities, which would be a critical security function.",
           "related_to": [
-            "11",
-            "126",
-            "48",
-            "8",
-            "83"
+            "160"
           ]
         },
         {
-          "description": "R154 and R37 describe automated tolling via license plate reading but fail to specify the error handling process for when a license plate cannot be read due to dirt, damage, or occlusion.",
+          "description": "R44 requires encryption for all V2I communications, but there are no associated requirements for key management, certificate authority (CA) infrastructure, or specification of cryptographic algorithms.",
           "related_to": [
-            "154",
-            "37"
+            "44"
           ]
         },
         {
-          "description": "Several requirements (e.g., R8, R96, R130) require alerting drivers to hazards, but the underlying requirements for *detecting* these hazards (wrong-way vehicles, accidents, obstacles) are missing from this cluster.",
+          "description": "R152 requires checking vehicle compliance, but the consequences for a non-compliant vehicle are not defined. It is unclear if service is denied, if the event is logged, or if an alert is raised.",
           "related_to": [
-            "8",
-            "96",
-            "130"
+            "152"
           ]
         }
       ],
       "dependencies": [
         {
-          "from": "59",
-          "to": "37",
+          "from": "14",
+          "to": "25",
           "type": "requires",
-          "reason": "Notifying a user of a payment error (R59) is a process that depends on the automated toll payment system (R37) being in place."
+          "reason": "The ability to reserve a parking space via V2I communication (R14) depends on the system supporting a common communication standard (R25)."
         },
         {
-          "from": "8",
-          "to": "20",
-          "type": "influences",
-          "reason": "The Wrong-Way Vehicle alert in R8 is a critical safety message, and its implementation must adhere to the low-latency communication constraint defined in R20."
+          "from": "160",
+          "to": "152",
+          "type": "requires",
+          "reason": "To ignore a stolen vehicle (R160), the system must first be able to determine its status, which is part of the compliance check in R152."
         }
       ],
-      "quality_score": 80,
-      "quality_reason": "The cluster has a strong dual focus on driver notification systems and automated tolling functionalities, which are closely related aspects of V2I communication, making the grouping logical and coherent.",
-      "summary": "This cluster defines requirements for a V2I notification system that alerts drivers to various road hazards and provides status updates for automated services like tolling and parking."
+      "quality_score": 95,
+      "quality_reason": "The cluster is exceptionally coherent, with all requirements focusing directly on the technical and functional aspects of Vehicle-to-Infrastructure (V2I) communication, including standards, security, and specific use cases.",
+      "summary": "This cluster defines requirements for the communication interface between vehicles and infrastructure, including compatibility standards, security, performance, and specific applications like traffic light timing and parking reservations."
+    },
+    {
+      "cluster_id": "5",
+      "label": "Smart Parking and System Reliability",
+      "duplicates": [
+        {
+          "requirements": [
+            "101",
+            "35",
+            "137"
+          ],
+          "type": "partial",
+          "reason": "These requirements all describe the core function of informing a driver about and guiding them to an available parking space."
+        },
+        {
+          "requirements": [
+            "102",
+            "15",
+            "138"
+          ],
+          "type": "partial",
+          "reason": "All three requirements concern providing preferential parking services (reserving, guiding) for electric vehicles, especially at charging stations."
+        },
+        {
+          "requirements": [
+            "132",
+            "95"
+          ],
+          "type": "full",
+          "reason": "Both requirements mandate that the system must lower speed limits in response to rain."
+        },
+        {
+          "requirements": [
+            "43",
+            "112",
+            "114"
+          ],
+          "type": "partial",
+          "reason": "All three requirements address the need for system hardware to operate correctly under adverse environmental conditions like bad weather, fog, heat, and frost."
+        }
+      ],
+      "inconsistencies": [
+        {
+          "requirements": [
+            "71",
+            "90"
+          ],
+          "type": "constraint",
+          "reason": "R90 demands operation 'without any interruption', which implies 100% availability. This directly contradicts R71, which specifies a more realistic availability target of 99.95%."
+        },
+        {
+          "requirements": [
+            "13",
+            "55"
+          ],
+          "type": "temporal",
+          "reason": "R13 states the parking system updates availability every 10 seconds, while R55 requires vehicles to receive updates within 5 seconds. A vehicle cannot receive data that is fresher than the system's 10-second update interval, creating a logical conflict in data freshness expectations."
+        }
+      ],
+      "ambiguities": [
+        {
+          "requirement": "43",
+          "issue": "The term 'adverse weather conditions' is vague.",
+          "suggestion": "Specify the exact conditions the system must operate in, including temperature ranges, humidity levels, and precipitation types (e.g., rain, snow, hail)."
+        },
+        {
+          "requirement": "103",
+          "issue": "It is unclear to whom the system should 'report' the unauthorized occupation of disabled spaces.",
+          "suggestion": "Specify the recipient of the report, such as 'the parking management office' or 'the local law enforcement agency'."
+        },
+        {
+          "requirement": "132",
+          "issue": "The term 'heavy rain' is not quantified.",
+          "suggestion": "Define a specific threshold, such as a rainfall rate in mm/hour, to trigger the speed limit reduction."
+        }
+      ],
+      "gaps": [
+        {
+          "description": "R140 specifies 'automatic parking payment', but the cluster lacks any requirements defining the payment processing mechanism, user accounts, or transaction security.",
+          "related_to": [
+            "140"
+          ]
+        },
+        {
+          "description": "R132 and R95 require lowering speed limits during rain, but there is no corresponding requirement that specifies how this new, temporary speed limit is communicated to drivers.",
+          "related_to": [
+            "132",
+            "95"
+          ]
+        },
+        {
+          "description": "The system prioritizes parking for electric vehicles (R15, R102, R138) and penalizes improper use of disabled spaces (R103), but there is a gap in defining the rules or penalties for a non-electric vehicle occupying a designated charging spot.",
+          "related_to": [
+            "15",
+            "102",
+            "103"
+          ]
+        }
+      ],
+      "dependencies": [
+        {
+          "from": "137",
+          "to": "35",
+          "type": "requires",
+          "reason": "The ability to guide a vehicle to a free space (R137) is dependent on the system first knowing the real-time availability of spaces (R35)."
+        },
+        {
+          "from": "55",
+          "to": "13",
+          "type": "influences",
+          "reason": "The 5-second update requirement for vehicles (R55) is constrained by the 10-second data refresh rate of the parking system (R13), highlighting a performance dependency."
+        }
+      ],
+      "quality_score": 70,
+      "quality_reason": "The cluster has a clear focus on smart parking functionalities, but its coherence is reduced by the inclusion of several general system-level requirements for reliability, environmental hardening, and dynamic speed limits, which are not exclusively related to parking.",
+      "summary": "This cluster specifies requirements for a smart parking system, including finding, reserving, and paying for spaces, with a special focus on electric vehicles, and also includes general requirements for system reliability and operation under adverse conditions."
+    },
+    {
+      "cluster_id": "7",
+      "label": "Road Event Detection and System Monitoring",
+      "duplicates": [
+        {
+          "requirements": [
+            "125",
+            "57"
+          ],
+          "type": "full",
+          "reason": "Both requirements specify that the system must detect vehicles stopped in the emergency lane."
+        },
+        {
+          "requirements": [
+            "135",
+            "99"
+          ],
+          "type": "full",
+          "reason": "Both requirements specify that the system must detect vehicles traveling in the wrong direction."
+        },
+        {
+          "requirements": [
+            "2",
+            "32"
+          ],
+          "type": "partial",
+          "reason": "R2, which mandates an 'immediate green phase' for emergency vehicles, is a specific implementation of the more general policy in R32 to 'give priority' to them."
+        },
+        {
+          "requirements": [
+            "7",
+            "33"
+          ],
+          "type": "partial",
+          "reason": "Both requirements specify a 3-second detection time for road hazards. R7 is specific to 'obstacles' detected by cameras, while R33 is broader, covering 'accidents or obstacles' detected by sensors."
+        },
+        {
+          "requirements": [
+            "127",
+            "78"
+          ],
+          "type": "partial",
+          "reason": "Both requirements concern the detection of pedestrians on crosswalks. R78 is more specific about the method (cameras) and accuracy (95%), while R127 includes the subsequent action (activate light signals)."
+        }
+      ],
+      "inconsistencies": [
+        {
+          "requirements": [
+            "63",
+            "84"
+          ],
+          "type": "constraint",
+          "reason": "R84 requires recording vehicle movements 'without time limits' (implying forever), which contradicts the specific data retention policy of 'at least 365 days' for critical events defined in R63."
+        }
+      ],
+      "ambiguities": [
+        {
+          "requirement": "10",
+          "issue": "The trigger condition 'sudden emergency braking' is not defined.",
+          "suggestion": "Specify a quantifiable threshold, such as a deceleration rate exceeding 0.5g."
+        },
+        {
+          "requirement": "117",
+          "issue": "The term 'authorized personnel' is not defined.",
+          "suggestion": "Define the roles and groups that are permitted to view camera feeds and the criteria for granting such authorization."
+        },
+        {
+          "requirement": "84",
+          "issue": "The requirement to 'record all vehicle movements without time limits' is extremely broad and has major privacy and data storage implications.",
+          "suggestion": "Clarify the scope of data collection, define a clear purpose, specify anonymization techniques, and set a realistic data retention period."
+        }
+      ],
+      "gaps": [
+        {
+          "description": "The cluster is strong on *detecting* various events (obstacles, stopped vehicles, pedestrians) but is largely missing requirements that specify what the system should *do* with this information (e.g., alert drivers, notify authorities).",
+          "related_to": [
+            "7",
+            "57",
+            "78",
+            "99",
+            "134"
+          ]
+        },
+        {
+          "description": "R150 requires the detection of stolen vehicles, but there is a critical gap as no action is defined upon detection, such as notifying law enforcement.",
+          "related_to": [
+            "150"
+          ]
+        },
+        {
+          "description": "Multiple requirements mandate logging for different purposes (R29, R56, R63), but there are no requirements defining the log format, security measures to prevent tampering, or log aggregation strategy.",
+          "related_to": [
+            "29",
+            "56",
+            "63"
+          ]
+        }
+      ],
+      "dependencies": [
+        {
+          "from": "10",
+          "to": "7",
+          "type": "influences",
+          "reason": "The system's ability to alert vehicles about emergency braking (R10) relies on the same underlying V2I/V2V communication and low-latency detection capabilities required to detect obstacles (R7)."
+        },
+        {
+          "from": "2",
+          "to": "92",
+          "type": "influences",
+          "reason": "To effectively give an emergency vehicle an immediate green light (R2), the system may need to know how many cars are in the queue (R92) to manage the intersection safely."
+        }
+      ],
+      "quality_score": 85,
+      "quality_reason": "The cluster demonstrates strong thematic coherence, with the vast majority of requirements focused on the detection of road events, system monitoring, and logging. The inclusion of automated tolling requirements is a minor deviation but does not significantly detract from the overall focus.",
+      "summary": "This cluster defines requirements for detecting various road events like obstacles, accidents, and pedestrians, monitoring traffic flow, and includes system-level functions such as event logging and access control."
+    },
+    {
+      "cluster_id": "10",
+      "label": "Data Security, Privacy, and Management",
+      "duplicates": [
+        {
+          "requirements": [
+            "22",
+            "34"
+          ],
+          "type": "full",
+          "reason": "Both requirements mandate that unauthenticated vehicles must be prevented from accessing the system or its data."
+        },
+        {
+          "requirements": [
+            "116",
+            "23",
+            "60"
+          ],
+          "type": "partial",
+          "reason": "All three requirements address data privacy. R116 and R23 are specific about anonymization, while R60 is a broader policy requirement for protecting personal data."
+        }
+      ],
+      "inconsistencies": [
+        {
+          "requirements": [
+            "40",
+            "85"
+          ],
+          "type": "logical",
+          "reason": "R40 requires saving 'traffic data' for 30 days, while R85 forbids storing 'sensitive data'. Vehicle traffic data, especially location history, is often legally defined as sensitive, creating a direct conflict."
+        },
+        {
+          "requirements": [
+            "72",
+            "85"
+          ],
+          "type": "logical",
+          "reason": "R72 requires saving vehicle GPS positions, which is a form of sensitive personal data. This contradicts R85, which states the system must not store sensitive data related to vehicles or drivers."
+        },
+        {
+          "requirements": [
+            "116",
+            "86"
+          ],
+          "type": "logical",
+          "reason": "R116 mandates that all driver data remain anonymous, which could conflict with R86, which allows authorized entities 'immediate access to all traffic data'. Fully anonymized data may not be useful for certain authorized purposes (e.g., law enforcement), creating a policy conflict."
+        }
+      ],
+      "ambiguities": [
+        {
+          "requirement": "85",
+          "issue": "The term 'sensitive data' is not defined.",
+          "suggestion": "Establish a clear data classification policy that explicitly defines what data types are considered sensitive and how they must be handled."
+        },
+        {
+          "requirement": "86",
+          "issue": "The term 'any authorized entity' is too broad and lacks a defined authorization process.",
+          "suggestion": "Specify the roles of entities that can be granted access, the process for authorization, and the scope of data they can access."
+        },
+        {
+          "requirement": "119",
+          "issue": "The terms 'very short and lightweight' are not specific.",
+          "suggestion": "Define a maximum message size in bytes and a maximum processing time in milliseconds."
+        }
+      ],
+      "gaps": [
+        {
+          "description": "R22 and R34 require authentication using certificates, but there is a major gap as the Public Key Infrastructure (PKI) needed to manage the lifecycle of these certificates (issuance, revocation, etc.) is not defined.",
+          "related_to": [
+            "22",
+            "34"
+          ]
+        },
+        {
+          "description": "R23 and R116 mandate data anonymization, but there are no requirements specifying the anonymization techniques to be used (e.g., k-anonymity, differential privacy) or how the effectiveness of the anonymization will be verified.",
+          "related_to": [
+            "23",
+            "116"
+          ]
+        },
+        {
+          "description": "R28 specifies secure Over-The-Air (OTA) updates, but lacks requirements for the update process itself, such as a mechanism for rollback in case of failure or a strategy for version management across devices.",
+          "related_to": [
+            "28"
+          ]
+        }
+      ],
+      "dependencies": [
+        {
+          "from": "23",
+          "to": "40",
+          "type": "requires",
+          "reason": "The requirement to anonymize data (R23) must be executed before the data is stored for analysis as required by R40."
+        },
+        {
+          "from": "86",
+          "to": "34",
+          "type": "requires",
+          "reason": "Allowing access to authorized entities (R86) presupposes a system that can distinguish between authenticated and unauthenticated entities (R34)."
+        }
+      ],
+      "quality_score": 90,
+      "quality_reason": "The cluster is highly coherent and well-focused on the critical aspects of data security, privacy, and management. Its quality is only slightly reduced by a few misplaced functional requirements that belong in other domains like parking or tolling.",
+      "summary": "This cluster specifies requirements for data handling, focusing on security aspects like authentication and encryption, privacy through anonymization, and data management policies for storage, access, and updates."
     }
   ],
   "requirement_to_cluster_mapping": {
-    "1": 4,
-    "42": 5,
-    "51": 4,
-    "61": 1,
-    "80": 5,
-    "156": 4,
-    "70": 4,
-    "121": 4,
-    "2": 4,
-    "3": 6,
+    "1": 2,
+    "42": 2,
+    "51": 2,
+    "61": 2,
+    "80": 2,
+    "156": 2,
+    "70": 1,
+    "121": 7,
+    "2": 7,
+    "3": 4,
     "5": 4,
-    "14": 0,
-    "58": 6,
-    "93": 6,
-    "123": 5,
-    "133": 6,
-    "145": 5,
-    "148": 0,
-    "149": 5,
+    "14": 4,
+    "58": 4,
+    "93": 4,
+    "123": 2,
+    "133": 1,
+    "145": 2,
+    "148": 4,
+    "149": 2,
     "152": 4,
-    "4": 5,
-    "78": 4,
-    "94": 4,
-    "127": 4,
-    "6": 5,
-    "27": 5,
-    "79": 5,
-    "82": 5,
-    "88": 5,
-    "7": 4,
-    "33": 4,
-    "64": 4,
-    "65": 6,
-    "111": 1,
-    "8": 9,
-    "139": 0,
-    "9": 5,
-    "10": 4,
-    "98": 9,
-    "11": 9,
+    "4": 1,
+    "78": 7,
+    "94": 2,
+    "127": 7,
+    "6": 2,
+    "27": 2,
+    "79": 2,
+    "82": 2,
+    "88": 2,
+    "7": 7,
+    "33": 7,
+    "64": 1,
+    "65": 2,
+    "111": 10,
+    "8": 1,
+    "139": 1,
+    "9": 1,
+    "10": 7,
+    "98": 1,
+    "11": 1,
     "12": 1,
-    "110": 4,
-    "153": 9,
-    "13": 0,
-    "15": 0,
-    "17": 4,
-    "140": 0,
-    "16": 4,
-    "18": 1,
-    "19": 1,
-    "22": 1,
-    "20": 9,
-    "21": 0,
-    "34": 1,
-    "86": 1,
-    "104": 1,
-    "117": 1,
-    "23": 1,
-    "24": 6,
-    "25": 1,
-    "26": 1,
-    "28": 1,
-    "29": 4,
-    "30": 4,
-    "157": 4,
-    "31": 1,
-    "73": 5,
-    "32": 4,
-    "100": 4,
-    "35": 0,
-    "55": 0,
-    "136": 0,
-    "151": 0,
-    "36": 6,
-    "37": 9,
-    "38": 5,
-    "46": 4,
-    "41": 5,
-    "142": 5,
-    "39": 4,
-    "57": 4,
-    "108": 9,
-    "155": 4,
-    "40": 1,
-    "63": 1,
-    "84": 1,
-    "43": 7,
-    "44": 1,
-    "45": 0,
-    "138": 0,
-    "135": 4,
-    "47": 4,
-    "48": 9,
-    "75": 5,
-    "83": 9,
-    "49": 7,
-    "50": 5,
-    "52": 5,
-    "124": 5,
-    "53": 1,
-    "54": 4,
-    "66": 1,
-    "56": 4,
-    "59": 9,
-    "60": 1,
-    "85": 1,
-    "62": 5,
-    "69": 9,
-    "71": 0,
-    "72": 1,
-    "74": 4,
-    "77": 5,
-    "81": 5,
-    "147": 5,
-    "87": 5,
-    "143": 5,
-    "89": 0,
-    "90": 7,
-    "91": 5,
-    "92": 6,
-    "109": 6,
-    "95": 0,
-    "132": 7,
-    "96": 9,
-    "97": 4,
-    "99": 4,
-    "101": 0,
-    "137": 0,
-    "102": 0,
+    "110": 1,
+    "153": 1,
+    "13": 5,
+    "15": 5,
+    "17": 7,
+    "140": 5,
+    "16": 1,
+    "18": 10,
+    "19": 7,
+    "22": 10,
+    "20": 1,
+    "21": 1,
+    "34": 10,
+    "86": 10,
+    "104": 10,
+    "117": 7,
+    "23": 10,
+    "24": 2,
+    "25": 4,
+    "26": 10,
+    "28": 10,
+    "29": 7,
+    "30": 2,
+    "157": 2,
+    "31": 2,
+    "73": 2,
+    "32": 7,
+    "100": 1,
+    "35": 5,
+    "55": 5,
+    "136": 5,
+    "151": 5,
+    "36": 4,
+    "37": 1,
+    "38": 1,
+    "46": 1,
+    "41": 2,
+    "142": 2,
+    "39": 1,
+    "57": 7,
+    "108": 1,
+    "155": 1,
+    "40": 10,
+    "63": 7,
+    "84": 7,
+    "43": 5,
+    "44": 4,
+    "45": 5,
+    "138": 5,
+    "135": 7,
+    "47": 7,
+    "48": 1,
+    "75": 1,
+    "83": 1,
+    "49": 5,
+    "50": 2,
+    "52": 2,
+    "124": 2,
+    "53": 10,
+    "54": 1,
+    "66": 10,
+    "56": 7,
+    "59": 1,
+    "60": 10,
+    "85": 10,
+    "62": 2,
+    "69": 1,
+    "71": 5,
+    "72": 10,
+    "74": 2,
+    "77": 2,
+    "81": 2,
+    "147": 2,
+    "87": 2,
+    "143": 2,
+    "89": 4,
+    "90": 5,
+    "91": 2,
+    "92": 7,
+    "109": 7,
+    "95": 5,
+    "132": 5,
+    "96": 1,
+    "97": 7,
+    "99": 7,
+    "101": 5,
+    "137": 5,
+    "102": 5,
     "103": 5,
-    "105": 9,
-    "106": 4,
-    "150": 4,
-    "154": 9,
-    "107": 1,
-    "112": 7,
-    "113": 6,
-    "114": 7,
-    "115": 6,
-    "116": 1,
-    "118": 1,
-    "119": 1,
-    "120": 7,
-    "122": 5,
-    "125": 4,
-    "126": 9,
-    "128": 4,
-    "129": 9,
-    "130": 9,
-    "131": 9,
-    "134": 4,
-    "141": 6,
-    "144": 5,
-    "146": 1,
-    "158": 5,
-    "159": 5,
-    "160": 1
+    "105": 1,
+    "106": 7,
+    "150": 7,
+    "154": 1,
+    "107": 2,
+    "112": 5,
+    "113": 2,
+    "114": 5,
+    "115": 2,
+    "116": 10,
+    "118": 2,
+    "119": 10,
+    "120": 4,
+    "122": 2,
+    "125": 7,
+    "126": 1,
+    "128": 7,
+    "129": 1,
+    "130": 1,
+    "131": 1,
+    "134": 7,
+    "141": 7,
+    "144": 1,
+    "146": 7,
+    "158": 2,
+    "159": 2,
+    "160": 4
   }
 }
