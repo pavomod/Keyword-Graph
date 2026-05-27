@@ -2,15 +2,15 @@
   "clustering": {
     "enabled": true,
     "mode": "direct_requirement_clustering",
-    "selected_k": 8,
+    "selected_k": 13,
     "num_nodes": 250,
     "embedding_dim": 1024,
     "effective_feature_dim": 1024,
-    "inertia": 68.18885927166356,
-    "davies_bouldin": 2.7437735225433864,
-    "calinski_harabasz": 12.170500063359961,
+    "inertia": 62.45028878865524,
+    "davies_bouldin": 2.502831267459671,
+    "calinski_harabasz": 9.40649912206278,
     "k_selection": {
-      "selected_k": 8,
+      "selected_k": 13,
       "strategy": "manual",
       "candidates": []
     },
@@ -25,25 +25,110 @@
     }
   },
   "cluster_requirements_mapping": {
-    "3": [
+    "12": [
       "1",
+      "10",
+      "11",
+      "119",
+      "135",
+      "156",
+      "166",
+      "167",
+      "171",
+      "172",
+      "173",
+      "174",
+      "175",
+      "180",
+      "181",
+      "182",
+      "191",
+      "2",
+      "220",
+      "227",
+      "228",
+      "42",
+      "44",
+      "45",
+      "49",
+      "50",
+      "6",
+      "60",
+      "91",
+      "92"
+    ],
+    "11": [
+      "157",
+      "158",
+      "159",
+      "221",
+      "222",
+      "224",
+      "3",
+      "4",
+      "63",
+      "65",
+      "66",
+      "67",
+      "68",
+      "69",
+      "70",
+      "72",
+      "73",
+      "76",
+      "77",
+      "78"
+    ],
+    "9": [
+      "161",
+      "162",
+      "178",
+      "179",
+      "229",
+      "230",
+      "231",
+      "232",
+      "233",
+      "234",
+      "235",
+      "250",
+      "5",
+      "54",
+      "55",
+      "86",
+      "87",
+      "88",
+      "89",
+      "90",
+      "93"
+    ],
+    "2": [
+      "116",
+      "15",
+      "170",
+      "209",
+      "223",
+      "240",
+      "242",
+      "31",
+      "40",
+      "46",
+      "47",
+      "51",
+      "52",
+      "53",
+      "56",
+      "58",
+      "64",
+      "7",
+      "98"
+    ],
+    "8": [
       "104",
       "105",
-      "108",
-      "111",
-      "112",
-      "113",
-      "153",
-      "154",
-      "163",
-      "164",
-      "165",
       "188",
-      "189",
-      "190",
       "219",
       "236",
-      "42",
       "43",
       "59",
       "61",
@@ -52,134 +137,10 @@
       "9"
     ],
     "1": [
-      "10",
-      "11",
-      "119",
-      "122",
-      "128",
-      "129",
-      "131",
-      "135",
-      "136",
-      "138",
-      "140",
-      "141",
-      "156",
-      "166",
-      "167",
-      "171",
-      "172",
-      "180",
-      "181",
-      "182",
-      "191",
-      "2",
-      "214",
-      "220",
-      "227",
-      "228",
-      "249",
-      "30",
-      "31",
-      "44",
-      "45",
-      "49",
-      "50",
-      "6",
-      "60",
-      "64",
-      "91",
-      "92"
-    ],
-    "7": [
-      "161",
-      "173",
-      "174",
-      "175",
-      "176",
-      "177",
-      "178",
-      "179",
-      "221",
-      "222",
-      "223",
-      "224",
-      "229",
-      "230",
-      "231",
-      "232",
-      "233",
-      "234",
-      "235",
-      "3",
-      "4",
-      "40",
-      "46",
-      "47",
-      "48",
-      "5",
-      "51",
-      "52",
-      "53",
-      "54",
-      "55",
-      "56",
-      "57",
-      "58",
-      "86"
-    ],
-    "5": [
-      "100",
-      "101",
-      "102",
-      "103",
-      "106",
-      "107",
-      "109",
-      "110",
-      "114",
-      "115",
-      "116",
-      "117",
-      "118",
-      "120",
-      "121",
-      "123",
-      "124",
-      "125",
-      "126",
-      "127",
-      "142",
-      "143",
-      "144",
-      "145",
-      "146",
-      "147",
-      "148",
-      "149",
-      "15",
-      "150",
-      "151",
-      "152",
-      "158",
-      "159",
-      "160",
-      "170",
-      "7",
-      "94",
-      "95",
-      "96",
-      "97",
-      "98",
-      "99"
-    ],
-    "0": [
       "12",
       "13",
       "14",
-      "155",
       "16",
-      "162",
       "17",
       "18",
       "19",
@@ -193,6 +154,7 @@
       "27",
       "28",
       "29",
+      "30",
       "33",
       "34",
       "35",
@@ -201,1050 +163,1098 @@
       "38",
       "39"
     ],
-    "2": [
+    "7": [
+      "122",
+      "129",
       "130",
       "132",
       "133",
       "134",
+      "136",
       "137",
+      "138",
       "139",
-      "168",
-      "169",
-      "225",
-      "226",
+      "140",
+      "141",
       "237",
-      "238",
-      "239",
-      "240",
       "241",
-      "242",
-      "243",
-      "244",
-      "245",
       "246",
       "247",
       "248",
-      "250",
-      "32",
-      "41",
-      "79",
-      "82",
-      "83",
-      "85"
+      "249",
+      "32"
     ],
     "4": [
-      "157",
-      "63",
-      "65",
-      "66",
-      "67",
-      "68",
-      "69",
-      "70",
-      "71",
-      "72",
-      "73",
-      "74",
-      "75",
-      "76",
-      "77",
-      "78",
-      "80",
-      "81",
-      "84",
-      "87",
-      "88",
-      "89",
-      "90",
-      "93"
-    ],
-    "6": [
-      "183",
-      "184",
-      "185",
-      "186",
-      "187",
-      "192",
-      "193",
-      "194",
-      "195",
-      "196",
+      "168",
+      "169",
+      "176",
+      "177",
       "197",
       "198",
-      "199",
-      "200",
-      "201",
-      "202",
+      "225",
+      "226",
+      "245",
+      "41",
+      "48",
+      "80",
+      "82",
+      "83"
+    ],
+    "0": [
+      "125",
+      "126",
+      "131",
+      "239",
+      "243",
+      "244",
+      "57",
+      "71",
+      "74",
+      "75",
+      "79",
+      "81",
+      "84",
+      "85"
+    ],
+    "6": [
+      "100",
+      "101",
+      "102",
+      "103",
+      "106",
+      "107",
+      "109",
+      "110",
+      "114",
+      "115",
+      "117",
+      "118",
+      "120",
+      "121",
+      "123",
+      "124",
+      "127",
+      "142",
+      "143",
+      "144",
+      "145",
+      "146",
+      "147",
+      "148",
+      "149",
+      "150",
+      "151",
+      "152",
+      "160",
+      "94",
+      "95",
+      "96",
+      "97",
+      "99"
+    ],
+    "3": [
+      "108",
+      "111",
+      "112",
+      "113",
+      "153",
+      "154",
+      "155",
+      "163",
+      "164",
+      "165",
+      "187",
+      "189",
+      "190",
+      "208"
+    ],
+    "5": [
+      "128",
+      "192",
+      "193",
       "203",
       "204",
       "205",
       "206",
-      "207",
-      "208",
-      "209",
-      "210",
       "211",
       "212",
       "213",
+      "214",
       "215",
       "216",
       "217",
       "218"
+    ],
+    "10": [
+      "183",
+      "184",
+      "185",
+      "186",
+      "194",
+      "195",
+      "196",
+      "199",
+      "200",
+      "201",
+      "202",
+      "207",
+      "210",
+      "238"
     ]
   },
   "requirement_to_cluster_mapping": {
-    "112": [
-      3
-    ],
-    "154": [
-      3
-    ],
-    "188": [
-      3
-    ],
-    "62": [
-      3
-    ],
-    "153": [
-      3
-    ],
-    "164": [
-      3
-    ],
-    "236": [
-      3
-    ],
-    "190": [
-      3
-    ],
-    "59": [
-      3
-    ],
-    "165": [
-      3
-    ],
-    "43": [
-      3
-    ],
-    "111": [
-      3
-    ],
-    "163": [
-      3
-    ],
-    "8": [
-      3
-    ],
-    "108": [
-      3
-    ],
-    "219": [
-      3
-    ],
-    "189": [
-      3
-    ],
-    "105": [
-      3
-    ],
-    "113": [
-      3
-    ],
-    "9": [
-      3
-    ],
-    "104": [
-      3
-    ],
-    "1": [
-      3
-    ],
-    "61": [
-      3
-    ],
-    "42": [
-      3
-    ],
-    "214": [
-      1
-    ],
-    "64": [
-      1
-    ],
-    "31": [
-      1
-    ],
-    "11": [
-      1
-    ],
-    "156": [
-      1
-    ],
-    "2": [
-      1
-    ],
-    "182": [
-      1
-    ],
-    "129": [
-      1
-    ],
-    "135": [
-      1
-    ],
-    "92": [
-      1
-    ],
-    "50": [
-      1
-    ],
-    "141": [
-      1
+    "220": [
+      12
     ],
     "171": [
-      1
+      12
     ],
-    "228": [
-      1
-    ],
-    "138": [
-      1
-    ],
-    "172": [
-      1
-    ],
-    "249": [
-      1
-    ],
-    "166": [
-      1
-    ],
-    "6": [
-      1
-    ],
-    "119": [
-      1
-    ],
-    "181": [
-      1
-    ],
-    "91": [
-      1
-    ],
-    "45": [
-      1
-    ],
-    "44": [
-      1
-    ],
-    "191": [
-      1
-    ],
-    "60": [
-      1
-    ],
-    "167": [
-      1
-    ],
-    "128": [
-      1
-    ],
-    "140": [
-      1
-    ],
-    "122": [
-      1
-    ],
-    "220": [
-      1
-    ],
-    "131": [
-      1
-    ],
-    "30": [
-      1
-    ],
-    "49": [
-      1
-    ],
-    "227": [
-      1
+    "92": [
+      12
     ],
     "180": [
-      1
+      12
     ],
-    "136": [
-      1
+    "167": [
+      12
     ],
-    "10": [
-      1
+    "119": [
+      12
     ],
-    "51": [
-      7
+    "91": [
+      12
     ],
-    "48": [
-      7
+    "50": [
+      12
     ],
-    "47": [
-      7
+    "45": [
+      12
     ],
-    "176": [
-      7
+    "182": [
+      12
     ],
-    "222": [
-      7
+    "1": [
+      12
     ],
-    "223": [
-      7
+    "11": [
+      12
     ],
-    "5": [
-      7
-    ],
-    "221": [
-      7
-    ],
-    "161": [
-      7
-    ],
-    "224": [
-      7
-    ],
-    "55": [
-      7
+    "156": [
+      12
     ],
     "174": [
-      7
+      12
     ],
-    "232": [
-      7
+    "191": [
+      12
     ],
-    "86": [
-      7
-    ],
-    "54": [
-      7
-    ],
-    "40": [
-      7
-    ],
-    "235": [
-      7
-    ],
-    "57": [
-      7
-    ],
-    "178": [
-      7
-    ],
-    "3": [
-      7
-    ],
-    "177": [
-      7
-    ],
-    "229": [
-      7
-    ],
-    "46": [
-      7
-    ],
-    "173": [
-      7
-    ],
-    "230": [
-      7
-    ],
-    "53": [
-      7
-    ],
-    "234": [
-      7
-    ],
-    "56": [
-      7
-    ],
-    "4": [
-      7
-    ],
-    "52": [
-      7
-    ],
-    "233": [
-      7
+    "42": [
+      12
     ],
     "175": [
-      7
+      12
     ],
-    "179": [
-      7
+    "44": [
+      12
     ],
-    "231": [
-      7
+    "227": [
+      12
     ],
-    "58": [
-      7
+    "181": [
+      12
     ],
-    "103": [
-      5
+    "228": [
+      12
     ],
-    "126": [
-      5
+    "6": [
+      12
     ],
-    "102": [
-      5
+    "60": [
+      12
     ],
-    "101": [
-      5
+    "49": [
+      12
     ],
-    "110": [
-      5
+    "172": [
+      12
     ],
-    "7": [
-      5
+    "166": [
+      12
     ],
-    "97": [
-      5
+    "10": [
+      12
     ],
-    "127": [
-      5
+    "2": [
+      12
     ],
-    "145": [
-      5
+    "135": [
+      12
     ],
-    "15": [
-      5
-    ],
-    "106": [
-      5
-    ],
-    "125": [
-      5
-    ],
-    "114": [
-      5
-    ],
-    "120": [
-      5
-    ],
-    "148": [
-      5
-    ],
-    "142": [
-      5
-    ],
-    "107": [
-      5
-    ],
-    "121": [
-      5
-    ],
-    "149": [
-      5
-    ],
-    "160": [
-      5
-    ],
-    "150": [
-      5
-    ],
-    "118": [
-      5
-    ],
-    "143": [
-      5
-    ],
-    "151": [
-      5
-    ],
-    "98": [
-      5
-    ],
-    "123": [
-      5
-    ],
-    "159": [
-      5
-    ],
-    "116": [
-      5
-    ],
-    "117": [
-      5
-    ],
-    "95": [
-      5
-    ],
-    "144": [
-      5
-    ],
-    "99": [
-      5
-    ],
-    "124": [
-      5
-    ],
-    "146": [
-      5
-    ],
-    "152": [
-      5
-    ],
-    "94": [
-      5
-    ],
-    "147": [
-      5
-    ],
-    "115": [
-      5
-    ],
-    "170": [
-      5
-    ],
-    "109": [
-      5
-    ],
-    "96": [
-      5
-    ],
-    "100": [
-      5
+    "173": [
+      12
     ],
     "158": [
-      5
+      11
     ],
-    "26": [
-      0
+    "78": [
+      11
     ],
-    "36": [
-      0
+    "159": [
+      11
     ],
-    "33": [
-      0
+    "3": [
+      11
     ],
-    "29": [
-      0
+    "224": [
+      11
     ],
-    "37": [
-      0
+    "222": [
+      11
     ],
-    "20": [
-      0
+    "70": [
+      11
+    ],
+    "68": [
+      11
+    ],
+    "77": [
+      11
+    ],
+    "76": [
+      11
+    ],
+    "157": [
+      11
+    ],
+    "69": [
+      11
+    ],
+    "4": [
+      11
+    ],
+    "221": [
+      11
+    ],
+    "72": [
+      11
+    ],
+    "65": [
+      11
+    ],
+    "67": [
+      11
+    ],
+    "66": [
+      11
+    ],
+    "63": [
+      11
+    ],
+    "73": [
+      11
+    ],
+    "235": [
+      9
+    ],
+    "178": [
+      9
+    ],
+    "87": [
+      9
+    ],
+    "234": [
+      9
+    ],
+    "233": [
+      9
+    ],
+    "161": [
+      9
+    ],
+    "230": [
+      9
+    ],
+    "88": [
+      9
+    ],
+    "54": [
+      9
+    ],
+    "179": [
+      9
+    ],
+    "90": [
+      9
     ],
     "162": [
-      0
-    ],
-    "24": [
-      0
-    ],
-    "21": [
-      0
-    ],
-    "17": [
-      0
-    ],
-    "25": [
-      0
-    ],
-    "34": [
-      0
-    ],
-    "23": [
-      0
-    ],
-    "14": [
-      0
-    ],
-    "28": [
-      0
-    ],
-    "27": [
-      0
-    ],
-    "18": [
-      0
-    ],
-    "22": [
-      0
-    ],
-    "155": [
-      0
-    ],
-    "35": [
-      0
-    ],
-    "12": [
-      0
-    ],
-    "39": [
-      0
-    ],
-    "13": [
-      0
-    ],
-    "38": [
-      0
-    ],
-    "19": [
-      0
-    ],
-    "16": [
-      0
-    ],
-    "245": [
-      2
-    ],
-    "133": [
-      2
-    ],
-    "139": [
-      2
-    ],
-    "244": [
-      2
-    ],
-    "242": [
-      2
+      9
     ],
     "250": [
+      9
+    ],
+    "89": [
+      9
+    ],
+    "86": [
+      9
+    ],
+    "5": [
+      9
+    ],
+    "232": [
+      9
+    ],
+    "231": [
+      9
+    ],
+    "229": [
+      9
+    ],
+    "93": [
+      9
+    ],
+    "55": [
+      9
+    ],
+    "52": [
       2
     ],
-    "248": [
-      2
-    ],
-    "168": [
-      2
-    ],
-    "226": [
-      2
-    ],
-    "241": [
+    "58": [
       2
     ],
     "240": [
       2
     ],
-    "237": [
+    "47": [
       2
     ],
-    "246": [
+    "116": [
       2
     ],
-    "247": [
+    "242": [
       2
     ],
-    "83": [
+    "53": [
       2
     ],
-    "243": [
+    "209": [
       2
     ],
-    "85": [
+    "46": [
       2
     ],
-    "130": [
+    "64": [
       2
+    ],
+    "170": [
+      2
+    ],
+    "15": [
+      2
+    ],
+    "98": [
+      2
+    ],
+    "40": [
+      2
+    ],
+    "7": [
+      2
+    ],
+    "223": [
+      2
+    ],
+    "31": [
+      2
+    ],
+    "56": [
+      2
+    ],
+    "51": [
+      2
+    ],
+    "59": [
+      8
+    ],
+    "188": [
+      8
+    ],
+    "61": [
+      8
+    ],
+    "8": [
+      8
+    ],
+    "62": [
+      8
+    ],
+    "104": [
+      8
+    ],
+    "219": [
+      8
+    ],
+    "236": [
+      8
+    ],
+    "43": [
+      8
+    ],
+    "105": [
+      8
+    ],
+    "9": [
+      8
+    ],
+    "16": [
+      1
+    ],
+    "25": [
+      1
+    ],
+    "21": [
+      1
+    ],
+    "34": [
+      1
+    ],
+    "20": [
+      1
+    ],
+    "19": [
+      1
+    ],
+    "27": [
+      1
+    ],
+    "12": [
+      1
+    ],
+    "35": [
+      1
+    ],
+    "13": [
+      1
+    ],
+    "24": [
+      1
+    ],
+    "33": [
+      1
+    ],
+    "39": [
+      1
+    ],
+    "14": [
+      1
+    ],
+    "26": [
+      1
+    ],
+    "30": [
+      1
+    ],
+    "22": [
+      1
+    ],
+    "37": [
+      1
+    ],
+    "23": [
+      1
+    ],
+    "36": [
+      1
+    ],
+    "38": [
+      1
+    ],
+    "29": [
+      1
+    ],
+    "28": [
+      1
+    ],
+    "18": [
+      1
+    ],
+    "17": [
+      1
+    ],
+    "122": [
+      7
     ],
     "132": [
-      2
-    ],
-    "238": [
-      2
-    ],
-    "134": [
-      2
-    ],
-    "41": [
-      2
+      7
     ],
     "137": [
-      2
+      7
+    ],
+    "130": [
+      7
+    ],
+    "136": [
+      7
+    ],
+    "138": [
+      7
     ],
     "32": [
-      2
+      7
     ],
-    "239": [
-      2
+    "247": [
+      7
     ],
-    "169": [
-      2
+    "248": [
+      7
     ],
-    "79": [
-      2
+    "237": [
+      7
     ],
-    "225": [
-      2
+    "134": [
+      7
+    ],
+    "249": [
+      7
+    ],
+    "139": [
+      7
+    ],
+    "246": [
+      7
+    ],
+    "129": [
+      7
+    ],
+    "141": [
+      7
+    ],
+    "140": [
+      7
+    ],
+    "241": [
+      7
+    ],
+    "133": [
+      7
     ],
     "82": [
-      2
+      4
+    ],
+    "168": [
+      4
+    ],
+    "177": [
+      4
     ],
     "80": [
       4
     ],
-    "77": [
+    "176": [
       4
-    ],
-    "67": [
-      4
-    ],
-    "63": [
-      4
-    ],
-    "88": [
-      4
-    ],
-    "90": [
-      4
-    ],
-    "66": [
-      4
-    ],
-    "72": [
-      4
-    ],
-    "74": [
-      4
-    ],
-    "157": [
-      4
-    ],
-    "76": [
-      4
-    ],
-    "71": [
-      4
-    ],
-    "78": [
-      4
-    ],
-    "68": [
-      4
-    ],
-    "93": [
-      4
-    ],
-    "87": [
-      4
-    ],
-    "69": [
-      4
-    ],
-    "81": [
-      4
-    ],
-    "75": [
-      4
-    ],
-    "65": [
-      4
-    ],
-    "89": [
-      4
-    ],
-    "70": [
-      4
-    ],
-    "84": [
-      4
-    ],
-    "73": [
-      4
-    ],
-    "192": [
-      6
-    ],
-    "195": [
-      6
-    ],
-    "202": [
-      6
-    ],
-    "205": [
-      6
-    ],
-    "200": [
-      6
-    ],
-    "185": [
-      6
-    ],
-    "193": [
-      6
-    ],
-    "204": [
-      6
-    ],
-    "215": [
-      6
-    ],
-    "194": [
-      6
-    ],
-    "184": [
-      6
-    ],
-    "187": [
-      6
-    ],
-    "211": [
-      6
-    ],
-    "216": [
-      6
-    ],
-    "206": [
-      6
-    ],
-    "209": [
-      6
-    ],
-    "208": [
-      6
     ],
     "197": [
-      6
+      4
     ],
-    "217": [
-      6
+    "225": [
+      4
     ],
-    "212": [
-      6
+    "245": [
+      4
     ],
-    "183": [
-      6
-    ],
-    "186": [
-      6
+    "83": [
+      4
     ],
     "198": [
+      4
+    ],
+    "169": [
+      4
+    ],
+    "48": [
+      4
+    ],
+    "41": [
+      4
+    ],
+    "226": [
+      4
+    ],
+    "131": [
+      0
+    ],
+    "81": [
+      0
+    ],
+    "125": [
+      0
+    ],
+    "243": [
+      0
+    ],
+    "75": [
+      0
+    ],
+    "126": [
+      0
+    ],
+    "74": [
+      0
+    ],
+    "79": [
+      0
+    ],
+    "239": [
+      0
+    ],
+    "244": [
+      0
+    ],
+    "71": [
+      0
+    ],
+    "57": [
+      0
+    ],
+    "84": [
+      0
+    ],
+    "85": [
+      0
+    ],
+    "144": [
       6
     ],
-    "203": [
+    "118": [
       6
     ],
-    "207": [
+    "150": [
       6
     ],
-    "210": [
+    "110": [
       6
     ],
-    "196": [
+    "100": [
       6
     ],
-    "213": [
+    "123": [
       6
     ],
-    "199": [
+    "109": [
       6
+    ],
+    "160": [
+      6
+    ],
+    "99": [
+      6
+    ],
+    "114": [
+      6
+    ],
+    "96": [
+      6
+    ],
+    "106": [
+      6
+    ],
+    "145": [
+      6
+    ],
+    "152": [
+      6
+    ],
+    "121": [
+      6
+    ],
+    "103": [
+      6
+    ],
+    "115": [
+      6
+    ],
+    "127": [
+      6
+    ],
+    "147": [
+      6
+    ],
+    "107": [
+      6
+    ],
+    "149": [
+      6
+    ],
+    "151": [
+      6
+    ],
+    "97": [
+      6
+    ],
+    "95": [
+      6
+    ],
+    "102": [
+      6
+    ],
+    "124": [
+      6
+    ],
+    "117": [
+      6
+    ],
+    "148": [
+      6
+    ],
+    "143": [
+      6
+    ],
+    "142": [
+      6
+    ],
+    "120": [
+      6
+    ],
+    "94": [
+      6
+    ],
+    "146": [
+      6
+    ],
+    "101": [
+      6
+    ],
+    "113": [
+      3
+    ],
+    "155": [
+      3
+    ],
+    "154": [
+      3
+    ],
+    "189": [
+      3
+    ],
+    "208": [
+      3
+    ],
+    "111": [
+      3
+    ],
+    "153": [
+      3
+    ],
+    "163": [
+      3
+    ],
+    "165": [
+      3
+    ],
+    "190": [
+      3
+    ],
+    "112": [
+      3
+    ],
+    "108": [
+      3
+    ],
+    "187": [
+      3
+    ],
+    "164": [
+      3
     ],
     "218": [
-      6
+      5
+    ],
+    "214": [
+      5
+    ],
+    "204": [
+      5
+    ],
+    "215": [
+      5
+    ],
+    "217": [
+      5
+    ],
+    "213": [
+      5
+    ],
+    "192": [
+      5
+    ],
+    "203": [
+      5
+    ],
+    "205": [
+      5
+    ],
+    "206": [
+      5
+    ],
+    "212": [
+      5
+    ],
+    "128": [
+      5
+    ],
+    "211": [
+      5
+    ],
+    "216": [
+      5
+    ],
+    "193": [
+      5
+    ],
+    "194": [
+      10
+    ],
+    "199": [
+      10
+    ],
+    "210": [
+      10
+    ],
+    "202": [
+      10
+    ],
+    "183": [
+      10
     ],
     "201": [
-      6
+      10
+    ],
+    "185": [
+      10
+    ],
+    "238": [
+      10
+    ],
+    "196": [
+      10
+    ],
+    "186": [
+      10
+    ],
+    "200": [
+      10
+    ],
+    "195": [
+      10
+    ],
+    "207": [
+      10
+    ],
+    "184": [
+      10
     ]
   },
   "nodes": [
     {
       "requirement_id": "1",
       "input": "As a Group 1, I want The system must allow user registration.",
-      "cluster_id": 3,
+      "cluster_id": 12,
       "umap_x": -1.5766438245773315,
       "umap_y": 4.964243412017822
     },
     {
       "requirement_id": "2",
       "input": "As a Group 1, I want The system must automatically credit 100 points as an initial balance immediately after user registration.",
-      "cluster_id": 1,
+      "cluster_id": 12,
       "umap_x": 1.0280417203903198,
       "umap_y": 8.466001510620117
     },
     {
       "requirement_id": "3",
       "input": "As a Group 1, I want The system must allow a registered user to create a listing for an accommodation.",
-      "cluster_id": 7,
+      "cluster_id": 11,
       "umap_x": -2.912930727005005,
       "umap_y": 6.964635372161865
     },
     {
       "requirement_id": "4",
       "input": "As a Group 1, I want The system must allow a user (guest) to submit a booking request for a selected listing.",
-      "cluster_id": 7,
+      "cluster_id": 11,
       "umap_x": -2.6649441719055176,
       "umap_y": 7.120131492614746
     },
     {
       "requirement_id": "5",
       "input": "As a Group 1, I want The system must enable the ability for hosts and guests to leave reviews for each completed and completed booking.",
-      "cluster_id": 7,
+      "cluster_id": 9,
       "umap_x": -2.678208351135254,
       "umap_y": 7.796411991119385
     },
     {
       "requirement_id": "6",
       "input": "As a Group 1, I want The system must provide an integrated payment interface to allow users to purchase points.",
-      "cluster_id": 1,
+      "cluster_id": 12,
       "umap_x": 0.10375886410474777,
       "umap_y": 9.103755950927734
     },
     {
       "requirement_id": "7",
       "input": "As a Group 2, I want The system must not allow accommodation for more than 7 nights",
-      "cluster_id": 5,
+      "cluster_id": 2,
       "umap_x": -1.3366422653198242,
       "umap_y": 6.309865474700928
     },
     {
       "requirement_id": "8",
       "input": "As a Group 2, I want Students must provide their institutional email address during registration",
-      "cluster_id": 3,
+      "cluster_id": 8,
       "umap_x": -0.2736447751522064,
       "umap_y": 3.5765674114227295
     },
     {
       "requirement_id": "9",
       "input": "As a Group 2, I want The system must verify the email provided through the corresponding university",
-      "cluster_id": 3,
+      "cluster_id": 8,
       "umap_x": -0.3976793885231018,
       "umap_y": 3.584529399871826
     },
     {
       "requirement_id": "10",
       "input": "As a Group 2, I want The system must manage the use of points",
-      "cluster_id": 1,
+      "cluster_id": 12,
       "umap_x": 0.21341252326965332,
       "umap_y": 9.258733749389648
     },
     {
       "requirement_id": "11",
       "input": "As a Group 2, I want The system must provide students with a certain number of points upon registration",
-      "cluster_id": 1,
+      "cluster_id": 12,
       "umap_x": 1.2566139698028564,
       "umap_y": 8.295767784118652
     },
     {
       "requirement_id": "12",
       "input": "As a Group 2, I want Students must be able to view their points balance",
-      "cluster_id": 0,
+      "cluster_id": 1,
       "umap_x": 2.775867462158203,
       "umap_y": 6.93384313583374
     },
     {
       "requirement_id": "13",
       "input": "As a Group 2, I want Students must be able to view the bookings related to their room",
-      "cluster_id": 0,
+      "cluster_id": 1,
       "umap_x": 2.8653621673583984,
       "umap_y": 6.789562225341797
     },
     {
       "requirement_id": "14",
       "input": "As a Group 2, I want Students must be able to make a room available",
-      "cluster_id": 0,
+      "cluster_id": 1,
       "umap_x": 3.0420684814453125,
       "umap_y": 7.129322528839111
     },
     {
       "requirement_id": "15",
       "input": "As a Group 2, I want The system must require photos availability period address and cost in points per night for room publication",
-      "cluster_id": 5,
+      "cluster_id": 2,
       "umap_x": -0.7241520285606384,
       "umap_y": 6.870449542999268
     },
     {
       "requirement_id": "16",
       "input": "As a Group 2, I want Students must be able to view their room (if saved)",
-      "cluster_id": 0,
+      "cluster_id": 1,
       "umap_x": 3.311533212661743,
       "umap_y": 6.916540622711182
     },
     {
       "requirement_id": "17",
       "input": "As a Group 2, I want Students must be able to edit the information of their room",
-      "cluster_id": 0,
+      "cluster_id": 1,
       "umap_x": 3.2224011421203613,
       "umap_y": 6.8593034744262695
     },
     {
       "requirement_id": "18",
       "input": "As a Group 2, I want Students must be able to unpublish their room (saved not public)",
-      "cluster_id": 0,
+      "cluster_id": 1,
       "umap_x": 3.349289894104004,
       "umap_y": 6.889246940612793
     },
     {
       "requirement_id": "19",
       "input": "As a Group 2, I want Students must be able to delete their room (if saved)",
-      "cluster_id": 0,
+      "cluster_id": 1,
       "umap_x": 3.3841278553009033,
       "umap_y": 6.927946090698242
     },
     {
       "requirement_id": "20",
       "input": "As a Group 2, I want Students must be able to view the reviews related to their room",
-      "cluster_id": 0,
+      "cluster_id": 1,
       "umap_x": 2.9275221824645996,
       "umap_y": 6.502920627593994
     },
     {
       "requirement_id": "21",
       "input": "As a Group 2, I want Students must receive the corresponding points when their room is used",
-      "cluster_id": 0,
+      "cluster_id": 1,
       "umap_x": 2.506185531616211,
       "umap_y": 7.043895244598389
     },
     {
       "requirement_id": "22",
       "input": "As a Group 2, I want Students must be able to search for rooms",
-      "cluster_id": 0,
+      "cluster_id": 1,
       "umap_x": 2.9751088619232178,
       "umap_y": 7.07845401763916
     },
     {
       "requirement_id": "23",
       "input": "As a Group 2, I want Students must be able to filter the search by city and accommodation period",
-      "cluster_id": 0,
+      "cluster_id": 1,
       "umap_x": 2.745753288269043,
       "umap_y": 6.938945293426514
     },
     {
       "requirement_id": "24",
       "input": "As a Group 2, I want Students must be able to view a room",
-      "cluster_id": 0,
+      "cluster_id": 1,
       "umap_x": 3.2103655338287354,
       "umap_y": 6.9981689453125
     },
     {
       "requirement_id": "25",
       "input": "As a Group 2, I want Students must be able to view a room\u2019s reviews",
-      "cluster_id": 0,
+      "cluster_id": 1,
       "umap_x": 3.02309513092041,
       "umap_y": 6.575917720794678
     },
     {
       "requirement_id": "26",
       "input": "As a Group 2, I want Students must be able to book a room",
-      "cluster_id": 0,
+      "cluster_id": 1,
       "umap_x": 3.02954363822937,
       "umap_y": 7.170717716217041
     },
     {
       "requirement_id": "27",
       "input": "As a Group 2, I want Students must be able to cancel a booking",
-      "cluster_id": 0,
+      "cluster_id": 1,
       "umap_x": 2.7557711601257324,
       "umap_y": 6.939510822296143
     },
     {
       "requirement_id": "28",
       "input": "As a Group 2, I want Students must be able to reject a booking request for their room",
-      "cluster_id": 0,
+      "cluster_id": 1,
       "umap_x": 3.0279712677001953,
       "umap_y": 6.875786304473877
     },
     {
       "requirement_id": "29",
       "input": "As a Group 2, I want Students must be able to see the reviews related to the person booking the room",
-      "cluster_id": 0,
+      "cluster_id": 1,
       "umap_x": 2.9405980110168457,
       "umap_y": 6.632908821105957
     },
@@ -1258,343 +1268,343 @@
     {
       "requirement_id": "31",
       "input": "As a Group 2, I want The system must allow the addition of bonuses such as towels and others with an appropriate additional cost in points per night",
-      "cluster_id": 1,
+      "cluster_id": 2,
       "umap_x": -0.5273715257644653,
       "umap_y": 6.941832542419434
     },
     {
       "requirement_id": "32",
       "input": "As a Group 2, I want The system must retain 10% of the points paid by students",
-      "cluster_id": 2,
+      "cluster_id": 7,
       "umap_x": 0.2519884407520294,
       "umap_y": 7.701510429382324
     },
     {
       "requirement_id": "33",
       "input": "As a Group 2, I want Students can purchase points from UniRoomShare",
-      "cluster_id": 0,
+      "cluster_id": 1,
       "umap_x": 2.649329662322998,
       "umap_y": 7.273762226104736
     },
     {
       "requirement_id": "34",
       "input": "As a Group 2, I want Points can only be used for room bookings",
-      "cluster_id": 0,
+      "cluster_id": 1,
       "umap_x": 2.511995792388916,
       "umap_y": 7.231907844543457
     },
     {
       "requirement_id": "35",
       "input": "As a Group 2, I want Students can leave reviews for rooms",
-      "cluster_id": 0,
+      "cluster_id": 1,
       "umap_x": 3.038635015487671,
       "umap_y": 6.828680992126465
     },
     {
       "requirement_id": "36",
       "input": "As a Group 2, I want Students can leave reviews for students",
-      "cluster_id": 0,
+      "cluster_id": 1,
       "umap_x": 3.177156686782837,
       "umap_y": 6.411550998687744
     },
     {
       "requirement_id": "37",
       "input": "As a Group 2, I want Students must be able to see the reviews they have written",
-      "cluster_id": 0,
+      "cluster_id": 1,
       "umap_x": 3.107572317123413,
       "umap_y": 6.395366191864014
     },
     {
       "requirement_id": "38",
       "input": "As a Group 2, I want Students must be able to edit the reviews they have written",
-      "cluster_id": 0,
+      "cluster_id": 1,
       "umap_x": 3.166067361831665,
       "umap_y": 6.376257419586182
     },
     {
       "requirement_id": "39",
       "input": "As a Group 2, I want Students must be able to delete the reviews they have written",
-      "cluster_id": 0,
+      "cluster_id": 1,
       "umap_x": 3.1434199810028076,
       "umap_y": 6.43546724319458
     },
     {
       "requirement_id": "40",
       "input": "As a Group 3, I want The system must allow stays of up to 7 nights.",
-      "cluster_id": 7,
+      "cluster_id": 2,
       "umap_x": -1.2644039392471313,
       "umap_y": 6.244048118591309
     },
     {
       "requirement_id": "41",
       "input": "As a Group 3, I want The system must retain 10% of the points earned by the host per overnight stay.",
-      "cluster_id": 2,
+      "cluster_id": 4,
       "umap_x": -0.08574686199426651,
       "umap_y": 7.517727375030518
     },
     {
       "requirement_id": "42",
       "input": "As a Group 3, I want The system must allow the user to register on the app.",
-      "cluster_id": 3,
+      "cluster_id": 12,
       "umap_x": -1.522722601890564,
       "umap_y": 5.023715019226074
     },
     {
       "requirement_id": "43",
       "input": "As a Group 3, I want The system must accept only registrations made through a university email.",
-      "cluster_id": 3,
+      "cluster_id": 8,
       "umap_x": -0.330433189868927,
       "umap_y": 3.3984897136688232
     },
     {
       "requirement_id": "44",
       "input": "As a Group 3, I want The system must assign x additional points for each linen supply.",
-      "cluster_id": 1,
+      "cluster_id": 12,
       "umap_x": 0.06873161345720291,
       "umap_y": 8.975740432739258
     },
     {
       "requirement_id": "45",
       "input": "As a Group 3, I want The system must provide a mechanism for earning points.",
-      "cluster_id": 1,
+      "cluster_id": 12,
       "umap_x": 0.08023311197757721,
       "umap_y": 9.056653022766113
     },
     {
       "requirement_id": "46",
       "input": "As a Group 3, I want The system must allow the host to specify the points per night.",
-      "cluster_id": 7,
+      "cluster_id": 2,
       "umap_x": -1.0006840229034424,
       "umap_y": 7.403157711029053
     },
     {
       "requirement_id": "47",
       "input": "As a Group 3, I want The system must assign the points obtained from the overnight stay to the host.",
-      "cluster_id": 7,
+      "cluster_id": 2,
       "umap_x": -0.9763655066490173,
       "umap_y": 7.660523414611816
     },
     {
       "requirement_id": "48",
       "input": "As a Group 3, I want The system must subtract the points specified by the host from the guest who uses the accommodation.",
-      "cluster_id": 7,
+      "cluster_id": 4,
       "umap_x": -0.7441851496696472,
       "umap_y": 7.7481279373168945
     },
     {
       "requirement_id": "49",
       "input": "As a Group 3, I want The system must allow the user to purchase points.",
-      "cluster_id": 1,
+      "cluster_id": 12,
       "umap_x": -0.06200963631272316,
       "umap_y": 9.156599998474121
     },
     {
       "requirement_id": "50",
       "input": "As a Group 3, I want The system must not allow the user to sell points.",
-      "cluster_id": 1,
+      "cluster_id": 12,
       "umap_x": -0.2952333986759186,
       "umap_y": 8.646944999694824
     },
     {
       "requirement_id": "51",
       "input": "As a Group 3, I want The system must allow the host to upload photos of the property.",
-      "cluster_id": 7,
+      "cluster_id": 2,
       "umap_x": -2.039525032043457,
       "umap_y": 7.11334228515625
     },
     {
       "requirement_id": "52",
       "input": "As a Group 3, I want The system must allow the host to provide the availability period.",
-      "cluster_id": 7,
+      "cluster_id": 2,
       "umap_x": -1.966031551361084,
       "umap_y": 7.150982856750488
     },
     {
       "requirement_id": "53",
       "input": "As a Group 3, I want The system must allow the host to provide the address of the accommodation.",
-      "cluster_id": 7,
+      "cluster_id": 2,
       "umap_x": -1.9713929891586304,
       "umap_y": 7.309937953948975
     },
     {
       "requirement_id": "54",
       "input": "As a Group 3, I want The system must allow users to leave feedback.",
-      "cluster_id": 7,
+      "cluster_id": 9,
       "umap_x": -3.095468521118164,
       "umap_y": 7.7815423011779785
     },
     {
       "requirement_id": "55",
       "input": "As a Group 3, I want The system must allow users to view feedback.",
-      "cluster_id": 7,
+      "cluster_id": 9,
       "umap_x": -3.436652898788452,
       "umap_y": 7.849398136138916
     },
     {
       "requirement_id": "56",
       "input": "As a Group 3, I want The system must allow the host to accept the guest.",
-      "cluster_id": 7,
+      "cluster_id": 2,
       "umap_x": -2.031730890274048,
       "umap_y": 7.39208459854126
     },
     {
       "requirement_id": "57",
       "input": "As a Group 3, I want The system must allow the host to reject the guest.",
-      "cluster_id": 7,
+      "cluster_id": 0,
       "umap_x": -1.9528577327728271,
       "umap_y": 7.427441120147705
     },
     {
       "requirement_id": "58",
       "input": "As a Group 3, I want The system must not allow monetary transactions between host and guest.",
-      "cluster_id": 7,
+      "cluster_id": 2,
       "umap_x": -1.6850736141204834,
       "umap_y": 7.4944281578063965
     },
     {
       "requirement_id": "59",
       "input": "As a Group 4, I want The system must require users to register using a university email address first name and last name in order to use it",
-      "cluster_id": 3,
+      "cluster_id": 8,
       "umap_x": -0.535541296005249,
       "umap_y": 3.5411014556884766
     },
     {
       "requirement_id": "60",
       "input": "As a Group 4, I want The system must assign 50 points to the user upon each new registration",
-      "cluster_id": 1,
+      "cluster_id": 12,
       "umap_x": 1.1431139707565308,
       "umap_y": 8.631226539611816
     },
     {
       "requirement_id": "61",
       "input": "As a Group 4, I want The system must require users to authenticate using their university email to access the system",
-      "cluster_id": 3,
+      "cluster_id": 8,
       "umap_x": -0.5615053176879883,
       "umap_y": 3.6874656677246094
     },
     {
       "requirement_id": "62",
       "input": "As a Group 4, I want If the user does not have a university email or the university authentication system does not issue a token the system must consider the registration invalid",
-      "cluster_id": 3,
+      "cluster_id": 8,
       "umap_x": -0.46439793705940247,
       "umap_y": 3.5193867683410645
     },
     {
       "requirement_id": "63",
       "input": "As a Group 4, I want The system must allow each user to register a bed/place to sleep",
-      "cluster_id": 4,
+      "cluster_id": 11,
       "umap_x": -3.7194905281066895,
       "umap_y": 8.950224876403809
     },
     {
       "requirement_id": "64",
       "input": "As a Group 4, I want The system must verify that the cost per night is between 0 and 30 points",
-      "cluster_id": 1,
+      "cluster_id": 2,
       "umap_x": -0.7447295784950256,
       "umap_y": 7.2553277015686035
     },
     {
       "requirement_id": "65",
       "input": "As a Group 4, I want The system must allow the owner of a registered bed to modify it",
-      "cluster_id": 4,
+      "cluster_id": 11,
       "umap_x": -3.779839038848877,
       "umap_y": 8.872091293334961
     },
     {
       "requirement_id": "66",
       "input": "As a Group 4, I want The system must allow each user to view the beds they have registered",
-      "cluster_id": 4,
+      "cluster_id": 11,
       "umap_x": -3.991973638534546,
       "umap_y": 8.858309745788574
     },
     {
       "requirement_id": "67",
       "input": "As a Group 4, I want The system must allow each user to indicate that a bed is available on specific dates",
-      "cluster_id": 4,
+      "cluster_id": 11,
       "umap_x": -3.787614107131958,
       "umap_y": 8.903746604919434
     },
     {
       "requirement_id": "68",
       "input": "As a Group 4, I want The system must offer users a mechanism for searching available beds",
-      "cluster_id": 4,
+      "cluster_id": 11,
       "umap_x": -3.967559814453125,
       "umap_y": 8.897672653198242
     },
     {
       "requirement_id": "69",
       "input": "As a Group 4, I want The system must provide a filtering mechanism for beds based on one or more parameters specified by the user: dates location feedback average cost and requested services",
-      "cluster_id": 4,
+      "cluster_id": 11,
       "umap_x": -4.068600177764893,
       "umap_y": 9.055771827697754
     },
     {
       "requirement_id": "70",
       "input": "As a Group 4, I want If the booking request is valid the system must allow the user to book another user?s bed",
-      "cluster_id": 4,
+      "cluster_id": 11,
       "umap_x": -3.4943153858184814,
       "umap_y": 9.074654579162598
     },
     {
       "requirement_id": "71",
       "input": "As a Group 4, I want If the booking request is invalid the system must reject it and request modifications",
-      "cluster_id": 4,
+      "cluster_id": 0,
       "umap_x": -2.1044256687164307,
       "umap_y": 8.870889663696289
     },
     {
       "requirement_id": "72",
       "input": "As a Group 4, I want The system must allow each user to view their booked beds past and future in some order",
-      "cluster_id": 4,
+      "cluster_id": 11,
       "umap_x": -3.9804370403289795,
       "umap_y": 8.879131317138672
     },
     {
       "requirement_id": "73",
       "input": "As a Group 4, I want The system must send a notification to the owner of the bed for each new booking request",
-      "cluster_id": 4,
+      "cluster_id": 11,
       "umap_x": -3.369140148162842,
       "umap_y": 8.98793888092041
     },
     {
       "requirement_id": "74",
       "input": "As a Group 4, I want The system must allow the owner of the bed to accept or reject each booking request",
-      "cluster_id": 4,
+      "cluster_id": 0,
       "umap_x": -3.5241007804870605,
       "umap_y": 9.13785457611084
     },
     {
       "requirement_id": "75",
       "input": "As a Group 4, I want If the owner receives multiple booking requests for the same bed on the same dates once one is accepted the system must automatically reject all the others",
-      "cluster_id": 4,
+      "cluster_id": 0,
       "umap_x": -3.3217175006866455,
       "umap_y": 9.195128440856934
     },
     {
       "requirement_id": "76",
       "input": "As a Group 4, I want For each new booking the system must associate a unique identifier at the moment of acceptance",
-      "cluster_id": 4,
+      "cluster_id": 11,
       "umap_x": -3.3890416622161865,
       "umap_y": 8.983968734741211
     },
     {
       "requirement_id": "77",
       "input": "As a Group 4, I want The system must update the availability of the bed when a booking request is accepted or canceled",
-      "cluster_id": 4,
+      "cluster_id": 11,
       "umap_x": -3.267298460006714,
       "umap_y": 9.045686721801758
     },
     {
       "requirement_id": "78",
       "input": "As a Group 4, I want On the payment day at 8:00 AM (Italian time) the system must notify the user who booked to check if their balance is sufficient",
-      "cluster_id": 4,
+      "cluster_id": 11,
       "umap_x": -2.5766966342926025,
       "umap_y": 8.955035209655762
     },
     {
       "requirement_id": "79",
       "input": "As a Group 4, I want The system automatically processes the payment for the booking at 12:00 PM on the day before the check-in date",
-      "cluster_id": 2,
+      "cluster_id": 0,
       "umap_x": -2.263075590133667,
       "umap_y": 9.001402854919434
     },
@@ -1608,189 +1618,189 @@
     {
       "requirement_id": "81",
       "input": "As a Group 4, I want If at the moment of payment the user cannot pay the system must automatically cancel the booking",
-      "cluster_id": 4,
+      "cluster_id": 0,
       "umap_x": -1.9522429704666138,
       "umap_y": 9.094440460205078
     },
     {
       "requirement_id": "82",
       "input": "As a Group 4, I want At the moment of payment the system must add to the host user 90% of the total cost of the bed in points",
-      "cluster_id": 2,
+      "cluster_id": 4,
       "umap_x": -0.3310823142528534,
       "umap_y": 7.5824713706970215
     },
     {
       "requirement_id": "83",
       "input": "As a Group 4, I want At the moment of payment the system must deduct 10% of the total cost of the bed in points",
-      "cluster_id": 2,
+      "cluster_id": 4,
       "umap_x": -0.3142394721508026,
       "umap_y": 7.628863334655762
     },
     {
       "requirement_id": "84",
       "input": "As a Group 4, I want The system must provide a mechanism to cancel future bookings",
-      "cluster_id": 4,
+      "cluster_id": 0,
       "umap_x": -1.7793430089950562,
       "umap_y": 8.925929069519043
     },
     {
       "requirement_id": "85",
       "input": "As a Group 4, I want If payment has already occurred the system does not provide refunds",
-      "cluster_id": 2,
+      "cluster_id": 0,
       "umap_x": -1.8252687454223633,
       "umap_y": 9.068123817443848
     },
     {
       "requirement_id": "86",
       "input": "As a Group 4, I want At the end of the stay for one week the system must allow users who stayed to leave feedback about the stay",
-      "cluster_id": 7,
+      "cluster_id": 9,
       "umap_x": -3.0770232677459717,
       "umap_y": 7.927069187164307
     },
     {
       "requirement_id": "87",
       "input": "As a Group 4, I want At the end of the stay for one week the system must allow users who offered a bed to leave feedback about the guest",
-      "cluster_id": 4,
+      "cluster_id": 9,
       "umap_x": -3.142207622528076,
       "umap_y": 8.13965892791748
     },
     {
       "requirement_id": "88",
       "input": "As a Group 4, I want For each user the system must allow other users to view the feedback they received",
-      "cluster_id": 4,
+      "cluster_id": 9,
       "umap_x": -3.939542770385742,
       "umap_y": 8.467044830322266
     },
     {
       "requirement_id": "89",
       "input": "As a Group 4, I want For each bed the system must allow the viewing of all feedback related to all users",
-      "cluster_id": 4,
+      "cluster_id": 9,
       "umap_x": -4.054833889007568,
       "umap_y": 8.632828712463379
     },
     {
       "requirement_id": "90",
       "input": "As a Group 4, I want The system must allow each user to view their balance",
-      "cluster_id": 4,
+      "cluster_id": 9,
       "umap_x": -4.040186882019043,
       "umap_y": 8.614969253540039
     },
     {
       "requirement_id": "91",
       "input": "As a Group 4, I want The system must allow each user to purchase points via card payment",
-      "cluster_id": 1,
+      "cluster_id": 12,
       "umap_x": 0.2378053218126297,
       "umap_y": 9.299047470092773
     },
     {
       "requirement_id": "92",
       "input": "As a Group 4, I want The system must manage the payment of points",
-      "cluster_id": 1,
+      "cluster_id": 12,
       "umap_x": -0.00321425823494792,
       "umap_y": 9.413341522216797
     },
     {
       "requirement_id": "93",
       "input": "As a Group 4, I want For each user the system must provide a section containing their personal data",
-      "cluster_id": 4,
+      "cluster_id": 9,
       "umap_x": -3.8733901977539062,
       "umap_y": 8.466197967529297
     },
     {
       "requirement_id": "94",
       "input": "As a Group 5, I want The system must allow the landlord user to make their accommodation available for rent",
-      "cluster_id": 5,
+      "cluster_id": 6,
       "umap_x": -2.7933547496795654,
       "umap_y": 6.308124542236328
     },
     {
       "requirement_id": "95",
       "input": "As a Group 5, I want The system must prevent the publication of the accommodation if photos are not provided",
-      "cluster_id": 5,
+      "cluster_id": 6,
       "umap_x": -1.9277719259262085,
       "umap_y": 6.177155017852783
     },
     {
       "requirement_id": "96",
       "input": "As a Group 5, I want The system must prevent the publication of the accommodation if the rental period is not provided",
-      "cluster_id": 5,
+      "cluster_id": 6,
       "umap_x": -2.0167932510375977,
       "umap_y": 6.165261268615723
     },
     {
       "requirement_id": "97",
       "input": "As a Group 5, I want The system must prevent the publication of the accommodation if the address is not provided",
-      "cluster_id": 5,
+      "cluster_id": 6,
       "umap_x": -1.9497662782669067,
       "umap_y": 6.142884731292725
     },
     {
       "requirement_id": "98",
       "input": "As a Group 5, I want The system must prevent the publication of the accommodation if the cost in points per night is not provided",
-      "cluster_id": 5,
+      "cluster_id": 2,
       "umap_x": -1.8072680234909058,
       "umap_y": 6.291406631469727
     },
     {
       "requirement_id": "99",
       "input": "As a Group 5, I want The system must allow the tenant user to add sheets and towels as additional comforts",
-      "cluster_id": 5,
+      "cluster_id": 6,
       "umap_x": -2.6188652515411377,
       "umap_y": 6.387794494628906
     },
     {
       "requirement_id": "100",
       "input": "As a Group 5, I want The system must allow the tenant user to choose the rental cost before publishing the room",
-      "cluster_id": 5,
+      "cluster_id": 6,
       "umap_x": -2.5294182300567627,
       "umap_y": 6.298006057739258
     },
     {
       "requirement_id": "101",
       "input": "As a Group 5, I want The system must allow the guest user to verify the reachability of the accommodation",
-      "cluster_id": 5,
+      "cluster_id": 6,
       "umap_x": -2.814246892929077,
       "umap_y": 5.755825996398926
     },
     {
       "requirement_id": "102",
       "input": "As a Group 5, I want The system must prevent the tenant from renting the room to multiple users on overlapping dates",
-      "cluster_id": 5,
+      "cluster_id": 6,
       "umap_x": -2.3301398754119873,
       "umap_y": 6.300826072692871
     },
     {
       "requirement_id": "103",
       "input": "As a Group 5, I want The system must prevent the guest from renting multiple rooms on overlapping dates",
-      "cluster_id": 5,
+      "cluster_id": 6,
       "umap_x": -2.204339027404785,
       "umap_y": 6.301450729370117
     },
     {
       "requirement_id": "104",
       "input": "As a Group 5, I want The system must recognize a university email address from a non-university one",
-      "cluster_id": 3,
+      "cluster_id": 8,
       "umap_x": -0.5325347781181335,
       "umap_y": 3.6629488468170166
     },
     {
       "requirement_id": "105",
       "input": "As a Group 5, I want The system must identify the university associated with the email address",
-      "cluster_id": 3,
+      "cluster_id": 8,
       "umap_x": -0.4336260259151459,
       "umap_y": 3.5967018604278564
     },
     {
       "requirement_id": "106",
       "input": "As a Group 5, I want The system must verify whether the user is already registered",
-      "cluster_id": 5,
+      "cluster_id": 6,
       "umap_x": -2.7682254314422607,
       "umap_y": 5.281282901763916
     },
     {
       "requirement_id": "107",
       "input": "As a Group 5, I want The system must allow the creation of a new profile",
-      "cluster_id": 5,
+      "cluster_id": 6,
       "umap_x": -2.318927049636841,
       "umap_y": 4.920109748840332
     },
@@ -1804,14 +1814,14 @@
     {
       "requirement_id": "109",
       "input": "As a Group 5, I want The system must allow the user to log out",
-      "cluster_id": 5,
+      "cluster_id": 6,
       "umap_x": -2.2858190536499023,
       "umap_y": 5.032752513885498
     },
     {
       "requirement_id": "110",
       "input": "As a Group 5, I want The system must allow the user to delete their account",
-      "cluster_id": 5,
+      "cluster_id": 6,
       "umap_x": -2.1630380153656006,
       "umap_y": 5.045745372772217
     },
@@ -1839,273 +1849,273 @@
     {
       "requirement_id": "114",
       "input": "As a Group 5, I want The system must allow a user to book a room or a couch",
-      "cluster_id": 5,
+      "cluster_id": 6,
       "umap_x": -2.781870126724243,
       "umap_y": 6.072516918182373
     },
     {
       "requirement_id": "115",
       "input": "As a Group 5, I want The system must allow the insertion of the stay period",
-      "cluster_id": 5,
+      "cluster_id": 6,
       "umap_x": -2.545619487762451,
       "umap_y": 5.742338180541992
     },
     {
       "requirement_id": "116",
       "input": "As a Group 5, I want The system must prevent the booking if the stay exceeds 7 consecutive days",
-      "cluster_id": 5,
+      "cluster_id": 2,
       "umap_x": -1.493930697441101,
       "umap_y": 6.229740142822266
     },
     {
       "requirement_id": "117",
       "input": "As a Group 5, I want The system must notify errors or unavailability during booking",
-      "cluster_id": 5,
+      "cluster_id": 6,
       "umap_x": -3.0614070892333984,
       "umap_y": 5.771394729614258
     },
     {
       "requirement_id": "118",
       "input": "As a Group 5, I want The system must allow the viewing and selection of available options",
-      "cluster_id": 5,
+      "cluster_id": 6,
       "umap_x": -2.4283483028411865,
       "umap_y": 5.4420270919799805
     },
     {
       "requirement_id": "119",
       "input": "As a Group 5, I want The system must calculate the total price in points",
-      "cluster_id": 1,
+      "cluster_id": 12,
       "umap_x": -0.0665680319070816,
       "umap_y": 8.901047706604004
     },
     {
       "requirement_id": "120",
       "input": "As a Group 5, I want The system must show a booking summary",
-      "cluster_id": 5,
+      "cluster_id": 6,
       "umap_x": -2.861050844192505,
       "umap_y": 5.42455530166626
     },
     {
       "requirement_id": "121",
       "input": "As a Group 5, I want The system must request a second confirmation before purchase",
-      "cluster_id": 5,
+      "cluster_id": 6,
       "umap_x": -3.091935634613037,
       "umap_y": 5.510840892791748
     },
     {
       "requirement_id": "122",
       "input": "As a Group 5, I want The system must not deduct points at the moment of booking",
-      "cluster_id": 1,
+      "cluster_id": 7,
       "umap_x": -0.49181264638900757,
       "umap_y": 8.597020149230957
     },
     {
       "requirement_id": "123",
       "input": "As a Group 5, I want The system must notify the confirmation of the booking",
-      "cluster_id": 5,
+      "cluster_id": 6,
       "umap_x": -3.0753540992736816,
       "umap_y": 5.58251953125
     },
     {
       "requirement_id": "124",
       "input": "As a Group 5, I want The system must update the availability of the accommodation",
-      "cluster_id": 5,
+      "cluster_id": 6,
       "umap_x": -2.861288070678711,
       "umap_y": 5.819558620452881
     },
     {
       "requirement_id": "125",
       "input": "As a Group 5, I want The system must allow the cancellation of the booking with point refund",
-      "cluster_id": 5,
+      "cluster_id": 0,
       "umap_x": -1.3176988363265991,
       "umap_y": 8.671563148498535
     },
     {
       "requirement_id": "126",
       "input": "As a Group 5, I want The system must allow the host to view approve and reject bookings",
-      "cluster_id": 5,
+      "cluster_id": 0,
       "umap_x": -2.229654312133789,
       "umap_y": 6.811822891235352
     },
     {
       "requirement_id": "127",
       "input": "As a Group 5, I want The system must make the accommodation available again in case of rejection",
-      "cluster_id": 5,
+      "cluster_id": 6,
       "umap_x": -2.7874207496643066,
       "umap_y": 5.960905075073242
     },
     {
       "requirement_id": "128",
       "input": "As a Group 5, I want The system must allow each student to have a wallet",
-      "cluster_id": 1,
+      "cluster_id": 5,
       "umap_x": -1.0545029640197754,
       "umap_y": 5.181257247924805
     },
     {
       "requirement_id": "129",
       "input": "As a Group 5, I want The system assigns 50 points at first authentication",
-      "cluster_id": 1,
+      "cluster_id": 7,
       "umap_x": 0.8529202342033386,
       "umap_y": 8.562819480895996
     },
     {
       "requirement_id": "130",
       "input": "As a Group 5, I want The system retains the points once the booking is completed",
-      "cluster_id": 2,
+      "cluster_id": 7,
       "umap_x": -0.2437969446182251,
       "umap_y": 8.207996368408203
     },
     {
       "requirement_id": "131",
       "input": "As a Group 5, I want The system rejects the booking if the points are not sufficient",
-      "cluster_id": 1,
+      "cluster_id": 0,
       "umap_x": -0.7866657376289368,
       "umap_y": 8.421548843383789
     },
     {
       "requirement_id": "132",
       "input": "As a Group 5, I want The system sends 90% of the points to the landlord student",
-      "cluster_id": 2,
+      "cluster_id": 7,
       "umap_x": 0.45078372955322266,
       "umap_y": 7.314963340759277
     },
     {
       "requirement_id": "133",
       "input": "As a Group 5, I want The system sends the points five hours before the start of the stay",
-      "cluster_id": 2,
+      "cluster_id": 7,
       "umap_x": -1.029954433441162,
       "umap_y": 8.129042625427246
     },
     {
       "requirement_id": "134",
       "input": "As a Group 5, I want The system retains 10% of the points on point purchases",
-      "cluster_id": 2,
+      "cluster_id": 7,
       "umap_x": 0.11715494841337204,
       "umap_y": 7.981414318084717
     },
     {
       "requirement_id": "135",
       "input": "As a Group 5, I want The system must allow the purchase of points",
-      "cluster_id": 1,
+      "cluster_id": 12,
       "umap_x": -0.13537155091762543,
       "umap_y": 8.900975227355957
     },
     {
       "requirement_id": "136",
       "input": "As a Group 5, I want The system allows the purchase of at least 20 points",
-      "cluster_id": 1,
+      "cluster_id": 7,
       "umap_x": 0.2194165140390396,
       "umap_y": 8.628252983093262
     },
     {
       "requirement_id": "137",
       "input": "As a Group 5, I want The system retains a 2% commission on single purchases",
-      "cluster_id": 2,
+      "cluster_id": 7,
       "umap_x": 0.19781383872032166,
       "umap_y": 8.19660472869873
     },
     {
       "requirement_id": "138",
       "input": "As a Group 5, I want The system allows the purchase of 50 100 150-point packages",
-      "cluster_id": 1,
+      "cluster_id": 7,
       "umap_x": 0.2974514961242676,
       "umap_y": 8.569585800170898
     },
     {
       "requirement_id": "139",
       "input": "As a Group 5, I want The system retains a 1% commission on package purchases",
-      "cluster_id": 2,
+      "cluster_id": 7,
       "umap_x": 0.17982633411884308,
       "umap_y": 8.16051959991455
     },
     {
       "requirement_id": "140",
       "input": "As a Group 5, I want The system does not allow the sale of points between students",
-      "cluster_id": 1,
+      "cluster_id": 7,
       "umap_x": -0.4440357983112335,
       "umap_y": 8.441040992736816
     },
     {
       "requirement_id": "141",
       "input": "As a Group 5, I want The system does not allow the conversion of points into currency",
-      "cluster_id": 1,
+      "cluster_id": 7,
       "umap_x": -0.5448375344276428,
       "umap_y": 8.482254028320312
     },
     {
       "requirement_id": "142",
       "input": "As a Group 5, I want The system must allow the user to review a room",
-      "cluster_id": 5,
+      "cluster_id": 6,
       "umap_x": -2.540560722351074,
       "umap_y": 5.596095561981201
     },
     {
       "requirement_id": "143",
       "input": "As a Group 5, I want The system must verify that the user has stayed in the accommodation",
-      "cluster_id": 5,
+      "cluster_id": 6,
       "umap_x": -2.9652087688446045,
       "umap_y": 5.667523384094238
     },
     {
       "requirement_id": "144",
       "input": "As a Group 5, I want The system must allow the host to review the student",
-      "cluster_id": 5,
+      "cluster_id": 6,
       "umap_x": -1.964842677116394,
       "umap_y": 5.503548622131348
     },
     {
       "requirement_id": "145",
       "input": "As a Group 5, I want The system must verify that the host has hosted the user",
-      "cluster_id": 5,
+      "cluster_id": 6,
       "umap_x": -2.947329521179199,
       "umap_y": 5.519057273864746
     },
     {
       "requirement_id": "146",
       "input": "As a Group 5, I want The system must manage the average rating of the room",
-      "cluster_id": 5,
+      "cluster_id": 6,
       "umap_x": -2.4811737537384033,
       "umap_y": 5.315989017486572
     },
     {
       "requirement_id": "147",
       "input": "As a Group 5, I want The system must manage the average rating of the user",
-      "cluster_id": 5,
+      "cluster_id": 6,
       "umap_x": -2.440325975418091,
       "umap_y": 5.107252597808838
     },
     {
       "requirement_id": "148",
       "input": "As a Group 5, I want The system must have a search bar",
-      "cluster_id": 5,
+      "cluster_id": 6,
       "umap_x": -2.5737409591674805,
       "umap_y": 5.021286487579346
     },
     {
       "requirement_id": "149",
       "input": "As a Group 5, I want The system must allow search filters",
-      "cluster_id": 5,
+      "cluster_id": 6,
       "umap_x": -2.5462379455566406,
       "umap_y": 5.06748104095459
     },
     {
       "requirement_id": "150",
       "input": "As a Group 5, I want The system must allow the viewing of an accommodation in a selected period",
-      "cluster_id": 5,
+      "cluster_id": 6,
       "umap_x": -2.576923370361328,
       "umap_y": 5.936495780944824
     },
     {
       "requirement_id": "151",
       "input": "As a Group 5, I want The system must verify the availability of the accommodation in the selected period",
-      "cluster_id": 5,
+      "cluster_id": 6,
       "umap_x": -2.8393118381500244,
       "umap_y": 5.867137432098389
     },
     {
       "requirement_id": "152",
       "input": "As a Group 5, I want The system must keep track of the search history",
-      "cluster_id": 5,
+      "cluster_id": 6,
       "umap_x": -2.5966460704803467,
       "umap_y": 5.066678047180176
     },
@@ -2126,56 +2136,56 @@
     {
       "requirement_id": "155",
       "input": "As a Group 6, I want The system must allow student access",
-      "cluster_id": 0,
+      "cluster_id": 3,
       "umap_x": -0.8362204432487488,
       "umap_y": 4.977260112762451
     },
     {
       "requirement_id": "156",
       "input": "As a Group 6, I want The system must allow the assignment of points",
-      "cluster_id": 1,
+      "cluster_id": 12,
       "umap_x": -0.1250300258398056,
       "umap_y": 8.835283279418945
     },
     {
       "requirement_id": "157",
       "input": "As a Group 6, I want The system must allow the owner to publish a listing for the bed",
-      "cluster_id": 4,
+      "cluster_id": 11,
       "umap_x": -3.332890033721924,
       "umap_y": 6.861928462982178
     },
     {
       "requirement_id": "158",
       "input": "As a Group 6, I want The system must allow the owner to modify the listing",
-      "cluster_id": 5,
+      "cluster_id": 11,
       "umap_x": -3.2580807209014893,
       "umap_y": 6.75612211227417
     },
     {
       "requirement_id": "159",
       "input": "As a Group 6, I want The system must allow the tenant to book a bed",
-      "cluster_id": 5,
+      "cluster_id": 11,
       "umap_x": -2.972552537918091,
       "umap_y": 6.484476089477539
     },
     {
       "requirement_id": "160",
       "input": "As a Group 6, I want The system must be able to verify the origin of the tenant",
-      "cluster_id": 5,
+      "cluster_id": 6,
       "umap_x": -3.0860087871551514,
       "umap_y": 6.34287691116333
     },
     {
       "requirement_id": "161",
       "input": "As a Group 6, I want The system must allow the student to leave a review",
-      "cluster_id": 7,
+      "cluster_id": 9,
       "umap_x": -1.148689866065979,
       "umap_y": 5.462756633758545
     },
     {
       "requirement_id": "162",
       "input": "As a Group 6, I want The system must allow the student to view the reviews",
-      "cluster_id": 0,
+      "cluster_id": 9,
       "umap_x": -1.0364283323287964,
       "umap_y": 5.308436870574951
     },
@@ -2203,161 +2213,161 @@
     {
       "requirement_id": "166",
       "input": "As a Group 7, I want The system must assign points to each student at the moment of registration",
-      "cluster_id": 1,
+      "cluster_id": 12,
       "umap_x": 1.0758975744247437,
       "umap_y": 8.768596649169922
     },
     {
       "requirement_id": "167",
       "input": "As a Group 7, I want The system must deduct points when a service is used",
-      "cluster_id": 1,
+      "cluster_id": 12,
       "umap_x": -0.21280239522457123,
       "umap_y": 9.50200366973877
     },
     {
       "requirement_id": "168",
       "input": "As a Group 7, I want The system must give the Host 90% of the points that the Guest uses for a service",
-      "cluster_id": 2,
+      "cluster_id": 4,
       "umap_x": 0.03696071729063988,
       "umap_y": 7.406130313873291
     },
     {
       "requirement_id": "169",
       "input": "As a Group 7, I want The system must reserve for UniRoomShare 10% of the points spent by a Guest for a service",
-      "cluster_id": 2,
+      "cluster_id": 4,
       "umap_x": 0.10461696237325668,
       "umap_y": 7.5057373046875
     },
     {
       "requirement_id": "170",
       "input": "As a Group 7, I want The system must prevent service bookings from exceeding 7 consecutive nights",
-      "cluster_id": 5,
+      "cluster_id": 2,
       "umap_x": -1.4630941152572632,
       "umap_y": 6.265751361846924
     },
     {
       "requirement_id": "171",
       "input": "As a Group 7, I want The system must handle the purchase of points by a user using real money",
-      "cluster_id": 1,
+      "cluster_id": 12,
       "umap_x": -0.09028836339712143,
       "umap_y": 9.35777473449707
     },
     {
       "requirement_id": "172",
       "input": "As a Group 7, I want The system must ensure that all fields of a post are filled in",
-      "cluster_id": 1,
+      "cluster_id": 12,
       "umap_x": -0.7272831201553345,
       "umap_y": 9.152999877929688
     },
     {
       "requirement_id": "173",
       "input": "As a Group 7, I want The system must allow specifying whether the service includes any extras in the fields",
-      "cluster_id": 7,
+      "cluster_id": 12,
       "umap_x": -0.9535838961601257,
       "umap_y": 9.114904403686523
     },
     {
       "requirement_id": "174",
       "input": "As a Group 7, I want The system must manage user notifications in a dedicated section of the app",
-      "cluster_id": 7,
+      "cluster_id": 12,
       "umap_x": -0.6963555812835693,
       "umap_y": 9.784303665161133
     },
     {
       "requirement_id": "175",
       "input": "As a Group 7, I want The system must manage messages between users in a dedicated section of the app with a chat",
-      "cluster_id": 7,
+      "cluster_id": 12,
       "umap_x": -0.8065617084503174,
       "umap_y": 9.834184646606445
     },
     {
       "requirement_id": "176",
       "input": "As a Group 7, I want The system must notify the Host of the service when the Guest has arrived at the location",
-      "cluster_id": 7,
+      "cluster_id": 4,
       "umap_x": -2.2669107913970947,
       "umap_y": 8.113771438598633
     },
     {
       "requirement_id": "177",
       "input": "As a Group 7, I want The system must notify the Host of the service when the Guest has vacated the place",
-      "cluster_id": 7,
+      "cluster_id": 4,
       "umap_x": -2.2606098651885986,
       "umap_y": 8.089873313903809
     },
     {
       "requirement_id": "178",
       "input": "As a Group 7, I want The system must request feedback from both Guest and Host after the conclusion of the service",
-      "cluster_id": 7,
+      "cluster_id": 9,
       "umap_x": -2.6517601013183594,
       "umap_y": 8.0514497756958
     },
     {
       "requirement_id": "179",
       "input": "As a Group 7, I want The system must have a dedicated section for each user profile containing contact information description services offered chat number of services provided average ratings as host and guest and list of received feedback",
-      "cluster_id": 7,
+      "cluster_id": 9,
       "umap_x": -2.813765525817871,
       "umap_y": 8.264622688293457
     },
     {
       "requirement_id": "180",
       "input": "As a Group 7, I want The system must notify the user when they are running low on points",
-      "cluster_id": 1,
+      "cluster_id": 12,
       "umap_x": -0.4504973292350769,
       "umap_y": 9.727185249328613
     },
     {
       "requirement_id": "181",
       "input": "As a Group 7, I want The system must notify the user when they have run out of points",
-      "cluster_id": 1,
+      "cluster_id": 12,
       "umap_x": -0.39763903617858887,
       "umap_y": 9.675804138183594
     },
     {
       "requirement_id": "182",
       "input": "As a Group 7, I want The system must show the user the history of their points with date time point change and description",
-      "cluster_id": 1,
+      "cluster_id": 12,
       "umap_x": -0.1835300624370575,
       "umap_y": 9.574594497680664
     },
     {
       "requirement_id": "183",
       "input": "As a Group 8, I want The app must allow students to request shared accommodation",
-      "cluster_id": 6,
+      "cluster_id": 10,
       "umap_x": 0.9429699778556824,
       "umap_y": 5.985856056213379
     },
     {
       "requirement_id": "184",
       "input": "As a Group 8, I want The request must include the accommodation period and the university city of the accommodation",
-      "cluster_id": 6,
+      "cluster_id": 10,
       "umap_x": 0.7236059904098511,
       "umap_y": 6.061324119567871
     },
     {
       "requirement_id": "185",
       "input": "As a Group 8, I want The requested accommodation must be located in a university city where the requesting student does not study",
-      "cluster_id": 6,
+      "cluster_id": 10,
       "umap_x": 0.7565754055976868,
       "umap_y": 6.129148960113525
     },
     {
       "requirement_id": "186",
       "input": "As a Group 8, I want The accommodation period specified in the request must have a duration of less than 8 days",
-      "cluster_id": 6,
+      "cluster_id": 10,
       "umap_x": 0.2694009840488434,
       "umap_y": 6.073404312133789
     },
     {
       "requirement_id": "187",
       "input": "As a Group 8, I want The app must allow students to register",
-      "cluster_id": 6,
+      "cluster_id": 3,
       "umap_x": -0.02790023759007454,
       "umap_y": 4.7462568283081055
     },
     {
       "requirement_id": "188",
       "input": "As a Group 8, I want The student must register with their university email",
-      "cluster_id": 3,
+      "cluster_id": 8,
       "umap_x": -0.049866680055856705,
       "umap_y": 3.6703505516052246
     },
@@ -2378,343 +2388,343 @@
     {
       "requirement_id": "191",
       "input": "As a Group 8, I want The app must have a points system",
-      "cluster_id": 1,
+      "cluster_id": 12,
       "umap_x": 0.6688690185546875,
       "umap_y": 9.004528999328613
     },
     {
       "requirement_id": "192",
       "input": "As a Group 8, I want The student must receive a fixed number of points after registration",
-      "cluster_id": 6,
+      "cluster_id": 5,
       "umap_x": 1.3137866258621216,
       "umap_y": 7.716551303863525
     },
     {
       "requirement_id": "193",
       "input": "As a Group 8, I want The student must spend points when occupying accommodation",
-      "cluster_id": 6,
+      "cluster_id": 5,
       "umap_x": 1.0728809833526611,
       "umap_y": 6.837043762207031
     },
     {
       "requirement_id": "194",
       "input": "As a Group 8, I want The student must be able to offer their own accommodation through a listing",
-      "cluster_id": 6,
+      "cluster_id": 10,
       "umap_x": 1.2958277463912964,
       "umap_y": 6.182296276092529
     },
     {
       "requirement_id": "195",
       "input": "As a Group 8, I want The accommodation must have a type",
-      "cluster_id": 6,
+      "cluster_id": 10,
       "umap_x": 0.8343754410743713,
       "umap_y": 5.7305169105529785
     },
     {
       "requirement_id": "196",
       "input": "As a Group 8, I want The type must be room or couch",
-      "cluster_id": 6,
+      "cluster_id": 10,
       "umap_x": 0.828568160533905,
       "umap_y": 5.616531848907471
     },
     {
       "requirement_id": "197",
       "input": "As a Group 8, I want The app must take 10% of the points paid by a student who occupied an accommodation",
-      "cluster_id": 6,
+      "cluster_id": 4,
       "umap_x": 0.710673987865448,
       "umap_y": 7.024314880371094
     },
     {
       "requirement_id": "198",
       "input": "As a Group 8, I want The student offering the accommodation must earn 90% of the points paid by the student who occupied it",
-      "cluster_id": 6,
+      "cluster_id": 4,
       "umap_x": 0.8238502144813538,
       "umap_y": 6.887102127075195
     },
     {
       "requirement_id": "199",
       "input": "As a Group 8, I want The student must specify the availability period address and cost in points per night of the offered accommodation",
-      "cluster_id": 6,
+      "cluster_id": 10,
       "umap_x": 0.8862937092781067,
       "umap_y": 6.477856636047363
     },
     {
       "requirement_id": "200",
       "input": "As a Group 8, I want The student must publish images related to the offered accommodation",
-      "cluster_id": 6,
+      "cluster_id": 10,
       "umap_x": 1.2744287252426147,
       "umap_y": 6.212408065795898
     },
     {
       "requirement_id": "201",
       "input": "As a Group 8, I want The presence of towels and/or sheets must be able to result in a different price for the accommodation",
-      "cluster_id": 6,
+      "cluster_id": 10,
       "umap_x": -0.05798015743494034,
       "umap_y": 6.566079139709473
     },
     {
       "requirement_id": "202",
       "input": "As a Group 8, I want The student offering or occupying accommodation must be able to leave reviews about the student who occupied or offered the accommodation",
-      "cluster_id": 6,
+      "cluster_id": 10,
       "umap_x": 1.2536540031433105,
       "umap_y": 6.322700500488281
     },
     {
       "requirement_id": "203",
       "input": "As a Group 8, I want The review must have a star rating and a description",
-      "cluster_id": 6,
+      "cluster_id": 5,
       "umap_x": 0.6517865657806396,
       "umap_y": 5.588038444519043
     },
     {
       "requirement_id": "204",
       "input": "As a Group 8, I want The student must be able to purchase points via credit or debit card",
-      "cluster_id": 6,
+      "cluster_id": 5,
       "umap_x": 1.4145063161849976,
       "umap_y": 7.30891227722168
     },
     {
       "requirement_id": "205",
       "input": "As a Group 8, I want The student must be able to register their credit or debit cards",
-      "cluster_id": 6,
+      "cluster_id": 5,
       "umap_x": 1.5029579401016235,
       "umap_y": 6.724658489227295
     },
     {
       "requirement_id": "206",
       "input": "As a Group 8, I want The student must not be able to sell points",
-      "cluster_id": 6,
+      "cluster_id": 5,
       "umap_x": 1.354268193244934,
       "umap_y": 7.552424430847168
     },
     {
       "requirement_id": "207",
       "input": "As a Group 8, I want The student requesting accommodation must be able to message the student offering it and vice versa",
-      "cluster_id": 6,
+      "cluster_id": 10,
       "umap_x": 1.0835323333740234,
       "umap_y": 6.07612943649292
     },
     {
       "requirement_id": "208",
       "input": "As a Group 8, I want The app must have a listing search engine",
-      "cluster_id": 6,
+      "cluster_id": 3,
       "umap_x": 0.43237751722335815,
       "umap_y": 5.538886070251465
     },
     {
       "requirement_id": "209",
       "input": "As a Group 8, I want The search engine must allow filtering listings by city cost in points per night availability period type and reviews",
-      "cluster_id": 6,
+      "cluster_id": 2,
       "umap_x": 0.6045734286308289,
       "umap_y": 6.258500576019287
     },
     {
       "requirement_id": "210",
       "input": "As a Group 8, I want The student must be able to view the accommodation details of a listing",
-      "cluster_id": 6,
+      "cluster_id": 10,
       "umap_x": 1.371343970298767,
       "umap_y": 6.2162322998046875
     },
     {
       "requirement_id": "211",
       "input": "As a Group 8, I want The student must have a section dedicated to favorite listings",
-      "cluster_id": 6,
+      "cluster_id": 5,
       "umap_x": 1.5483767986297607,
       "umap_y": 6.250141143798828
     },
     {
       "requirement_id": "212",
       "input": "As a Group 8, I want The student must be able to add listings to favorites",
-      "cluster_id": 6,
+      "cluster_id": 5,
       "umap_x": 1.5266849994659424,
       "umap_y": 6.391777515411377
     },
     {
       "requirement_id": "213",
       "input": "As a Group 8, I want The student must be able to view their points balance",
-      "cluster_id": 6,
+      "cluster_id": 5,
       "umap_x": 1.8046481609344482,
       "umap_y": 7.284283638000488
     },
     {
       "requirement_id": "214",
       "input": "As a Group 8, I want The points balance must be a positive integer",
-      "cluster_id": 1,
+      "cluster_id": 5,
       "umap_x": 1.5777989625930786,
       "umap_y": 7.5704121589660645
     },
     {
       "requirement_id": "215",
       "input": "As a Group 8, I want The student must not be able to spend more points than they possess",
-      "cluster_id": 6,
+      "cluster_id": 5,
       "umap_x": 1.274568796157837,
       "umap_y": 7.396442890167236
     },
     {
       "requirement_id": "216",
       "input": "As a Group 8, I want The student must be able to cancel a submitted request",
-      "cluster_id": 6,
+      "cluster_id": 5,
       "umap_x": 1.867484450340271,
       "umap_y": 6.925296306610107
     },
     {
       "requirement_id": "217",
       "input": "As a Group 8, I want A cancellation must refund the requesting student the points spent",
-      "cluster_id": 6,
+      "cluster_id": 5,
       "umap_x": 1.5891927480697632,
       "umap_y": 7.119085788726807
     },
     {
       "requirement_id": "218",
       "input": "As a Group 8, I want A refund must return 80% of the points spent",
-      "cluster_id": 6,
+      "cluster_id": 5,
       "umap_x": 1.2850112915039062,
       "umap_y": 7.273131370544434
     },
     {
       "requirement_id": "219",
       "input": "As a Group 9, I want The system must allow registration through an official university email",
-      "cluster_id": 3,
+      "cluster_id": 8,
       "umap_x": -0.19912396371364594,
       "umap_y": 3.44879412651062
     },
     {
       "requirement_id": "220",
       "input": "As a Group 9, I want The system must give N free points to the user upon their first registration",
-      "cluster_id": 1,
+      "cluster_id": 12,
       "umap_x": 1.1697986125946045,
       "umap_y": 8.584084510803223
     },
     {
       "requirement_id": "221",
       "input": "As a Group 9, I want The system must allow users to create listings related to rooms",
-      "cluster_id": 7,
+      "cluster_id": 11,
       "umap_x": -3.2303993701934814,
       "umap_y": 7.339109420776367
     },
     {
       "requirement_id": "222",
       "input": "As a Group 9, I want The system must allow users to add a mandatory room description to the listings",
-      "cluster_id": 7,
+      "cluster_id": 11,
       "umap_x": -3.2413156032562256,
       "umap_y": 7.199923038482666
     },
     {
       "requirement_id": "223",
       "input": "As a Group 9, I want The system must allow users to book a stay of up to 7 nights through a dedicated section",
-      "cluster_id": 7,
+      "cluster_id": 2,
       "umap_x": -1.2908426523208618,
       "umap_y": 6.4156084060668945
     },
     {
       "requirement_id": "224",
       "input": "As a Group 9, I want The system must allow users to add add-ons to the room listing",
-      "cluster_id": 7,
+      "cluster_id": 11,
       "umap_x": -3.247654438018799,
       "umap_y": 7.188157081604004
     },
     {
       "requirement_id": "225",
       "input": "As a Group 9, I want The system must transfer the room?s cost in points from the buyer to the host once the booking is made",
-      "cluster_id": 2,
+      "cluster_id": 4,
       "umap_x": -0.5482816100120544,
       "umap_y": 7.792665004730225
     },
     {
       "requirement_id": "226",
       "input": "As a Group 9, I want The system must retain 10% of the points transferred to the host for each purchased listing",
-      "cluster_id": 2,
+      "cluster_id": 4,
       "umap_x": 0.07072437554597855,
       "umap_y": 7.733447074890137
     },
     {
       "requirement_id": "227",
       "input": "As a Group 9, I want The system must allow users to purchase points through an in-app shop",
-      "cluster_id": 1,
+      "cluster_id": 12,
       "umap_x": 0.27404478192329407,
       "umap_y": 9.368244171142578
     },
     {
       "requirement_id": "228",
       "input": "As a Group 9, I want The system must allow users to redeem gift cards with points through the shop",
-      "cluster_id": 1,
+      "cluster_id": 12,
       "umap_x": 0.35534486174583435,
       "umap_y": 9.271772384643555
     },
     {
       "requirement_id": "229",
       "input": "As a Group 9, I want The system must allow the host to leave feedback for the guest",
-      "cluster_id": 7,
+      "cluster_id": 9,
       "umap_x": -2.749443292617798,
       "umap_y": 7.629726409912109
     },
     {
       "requirement_id": "230",
       "input": "As a Group 9, I want The system must allow the guest to leave feedback for the host",
-      "cluster_id": 7,
+      "cluster_id": 9,
       "umap_x": -2.8199074268341064,
       "umap_y": 7.667661666870117
     },
     {
       "requirement_id": "231",
       "input": "As a Group 9, I want The system must allow the guest to leave feedback on the accommodation",
-      "cluster_id": 7,
+      "cluster_id": 9,
       "umap_x": -3.0088844299316406,
       "umap_y": 7.683176517486572
     },
     {
       "requirement_id": "232",
       "input": "As a Group 9, I want The system must allow the viewing of feedback related to a listing",
-      "cluster_id": 7,
+      "cluster_id": 9,
       "umap_x": -3.225703001022339,
       "umap_y": 7.646200180053711
     },
     {
       "requirement_id": "233",
       "input": "As a Group 9, I want The system must allow the viewing of feedback related to each user as host and as guest",
-      "cluster_id": 7,
+      "cluster_id": 9,
       "umap_x": -2.935905933380127,
       "umap_y": 7.883148193359375
     },
     {
       "requirement_id": "234",
       "input": "As a Group 9, I want The system must allow reporting certain users for inappropriate behavior",
-      "cluster_id": 7,
+      "cluster_id": 9,
       "umap_x": -3.189260482788086,
       "umap_y": 7.41733980178833
     },
     {
       "requirement_id": "235",
       "input": "As a Group 9, I want The system must provide a simple messaging mechanism to enable communication between users",
-      "cluster_id": 7,
+      "cluster_id": 9,
       "umap_x": -2.9773004055023193,
       "umap_y": 7.5791449546813965
     },
     {
       "requirement_id": "236",
       "input": "As a Group 10, I want The system allows registration only with an official university email",
-      "cluster_id": 3,
+      "cluster_id": 8,
       "umap_x": -0.33182379603385925,
       "umap_y": 3.423527717590332
     },
     {
       "requirement_id": "237",
       "input": "As a Group 10, I want The system credits a points bonus to the user upon completing registration",
-      "cluster_id": 2,
+      "cluster_id": 7,
       "umap_x": 0.8057301640510559,
       "umap_y": 8.335758209228516
     },
     {
       "requirement_id": "238",
       "input": "As a Group 10, I want The system allows a student to request accommodation in a city different from their study city",
-      "cluster_id": 2,
+      "cluster_id": 10,
       "umap_x": -1.1722424030303955,
       "umap_y": 7.06713342666626
     },
     {
       "requirement_id": "239",
       "input": "As a Group 10, I want The system rejects accommodation requests lasting more than 7 nights",
-      "cluster_id": 2,
+      "cluster_id": 0,
       "umap_x": -1.3478316068649292,
       "umap_y": 6.332638740539551
     },
@@ -2728,7 +2738,7 @@
     {
       "requirement_id": "241",
       "input": "As a Group 10, I want The system allows indicating whether sheets and towels are provided and applying additional point costs",
-      "cluster_id": 2,
+      "cluster_id": 7,
       "umap_x": -0.3641909062862396,
       "umap_y": 6.863635540008545
     },
@@ -2742,56 +2752,56 @@
     {
       "requirement_id": "243",
       "input": "As a Group 10, I want The system allows the guest to send a booking request for an available offer",
-      "cluster_id": 2,
+      "cluster_id": 0,
       "umap_x": -1.432899832725525,
       "umap_y": 7.190321445465088
     },
     {
       "requirement_id": "244",
       "input": "As a Group 10, I want The system allows the host to confirm or reject a booking request",
-      "cluster_id": 2,
+      "cluster_id": 0,
       "umap_x": -1.5862711668014526,
       "umap_y": 7.1779632568359375
     },
     {
       "requirement_id": "245",
       "input": "As a Group 10, I want Only upon host confirmation does the system deduct points from the guest credit the host and retain the 10% commission",
-      "cluster_id": 2,
+      "cluster_id": 4,
       "umap_x": -0.3047668933868408,
       "umap_y": 7.66917610168457
     },
     {
       "requirement_id": "246",
       "input": "As a Group 10, I want The system decreases a student?s points when they use a room",
-      "cluster_id": 2,
+      "cluster_id": 7,
       "umap_x": 0.5731056332588196,
       "umap_y": 7.5657548904418945
     },
     {
       "requirement_id": "247",
       "input": "As a Group 10, I want The system increases a student?s points when they let someone use their room",
-      "cluster_id": 2,
+      "cluster_id": 7,
       "umap_x": 0.5539570450782776,
       "umap_y": 7.599331378936768
     },
     {
       "requirement_id": "248",
       "input": "As a Group 10, I want The system allows students to purchase points from UniRoomShare",
-      "cluster_id": 2,
+      "cluster_id": 7,
       "umap_x": 0.6642488241195679,
       "umap_y": 7.89107608795166
     },
     {
       "requirement_id": "249",
       "input": "As a Group 10, I want The system does not allow students to sell points",
-      "cluster_id": 1,
+      "cluster_id": 7,
       "umap_x": -0.26822665333747864,
       "umap_y": 8.232660293579102
     },
     {
       "requirement_id": "250",
       "input": "As a Group 10, I want The system allows hosts and guests to leave feedback after the stay is completed",
-      "cluster_id": 2,
+      "cluster_id": 9,
       "umap_x": -2.5236456394195557,
       "umap_y": 7.773252010345459
     }

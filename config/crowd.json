@@ -32,14 +32,14 @@
 
   "enable_clustering": true,
   "cluster_k": null,
-  "cluster_k_min": 3,
-  "cluster_k_max": 20,
+  "cluster_k_min": 4,
+  "cluster_k_max": 25,
   "cluster_embedding_dim": 128,
   "cluster_random_state": 42,
   "cluster_node2vec_walk_length": 30,
   "cluster_node2vec_num_walks": 200,
   "cluster_node2vec_workers": 1,
-  "cluster_requirement_feature_weight": 0.5,
+  "cluster_requirement_feature_weight": 0.45,
   "cluster_requirement_svd_dim": 64,
   "cluster_min_requirements": 5,
 
