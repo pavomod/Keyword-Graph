@@ -12,6 +12,8 @@
 *.env
 claude.md
 .claude
+references
+tesi
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
