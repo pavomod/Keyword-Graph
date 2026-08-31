@@ -144,7 +144,74 @@ http://localhost:8000/src/phase4/analysis/visualizer.html
 | `results/{dataset}/clustering_report.json` | 3 | Graph-based clustering results |
 | `results/{dataset}/direct_clustering_report.json` | 3 | Direct requirement clustering |
 | `results/{dataset}/clustering_comparison.json` | 3 | ARI + NMI comparison |
-| `results/{dataset}/phase4_analysis.json` | 4 | LLM inconsistency analysis |
+| `results/{dataset}/phase4_analysis.json` | 4 | LLM quality analysis on the graph-based clusters |
+| `results/{dataset}/phase4_analysis_direct.json` | 4 | LLM quality analysis on the baseline clusters |
+| `results/{dataset}/k.png` | 3 | Elbow curve used to select K |
+
+## Supplementary Material
+
+This repository is the supplementary material for the thesis *Crowd-Based Requirements
+Engineering Using Keyword Graphs, Clustering, and Large Language Models* (University of
+Pisa). Everything needed to reproduce the reported experiments is included: the requirement
+collections, the configuration profiles, the full system prompts and the output artifacts.
+
+### Datasets
+
+| Dataset | Input | Results | Requirements | Description |
+|---------|-------|---------|--------------|-------------|
+| Uniwhere | `data/crowd.csv` | `results/crowd/` | 250 | Student accommodation platform, contributed by 10 groups (English) |
+| V2I case study | `data/test_reale.csv` | `results/test_reale/` | 157 | Vehicle-to-Infrastructure systems, collected ad hoc from 6 participants (English and Italian) |
+
+Each dataset has a matching configuration profile (`config/crowd.json`,
+`config/test_reale.json`) that fixes every parameter of the corresponding run, so the
+published results can be regenerated exactly.
+
+### Prompts
+
+- `src/phase1/gemini/prompt/system_prompt.txt` — keyword canonicalisation (Phase 1)
+- `src/phase4/llm/prompt/system_prompt.txt` — per-cluster quality analysis (Phase 4)
+
+### Reproducing the experiments
+
+Phases 1-3 for either dataset:
+
+```bash
+python -m src.run_pipeline --dataset crowd
+python -m src.run_pipeline --dataset test_reale
+```
+
+Phase 4 on the graph-based clusters (requires `MODEL_API_KEY`):
+
+```bash
+python -m src.run_pipeline --dataset crowd --phase4-only
+```
+
+### Graph-based vs. baseline comparison
+
+The thesis compares the graph-based partition against a direct clustering baseline at two
+levels. The first is partition agreement (ARI and NMI), produced automatically during
+Phase 3 in `clustering_comparison.json`. The second is task-based: the same Phase 4
+analysis is run on both partitions and the findings are compared, which measures whether
+the different organisation of requirements actually helps the downstream analysis.
+
+The scripts in `scripts/` reproduce the second comparison:
+
+```bash
+# Run Phase 4 on the baseline clusters for both datasets
+# (--dry previews the model input without calling the API)
+python scripts/run_phase4_direct.py --dry
+python scripts/run_phase4_direct.py
+
+# Print the side-by-side comparison of findings
+python scripts/compare_phase4.py
+```
+
+`run_phase4_direct.py` writes to `phase4_analysis_direct.json`, leaving the graph-based
+`phase4_analysis.json` untouched, so both analyses remain available for comparison.
+`compare_phase4.py` reports, per dataset and per partition, the number of findings in each
+category, the number of consolidation opportunities implied by the duplicate groups, the
+coherence scores assigned by the model, and a check that no finding cites a requirement
+outside the cluster it belongs to.
 
 ## Project Structure
 
@@ -160,6 +227,11 @@ Keyword-Graph/
 │   ├── test_reale.csv
 │   └── crowd.csv
 ├── results/                          # Pipeline outputs (per dataset)
+│   ├── crowd/
+│   └── test_reale/
+├── scripts/                          # Supplementary experiment scripts
+│   ├── run_phase4_direct.py          # Phase 4 on the baseline partition
+│   └── compare_phase4.py             # Graph vs. baseline findings comparison
 └── src/
     ├── run_pipeline.py               # Main orchestrator
     ├── phase1/
