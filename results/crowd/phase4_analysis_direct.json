@@ -1,0 +1,1217 @@
+{
+  "clusters": [
+    {
+      "cluster_id": "12",
+      "label": "User Points and Registration",
+      "duplicates": [
+        {
+          "requirements": [
+            "1",
+            "42"
+          ],
+          "type": "full",
+          "reason": "Both requirements state that the system must allow user registration."
+        },
+        {
+          "requirements": [
+            "11",
+            "166",
+            "2",
+            "60",
+            "220"
+          ],
+          "type": "partial",
+          "reason": "All five requirements describe giving points to a user upon registration, but specify different or vague amounts (100, 50, 'a certain number', 'N')."
+        },
+        {
+          "requirements": [
+            "135",
+            "171",
+            "227",
+            "49",
+            "6",
+            "91"
+          ],
+          "type": "partial",
+          "reason": "All these requirements concern the ability for users to purchase points, with some specifying the method (real money, in-app shop, card payment)."
+        },
+        {
+          "requirements": [
+            "10",
+            "191"
+          ],
+          "type": "partial",
+          "reason": "R191 is a high-level statement that the app must have a points system, which is detailed by R10's requirement to manage the use of points."
+        }
+      ],
+      "inconsistencies": [
+        {
+          "requirements": [
+            "2",
+            "60",
+            "220"
+          ],
+          "type": "constraint",
+          "reason": "These requirements specify conflicting amounts for the registration bonus: R2 states 100 points, R60 states 50 points, and R220 states an undefined 'N' points."
+        }
+      ],
+      "ambiguities": [
+        {
+          "requirement": "11",
+          "issue": "The term 'a certain number of points' is not defined.",
+          "suggestion": "Specify the exact number of points to be provided upon registration."
+        },
+        {
+          "requirement": "44",
+          "issue": "The variable 'x' for additional points is undefined.",
+          "suggestion": "Define the exact number of points ('x') assigned for each linen supply."
+        },
+        {
+          "requirement": "180",
+          "issue": "The threshold for 'running low on points' is not specified.",
+          "suggestion": "Define a specific point balance that triggers the 'low on points' notification."
+        },
+        {
+          "requirement": "220",
+          "issue": "The variable 'N' for free points is undefined.",
+          "suggestion": "Define the exact number of points ('N') to be given upon first registration."
+        }
+      ],
+      "gaps": [
+        {
+          "description": "The system specifies deducting points for service use (R167) but does not define the behavior if a user has an insufficient point balance to complete a transaction.",
+          "related_to": [
+            "167",
+            "119"
+          ]
+        },
+        {
+          "description": "While multiple requirements allow purchasing points with real money (R171, R6, R91), there are no requirements defining the currency, pricing model (e.g., cost per point), or how to handle failed payment transactions.",
+          "related_to": [
+            "171",
+            "6",
+            "91",
+            "135"
+          ]
+        }
+      ],
+      "dependencies": [
+        {
+          "from": "11",
+          "to": "1",
+          "type": "requires",
+          "reason": "Assigning points upon registration (R11) can only occur after the user registration functionality (R1) is implemented."
+        },
+        {
+          "from": "167",
+          "to": "119",
+          "type": "requires",
+          "reason": "Deducting points for a service (R167) requires the system to first calculate the total price in points (R119)."
+        }
+      ],
+      "quality_score": 70,
+      "quality_reason": "The cluster is mostly coherent, focusing on a points system and user registration. However, it includes several unrelated requirements about post fields (R172, R173), general notifications (R174), and user messaging (R175), which detracts from its focus.",
+      "summary": "This cluster defines a system for user registration and the management of a virtual points economy, including earning, purchasing, and spending points."
+    },
+    {
+      "cluster_id": "11",
+      "label": "Accommodation Listing and Booking",
+      "duplicates": [
+        {
+          "requirements": [
+            "157",
+            "221",
+            "3",
+            "63"
+          ],
+          "type": "partial",
+          "reason": "These requirements all describe the creation of a listing for a place to stay, using different terms like 'bed', 'room', and 'accommodation'."
+        },
+        {
+          "requirements": [
+            "158",
+            "65"
+          ],
+          "type": "full",
+          "reason": "Both requirements state that the owner can modify their registered bed/listing."
+        },
+        {
+          "requirements": [
+            "159",
+            "4",
+            "70"
+          ],
+          "type": "partial",
+          "reason": "All three requirements describe the action of a user booking or requesting to book an accommodation."
+        }
+      ],
+      "inconsistencies": [],
+      "ambiguities": [
+        {
+          "requirement": "70",
+          "issue": "The condition 'If the booking request is valid' is undefined.",
+          "suggestion": "Specify the criteria that determine the validity of a booking request (e.g., user has enough points, dates are available)."
+        },
+        {
+          "requirement": "72",
+          "issue": "The phrase 'in some order' for viewing booked beds is not specific.",
+          "suggestion": "Define the default sort order, for example, 'chronologically by check-in date'."
+        },
+        {
+          "requirement": "78",
+          "issue": "The 'payment day' is not defined.",
+          "suggestion": "Specify when the 'payment day' occurs relative to the booking (e.g., 'the day before check-in')."
+        }
+      ],
+      "gaps": [
+        {
+          "description": "R77 mentions updating availability when a booking is 'accepted or canceled', but no requirements within this cluster define the 'accept' or 'cancel' actions themselves, leaving the workflow incomplete.",
+          "related_to": [
+            "77",
+            "73"
+          ]
+        },
+        {
+          "description": "R78 requires the system to check for a sufficient balance on the payment day, but it fails to specify what should happen if the user's balance is insufficient.",
+          "related_to": [
+            "78"
+          ]
+        }
+      ],
+      "dependencies": [
+        {
+          "from": "4",
+          "to": "3",
+          "type": "requires",
+          "reason": "A user can only submit a booking request (R4) for a listing that has been created (R3)."
+        },
+        {
+          "from": "158",
+          "to": "157",
+          "type": "requires",
+          "reason": "Modifying a listing (R158) is only possible after a listing has been published (R157)."
+        },
+        {
+          "from": "77",
+          "to": "73",
+          "type": "influences",
+          "reason": "The action of accepting or canceling a booking (R77) is a response to the notification of a new booking request (R73)."
+        }
+      ],
+      "quality_score": 95,
+      "quality_reason": "All requirements are tightly focused on the creation, management, and booking of accommodation listings, forming a very coherent functional group.",
+      "summary": "This cluster specifies the lifecycle of an accommodation listing, including creation, modification, searching, and the process for a user to request a booking."
+    },
+    {
+      "cluster_id": "9",
+      "label": "User Feedback and Profiles",
+      "duplicates": [
+        {
+          "requirements": [
+            "161",
+            "54",
+            "5",
+            "178",
+            "250"
+          ],
+          "type": "partial",
+          "reason": "All these requirements describe the ability for users (students, guests, hosts) to leave feedback or reviews after a service is completed."
+        },
+        {
+          "requirements": [
+            "162",
+            "55",
+            "88",
+            "232",
+            "233"
+          ],
+          "type": "partial",
+          "reason": "All these requirements describe the ability for users to view feedback related to other users or listings."
+        }
+      ],
+      "inconsistencies": [
+        {
+          "requirements": [
+            "5",
+            "86"
+          ],
+          "type": "temporal",
+          "reason": "R5 states feedback can be left after a booking is completed with no time limit, while R86 restricts this action to a 'one week' window after the stay, creating a temporal conflict."
+        }
+      ],
+      "ambiguities": [
+        {
+          "requirement": "179",
+          "issue": "The term 'average ratings' is used without defining the rating scale.",
+          "suggestion": "Specify the rating system, for example, 'a star rating from 1 to 5'."
+        },
+        {
+          "requirement": "234",
+          "issue": "The term 'inappropriate behavior' is subjective and undefined.",
+          "suggestion": "Provide a clear definition or a list of examples of what constitutes reportable inappropriate behavior."
+        },
+        {
+          "requirement": "235",
+          "issue": "The term 'simple messaging mechanism' is vague.",
+          "suggestion": "Specify the core features of the messaging system, such as text-only messages, read receipts, etc."
+        }
+      ],
+      "gaps": [
+        {
+          "description": "Multiple requirements refer to leaving and viewing feedback/reviews, but none specify the content or structure of a review (e.g., star rating, text field, length limits).",
+          "related_to": [
+            "54",
+            "55",
+            "161"
+          ]
+        },
+        {
+          "description": "The system allows users to leave feedback, but there is no mention of any moderation process or the ability for a user to edit or delete their own submitted feedback.",
+          "related_to": [
+            "54",
+            "5"
+          ]
+        }
+      ],
+      "dependencies": [
+        {
+          "from": "5",
+          "to": "179",
+          "type": "influences",
+          "reason": "The ability for users to leave reviews (R5) is a prerequisite for the system to calculate and display average ratings on a user profile (R179)."
+        }
+      ],
+      "quality_score": 75,
+      "quality_reason": "The core theme is strong (feedback/reviews), but it includes unrelated requirements for messaging (R235) and viewing point balances (R90), which reduces its coherence.",
+      "summary": "This cluster focuses on the system for users (hosts and guests) to leave and view feedback and reviews for each other and for accommodations after a stay is completed."
+    },
+    {
+      "cluster_id": "2",
+      "label": "Listing and Booking Constraints",
+      "duplicates": [
+        {
+          "requirements": [
+            "116",
+            "170",
+            "223",
+            "40",
+            "7"
+          ],
+          "type": "full",
+          "reason": "All five requirements state the same rule: a booking or stay cannot exceed 7 nights."
+        },
+        {
+          "requirements": [
+            "15",
+            "240",
+            "51",
+            "52",
+            "53",
+            "46"
+          ],
+          "type": "partial",
+          "reason": "R15 and R240 list the mandatory information for publishing a listing. R51, R52, R53, and R46 break these requirements down into individual items (photos, availability, address, cost)."
+        }
+      ],
+      "inconsistencies": [
+        {
+          "requirements": [
+            "64",
+            "242"
+          ],
+          "type": "constraint",
+          "reason": "R64 imposes a strict limit on the cost per night (0-30 points), which contradicts R242's statement that the cost is 'chosen by the host and variable by date', implying full host control."
+        }
+      ],
+      "ambiguities": [
+        {
+          "requirement": "31",
+          "issue": "The terms 'and others' for bonuses and 'appropriate additional cost' are vague.",
+          "suggestion": "List all possible bonuses and define how the additional cost is calculated or set."
+        },
+        {
+          "requirement": "209",
+          "issue": "The filter criteria 'type' and 'reviews' are not defined.",
+          "suggestion": "Specify the possible values for 'type' (e.g., room, couch) and how filtering by 'reviews' works (e.g., minimum average rating)."
+        }
+      ],
+      "gaps": [
+        {
+          "description": "The system requires specific information for publishing an accommodation (R15, R240, R98) but does not define the error handling or user feedback if this information is missing.",
+          "related_to": [
+            "15",
+            "240",
+            "98"
+          ]
+        },
+        {
+          "description": "R64 defines a valid price range for a listing (0-30 points), but there is no requirement specifying what happens if a host attempts to set a price outside this range.",
+          "related_to": [
+            "64"
+          ]
+        }
+      ],
+      "dependencies": [
+        {
+          "from": "98",
+          "to": "15",
+          "type": "influences",
+          "reason": "R98 is a specific enforcement rule (prevent publication) for the general data requirement of providing a cost, as stated in R15."
+        }
+      ],
+      "quality_score": 100,
+      "quality_reason": "The cluster is perfectly coherent, with every requirement contributing to the definition of rules, constraints, and required data for accommodation listings and bookings.",
+      "summary": "This cluster defines the rules and constraints for creating accommodation listings and booking them, focusing on maximum stay duration, cost in points, and required listing information."
+    },
+    {
+      "cluster_id": "8",
+      "label": "University Email Authentication",
+      "duplicates": [
+        {
+          "requirements": [
+            "188",
+            "219",
+            "236",
+            "43",
+            "59",
+            "8"
+          ],
+          "type": "full",
+          "reason": "All these requirements state the same core constraint: user registration must be done using a university email address."
+        },
+        {
+          "requirements": [
+            "9",
+            "62"
+          ],
+          "type": "partial",
+          "reason": "Both requirements describe the email verification process. R9 states the need for verification, and R62 defines the consequence of a failed verification."
+        }
+      ],
+      "inconsistencies": [],
+      "ambiguities": [
+        {
+          "requirement": "104",
+          "issue": "The mechanism to 'recognize a university email address' is not specified.",
+          "suggestion": "Define the method for recognition, such as 'by checking the domain against a pre-approved list of university domains'."
+        },
+        {
+          "requirement": "62",
+          "issue": "The nature of the 'token' from the university authentication system is undefined.",
+          "suggestion": "Specify the authentication protocol to be used (e.g., OAuth 2.0, SAML) and the expected token format."
+        }
+      ],
+      "gaps": [
+        {
+          "description": "The system must verify emails (R9) and identify universities (R105), but a crucial requirement is missing: a mechanism to manage the list of supported universities and their email domains.",
+          "related_to": [
+            "9",
+            "105"
+          ]
+        },
+        {
+          "description": "R62 defines the outcome of an invalid registration attempt but does not specify what feedback or error message is shown to the user.",
+          "related_to": [
+            "62",
+            "9"
+          ]
+        }
+      ],
+      "dependencies": [
+        {
+          "from": "9",
+          "to": "8",
+          "type": "requires",
+          "reason": "The system can only verify a university email (R9) after the user has provided it during registration (R8)."
+        },
+        {
+          "from": "61",
+          "to": "59",
+          "type": "requires",
+          "reason": "Authentication (R61) requires a pre-existing and valid registration (R59)."
+        }
+      ],
+      "quality_score": 100,
+      "quality_reason": "Every requirement in this cluster is directly related to the single, coherent theme of user registration and authentication via university emails.",
+      "summary": "This cluster mandates that user registration and authentication must be performed exclusively using a valid and verifiable university email address."
+    },
+    {
+      "cluster_id": "1",
+      "label": "Student Feature Overview",
+      "duplicates": [],
+      "inconsistencies": [],
+      "ambiguities": [
+        {
+          "requirement": "17",
+          "issue": "The specific 'information' of a room that can be edited is not defined.",
+          "suggestion": "List the editable fields of a room listing, such as description, photos, price, and availability."
+        },
+        {
+          "requirement": "23",
+          "issue": "It is unclear if 'city and accommodation period' are the only search filters.",
+          "suggestion": "Provide a complete list of all available search filters."
+        }
+      ],
+      "gaps": [
+        {
+          "description": "R28 allows students to reject a booking request for their room, but the corresponding ability to 'accept' a booking request is missing.",
+          "related_to": [
+            "28"
+          ]
+        },
+        {
+          "description": "R27 allows a student to cancel a booking, but there are no associated rules defining cancellation policies, such as deadlines or potential penalties.",
+          "related_to": [
+            "27"
+          ]
+        }
+      ],
+      "dependencies": [
+        {
+          "from": "30",
+          "to": "26",
+          "type": "blocks",
+          "reason": "The system check for sufficient points (R30) is a precondition that can block a student from booking a room (R26)."
+        },
+        {
+          "from": "21",
+          "to": "26",
+          "type": "requires",
+          "reason": "A student receiving points for their room being used (R21) depends on another student first successfully booking that room (R26)."
+        }
+      ],
+      "quality_score": 60,
+      "quality_reason": "While all requirements are from the 'student' user's perspective, the cluster groups together disparate functionalities like listing management, booking, point management, and reviews, making it functionally incoherent and too broad.",
+      "summary": "This cluster provides a high-level list of features available to a student, covering management of their rooms, searching and booking other rooms, handling points, and writing reviews."
+    },
+    {
+      "cluster_id": "7",
+      "label": "Point Transaction Rules",
+      "duplicates": [
+        {
+          "requirements": [
+            "140",
+            "249"
+          ],
+          "type": "full",
+          "reason": "Both requirements state that students are not allowed to sell points."
+        },
+        {
+          "requirements": [
+            "129",
+            "237"
+          ],
+          "type": "partial",
+          "reason": "Both requirements describe a point bonus upon registration/authentication, but R129 specifies 50 points while R237 leaves the amount undefined."
+        }
+      ],
+      "inconsistencies": [
+        {
+          "requirements": [
+            "134",
+            "137",
+            "139"
+          ],
+          "type": "constraint",
+          "reason": "These requirements provide conflicting commission rates for point purchases. R134 states a 10% commission, R137 states 2% for single purchases, and R139 states 1% for package purchases. It's unclear how these rules coexist."
+        }
+      ],
+      "ambiguities": [
+        {
+          "requirement": "130",
+          "issue": "The trigger 'once the booking is completed' is ambiguous.",
+          "suggestion": "Define precisely when a booking is considered 'completed', for example, 'at the scheduled check-out time'."
+        },
+        {
+          "requirement": "133",
+          "issue": "The 'start of the stay' is not clearly defined.",
+          "suggestion": "Specify what constitutes the start time, e.g., '15:00 on the check-in date'."
+        },
+        {
+          "requirement": "237",
+          "issue": "The amount of the 'points bonus' is not specified.",
+          "suggestion": "Define the exact number of points given as a bonus."
+        }
+      ],
+      "gaps": [
+        {
+          "description": "R138 defines point packages for purchase, but the price in real currency for these packages is not specified.",
+          "related_to": [
+            "138",
+            "248"
+          ]
+        },
+        {
+          "description": "The system defines different commission rates for 'single' (R137) and 'package' (R138) purchases, but it doesn't define what constitutes a 'single' purchase or its pricing model.",
+          "related_to": [
+            "136",
+            "137",
+            "138"
+          ]
+        }
+      ],
+      "dependencies": [
+        {
+          "from": "130",
+          "to": "122",
+          "type": "requires",
+          "reason": "The action of retaining points upon completion (R130) follows the rule of not deducting them at the moment of booking (R122), defining a clear temporal sequence."
+        },
+        {
+          "from": "133",
+          "to": "132",
+          "type": "influences",
+          "reason": "R133 specifies the exact timing ('five hours before the start of the stay') for the point transfer described in R132."
+        }
+      ],
+      "quality_score": 90,
+      "quality_reason": "The cluster is very coherent, with all requirements defining the economic rules of the points system, such as commissions, transfers, and purchase conditions.",
+      "summary": "This cluster details the specific rules governing point transactions, including initial bonuses, commissions on purchases and stays, and the timing of point transfers for bookings."
+    },
+    {
+      "cluster_id": "4",
+      "label": "Booking Point Transfer",
+      "duplicates": [
+        {
+          "requirements": [
+            "169",
+            "197",
+            "226",
+            "41",
+            "83"
+          ],
+          "type": "full",
+          "reason": "All five requirements state that the system/app retains a 10% commission of the points paid for a stay."
+        },
+        {
+          "requirements": [
+            "168",
+            "198",
+            "82"
+          ],
+          "type": "full",
+          "reason": "All three requirements state that the host receives 90% of the points paid for a stay."
+        }
+      ],
+      "inconsistencies": [
+        {
+          "requirements": [
+            "225",
+            "245",
+            "80"
+          ],
+          "type": "temporal",
+          "reason": "There is a direct conflict on when the point transfer occurs: R225 says 'once the booking is made', R245 says 'upon host confirmation', and R80 implies it happens 'at the moment of payment' (defined elsewhere as the day before check-in). These are three distinct and conflicting triggers."
+        }
+      ],
+      "ambiguities": [
+        {
+          "requirement": "176",
+          "issue": "The mechanism for detecting when a 'Guest has arrived at the location' is not defined.",
+          "suggestion": "Specify how arrival is determined, for example, 'via a manual check-in button pressed by the guest in the app'."
+        },
+        {
+          "requirement": "245",
+          "issue": "The term 'host confirmation' is ambiguous.",
+          "suggestion": "Clarify what is being confirmed: the initial booking request, the guest's check-in, or the successful completion of the stay."
+        }
+      ],
+      "gaps": [
+        {
+          "description": "The cluster defines multiple (conflicting) triggers for transferring points from guest to host. It completely omits any process for handling refunds or transaction rollbacks if a booking is cancelled after this transfer has occurred.",
+          "related_to": [
+            "225",
+            "245",
+            "80"
+          ]
+        }
+      ],
+      "dependencies": [
+        {
+          "from": "82",
+          "to": "80",
+          "type": "requires",
+          "reason": "Crediting 90% of the points to the host (R82) can only happen after the total cost has been subtracted from the guest (R80)."
+        }
+      ],
+      "quality_score": 85,
+      "quality_reason": "The cluster is well-focused on the point transfer mechanics after a booking. The inclusion of guest arrival/departure notifications (R176, R177) is slightly off-topic but related to the stay lifecycle.",
+      "summary": "This cluster defines the financial transaction for a booking, specifically the deduction of points from the guest and the 90/10 split of those points between the host and the system."
+    },
+    {
+      "cluster_id": "0",
+      "label": "Booking Request Management",
+      "duplicates": [
+        {
+          "requirements": [
+            "126",
+            "244",
+            "57",
+            "74"
+          ],
+          "type": "partial",
+          "reason": "All these requirements describe the host's ability to manage incoming booking requests by accepting or rejecting them."
+        }
+      ],
+      "inconsistencies": [
+        {
+          "requirements": [
+            "125",
+            "85"
+          ],
+          "type": "logical",
+          "reason": "R125 states that cancelling a booking comes 'with point refund', while R85 states that 'If payment has already occurred the system does not provide refunds'. Since payment (R79) happens before the stay, these two rules are contradictory for any cancellation made after payment but before check-in."
+        }
+      ],
+      "ambiguities": [
+        {
+          "requirement": "71",
+          "issue": "The criteria for an 'invalid' booking request are not defined.",
+          "suggestion": "Specify what makes a request invalid, e.g., 'overlapping dates with another booking by the same user'."
+        },
+        {
+          "requirement": "125",
+          "issue": "The term 'point refund' is ambiguous about the amount.",
+          "suggestion": "Specify if the refund is full (100%) or partial, and under what conditions."
+        }
+      ],
+      "gaps": [
+        {
+          "description": "R84 allows for the cancellation of future bookings, but there are no requirements defining the rules or deadlines for this action (e.g., cancellation is only allowed up to 24 hours before check-in).",
+          "related_to": [
+            "84",
+            "125"
+          ]
+        },
+        {
+          "description": "R81 specifies that a booking is automatically cancelled for payment failure, but it does not state whether the host is notified of this cancellation.",
+          "related_to": [
+            "81",
+            "79"
+          ]
+        }
+      ],
+      "dependencies": [
+        {
+          "from": "75",
+          "to": "74",
+          "type": "requires",
+          "reason": "The system can only automatically reject other requests (R75) after the owner has explicitly accepted one (R74)."
+        },
+        {
+          "from": "81",
+          "to": "79",
+          "type": "requires",
+          "reason": "The system can only cancel a booking due to payment failure (R81) after it has attempted to process the payment (R79)."
+        }
+      ],
+      "quality_score": 100,
+      "quality_reason": "The cluster is perfectly coherent, with every requirement contributing to the process of managing a booking request (accepting, rejecting, cancelling).",
+      "summary": "This cluster outlines the workflow for managing booking requests, including host approval and rejection, automated rejection, and the rules for cancellation and refunds."
+    },
+    {
+      "cluster_id": "6",
+      "label": "General System Functions",
+      "duplicates": [],
+      "inconsistencies": [],
+      "ambiguities": [
+        {
+          "requirement": "101",
+          "issue": "The method to 'verify the reachability of the accommodation' is undefined.",
+          "suggestion": "Specify the feature, for example, 'by displaying the location on an integrated map'."
+        },
+        {
+          "requirement": "160",
+          "issue": "The term 'origin of the tenant' is vague, and the verification method is not specified.",
+          "suggestion": "Define 'origin' (e.g., home university, country) and explain how it will be verified."
+        },
+        {
+          "requirement": "118",
+          "issue": "The 'available options' that a user can view and select are not specified.",
+          "suggestion": "List the specific options, such as room type, add-ons like towels, or payment methods."
+        }
+      ],
+      "gaps": [
+        {
+          "description": "R110 allows a user to delete their account, but there are no associated requirements defining what happens to the user's data, such as their listings, past bookings, or reviews they have written/received.",
+          "related_to": [
+            "110"
+          ]
+        },
+        {
+          "description": "The cluster introduces many distinct features (search, reviews, booking) but lacks the necessary detail to connect them. For example, it mentions search filters (R149) but doesn't list them, and mentions reviews (R142) but doesn't define their content.",
+          "related_to": [
+            "149",
+            "142",
+            "148"
+          ]
+        }
+      ],
+      "dependencies": [
+        {
+          "from": "143",
+          "to": "142",
+          "type": "blocks",
+          "reason": "The system must first verify that a user has stayed in the accommodation (R143) before allowing them to review it (R142)."
+        }
+      ],
+      "quality_score": 10,
+      "quality_reason": "The cluster is extremely incoherent, mixing unrelated high-level requirements from user account management, listing publication, booking workflows, search functionality, and the review system. It lacks any single unifying theme.",
+      "summary": "This cluster is a broad collection of requirements covering many different system functions, including user account management, listing creation, booking, search, and reviews."
+    },
+    {
+      "cluster_id": "3",
+      "label": "University Authentication Integration",
+      "duplicates": [
+        {
+          "requirements": [
+            "154",
+            "163",
+            "187"
+          ],
+          "type": "full",
+          "reason": "All three requirements state that the system must allow students to register."
+        },
+        {
+          "requirements": [
+            "111",
+            "165",
+            "189"
+          ],
+          "type": "full",
+          "reason": "All three requirements describe redirecting the user to their university's external authentication/login page."
+        },
+        {
+          "requirements": [
+            "153",
+            "111",
+            "112"
+          ],
+          "type": "partial",
+          "reason": "R153 is a high-level requirement to interact with university systems, which is implemented by the specific actions of redirecting (R111) and receiving a response (R112)."
+        }
+      ],
+      "inconsistencies": [],
+      "ambiguities": [
+        {
+          "requirement": "108",
+          "issue": "The frequency of 'periodically verify' is not defined.",
+          "suggestion": "Specify the verification interval, such as 'at the start of each academic semester' or 'annually'."
+        },
+        {
+          "requirement": "113",
+          "issue": "The specific 'information related to the user' to be received from the university is not listed.",
+          "suggestion": "Define the data schema, for example, 'must receive user's full name, university email, and active student status'."
+        }
+      ],
+      "gaps": [
+        {
+          "description": "R108 requires periodic verification of a student's active status, but there is no requirement defining what action the system should take if the verification fails (e.g., the user has graduated).",
+          "related_to": [
+            "108",
+            "164"
+          ]
+        },
+        {
+          "description": "The system relies on redirecting to external university services (R111, R189), but there is no requirement for handling errors, such as when the university's authentication service is unavailable or returns an error.",
+          "related_to": [
+            "111",
+            "112",
+            "190"
+          ]
+        }
+      ],
+      "dependencies": [
+        {
+          "from": "111",
+          "to": "155",
+          "type": "requires",
+          "reason": "Redirecting to a university login page (R111) is a necessary step for a student to gain access to the system (R155)."
+        }
+      ],
+      "quality_score": 80,
+      "quality_reason": "The cluster is strongly focused on the theme of integrating with university authentication systems. However, it contains one completely unrelated requirement (R208 about a search engine), which makes the grouping imperfect.",
+      "summary": "This cluster specifies the process for student registration and login, which involves redirecting to and interacting with external university authentication systems for verification."
+    },
+    {
+      "cluster_id": "5",
+      "label": "Student Wallet and Features",
+      "duplicates": [
+        {
+          "requirements": [
+            "128",
+            "213"
+          ],
+          "type": "partial",
+          "reason": "R128 states the student must have a wallet, and R213 describes a key function of that wallet: viewing the point balance. They describe the same feature."
+        }
+      ],
+      "inconsistencies": [
+        {
+          "requirements": [
+            "217",
+            "218"
+          ],
+          "type": "constraint",
+          "reason": "R217 states a cancellation must refund 'the points spent' (implying 100%), which directly contradicts R218's rule that a refund must return '80% of the points spent'."
+        }
+      ],
+      "ambiguities": [
+        {
+          "requirement": "192",
+          "issue": "The 'fixed number of points' given after registration is not specified.",
+          "suggestion": "Define the exact number of points awarded."
+        },
+        {
+          "requirement": "203",
+          "issue": "The 'star rating' scale is not defined.",
+          "suggestion": "Specify the rating scale, for example, 'a rating from 1 to 5 stars'."
+        }
+      ],
+      "gaps": [
+        {
+          "description": "R205 allows students to register credit/debit cards, but there are no accompanying requirements for security, storage (e.g., PCI compliance), or management of these saved payment methods.",
+          "related_to": [
+            "205",
+            "204"
+          ]
+        },
+        {
+          "description": "The system allows adding listings to favorites (R212), but there is no corresponding requirement to allow a student to remove a listing from their favorites.",
+          "related_to": [
+            "211",
+            "212"
+          ]
+        }
+      ],
+      "dependencies": [
+        {
+          "from": "215",
+          "to": "193",
+          "type": "blocks",
+          "reason": "The rule preventing a student from spending more points than they have (R215) is a precondition that blocks the action of spending points (R193) if the balance is insufficient."
+        },
+        {
+          "from": "218",
+          "to": "217",
+          "type": "influences",
+          "reason": "R218 provides a specific rule (80% refund) that quantifies the general refund capability described in R217."
+        }
+      ],
+      "quality_score": 50,
+      "quality_reason": "The cluster lacks a strong central theme, mixing requirements for the points system, payment card management, UI features like 'favorites', and the structure of reviews. This is a poor grouping of distinct functional areas.",
+      "summary": "This cluster describes features from the student's perspective, focusing on their points wallet, payment methods, cancellation rules, and UI features like favorites."
+    },
+    {
+      "cluster_id": "10",
+      "label": "Accommodation Listing and Requesting",
+      "duplicates": [
+        {
+          "requirements": [
+            "185",
+            "238"
+          ],
+          "type": "full",
+          "reason": "Both requirements state the same rule: a student can only request accommodation in a city that is different from their own university city."
+        }
+      ],
+      "inconsistencies": [],
+      "ambiguities": [
+        {
+          "requirement": "196",
+          "issue": "It is unclear if 'room or couch' are the only allowed accommodation types.",
+          "suggestion": "Clarify by stating 'The type must be one of the following: room, couch'."
+        },
+        {
+          "requirement": "201",
+          "issue": "The mechanism for how extras like towels/sheets result in a 'different price' is not defined.",
+          "suggestion": "Specify how the price difference is applied, e.g., 'The host can specify a fixed point surcharge for each extra'."
+        }
+      ],
+      "gaps": [
+        {
+          "description": "R184 and R185 require specifying a 'university city' for a request, but there is no requirement for a predefined, selectable list of valid university cities for the user.",
+          "related_to": [
+            "184",
+            "185"
+          ]
+        },
+        {
+          "description": "R207 allows messaging between the offering and requesting students, but it does not specify the context or timing (e.g., is it allowed only before booking, or also after?).",
+          "related_to": [
+            "207"
+          ]
+        }
+      ],
+      "dependencies": [
+        {
+          "from": "185",
+          "to": "183",
+          "type": "blocks",
+          "reason": "The location constraint in R185 is a rule that restricts or blocks the general ability to request accommodation described in R183."
+        },
+        {
+          "from": "199",
+          "to": "194",
+          "type": "requires",
+          "reason": "Providing specific details like address and cost (R199) is a necessary step in the process of offering accommodation through a listing (R194)."
+        }
+      ],
+      "quality_score": 95,
+      "quality_reason": "The cluster is highly coherent, focusing tightly on the dual concepts of creating a listing to offer accommodation and creating a request to find accommodation.",
+      "summary": "This cluster defines the requirements for students offering their accommodation via listings and for students requesting accommodation, including key constraints on location and duration."
+    }
+  ],
+  "requirement_to_cluster_mapping": {
+    "220": 12,
+    "171": 12,
+    "92": 12,
+    "180": 12,
+    "167": 12,
+    "119": 12,
+    "91": 12,
+    "50": 12,
+    "45": 12,
+    "182": 12,
+    "1": 12,
+    "11": 12,
+    "156": 12,
+    "174": 12,
+    "191": 12,
+    "42": 12,
+    "175": 12,
+    "44": 12,
+    "227": 12,
+    "181": 12,
+    "228": 12,
+    "6": 12,
+    "60": 12,
+    "49": 12,
+    "172": 12,
+    "166": 12,
+    "10": 12,
+    "2": 12,
+    "135": 12,
+    "173": 12,
+    "158": 11,
+    "78": 11,
+    "159": 11,
+    "3": 11,
+    "224": 11,
+    "222": 11,
+    "70": 11,
+    "68": 11,
+    "77": 11,
+    "76": 11,
+    "157": 11,
+    "69": 11,
+    "4": 11,
+    "221": 11,
+    "72": 11,
+    "65": 11,
+    "67": 11,
+    "66": 11,
+    "63": 11,
+    "73": 11,
+    "235": 9,
+    "178": 9,
+    "87": 9,
+    "234": 9,
+    "233": 9,
+    "161": 9,
+    "230": 9,
+    "88": 9,
+    "54": 9,
+    "179": 9,
+    "90": 9,
+    "162": 9,
+    "250": 9,
+    "89": 9,
+    "86": 9,
+    "5": 9,
+    "232": 9,
+    "231": 9,
+    "229": 9,
+    "93": 9,
+    "55": 9,
+    "52": 2,
+    "58": 2,
+    "240": 2,
+    "47": 2,
+    "116": 2,
+    "242": 2,
+    "53": 2,
+    "209": 2,
+    "46": 2,
+    "64": 2,
+    "170": 2,
+    "15": 2,
+    "98": 2,
+    "40": 2,
+    "7": 2,
+    "223": 2,
+    "31": 2,
+    "56": 2,
+    "51": 2,
+    "59": 8,
+    "188": 8,
+    "61": 8,
+    "8": 8,
+    "62": 8,
+    "104": 8,
+    "219": 8,
+    "236": 8,
+    "43": 8,
+    "105": 8,
+    "9": 8,
+    "16": 1,
+    "25": 1,
+    "21": 1,
+    "34": 1,
+    "20": 1,
+    "19": 1,
+    "27": 1,
+    "12": 1,
+    "35": 1,
+    "13": 1,
+    "24": 1,
+    "33": 1,
+    "39": 1,
+    "14": 1,
+    "26": 1,
+    "30": 1,
+    "22": 1,
+    "37": 1,
+    "23": 1,
+    "36": 1,
+    "38": 1,
+    "29": 1,
+    "28": 1,
+    "18": 1,
+    "17": 1,
+    "122": 7,
+    "132": 7,
+    "137": 7,
+    "130": 7,
+    "136": 7,
+    "138": 7,
+    "32": 7,
+    "247": 7,
+    "248": 7,
+    "237": 7,
+    "134": 7,
+    "249": 7,
+    "139": 7,
+    "246": 7,
+    "129": 7,
+    "141": 7,
+    "140": 7,
+    "241": 7,
+    "133": 7,
+    "82": 4,
+    "168": 4,
+    "177": 4,
+    "80": 4,
+    "176": 4,
+    "197": 4,
+    "225": 4,
+    "245": 4,
+    "83": 4,
+    "198": 4,
+    "169": 4,
+    "48": 4,
+    "41": 4,
+    "226": 4,
+    "131": 0,
+    "81": 0,
+    "125": 0,
+    "243": 0,
+    "75": 0,
+    "126": 0,
+    "74": 0,
+    "79": 0,
+    "239": 0,
+    "244": 0,
+    "71": 0,
+    "57": 0,
+    "84": 0,
+    "85": 0,
+    "144": 6,
+    "118": 6,
+    "150": 6,
+    "110": 6,
+    "100": 6,
+    "123": 6,
+    "109": 6,
+    "160": 6,
+    "99": 6,
+    "114": 6,
+    "96": 6,
+    "106": 6,
+    "145": 6,
+    "152": 6,
+    "121": 6,
+    "103": 6,
+    "115": 6,
+    "127": 6,
+    "147": 6,
+    "107": 6,
+    "149": 6,
+    "151": 6,
+    "97": 6,
+    "95": 6,
+    "102": 6,
+    "124": 6,
+    "117": 6,
+    "148": 6,
+    "143": 6,
+    "142": 6,
+    "120": 6,
+    "94": 6,
+    "146": 6,
+    "101": 6,
+    "113": 3,
+    "155": 3,
+    "154": 3,
+    "189": 3,
+    "208": 3,
+    "111": 3,
+    "153": 3,
+    "163": 3,
+    "165": 3,
+    "190": 3,
+    "112": 3,
+    "108": 3,
+    "187": 3,
+    "164": 3,
+    "218": 5,
+    "214": 5,
+    "204": 5,
+    "215": 5,
+    "217": 5,
+    "213": 5,
+    "192": 5,
+    "203": 5,
+    "205": 5,
+    "206": 5,
+    "212": 5,
+    "128": 5,
+    "211": 5,
+    "216": 5,
+    "193": 5,
+    "194": 10,
+    "199": 10,
+    "210": 10,
+    "202": 10,
+    "183": 10,
+    "201": 10,
+    "185": 10,
+    "238": 10,
+    "196": 10,
+    "186": 10,
+    "200": 10,
+    "195": 10,
+    "207": 10,
+    "184": 10
+  }
+}

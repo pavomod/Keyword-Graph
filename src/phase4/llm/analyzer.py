@@ -9,6 +9,8 @@ This module analyzes clusters of requirements to detect:
 - Dependencies between requirements
 """
 
+from __future__ import annotations
+
 import json
 import os
 from pathlib import Path
