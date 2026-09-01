@@ -226,7 +226,14 @@ python scripts/export_findings.py
 
 # precision and false positives per category, graph vs. baseline
 python scripts/verification_stats.py
+
+# a standalone page for browsing the verified findings
+# -> results/verification/findings_audit.html
+python scripts/build_audit_page.py
 ```
+
+`findings_audit.html` needs no server: open it in any browser to browse the 389 findings,
+filtering by verdict, partition, dataset or category.
 
 ## Project Structure
 
@@ -249,6 +256,8 @@ Keyword-Graph/
 │   ├── compare_phase4.py             # Graph vs. baseline findings comparison
 │   ├── export_findings.py            # Findings + cited requirements worksheet
 │   ├── verification_stats.py         # Precision / false-positive statistics
+│   ├── build_audit_page.py           # Standalone review page
+│   ├── templates/                    # HTML template for the review page
 │   └── verdicts/                     # Manual verdict on each finding
 └── src/
     ├── run_pipeline.py               # Main orchestrator

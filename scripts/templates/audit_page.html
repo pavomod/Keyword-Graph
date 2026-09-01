@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CrowdRE Findings Audit</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:wght@500;600&display=swap">
+
+<style>
+:root{
+  --paper:#f6f7fa; --card:#ffffff; --raise:#eef1f6;
+  --line:#dde2ec; --line-soft:#e8ecf3;
+  --ink:#191f2e; --ink-2:#4a5468; --ink-3:#78839a;
+  --accent:#2d4a7a; --accent-soft:#e7edf7;
+  --tp:#2c6f56; --tp-bg:#e6f2ec;
+  --bd:#8f6415; --bd-bg:#faf0dc;
+  --fp:#9c3535; --fp-bg:#fbe9e9;
+  --shadow:0 1px 2px rgba(25,31,46,.06),0 1px 1px rgba(25,31,46,.04);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --paper:#101319; --card:#171b24; --raise:#1e232e;
+    --line:#2a3040; --line-soft:#232936;
+    --ink:#e7eaf1; --ink-2:#a4adc0; --ink-3:#7d8799;
+    --accent:#7fa3d8; --accent-soft:#1c2635;
+    --tp:#6dbd9a; --tp-bg:#152620;
+    --bd:#d8a545; --bd-bg:#2a2213;
+    --fp:#e08585; --fp-bg:#2b1919;
+    --shadow:0 1px 2px rgba(0,0,0,.4);
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#101319; --card:#171b24; --raise:#1e232e;
+  --line:#2a3040; --line-soft:#232936;
+  --ink:#e7eaf1; --ink-2:#a4adc0; --ink-3:#7d8799;
+  --accent:#7fa3d8; --accent-soft:#1c2635;
+  --tp:#6dbd9a; --tp-bg:#152620;
+  --bd:#d8a545; --bd-bg:#2a2213;
+  --fp:#e08585; --fp-bg:#2b1919;
+  --shadow:0 1px 2px rgba(0,0,0,.4);
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0; background:var(--paper); color:var(--ink);
+  font-family:"IBM Plex Sans",system-ui,-apple-system,sans-serif;
+  font-size:15px; line-height:1.55;
+}
+.wrap{max-width:1180px;margin:0 auto;padding:0 22px}
+
+header.top{border-bottom:1px solid var(--line);background:var(--card)}
+.masthead{display:flex;flex-wrap:wrap;gap:18px;align-items:baseline;justify-content:space-between;padding:26px 0 20px}
+h1{
+  font-family:"IBM Plex Serif",Georgia,serif;font-weight:600;
+  font-size:26px;letter-spacing:-.01em;margin:0;text-wrap:balance;
+}
+.sub{color:var(--ink-2);font-size:14px;margin:5px 0 0;max-width:62ch}
+.meta{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:11.5px;color:var(--ink-3);letter-spacing:.04em;text-transform:uppercase}
+
+/* summary */
+.summary{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;background:var(--line-soft);border:1px solid var(--line);border-radius:8px;overflow:hidden;margin:22px 0}
+.stat{background:var(--card);padding:14px 16px}
+.stat .k{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.07em;text-transform:uppercase;color:var(--ink-3)}
+.stat .v{font-family:"IBM Plex Mono",monospace;font-size:23px;font-weight:600;font-variant-numeric:tabular-nums;margin-top:3px;display:block}
+.stat .n{font-size:12px;color:var(--ink-3);margin-top:1px}
+.v.tp{color:var(--tp)} .v.bd{color:var(--bd)} .v.fp{color:var(--fp)}
+
+/* rate table */
+.rates{width:100%;border-collapse:collapse;font-size:13.5px;margin:0 0 24px}
+.rates th,.rates td{padding:8px 12px;text-align:right;border-bottom:1px solid var(--line-soft)}
+.rates th:first-child,.rates td:first-child{text-align:left}
+.rates thead th{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);border-bottom:1px solid var(--line)}
+.rates td{font-variant-numeric:tabular-nums}
+.rates tbody tr:last-child td{border-bottom:none}
+.zero{color:var(--tp);font-weight:600}
+.scroller{overflow-x:auto}
+
+/* controls */
+.controls{position:sticky;top:0;z-index:20;background:var(--card);border-bottom:1px solid var(--line);padding:12px 0}
+.ctl-row{display:flex;flex-wrap:wrap;gap:16px;align-items:center}
+.group{display:flex;gap:5px;align-items:center;flex-wrap:wrap}
+.group>span{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);margin-right:2px}
+button.f{
+  font:inherit;font-size:12.5px;padding:4px 11px;border-radius:999px;cursor:pointer;
+  background:transparent;color:var(--ink-2);border:1px solid var(--line);transition:.12s;
+}
+button.f:hover{border-color:var(--accent);color:var(--ink)}
+button.f[aria-pressed="true"]{background:var(--accent-soft);border-color:var(--accent);color:var(--accent);font-weight:500}
+button.f:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+input[type=search]{
+  font:inherit;font-size:13px;padding:6px 11px;border-radius:6px;min-width:210px;flex:1;
+  background:var(--paper);border:1px solid var(--line);color:var(--ink);
+}
+.count{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--ink-3);font-variant-numeric:tabular-nums;white-space:nowrap}
+
+/* findings */
+main{padding:22px 0 60px}
+.chead{
+  display:flex;flex-wrap:wrap;gap:10px;align-items:baseline;
+  margin:26px 0 10px;padding-bottom:7px;border-bottom:1px solid var(--line);
+}
+.chead h2{font-family:"IBM Plex Serif",Georgia,serif;font-size:16px;font-weight:600;margin:0}
+.chead .cid{font-family:"IBM Plex Mono",monospace;font-size:11.5px;color:var(--accent);letter-spacing:.03em}
+.chead .cscore{font-family:"IBM Plex Mono",monospace;font-size:11.5px;color:var(--ink-3);margin-left:auto;font-variant-numeric:tabular-nums}
+
+.card{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:13px 15px;margin-bottom:9px;box-shadow:var(--shadow);border-left-width:3px}
+.card.tp{border-left-color:var(--tp)}
+.card.bd{border-left-color:var(--bd)}
+.card.fp{border-left-color:var(--fp)}
+.card-top{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:7px}
+.chip{font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.07em;text-transform:uppercase;padding:2.5px 8px;border-radius:4px;font-weight:600}
+.chip.tp{background:var(--tp-bg);color:var(--tp)}
+.chip.bd{background:var(--bd-bg);color:var(--bd)}
+.chip.fp{background:var(--fp-bg);color:var(--fp)}
+.cat{font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--ink-2);letter-spacing:.03em}
+.tag{font-family:"IBM Plex Mono",monospace;font-size:10.5px;color:var(--ink-3);border:1px solid var(--line);padding:1px 6px;border-radius:4px}
+.claim{font-size:14px;color:var(--ink);margin:0 0 9px}
+.reqs{display:flex;flex-direction:column;gap:4px;margin-bottom:8px}
+.req{display:flex;gap:9px;font-size:13px;color:var(--ink-2);align-items:baseline}
+.req b{font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--accent);font-weight:500;flex-shrink:0;min-width:42px}
+.why{font-size:13.5px;padding:9px 12px;border-radius:6px;background:var(--raise);border-left:2px solid var(--line)}
+.why.fp{background:var(--fp-bg)} .why.bd{background:var(--bd-bg)}
+.why b{font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.07em;text-transform:uppercase;display:block;margin-bottom:3px;color:var(--ink-3)}
+.empty{text-align:center;padding:50px 0;color:var(--ink-3)}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <div class="masthead">
+      <div>
+        <p class="meta">Manual verification &middot; Phase 4 output</p>
+        <h1>CrowdRE Findings Audit</h1>
+        <p class="sub">Every finding produced by the per-cluster LLM analysis, on both the graph-based partition and the direct-clustering baseline, checked against the text of the requirements it cites.</p>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="summary" id="summary"></div>
+  <div class="scroller"><table class="rates" id="rates"></table></div>
+</div>
+
+<div class="controls">
+  <div class="wrap">
+    <div class="ctl-row">
+      <div class="group" id="fVerdict"><span>Verdict</span></div>
+      <div class="group" id="fPartition"><span>Partition</span></div>
+      <div class="group" id="fDataset"><span>Dataset</span></div>
+    </div>
+    <div class="ctl-row" style="margin-top:10px">
+      <div class="group" id="fCategory"><span>Category</span></div>
+      <input type="search" id="q" placeholder="Search claims, reasons, requirement text&hellip;" aria-label="Search findings">
+      <span class="count" id="count"></span>
+    </div>
+  </div>
+</div>
+
+<main class="wrap" id="list"></main>
+
+<script id="data" type="application/json">__DATA__</script>
+<script>
+const ROWS = JSON.parse(document.getElementById('data').textContent);
+const ABBR = {TP:'tp', BORDERLINE:'bd', FP:'fp'};
+const LABEL = {TP:'Confirmed', BORDERLINE:'Borderline', FP:'False positive'};
+const CATS = ['duplicates','inconsistencies','ambiguities','gaps','dependencies'];
+
+const state = {verdict:'all', partition:'all', dataset:'all', category:'all', q:''};
+
+function esc(s){const d=document.createElement('div');d.textContent=s==null?'':s;return d.innerHTML;}
+
+function buildSummary(){
+  const c = {TP:0,BORDERLINE:0,FP:0};
+  ROWS.forEach(r=>c[r.verdict]++);
+  const n = ROWS.length;
+  document.getElementById('summary').innerHTML = `
+    <div class="stat"><span class="k">Findings judged</span><span class="v">${n}</span><span class="n">across 4 analysis runs</span></div>
+    <div class="stat"><span class="k">Confirmed</span><span class="v tp">${c.TP}</span><span class="n">${(100*c.TP/n).toFixed(1)}% of findings</span></div>
+    <div class="stat"><span class="k">Borderline</span><span class="v bd">${c.BORDERLINE}</span><span class="n">defensible, contestable</span></div>
+    <div class="stat"><span class="k">False positives</span><span class="v fp">${c.FP}</span><span class="n">${(100*c.FP/n).toFixed(1)}% of findings</span></div>`;
+}
+
+function buildRates(){
+  const cell = (part,cat) => {
+    const rs = ROWS.filter(r=>r.partition===part && (cat==='all'||r.category===cat));
+    const fp = rs.filter(r=>r.verdict==='FP').length;
+    return {n:rs.length, fp, rate: rs.length? 100*fp/rs.length : 0};
+  };
+  let head = '<thead><tr><th>Category</th><th>Graph n</th><th>Graph FP</th><th>rate</th><th>Baseline n</th><th>Baseline FP</th><th>rate</th></tr></thead><tbody>';
+  const row = (name,cat)=>{
+    const g=cell('Graph',cat), b=cell('Baseline',cat);
+    const f=(x)=>x.fp===0?'<span class="zero">0</span>':x.fp;
+    return `<tr><td>${name}</td><td>${g.n}</td><td>${f(g)}</td><td>${g.rate.toFixed(1)}%</td><td>${b.n}</td><td>${f(b)}</td><td>${b.rate.toFixed(1)}%</td></tr>`;
+  };
+  let body = CATS.map(c=>row(c.charAt(0).toUpperCase()+c.slice(1), c)).join('');
+  body += row('<b>All findings</b>','all');
+  document.getElementById('rates').innerHTML = head + body + '</tbody>';
+}
+
+function chips(host, key, values, labels){
+  const el = document.getElementById(host);
+  values.forEach(v=>{
+    const b=document.createElement('button');
+    b.className='f'; b.type='button';
+    b.textContent = labels ? labels[v] : (v==='all'?'All':v);
+    b.setAttribute('aria-pressed', state[key]===v);
+    b.onclick=()=>{
+      state[key]=v;
+      el.querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed', x===b));
+      render();
+    };
+    el.appendChild(b);
+  });
+}
+
+function render(){
+  const q = state.q.toLowerCase();
+  const rows = ROWS.filter(r=>
+    (state.verdict==='all'||r.verdict===state.verdict) &&
+    (state.partition==='all'||r.partition===state.partition) &&
+    (state.dataset==='all'||r.dataset===state.dataset) &&
+    (state.category==='all'||r.category===state.category) &&
+    (!q || (r.claim+' '+r.reason+' '+r.clusterLabel+' '+r.reqs.map(x=>x.text).join(' ')).toLowerCase().includes(q))
+  );
+  document.getElementById('count').textContent = `${rows.length} shown`;
+
+  const list=document.getElementById('list');
+  if(!rows.length){ list.innerHTML='<p class="empty">No findings match these filters.</p>'; return; }
+
+  let html='', lastKey='';
+  rows.forEach(r=>{
+    const key = `${r.dataset}|${r.partition}|${r.cluster}`;
+    if(key!==lastKey){
+      lastKey=key;
+      html += `<div class="chead">
+        <span class="cid">${esc(r.dataset)} &middot; ${esc(r.partition)} &middot; C${esc(r.cluster)}</span>
+        <h2>${esc(r.clusterLabel)}</h2>
+        <span class="cscore">coherence ${esc(String(r.score))}</span></div>`;
+    }
+    const a = ABBR[r.verdict];
+    html += `<article class="card ${a}">
+      <div class="card-top">
+        <span class="chip ${a}">${LABEL[r.verdict]}</span>
+        <span class="cat">${esc(r.category)} #${r.n}</span>
+        ${r.type?`<span class="tag">${esc(r.type)}</span>`:''}
+      </div>
+      <p class="claim">${esc(r.claim)}</p>
+      <div class="reqs">${r.reqs.map(x=>`<div class="req"><b>R${esc(x.id)}</b><span>${esc(x.text)}</span></div>`).join('')}</div>
+      ${r.reason?`<div class="why ${a}"><b>Why ${LABEL[r.verdict].toLowerCase()}</b>${esc(r.reason)}</div>`:''}
+    </article>`;
+  });
+  list.innerHTML=html;
+}
+
+buildSummary(); buildRates();
+chips('fVerdict','verdict',['all','FP','BORDERLINE','TP'],{all:'All',FP:'False positive',BORDERLINE:'Borderline',TP:'Confirmed'});
+chips('fPartition','partition',['all','Graph','Baseline']);
+chips('fDataset','dataset',['all','Uniwhere','V2I']);
+chips('fCategory','category',['all',...CATS]);
+document.getElementById('q').addEventListener('input',e=>{state.q=e.target.value;render();});
+render();
+</script>
+
+</body>
+</html>
