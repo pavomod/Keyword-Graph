@@ -1,0 +1,2134 @@
+##############################################################################
+# Uniwhere | Graph | CLUSTER 0 | User and Accommodation Reviews | coherence=75
+##############################################################################
+
+[duplicates #1] type=full  -> TP
+   CLAIM: These requirements all state that a user (guest/student) can leave a review/feedback for an accommodation (room).
+   R142: The system must allow the user to review a room
+   R231: The system must allow the guest to leave feedback on the accommodation
+   R35: Students can leave reviews for rooms
+
+[duplicates #2] type=full  -> TP
+   CLAIM: These requirements all state that a host can leave a review/feedback for a guest (student/user).
+   R144: The system must allow the host to review the student
+   R229: The system must allow the host to leave feedback for the guest
+   R87: At the end of the stay for one week the system must allow users who offered a bed to leave feedback about the guest
+
+[duplicates #3] type=partial  -> TP
+   CLAIM: These are high-level requirements stating that both parties can/should leave reviews after a stay, encompassing the more specific requirements.
+   R5: The system must enable the ability for hosts and guests to leave reviews for each completed and completed booking.
+   R178: The system must request feedback from both Guest and Host after the conclusion of the service
+   R202: The student offering or occupying accommodation must be able to leave reviews about the student who occupied or offered the accommodation
+   R250: The system allows hosts and guests to leave feedback after the stay is completed
+
+[duplicates #4] type=full  -> TP
+   CLAIM: Both requirements state that users can view reviews/feedback associated with a listing/room.
+   R25: Students must be able to view a room’s reviews
+   R232: The system must allow the viewing of feedback related to a listing
+
+[duplicates #5] type=full  -> TP
+   CLAIM: These requirements all state that users can view the feedback/reviews received by other users.
+   R29: Students must be able to see the reviews related to the person booking the room
+   R233: The system must allow the viewing of feedback related to each user as host and as guest
+   R88: For each user the system must allow other users to view the feedback they received
+
+[duplicates #6] type=full  -> TP
+   CLAIM: These are identical, general requirements stating that users can view feedback/reviews.
+   R162: The system must allow the student to view the reviews
+   R55: The system must allow users to view feedback.
+
+[inconsistencies #1] type=temporal  -> BORDERLINE
+   CLAIM: R86 implies feedback can only be left for stays of 'one week', while R250 allows feedback 'after the stay is completed' regardless of duration. This creates a conflict for stays shorter or longer than one week.
+   R86: At the end of the stay for one week the system must allow users who stayed to leave feedback about the stay
+   R250: The system allows hosts and guests to leave feedback after the stay is completed
+   WHY:   conflict holds only under the reading of R86 as 'stay of one week'; under the equally plausible 'one-week window' reading R86 refines R250 with no contradiction. The model itself flags R86 as ambiguous.
+
+[ambiguities #1]  -> TP
+   CLAIM: The phrase 'At the end of the stay for one week' is highly ambiguous. It could mean the stay must be exactly one week long, or it could be a time window of one week in which to leave a review. -> Clarify the condition. For example: 'For stays of any duration, users have a one-week window after the stay concludes to leave feedback.'
+   R86: At the end of the stay for one week the system must allow users who stayed to leave feedback about the stay
+
+[ambiguities #2]  -> TP
+   CLAIM: The 'star rating' is not defined. -> Specify the scale for the star rating, for example, 'a star rating on a scale of 1 to 5'.
+   R203: The review must have a star rating and a description
+
+[ambiguities #3]  -> TP
+   CLAIM: The phrase 'viewing of all feedback related to all users' for a specific bed is nonsensical. -> Rephrase to clarify the intent, likely: 'The system must allow the viewing of all feedback left for a specific bed by users who have stayed there.'
+   R89: For each bed the system must allow the viewing of all feedback related to all users
+
+[ambiguities #4]  -> TP
+   CLAIM: The term 'manage the average rating' is vague. -> Specify the action, for example, 'The system must automatically calculate and display the average rating...'
+   R146: The system must manage the average rating of the room
+
+[gaps #1]  -> TP
+   CLAIM: There is no requirement defining how the average ratings mentioned in R146 and R147 are calculated from the individual star ratings defined in R203.
+   R146: The system must manage the average rating of the room
+   R147: The system must manage the average rating of the user
+   R203: The review must have a star rating and a description
+
+[gaps #2]  -> TP
+   CLAIM: R38 allows users to edit reviews, but there are no rules defined for this process, such as time limits, whether the rating can be changed, or if an edit history is maintained.
+   R38: Students must be able to edit the reviews they have written
+
+[gaps #3]  -> TP
+   CLAIM: The system requests feedback (R178) but does not specify a time window within which a review must be submitted after a stay concludes.
+   R178: The system must request feedback from both Guest and Host after the conclusion of the service
+   R250: The system allows hosts and guests to leave feedback after the stay is completed
+   R5: The system must enable the ability for hosts and guests to leave reviews for each completed and completed booking.
+
+[dependencies #1] type=requires  -> TP
+   CLAIM: Calculating an average room rating (R146) requires that reviews include a quantifiable rating, as specified in R203.
+   R146: The system must manage the average rating of the room
+   R203: The review must have a star rating and a description
+
+[dependencies #2] type=requires  -> TP
+   CLAIM: Calculating an average user rating (R147) requires that reviews include a quantifiable rating, as specified in R203.
+   R147: The system must manage the average rating of the user
+   R203: The review must have a star rating and a description
+
+[dependencies #3] type=requires  -> TP
+   CLAIM: The ability to edit a review (R38) presupposes that a review has already been created (e.g., via R161).
+   R38: Students must be able to edit the reviews they have written
+   R161: The system must allow the student to leave a review
+
+##############################################################################
+# Uniwhere | Graph | CLUSTER 1 | Purchasing In-App Points | coherence=95
+##############################################################################
+
+[duplicates #1] type=partial  -> TP
+   CLAIM: All these requirements describe the same core functionality: allowing a user to purchase points. They differ only in minor details like using 'real money' or an 'in-app shop'.
+   R33: Students can purchase points from UniRoomShare
+   R49: The system must allow the user to purchase points.
+   R135: The system must allow the purchase of points
+   R171: The system must handle the purchase of points by a user using real money
+   R227: The system must allow users to purchase points through an in-app shop
+   R248: The system allows students to purchase points from UniRoomShare
+
+[duplicates #2] type=full  -> TP
+   CLAIM: Both requirements specify that points can be purchased using a credit or debit card.
+   R91: The system must allow each user to purchase points via card payment
+   R204: The student must be able to purchase points via credit or debit card
+
+[inconsistencies #1] type=constraint  -> TP
+   CLAIM: R134 states a 10% commission on 'point purchases', while R139 states a 1% commission on 'package purchases'. It's unclear if a package purchase is a type of point purchase, making the commission rate contradictory.
+   R134: The system retains 10% of the points on point purchases
+   R139: The system retains a 1% commission on package purchases
+
+[ambiguities #1]  -> TP
+   CLAIM: The phrase 'retains 10% of the points' is ambiguous. It's unclear if a user buying 100 points receives only 90, or if the system's commission is a monetary value equivalent to 10% of the purchase price. -> Clarify the commission mechanism, e.g., 'For every point purchase, the system charges a monetary fee equivalent to 10% of the transaction value.'
+   R134: The system retains 10% of the points on point purchases
+
+[ambiguities #2]  -> TP
+   CLAIM: R138 specifies packages of 50, 100, 150 points, while R136 allows purchases of 'at least 20 points'. It is unclear if users can buy custom amounts (e.g., 25 points) or are restricted to the packages. -> Specify whether only predefined packages can be purchased or if custom amounts above the minimum are allowed.
+   R138: The system allows the purchase of 50 100 150-point packages
+
+[gaps #1]  -> TP
+   CLAIM: The cost of points in real currency is never defined. There is no requirement specifying the price for a point or a package of points.
+   R135: The system must allow the purchase of points
+   R171: The system must handle the purchase of points by a user using real money
+
+[gaps #2]  -> TP
+   CLAIM: There are no requirements for handling failed payment transactions, such as displaying an error message to the user or allowing them to retry the purchase.
+   R6: The system must provide an integrated payment interface to allow users to purchase points.
+   R91: The system must allow each user to purchase points via card payment
+
+[dependencies #1] type=requires  -> TP
+   CLAIM: The 1% commission on package purchases (R139) is only applicable if packages, as defined in R138, exist.
+   R139: The system retains a 1% commission on package purchases
+   R138: The system allows the purchase of 50 100 150-point packages
+
+##############################################################################
+# Uniwhere | Graph | CLUSTER 3 | Accommodation Listing Creation | coherence=90
+##############################################################################
+
+[duplicates #1] type=partial  -> TP
+   CLAIM: Both requirements define the necessary information for a listing. R240 is a superset of R199, adding 'photos' and 'city'.
+   R199: The student must specify the availability period address and cost in points per night of the offered accommodation
+   R240: The system allows a host to publish an offer with photos address city availability periods and points per night
+
+[duplicates #2] type=full  -> TP
+   CLAIM: All three requirements contain the same stipulation: the host must provide an availability period for the listing.
+   R52: The system must allow the host to provide the availability period.
+   R199: The student must specify the availability period address and cost in points per night of the offered accommodation
+   R240: The system allows a host to publish an offer with photos address city availability periods and points per night
+
+[duplicates #3] type=partial  -> TP
+   CLAIM: These requirements all concern 'add-ons' like sheets and towels. R224 is the general capability, R99 names the items, and R201/R241 describe their impact on price.
+   R99: The system must allow the tenant user to add sheets and towels as additional comforts
+   R201: The presence of towels and/or sheets must be able to result in a different price for the accommodation
+   R224: The system must allow users to add add-ons to the room listing
+   R241: The system allows indicating whether sheets and towels are provided and applying additional point costs
+
+[ambiguities #1]  -> TP
+   CLAIM: The term 'a different price' is not specific enough. -> Define how the price difference is determined, e.g., 'allow the host to set a fixed additional point cost for providing sheets and/or towels'.
+   R201: The presence of towels and/or sheets must be able to result in a different price for the accommodation
+
+[ambiguities #2]  -> TP
+   CLAIM: The term 'add-ons' is vague beyond the specified sheets and towels. -> Specify if the list of add-ons is fixed (e.g., only sheets and towels) or if hosts can define custom add-ons.
+   R224: The system must allow users to add add-ons to the room listing
+
+[gaps #1]  -> FP
+   CLAIM: While multiple pieces of information for a listing are mentioned (cost, address, photos), it is not specified which of these are mandatory for a listing to be published.
+   R199: The student must specify the availability period address and cost in points per night of the offered accommodation
+   R240: The system allows a host to publish an offer with photos address city availability periods and points per night
+   WHY:   mandatory fields ARE specified in the collection: R95 (photos), R98 (cost per night) and R222 (description) forbid publication without them. They sit in cluster C6, so the isolation rule hides them.
+
+[gaps #2]  -> FP
+   CLAIM: The cluster defines how to create a listing but lacks any requirements for editing or deleting a listing after it has been published.
+   R240: The system allows a host to publish an offer with photos address city availability periods and points per night
+   WHY:   editing a listing is specified by R158 (C7) and R65 (C7), deleting by R19 (C11). The capability exists in the collection; the gap is an artifact of the partition.
+
+[dependencies #1] type=requires  -> TP
+   CLAIM: Sending a booking request (R243) is only possible for a published offer, which must be created according to the details in R240.
+   R243: The system allows the guest to send a booking request for an available offer
+   R240: The system allows a host to publish an offer with photos address city availability periods and points per night
+
+[dependencies #2] type=requires  -> TP
+   CLAIM: Applying additional costs for sheets and towels (R241) requires the ability to add them as comforts in the first place (R99).
+   R241: The system allows indicating whether sheets and towels are provided and applying additional point costs
+   R99: The system must allow the tenant user to add sheets and towels as additional comforts
+
+##############################################################################
+# Uniwhere | Graph | CLUSTER 4 | Point Transaction for Stays | coherence=90
+##############################################################################
+
+[duplicates #1] type=full  -> TP
+   CLAIM: All these requirements state the same rule: the system retains a 10% commission from the points transacted for a stay.
+   R32: The system must retain 10% of the points paid by students
+   R41: The system must retain 10% of the points earned by the host per overnight stay.
+   R83: At the moment of payment the system must deduct 10% of the total cost of the bed in points
+   R169: The system must reserve for UniRoomShare 10% of the points spent by a Guest for a service
+   R197: The app must take 10% of the points paid by a student who occupied an accommodation
+   R226: The system must retain 10% of the points transferred to the host for each purchased listing
+
+[duplicates #2] type=full  -> TP
+   CLAIM: Both requirements specify that the host receives 90% of the points paid for the stay, which is a direct consequence of the 10% commission.
+   R82: At the moment of payment the system must add to the host user 90% of the total cost of the bed in points
+   R198: The student offering the accommodation must earn 90% of the points paid by the student who occupied it
+
+[inconsistencies #1] type=temporal  -> TP
+   CLAIM: These requirements specify three conflicting times for payment processing: R245 states it's 'upon host confirmation', R79 states it's at '12:00 PM on the day before check-in', and R133 states it's 'five hours before the start of the stay'. They cannot all be true.
+   R79: The system automatically processes the payment for the booking at 12:00 PM on the day before the check-in date
+   R133: The system sends the points five hours before the start of the stay
+   R245: Only upon host confirmation does the system deduct points from the guest credit the host and retain the 10% commission
+
+[inconsistencies #2] type=constraint  -> BORDERLINE
+   CLAIM: R137 specifies a 2% commission on 'single purchases', while R169 (and many others) specifies a 10% commission on points spent for a service. If a booking is a 'single purchase', these rates are contradictory.
+   R137: The system retains a 2% commission on single purchases
+   R169: The system must reserve for UniRoomShare 10% of the points spent by a Guest for a service
+   WHY:   the conflict is conditional on reading a booking as a 'single purchase', a term R137 leaves undefined; the model itself hedges with 'if'. Worth surfacing, not an established contradiction.
+
+[ambiguities #1]  -> TP
+   CLAIM: The method for calculating the 'total price in points' is not defined. -> Specify the formula, e.g., 'Total price is calculated as (points per night * number of nights) + any additional costs for extras.'
+   R119: The system must calculate the total price in points
+
+[ambiguities #2]  -> TP
+   CLAIM: The term 'single purchases' is undefined, making it impossible to know when the 2% commission applies. -> Define 'single purchase' or remove the requirement if it is redundant with other commission rules.
+   R137: The system retains a 2% commission on single purchases
+
+[ambiguities #3]  -> TP
+   CLAIM: The phrase 'service includes any extras in the fields' is extremely vague. -> Specify what 'extras' and 'fields' refer to, or remove the requirement if it is not actionable.
+   R173: The system must allow specifying whether the service includes any extras in the fields
+
+[gaps #1]  -> TP
+   CLAIM: R81 specifies that a booking is cancelled if the user cannot pay. However, there is no requirement to notify the guest or the host about this automatic cancellation.
+   R81: If at the moment of payment the user cannot pay the system must automatically cancel the booking
+
+[gaps #2]  -> FP
+   CLAIM: The system processes payments, but there is no requirement for a transaction log or history that would be visible to the user.
+   R80: At the moment of payment the system must subtract from the user the total cost of the bed in points
+   R82: At the moment of payment the system must add to the host user 90% of the total cost of the bed in points
+   WHY:   a user-visible transaction history is specified by R182 (C9): 'show the user the history of their points with date time point change and description'.
+
+[dependencies #1] type=blocks  -> TP
+   CLAIM: The condition of being unable to pay (R81) must be checked before the system attempts to subtract points (R80), blocking the transaction if the condition is met.
+   R81: If at the moment of payment the user cannot pay the system must automatically cancel the booking
+   R80: At the moment of payment the system must subtract from the user the total cost of the bed in points
+
+[dependencies #2] type=influences  -> TP
+   CLAIM: The amount the host receives (90% in R82) is a direct result of the commission the system deducts (10% in R83).
+   R82: At the moment of payment the system must add to the host user 90% of the total cost of the bed in points
+   R83: At the moment of payment the system must deduct 10% of the total cost of the bed in points
+
+##############################################################################
+# Uniwhere | Graph | CLUSTER 6 | System Validation and Constraints | coherence=60
+##############################################################################
+
+[duplicates #1] type=partial  -> TP
+   CLAIM: All these requirements enforce the rule that user registration is tied to a valid university email, describing the same constraint from different perspectives (accepting, verifying, rejecting).
+   R9: The system must verify the email provided through the corresponding university
+   R43: The system must accept only registrations made through a university email.
+   R62: If the user does not have a university email or the university authentication system does not issue a token the system must consider the registration invalid
+   R164: The system must verify that the student is indeed a university student
+   R236: The system allows registration only with an official university email
+
+[ambiguities #1]  -> TP
+   CLAIM: The method to 'verify the reachability of the accommodation' is undefined. -> Specify the verification method, e.g., 'The system must validate the address format and display its location on an integrated map.'
+   R101: The system must allow the guest user to verify the reachability of the accommodation
+
+[ambiguities #2]  -> TP
+   CLAIM: The condition 'If the booking request is valid' is ambiguous because the full set of validity criteria is not defined in one place. -> Consolidate all booking validation rules or reference them, e.g., 'A booking request is valid if the user has sufficient points (R131) and meets the location criteria (R185).'
+   R70: If the booking request is valid the system must allow the user to book another user?s bed
+
+[ambiguities #3]  -> TP
+   CLAIM: The term 'verify the origin of the tenant' is vague. -> Clarify what 'origin' refers to, such as 'verify the student's home university'.
+   R160: The system must be able to verify the origin of the tenant
+
+[gaps #1]  -> FP
+   CLAIM: R185 requires checking that a student is not booking in their own university city. This implies the system must know each student's university and each listing's city, but there are no requirements on how this data is captured, stored, or maintained.
+   R185: The requested accommodation must be located in a university city where the requesting student does not study
+   WHY:   the data the gap calls missing is captured by existing requirements: the listing city by R240 (C3) and the user's university data by R113 (C10).
+
+[gaps #2]  -> TP
+   CLAIM: Several requirements (95, 98, 222) prevent publishing an incomplete accommodation listing. However, there is no requirement specifying the user-facing error feedback when this occurs.
+   R95: The system must prevent the publication of the accommodation if photos are not provided
+   R98: The system must prevent the publication of the accommodation if the cost in points per night is not provided
+   R222: The system must allow users to add a mandatory room description to the listings
+
+[gaps #3]  -> TP
+   CLAIM: R62 mentions a 'university authentication system' and a 'token', implying an external integration (like SSO). The technical requirements for this integration (e.g., protocol, data exchange format) are completely missing.
+   R62: If the user does not have a university email or the university authentication system does not issue a token the system must consider the registration invalid
+   R112: The system must be able to receive an authentication response from the university
+
+[dependencies #1] type=requires  -> TP
+   CLAIM: A booking request can only be considered valid (R70) if the check for sufficient points (R131) passes.
+   R70: If the booking request is valid the system must allow the user to book another user?s bed
+   R131: The system rejects the booking if the points are not sufficient
+
+[dependencies #2] type=requires  -> TP
+   CLAIM: A booking request can only be considered valid (R70) if the check on the accommodation's location (R185) passes.
+   R70: If the booking request is valid the system must allow the user to book another user?s bed
+   R185: The requested accommodation must be located in a university city where the requesting student does not study
+
+##############################################################################
+# Uniwhere | Graph | CLUSTER 7 | Listing Creation and Search | coherence=80
+##############################################################################
+
+[duplicates #1] type=full  -> TP
+   CLAIM: These requirements are all semantic duplicates for the core functionality of a user creating or publishing a listing for an accommodation.
+   R3: The system must allow a registered user to create a listing for an accommodation.
+   R63: The system must allow each user to register a bed/place to sleep
+   R94: The system must allow the landlord user to make their accommodation available for rent
+   R157: The system must allow the owner to publish a listing for the bed
+   R221: The system must allow users to create listings related to rooms
+
+[duplicates #2] type=full  -> TP
+   CLAIM: Both requirements state that the owner of a listing can modify it.
+   R65: The system must allow the owner of a registered bed to modify it
+   R158: The system must allow the owner to modify the listing
+
+[duplicates #3] type=full  -> TP
+   CLAIM: These requirements all describe the need for a search mechanism for users to find listings.
+   R68: The system must offer users a mechanism for searching available beds
+   R148: The system must have a search bar
+   R208: The app must have a listing search engine
+
+[duplicates #4] type=partial  -> TP
+   CLAIM: These requirements all describe search filtering. They overlap significantly on criteria like city/location and dates/period, though the complete list of filters is inconsistent across them.
+   R23: Students must be able to filter the search by city and accommodation period
+   R69: The system must provide a filtering mechanism for beds based on one or more parameters specified by the user: dates location feedback average cost and requested services
+   R209: The search engine must allow filtering listings by city cost in points per night availability period type and reviews
+
+[ambiguities #1]  -> TP
+   CLAIM: The requirement to 'keep track of the search history' is underspecified. -> Define the scope of the history, such as its duration (e.g., session-only or persistent) and whether the user can clear it.
+   R152: The system must keep track of the search history
+
+[ambiguities #2]  -> TP
+   CLAIM: The requirement for a 'chat' is too general. -> Specify the minimum required features for the messaging system, such as text-only messages, timestamps, and read status.
+   R175: The system must manage messages between users in a dedicated section of the app with a chat
+
+[ambiguities #3]  -> TP
+   CLAIM: The filter parameter 'requested services' is undefined. -> Specify what services can be filtered on or link to a definition of available services.
+   R69: The system must provide a filtering mechanism for beds based on one or more parameters specified by the user: dates location feedback average cost and requested services
+
+[gaps #1]  -> TP
+   CLAIM: The requirements for search (e.g., R148) do not specify how search results should be sorted by default (e.g., by date, price, relevance) or if the user can change the sort order.
+   R148: The system must have a search bar
+   R68: The system must offer users a mechanism for searching available beds
+   R208: The app must have a listing search engine
+
+[gaps #2]  -> FP
+   CLAIM: While there are requirements to create (R157) and modify (R158) a listing, there is no corresponding requirement to delete a listing.
+   R157: The system must allow the owner to publish a listing for the bed
+   R158: The system must allow the owner to modify the listing
+   WHY:   deletion is specified by R19 (C11), 'Students must be able to delete their room (if saved)'.
+
+[gaps #3]  -> TP
+   CLAIM: R158 allows a listing to be modified, but there is no requirement defining the system's behavior if a listing with pending booking requests is changed.
+   R158: The system must allow the owner to modify the listing
+
+[dependencies #1] type=requires  -> TP
+   CLAIM: The ability to have search filters (R149) depends on the existence of a search bar or engine (R148).
+   R149: The system must allow search filters
+   R148: The system must have a search bar
+
+[dependencies #2] type=requires  -> TP
+   CLAIM: Modifying a bed (R65) can only happen after a bed has been registered (R63).
+   R65: The system must allow the owner of a registered bed to modify it
+   R63: The system must allow each user to register a bed/place to sleep
+
+##############################################################################
+# Uniwhere | Graph | CLUSTER 8 | Maximum Stay Duration Constraint | coherence=80
+##############################################################################
+
+[duplicates #1] type=full  -> TP
+   CLAIM: All of these requirements define the exact same business rule: a stay cannot be longer than 7 nights. They use slightly different wording ('less than 8 days', 'up to 7 nights', 'exceeds 7 days') but are semantically identical.
+   R7: The system must not allow accommodation for more than 7 nights
+   R40: The system must allow stays of up to 7 nights.
+   R116: The system must prevent the booking if the stay exceeds 7 consecutive days
+   R170: The system must prevent service bookings from exceeding 7 consecutive nights
+   R186: The accommodation period specified in the request must have a duration of less than 8 days
+   R223: The system must allow users to book a stay of up to 7 nights through a dedicated section
+   R239: The system rejects accommodation requests lasting more than 7 nights
+
+[ambiguities #1]  -> TP
+   CLAIM: The interchangeable use of 'days' (R116, R186) and 'nights' (R40, R170, R223, R239, R7) can lead to off-by-one errors. -> Standardize on one unit, preferably 'nights', as it is less ambiguous for accommodation bookings. For example: 'The number of nights for a single booking cannot exceed 7.'
+   R116: The system must prevent the booking if the stay exceeds 7 consecutive days
+
+[gaps #1]  -> TP
+   CLAIM: When a user attempts to book a stay longer than the allowed duration, the system 'prevents' or 'rejects' it, but there is no requirement for providing specific user-facing feedback or an error message explaining why.
+   R116: The system must prevent the booking if the stay exceeds 7 consecutive days
+   R239: The system rejects accommodation requests lasting more than 7 nights
+
+##############################################################################
+# Uniwhere | Graph | CLUSTER 9 | Points Economy Management | coherence=100
+##############################################################################
+
+[duplicates #1] type=partial  -> TP
+   CLAIM: All these requirements state that a user receives a point bonus upon registration. They are inconsistent on the amount (50 vs 100 vs N).
+   R11: The system must provide students with a certain number of points upon registration
+   R129: The system assigns 50 points at first authentication
+   R166: The system must assign points to each student at the moment of registration
+   R192: The student must receive a fixed number of points after registration
+   R2: The system must automatically credit 100 points as an initial balance immediately after user registration.
+   R60: The system must assign 50 points to the user upon each new registration
+   R220: The system must give N free points to the user upon their first registration
+   R237: The system credits a points bonus to the user upon completing registration
+
+[duplicates #2] type=full  -> TP
+   CLAIM: These are identical requirements stating that a user must be able to view their points balance.
+   R12: Students must be able to view their points balance
+   R90: The system must allow each user to view their balance
+   R213: The student must be able to view their points balance
+
+[duplicates #3] type=full  -> TP
+   CLAIM: These are identical requirements prohibiting users from selling points to each other.
+   R50: The system must not allow the user to sell points.
+   R140: The system does not allow the sale of points between students
+   R206: The student must not be able to sell points
+   R249: The system does not allow students to sell points
+
+[duplicates #4] type=full  -> TP
+   CLAIM: Both requirements specify that the host receives 90% of the points from a booking.
+   R132: The system sends 90% of the points to the landlord student
+   R168: The system must give the Host 90% of the points that the Guest uses for a service
+
+[inconsistencies #1] type=constraint  -> TP
+   CLAIM: R2 specifies an initial balance of 100 points upon registration, while R60 specifies 50 points for the same event. These amounts are contradictory.
+   R2: The system must automatically credit 100 points as an initial balance immediately after user registration.
+   R60: The system must assign 50 points to the user upon each new registration
+
+[inconsistencies #2] type=temporal  -> TP
+   CLAIM: R122 states points are NOT deducted 'at the moment of booking', while R225 states points ARE transferred 'once the booking is made'. These appear to be contradictory instructions for the same point in time.
+   R122: The system must not deduct points at the moment of booking
+   R225: The system must transfer the room?s cost in points from the buyer to the host once the booking is made
+
+[inconsistencies #3] type=logical  -> TP
+   CLAIM: R85 states that the system 'does not provide refunds' if payment has occurred. R218 explicitly defines a refund policy (80% of points). These are in direct logical contradiction.
+   R85: If payment has already occurred the system does not provide refunds
+   R218: A refund must return 80% of the points spent
+
+[inconsistencies #4] type=constraint  -> TP
+   CLAIM: R217 implies a full refund ('refund the requesting student the points spent'), while R218 specifies a partial refund ('return 80% of the points spent').
+   R217: A cancellation must refund the requesting student the points spent
+   R218: A refund must return 80% of the points spent
+
+[ambiguities #1]  -> TP
+   CLAIM: The threshold for 'running low on points' is not defined. -> Specify a concrete number or a configurable percentage for when the notification should be triggered.
+   R180: The system must notify the user when they are running low on points
+
+[ambiguities #2]  -> TP
+   CLAIM: The requirement to 'give N free points' is ambiguous because 'N' is an undefined variable. -> Replace 'N' with a specific number of points to be awarded.
+   R220: The system must give N free points to the user upon their first registration
+
+[ambiguities #3]  -> TP
+   CLAIM: The term 'appropriate additional cost' is subjective and vague. -> Specify how the cost is determined, e.g., 'allow the host to set the additional cost in points'.
+   R31: The system must allow the addition of bonuses such as towels and others with an appropriate additional cost in points per night
+
+[gaps #1]  -> BORDERLINE
+   CLAIM: The system manages a points economy, but there is no requirement for an administrative function to manually adjust a user's point balance to correct errors or for customer support reasons.
+   R10: The system must manage the use of points
+   R92: The system must manage the payment of points
+   WHY:   an administrative balance-correction function is not strongly implied by R10/R92; the prompt forbids speculation, and this is closer to a design suggestion than to a gap the existing requirements entail.
+
+[gaps #2]  -> TP
+   CLAIM: R182 requires a point transaction history, but it does not specify a retention policy for how long this history should be stored and accessible to the user.
+   R182: The system must show the user the history of their points with date time point change and description
+
+[dependencies #1] type=blocks  -> TP
+   CLAIM: The system must ensure a student has enough points (R30) before it can subtract points for a booking (R48).
+   R30: The system must ensure that students have enough points to book a room
+   R48: The system must subtract the points specified by the host from the guest who uses the accommodation.
+
+[dependencies #2] type=blocks  -> TP
+   CLAIM: The no-refund policy of R85 would block the refund action specified in R217 from ever occurring after payment.
+   R217: A cancellation must refund the requesting student the points spent
+   R85: If payment has already occurred the system does not provide refunds
+
+##############################################################################
+# Uniwhere | Graph | CLUSTER 10 | User Account and Profile Management | coherence=80
+##############################################################################
+
+[duplicates #1] type=full  -> TP
+   CLAIM: These are all identical requirements stating that the system must allow users/students to register.
+   R1: The system must allow user registration.
+   R42: The system must allow the user to register on the app.
+   R107: The system must allow the creation of a new profile
+   R163: The system must allow the registration of university students
+   R187: The app must allow students to register
+
+[duplicates #2] type=full  -> TP
+   CLAIM: All these requirements specify the same constraint: registration must be done using a university email address.
+   R8: Students must provide their institutional email address during registration
+   R59: The system must require users to register using a university email address first name and last name in order to use it
+   R188: The student must register with their university email
+   R219: The system must allow registration through an official university email
+
+[duplicates #3] type=full  -> TP
+   CLAIM: These requirements all describe the same user flow: redirecting the user to their university's external authentication page.
+   R111: The system must be able to redirect the user to the university?s authentication service
+   R165: The system must redirect to the student's university login page
+   R189: The app must redirect the student to the authentication page of the university where they study
+
+[duplicates #4] type=full  -> TP
+   CLAIM: Both requirements state the need for a user-to-user messaging feature.
+   R207: The student requesting accommodation must be able to message the student offering it and vice versa
+   R235: The system must provide a simple messaging mechanism to enable communication between users
+
+[ambiguities #1]  -> TP
+   CLAIM: It is unclear what 'information related to the user' the system will receive from the university. -> Specify the exact data fields to be received, e.g., 'first name, last name, and verified email address'.
+   R113: The system must receive from the university the information related to the user
+
+[ambiguities #2]  -> TP
+   CLAIM: The process for handling a user report for 'inappropriate behavior' is completely undefined. -> Define what happens after a report is submitted: who reviews it, what actions can be taken (e.g., warning, suspension), and if the reporter receives feedback.
+   R234: The system must allow reporting certain users for inappropriate behavior
+
+[ambiguities #3]  -> TP
+   CLAIM: The term 'wallet' is not defined in this context. -> Clarify if 'wallet' simply refers to the user's point balance or if it implies a more complex feature for managing different assets.
+   R128: The system must allow each student to have a wallet
+
+[gaps #1]  -> FP
+   CLAIM: The cluster covers user registration and logout (R109), but there are no requirements for password management, such as a 'forgot password' or 'reset password' feature.
+   R1: The system must allow user registration.
+   R61: The system must require users to authenticate using their university email to access the system
+   WHY:   password management is not a gap but a consequence of the design: authentication is delegated to the university's service (R61, R111, R165, R189 in this same cluster), so credentials are not held by the system.
+
+[gaps #2]  -> TP
+   CLAIM: While R179 and R93 define the content of a user profile, there is no requirement that allows a user to edit their profile information after registration.
+   R179: The system must have a dedicated section for each user profile containing contact information description services offered chat number of services provided average ratings as host and guest and list of received feedback
+   R93: For each user the system must provide a section containing their personal data
+
+[gaps #3]  -> BORDERLINE
+   CLAIM: The system includes notifications (R73, R174), but there is no requirement for user-configurable notification preferences (e.g., to enable or disable specific notification types).
+   R174: The system must manage user notifications in a dedicated section of the app
+   WHY:   configurable notification preferences are a reasonable product suggestion but are not entailed by R174; closer to speculation than to a gap implied by the existing requirements.
+
+[dependencies #1] type=requires  -> TP
+   CLAIM: Receiving user information from the university (R113) can only happen after the user has been redirected to and successfully authenticated with the university's service (R111).
+   R113: The system must receive from the university the information related to the user
+   R111: The system must be able to redirect the user to the university?s authentication service
+
+##############################################################################
+# Uniwhere | Graph | CLUSTER 11 | Booking and Accommodation Lifecycle | coherence=50
+##############################################################################
+
+[duplicates #1] type=full  -> TP
+   CLAIM: These are all semantic duplicates for the core user action of booking or requesting to book an accommodation.
+   R4: The system must allow a user (guest) to submit a booking request for a selected listing.
+   R26: Students must be able to book a room
+   R114: The system must allow a user to book a room or a couch
+   R159: The system must allow the tenant to book a bed
+   R183: The app must allow students to request shared accommodation
+
+[duplicates #2] type=partial  -> TP
+   CLAIM: All these requirements describe the host's ability to manage booking requests. R126 ('view, approve, and reject') is a superset of the others, which describe the individual actions.
+   R28: Students must be able to reject a booking request for their room
+   R56: The system must allow the host to accept the guest.
+   R74: The system must allow the owner of the bed to accept or reject each booking request
+   R126: The system must allow the host to view approve and reject bookings
+   R244: The system allows the host to confirm or reject a booking request
+
+[duplicates #3] type=full  -> BORDERLINE
+   CLAIM: These requirements are identical, stating that a user can cancel a submitted booking or request.
+   R27: Students must be able to cancel a booking
+   R84: The system must provide a mechanism to cancel future bookings
+   R216: The student must be able to cancel a submitted request
+   WHY:   R216 cancels a submitted request (before acceptance) while R27 and R84 cancel a confirmed booking; these are related but distinct states, so the group is not the 'identical' set the finding claims and merging them would lose a distinction.
+
+[duplicates #4] type=partial  -> TP
+   CLAIM: These requirements concern updating accommodation availability. R77 is the most comprehensive, covering acceptance and cancellation, while R127 is a specific case (rejection) and R124 is a general statement.
+   R77: The system must update the availability of the bed when a booking request is accepted or canceled
+   R124: The system must update the availability of the accommodation
+   R127: The system must make the accommodation available again in case of rejection
+
+[ambiguities #1]  -> TP
+   CLAIM: The term 'periodically verify' is not defined, and the consequences of a user no longer being an active student are not specified. -> Define the verification frequency (e.g., 'annually') and the actions to be taken upon failure (e.g., 'deactivate the account and cancel future bookings').
+   R108: The system must periodically verify that the user is still an active university student
+
+[ambiguities #2]  -> TP
+   CLAIM: The requirement to 'redeem gift cards with points' is completely undefined and appears unrelated to the cluster's topic. -> Elaborate on the gift card feature in a separate, dedicated requirement set, or remove this requirement if it is out of scope.
+   R228: The system must allow users to redeem gift cards with points through the shop
+
+[ambiguities #3]  -> TP
+   CLAIM: It is unclear what makes a booking request 'invalid' or how the system would 'request modifications'. -> Define the criteria for an invalid request and specify the user-facing mechanism for requesting changes.
+   R71: If the booking request is invalid the system must reject it and request modifications
+
+[gaps #1]  -> TP
+   CLAIM: R110 allows a user to delete their account, but there are no requirements defining what happens to their future bookings (both as a guest and a host) or their existing listings upon account deletion.
+   R110: The system must allow the user to delete their account
+
+[gaps #2]  -> TP
+   CLAIM: There is no time limit specified for a host to accept or reject a booking request before it might automatically expire.
+   R126: The system must allow the host to view approve and reject bookings
+   R244: The system allows the host to confirm or reject a booking request
+
+[gaps #3]  -> TP
+   CLAIM: R19 allows a student to delete their room, but the consequences for any existing future bookings for that room are not defined.
+   R19: Students must be able to delete their room (if saved)
+
+[dependencies #1] type=requires  -> TP
+   CLAIM: Automatically rejecting other requests (R75) is triggered only after the owner accepts one specific request (R74).
+   R75: If the owner receives multiple booking requests for the same bed on the same dates once one is accepted the system must automatically reject all the others
+   R74: The system must allow the owner of the bed to accept or reject each booking request
+
+[dependencies #2] type=requires  -> TP
+   CLAIM: Making an accommodation available again (R127) is a consequence of the host rejecting a booking (an action described in R126).
+   R127: The system must make the accommodation available again in case of rejection
+   R126: The system must allow the host to view approve and reject bookings
+
+##############################################################################
+# Uniwhere | Baseline | CLUSTER 12 | User Points and Registration | coherence=70
+##############################################################################
+
+[duplicates #1] type=full  -> TP
+   CLAIM: Both requirements state that the system must allow user registration.
+   R1: The system must allow user registration.
+   R42: The system must allow the user to register on the app.
+
+[duplicates #2] type=partial  -> TP
+   CLAIM: All five requirements describe giving points to a user upon registration, but specify different or vague amounts (100, 50, 'a certain number', 'N').
+   R11: The system must provide students with a certain number of points upon registration
+   R166: The system must assign points to each student at the moment of registration
+   R2: The system must automatically credit 100 points as an initial balance immediately after user registration.
+   R60: The system must assign 50 points to the user upon each new registration
+   R220: The system must give N free points to the user upon their first registration
+
+[duplicates #3] type=partial  -> TP
+   CLAIM: All these requirements concern the ability for users to purchase points, with some specifying the method (real money, in-app shop, card payment).
+   R135: The system must allow the purchase of points
+   R171: The system must handle the purchase of points by a user using real money
+   R227: The system must allow users to purchase points through an in-app shop
+   R49: The system must allow the user to purchase points.
+   R6: The system must provide an integrated payment interface to allow users to purchase points.
+   R91: The system must allow each user to purchase points via card payment
+
+[duplicates #4] type=partial  -> TP
+   CLAIM: R191 is a high-level statement that the app must have a points system, which is detailed by R10's requirement to manage the use of points.
+   R10: The system must manage the use of points
+   R191: The app must have a points system
+
+[inconsistencies #1] type=constraint  -> TP
+   CLAIM: These requirements specify conflicting amounts for the registration bonus: R2 states 100 points, R60 states 50 points, and R220 states an undefined 'N' points.
+   R2: The system must automatically credit 100 points as an initial balance immediately after user registration.
+   R60: The system must assign 50 points to the user upon each new registration
+   R220: The system must give N free points to the user upon their first registration
+
+[ambiguities #1]  -> TP
+   CLAIM: The term 'a certain number of points' is not defined. -> Specify the exact number of points to be provided upon registration.
+   R11: The system must provide students with a certain number of points upon registration
+
+[ambiguities #2]  -> TP
+   CLAIM: The variable 'x' for additional points is undefined. -> Define the exact number of points ('x') assigned for each linen supply.
+   R44: The system must assign x additional points for each linen supply.
+
+[ambiguities #3]  -> TP
+   CLAIM: The threshold for 'running low on points' is not specified. -> Define a specific point balance that triggers the 'low on points' notification.
+   R180: The system must notify the user when they are running low on points
+
+[ambiguities #4]  -> TP
+   CLAIM: The variable 'N' for free points is undefined. -> Define the exact number of points ('N') to be given upon first registration.
+   R220: The system must give N free points to the user upon their first registration
+
+[gaps #1]  -> FP
+   CLAIM: The system specifies deducting points for service use (R167) but does not define the behavior if a user has an insufficient point balance to complete a transaction.
+   R167: The system must deduct points when a service is used
+   R119: The system must calculate the total price in points
+   WHY:   the behaviour on an insufficient balance is specified by R131 ('rejects the booking if the points are not sufficient'), R30 and R215, all outside this cluster.
+
+[gaps #2]  -> TP
+   CLAIM: While multiple requirements allow purchasing points with real money (R171, R6, R91), there are no requirements defining the currency, pricing model (e.g., cost per point), or how to handle failed payment transactions.
+   R171: The system must handle the purchase of points by a user using real money
+   R6: The system must provide an integrated payment interface to allow users to purchase points.
+   R91: The system must allow each user to purchase points via card payment
+   R135: The system must allow the purchase of points
+
+[dependencies #1] type=requires  -> TP
+   CLAIM: Assigning points upon registration (R11) can only occur after the user registration functionality (R1) is implemented.
+   R11: The system must provide students with a certain number of points upon registration
+   R1: The system must allow user registration.
+
+[dependencies #2] type=requires  -> TP
+   CLAIM: Deducting points for a service (R167) requires the system to first calculate the total price in points (R119).
+   R167: The system must deduct points when a service is used
+   R119: The system must calculate the total price in points
+
+##############################################################################
+# Uniwhere | Baseline | CLUSTER 11 | Accommodation Listing and Booking | coherence=95
+##############################################################################
+
+[duplicates #1] type=partial  -> TP
+   CLAIM: These requirements all describe the creation of a listing for a place to stay, using different terms like 'bed', 'room', and 'accommodation'.
+   R157: The system must allow the owner to publish a listing for the bed
+   R221: The system must allow users to create listings related to rooms
+   R3: The system must allow a registered user to create a listing for an accommodation.
+   R63: The system must allow each user to register a bed/place to sleep
+
+[duplicates #2] type=full  -> TP
+   CLAIM: Both requirements state that the owner can modify their registered bed/listing.
+   R158: The system must allow the owner to modify the listing
+   R65: The system must allow the owner of a registered bed to modify it
+
+[duplicates #3] type=partial  -> TP
+   CLAIM: All three requirements describe the action of a user booking or requesting to book an accommodation.
+   R159: The system must allow the tenant to book a bed
+   R4: The system must allow a user (guest) to submit a booking request for a selected listing.
+   R70: If the booking request is valid the system must allow the user to book another user?s bed
+
+[ambiguities #1]  -> TP
+   CLAIM: The condition 'If the booking request is valid' is undefined. -> Specify the criteria that determine the validity of a booking request (e.g., user has enough points, dates are available).
+   R70: If the booking request is valid the system must allow the user to book another user?s bed
+
+[ambiguities #2]  -> TP
+   CLAIM: The phrase 'in some order' for viewing booked beds is not specific. -> Define the default sort order, for example, 'chronologically by check-in date'.
+   R72: The system must allow each user to view their booked beds past and future in some order
+
+[ambiguities #3]  -> TP
+   CLAIM: The 'payment day' is not defined. -> Specify when the 'payment day' occurs relative to the booking (e.g., 'the day before check-in').
+   R78: On the payment day at 8:00 AM (Italian time) the system must notify the user who booked to check if their balance is sufficient
+
+[gaps #1]  -> FP
+   CLAIM: R77 mentions updating availability when a booking is 'accepted or canceled', but no requirements within this cluster define the 'accept' or 'cancel' actions themselves, leaving the workflow incomplete.
+   R77: The system must update the availability of the bed when a booking request is accepted or canceled
+   R73: The system must send a notification to the owner of the bed for each new booking request
+   WHY:   accept and reject are defined by R74, R126, R244 and R57, and cancellation by R27 and R84; the workflow the finding calls incomplete is complete in the collection.
+
+[gaps #2]  -> FP
+   CLAIM: R78 requires the system to check for a sufficient balance on the payment day, but it fails to specify what should happen if the user's balance is insufficient.
+   R78: On the payment day at 8:00 AM (Italian time) the system must notify the user who booked to check if their balance is sufficient
+   WHY:   R81 states what happens when the user cannot pay: 'the system must automatically cancel the booking'.
+
+[dependencies #1] type=requires  -> TP
+   CLAIM: A user can only submit a booking request (R4) for a listing that has been created (R3).
+   R4: The system must allow a user (guest) to submit a booking request for a selected listing.
+   R3: The system must allow a registered user to create a listing for an accommodation.
+
+[dependencies #2] type=requires  -> TP
+   CLAIM: Modifying a listing (R158) is only possible after a listing has been published (R157).
+   R158: The system must allow the owner to modify the listing
+   R157: The system must allow the owner to publish a listing for the bed
+
+[dependencies #3] type=influences  -> TP
+   CLAIM: The action of accepting or canceling a booking (R77) is a response to the notification of a new booking request (R73).
+   R77: The system must update the availability of the bed when a booking request is accepted or canceled
+   R73: The system must send a notification to the owner of the bed for each new booking request
+
+##############################################################################
+# Uniwhere | Baseline | CLUSTER 9 | User Feedback and Profiles | coherence=75
+##############################################################################
+
+[duplicates #1] type=partial  -> TP
+   CLAIM: All these requirements describe the ability for users (students, guests, hosts) to leave feedback or reviews after a service is completed.
+   R161: The system must allow the student to leave a review
+   R54: The system must allow users to leave feedback.
+   R5: The system must enable the ability for hosts and guests to leave reviews for each completed and completed booking.
+   R178: The system must request feedback from both Guest and Host after the conclusion of the service
+   R250: The system allows hosts and guests to leave feedback after the stay is completed
+
+[duplicates #2] type=partial  -> TP
+   CLAIM: All these requirements describe the ability for users to view feedback related to other users or listings.
+   R162: The system must allow the student to view the reviews
+   R55: The system must allow users to view feedback.
+   R88: For each user the system must allow other users to view the feedback they received
+   R232: The system must allow the viewing of feedback related to a listing
+   R233: The system must allow the viewing of feedback related to each user as host and as guest
+
+[inconsistencies #1] type=temporal  -> BORDERLINE
+   CLAIM: R5 states feedback can be left after a booking is completed with no time limit, while R86 restricts this action to a 'one week' window after the stay, creating a temporal conflict.
+   R5: The system must enable the ability for hosts and guests to leave reviews for each completed and completed booking.
+   R86: At the end of the stay for one week the system must allow users who stayed to leave feedback about the stay
+   WHY:   the conflict holds only if R86 is read as restricting feedback to one-week stays; under the 'one-week window' reading it refines R5 without contradicting it.
+
+[ambiguities #1]  -> TP
+   CLAIM: The term 'average ratings' is used without defining the rating scale. -> Specify the rating system, for example, 'a star rating from 1 to 5'.
+   R179: The system must have a dedicated section for each user profile containing contact information description services offered chat number of services provided average ratings as host and guest and list of received feedback
+
+[ambiguities #2]  -> TP
+   CLAIM: The term 'inappropriate behavior' is subjective and undefined. -> Provide a clear definition or a list of examples of what constitutes reportable inappropriate behavior.
+   R234: The system must allow reporting certain users for inappropriate behavior
+
+[ambiguities #3]  -> TP
+   CLAIM: The term 'simple messaging mechanism' is vague. -> Specify the core features of the messaging system, such as text-only messages, read receipts, etc.
+   R235: The system must provide a simple messaging mechanism to enable communication between users
+
+[gaps #1]  -> FP
+   CLAIM: Multiple requirements refer to leaving and viewing feedback/reviews, but none specify the content or structure of a review (e.g., star rating, text field, length limits).
+   R54: The system must allow users to leave feedback.
+   R55: The system must allow users to view feedback.
+   R161: The system must allow the student to leave a review
+   WHY:   the structure of a review is specified by R203, 'The review must have a star rating and a description'.
+
+[gaps #2]  -> FP
+   CLAIM: The system allows users to leave feedback, but there is no mention of any moderation process or the ability for a user to edit or delete their own submitted feedback.
+   R54: The system must allow users to leave feedback.
+   R5: The system must enable the ability for hosts and guests to leave reviews for each completed and completed booking.
+   WHY:   editing one's own review is specified by R38, 'Students must be able to edit the reviews they have written'.
+
+[dependencies #1] type=influences  -> TP
+   CLAIM: The ability for users to leave reviews (R5) is a prerequisite for the system to calculate and display average ratings on a user profile (R179).
+   R5: The system must enable the ability for hosts and guests to leave reviews for each completed and completed booking.
+   R179: The system must have a dedicated section for each user profile containing contact information description services offered chat number of services provided average ratings as host and guest and list of received feedback
+
+##############################################################################
+# Uniwhere | Baseline | CLUSTER 2 | Listing and Booking Constraints | coherence=100
+##############################################################################
+
+[duplicates #1] type=full  -> TP
+   CLAIM: All five requirements state the same rule: a booking or stay cannot exceed 7 nights.
+   R116: The system must prevent the booking if the stay exceeds 7 consecutive days
+   R170: The system must prevent service bookings from exceeding 7 consecutive nights
+   R223: The system must allow users to book a stay of up to 7 nights through a dedicated section
+   R40: The system must allow stays of up to 7 nights.
+   R7: The system must not allow accommodation for more than 7 nights
+
+[duplicates #2] type=partial  -> TP
+   CLAIM: R15 and R240 list the mandatory information for publishing a listing. R51, R52, R53, and R46 break these requirements down into individual items (photos, availability, address, cost).
+   R15: The system must require photos availability period address and cost in points per night for room publication
+   R240: The system allows a host to publish an offer with photos address city availability periods and points per night
+   R51: The system must allow the host to upload photos of the property.
+   R52: The system must allow the host to provide the availability period.
+   R53: The system must allow the host to provide the address of the accommodation.
+   R46: The system must allow the host to specify the points per night.
+
+[inconsistencies #1] type=constraint  -> FP
+   CLAIM: R64 imposes a strict limit on the cost per night (0-30 points), which contradicts R242's statement that the cost is 'chosen by the host and variable by date', implying full host control.
+   R64: The system must verify that the cost per night is between 0 and 30 points
+   R242: The system supports points per night chosen by the host and variable by date
+   WHY:   the two requirements are compatible: R64 bounds the admissible range and R242 lets the host choose freely within it, varying by date. The contradiction rests on reading 'chosen by the host' as unbounded control, which the text does not state.
+
+[ambiguities #1]  -> TP
+   CLAIM: The terms 'and others' for bonuses and 'appropriate additional cost' are vague. -> List all possible bonuses and define how the additional cost is calculated or set.
+   R31: The system must allow the addition of bonuses such as towels and others with an appropriate additional cost in points per night
+
+[ambiguities #2]  -> TP
+   CLAIM: The filter criteria 'type' and 'reviews' are not defined. -> Specify the possible values for 'type' (e.g., room, couch) and how filtering by 'reviews' works (e.g., minimum average rating).
+   R209: The search engine must allow filtering listings by city cost in points per night availability period type and reviews
+
+[gaps #1]  -> TP
+   CLAIM: The system requires specific information for publishing an accommodation (R15, R240, R98) but does not define the error handling or user feedback if this information is missing.
+   R15: The system must require photos availability period address and cost in points per night for room publication
+   R240: The system allows a host to publish an offer with photos address city availability periods and points per night
+   R98: The system must prevent the publication of the accommodation if the cost in points per night is not provided
+
+[gaps #2]  -> TP
+   CLAIM: R64 defines a valid price range for a listing (0-30 points), but there is no requirement specifying what happens if a host attempts to set a price outside this range.
+   R64: The system must verify that the cost per night is between 0 and 30 points
+
+[dependencies #1] type=influences  -> TP
+   CLAIM: R98 is a specific enforcement rule (prevent publication) for the general data requirement of providing a cost, as stated in R15.
+   R98: The system must prevent the publication of the accommodation if the cost in points per night is not provided
+   R15: The system must require photos availability period address and cost in points per night for room publication
+
+##############################################################################
+# Uniwhere | Baseline | CLUSTER 8 | University Email Authentication | coherence=100
+##############################################################################
+
+[duplicates #1] type=full  -> TP
+   CLAIM: All these requirements state the same core constraint: user registration must be done using a university email address.
+   R188: The student must register with their university email
+   R219: The system must allow registration through an official university email
+   R236: The system allows registration only with an official university email
+   R43: The system must accept only registrations made through a university email.
+   R59: The system must require users to register using a university email address first name and last name in order to use it
+   R8: Students must provide their institutional email address during registration
+
+[duplicates #2] type=partial  -> TP
+   CLAIM: Both requirements describe the email verification process. R9 states the need for verification, and R62 defines the consequence of a failed verification.
+   R9: The system must verify the email provided through the corresponding university
+   R62: If the user does not have a university email or the university authentication system does not issue a token the system must consider the registration invalid
+
+[ambiguities #1]  -> TP
+   CLAIM: The mechanism to 'recognize a university email address' is not specified. -> Define the method for recognition, such as 'by checking the domain against a pre-approved list of university domains'.
+   R104: The system must recognize a university email address from a non-university one
+
+[ambiguities #2]  -> TP
+   CLAIM: The nature of the 'token' from the university authentication system is undefined. -> Specify the authentication protocol to be used (e.g., OAuth 2.0, SAML) and the expected token format.
+   R62: If the user does not have a university email or the university authentication system does not issue a token the system must consider the registration invalid
+
+[gaps #1]  -> TP
+   CLAIM: The system must verify emails (R9) and identify universities (R105), but a crucial requirement is missing: a mechanism to manage the list of supported universities and their email domains.
+   R9: The system must verify the email provided through the corresponding university
+   R105: The system must identify the university associated with the email address
+
+[gaps #2]  -> TP
+   CLAIM: R62 defines the outcome of an invalid registration attempt but does not specify what feedback or error message is shown to the user.
+   R62: If the user does not have a university email or the university authentication system does not issue a token the system must consider the registration invalid
+   R9: The system must verify the email provided through the corresponding university
+
+[dependencies #1] type=requires  -> TP
+   CLAIM: The system can only verify a university email (R9) after the user has provided it during registration (R8).
+   R9: The system must verify the email provided through the corresponding university
+   R8: Students must provide their institutional email address during registration
+
+[dependencies #2] type=requires  -> TP
+   CLAIM: Authentication (R61) requires a pre-existing and valid registration (R59).
+   R61: The system must require users to authenticate using their university email to access the system
+   R59: The system must require users to register using a university email address first name and last name in order to use it
+
+##############################################################################
+# Uniwhere | Baseline | CLUSTER 1 | Student Feature Overview | coherence=60
+##############################################################################
+
+[ambiguities #1]  -> TP
+   CLAIM: The specific 'information' of a room that can be edited is not defined. -> List the editable fields of a room listing, such as description, photos, price, and availability.
+   R17: Students must be able to edit the information of their room
+
+[ambiguities #2]  -> TP
+   CLAIM: It is unclear if 'city and accommodation period' are the only search filters. -> Provide a complete list of all available search filters.
+   R23: Students must be able to filter the search by city and accommodation period
+
+[gaps #1]  -> FP
+   CLAIM: R28 allows students to reject a booking request for their room, but the corresponding ability to 'accept' a booking request is missing.
+   R28: Students must be able to reject a booking request for their room
+   WHY:   accepting a booking request is specified by R56, R74, R126 and R244; the capability the finding calls missing exists in the collection.
+
+[gaps #2]  -> TP
+   CLAIM: R27 allows a student to cancel a booking, but there are no associated rules defining cancellation policies, such as deadlines or potential penalties.
+   R27: Students must be able to cancel a booking
+
+[dependencies #1] type=blocks  -> TP
+   CLAIM: The system check for sufficient points (R30) is a precondition that can block a student from booking a room (R26).
+   R30: The system must ensure that students have enough points to book a room
+   R26: Students must be able to book a room
+
+[dependencies #2] type=requires  -> TP
+   CLAIM: A student receiving points for their room being used (R21) depends on another student first successfully booking that room (R26).
+   R21: Students must receive the corresponding points when their room is used
+   R26: Students must be able to book a room
+
+##############################################################################
+# Uniwhere | Baseline | CLUSTER 7 | Point Transaction Rules | coherence=90
+##############################################################################
+
+[duplicates #1] type=full  -> TP
+   CLAIM: Both requirements state that students are not allowed to sell points.
+   R140: The system does not allow the sale of points between students
+   R249: The system does not allow students to sell points
+
+[duplicates #2] type=partial  -> TP
+   CLAIM: Both requirements describe a point bonus upon registration/authentication, but R129 specifies 50 points while R237 leaves the amount undefined.
+   R129: The system assigns 50 points at first authentication
+   R237: The system credits a points bonus to the user upon completing registration
+
+[inconsistencies #1] type=constraint  -> TP
+   CLAIM: These requirements provide conflicting commission rates for point purchases. R134 states a 10% commission, R137 states 2% for single purchases, and R139 states 1% for package purchases. It's unclear how these rules coexist.
+   R134: The system retains 10% of the points on point purchases
+   R137: The system retains a 2% commission on single purchases
+   R139: The system retains a 1% commission on package purchases
+
+[ambiguities #1]  -> TP
+   CLAIM: The trigger 'once the booking is completed' is ambiguous. -> Define precisely when a booking is considered 'completed', for example, 'at the scheduled check-out time'.
+   R130: The system retains the points once the booking is completed
+
+[ambiguities #2]  -> TP
+   CLAIM: The 'start of the stay' is not clearly defined. -> Specify what constitutes the start time, e.g., '15:00 on the check-in date'.
+   R133: The system sends the points five hours before the start of the stay
+
+[ambiguities #3]  -> TP
+   CLAIM: The amount of the 'points bonus' is not specified. -> Define the exact number of points given as a bonus.
+   R237: The system credits a points bonus to the user upon completing registration
+
+[gaps #1]  -> TP
+   CLAIM: R138 defines point packages for purchase, but the price in real currency for these packages is not specified.
+   R138: The system allows the purchase of 50 100 150-point packages
+   R248: The system allows students to purchase points from UniRoomShare
+
+[gaps #2]  -> TP
+   CLAIM: The system defines different commission rates for 'single' (R137) and 'package' (R138) purchases, but it doesn't define what constitutes a 'single' purchase or its pricing model.
+   R136: The system allows the purchase of at least 20 points
+   R137: The system retains a 2% commission on single purchases
+   R138: The system allows the purchase of 50 100 150-point packages
+
+[dependencies #1] type=requires  -> BORDERLINE
+   CLAIM: The action of retaining points upon completion (R130) follows the rule of not deducting them at the moment of booking (R122), defining a clear temporal sequence.
+   R130: The system retains the points once the booking is completed
+   R122: The system must not deduct points at the moment of booking
+   WHY:   R130 does not presuppose, enable or block R122; the two merely describe consecutive moments of the same transaction, which is a temporal ordering rather than a dependency.
+
+[dependencies #2] type=influences  -> TP
+   CLAIM: R133 specifies the exact timing ('five hours before the start of the stay') for the point transfer described in R132.
+   R133: The system sends the points five hours before the start of the stay
+   R132: The system sends 90% of the points to the landlord student
+
+##############################################################################
+# Uniwhere | Baseline | CLUSTER 4 | Booking Point Transfer | coherence=85
+##############################################################################
+
+[duplicates #1] type=full  -> TP
+   CLAIM: All five requirements state that the system/app retains a 10% commission of the points paid for a stay.
+   R169: The system must reserve for UniRoomShare 10% of the points spent by a Guest for a service
+   R197: The app must take 10% of the points paid by a student who occupied an accommodation
+   R226: The system must retain 10% of the points transferred to the host for each purchased listing
+   R41: The system must retain 10% of the points earned by the host per overnight stay.
+   R83: At the moment of payment the system must deduct 10% of the total cost of the bed in points
+
+[duplicates #2] type=full  -> TP
+   CLAIM: All three requirements state that the host receives 90% of the points paid for a stay.
+   R168: The system must give the Host 90% of the points that the Guest uses for a service
+   R198: The student offering the accommodation must earn 90% of the points paid by the student who occupied it
+   R82: At the moment of payment the system must add to the host user 90% of the total cost of the bed in points
+
+[inconsistencies #1] type=temporal  -> TP
+   CLAIM: There is a direct conflict on when the point transfer occurs: R225 says 'once the booking is made', R245 says 'upon host confirmation', and R80 implies it happens 'at the moment of payment' (defined elsewhere as the day before check-in). These are three distinct and conflicting triggers.
+   R225: The system must transfer the room?s cost in points from the buyer to the host once the booking is made
+   R245: Only upon host confirmation does the system deduct points from the guest credit the host and retain the 10% commission
+   R80: At the moment of payment the system must subtract from the user the total cost of the bed in points
+
+[ambiguities #1]  -> TP
+   CLAIM: The mechanism for detecting when a 'Guest has arrived at the location' is not defined. -> Specify how arrival is determined, for example, 'via a manual check-in button pressed by the guest in the app'.
+   R176: The system must notify the Host of the service when the Guest has arrived at the location
+
+[ambiguities #2]  -> TP
+   CLAIM: The term 'host confirmation' is ambiguous. -> Clarify what is being confirmed: the initial booking request, the guest's check-in, or the successful completion of the stay.
+   R245: Only upon host confirmation does the system deduct points from the guest credit the host and retain the 10% commission
+
+[gaps #1]  -> FP
+   CLAIM: The cluster defines multiple (conflicting) triggers for transferring points from guest to host. It completely omits any process for handling refunds or transaction rollbacks if a booking is cancelled after this transfer has occurred.
+   R225: The system must transfer the room?s cost in points from the buyer to the host once the booking is made
+   R245: Only upon host confirmation does the system deduct points from the guest credit the host and retain the 10% commission
+   R80: At the moment of payment the system must subtract from the user the total cost of the bed in points
+   WHY:   refund handling is specified by R217, R218 and R125; the process the finding calls completely omitted exists in the collection.
+
+[dependencies #1] type=requires  -> TP
+   CLAIM: Crediting 90% of the points to the host (R82) can only happen after the total cost has been subtracted from the guest (R80).
+   R82: At the moment of payment the system must add to the host user 90% of the total cost of the bed in points
+   R80: At the moment of payment the system must subtract from the user the total cost of the bed in points
+
+##############################################################################
+# Uniwhere | Baseline | CLUSTER 0 | Booking Request Management | coherence=100
+##############################################################################
+
+[duplicates #1] type=partial  -> TP
+   CLAIM: All these requirements describe the host's ability to manage incoming booking requests by accepting or rejecting them.
+   R126: The system must allow the host to view approve and reject bookings
+   R244: The system allows the host to confirm or reject a booking request
+   R57: The system must allow the host to reject the guest.
+   R74: The system must allow the owner of the bed to accept or reject each booking request
+
+[inconsistencies #1] type=logical  -> TP
+   CLAIM: R125 states that cancelling a booking comes 'with point refund', while R85 states that 'If payment has already occurred the system does not provide refunds'. Since payment (R79) happens before the stay, these two rules are contradictory for any cancellation made after payment but before check-in.
+   R125: The system must allow the cancellation of the booking with point refund
+   R85: If payment has already occurred the system does not provide refunds
+
+[ambiguities #1]  -> TP
+   CLAIM: The criteria for an 'invalid' booking request are not defined. -> Specify what makes a request invalid, e.g., 'overlapping dates with another booking by the same user'.
+   R71: If the booking request is invalid the system must reject it and request modifications
+
+[ambiguities #2]  -> TP
+   CLAIM: The term 'point refund' is ambiguous about the amount. -> Specify if the refund is full (100%) or partial, and under what conditions.
+   R125: The system must allow the cancellation of the booking with point refund
+
+[gaps #1]  -> TP
+   CLAIM: R84 allows for the cancellation of future bookings, but there are no requirements defining the rules or deadlines for this action (e.g., cancellation is only allowed up to 24 hours before check-in).
+   R84: The system must provide a mechanism to cancel future bookings
+   R125: The system must allow the cancellation of the booking with point refund
+
+[gaps #2]  -> TP
+   CLAIM: R81 specifies that a booking is automatically cancelled for payment failure, but it does not state whether the host is notified of this cancellation.
+   R81: If at the moment of payment the user cannot pay the system must automatically cancel the booking
+   R79: The system automatically processes the payment for the booking at 12:00 PM on the day before the check-in date
+
+[dependencies #1] type=requires  -> TP
+   CLAIM: The system can only automatically reject other requests (R75) after the owner has explicitly accepted one (R74).
+   R75: If the owner receives multiple booking requests for the same bed on the same dates once one is accepted the system must automatically reject all the others
+   R74: The system must allow the owner of the bed to accept or reject each booking request
+
+[dependencies #2] type=requires  -> TP
+   CLAIM: The system can only cancel a booking due to payment failure (R81) after it has attempted to process the payment (R79).
+   R81: If at the moment of payment the user cannot pay the system must automatically cancel the booking
+   R79: The system automatically processes the payment for the booking at 12:00 PM on the day before the check-in date
+
+##############################################################################
+# Uniwhere | Baseline | CLUSTER 6 | General System Functions | coherence=10
+##############################################################################
+
+[ambiguities #1]  -> TP
+   CLAIM: The method to 'verify the reachability of the accommodation' is undefined. -> Specify the feature, for example, 'by displaying the location on an integrated map'.
+   R101: The system must allow the guest user to verify the reachability of the accommodation
+
+[ambiguities #2]  -> TP
+   CLAIM: The term 'origin of the tenant' is vague, and the verification method is not specified. -> Define 'origin' (e.g., home university, country) and explain how it will be verified.
+   R160: The system must be able to verify the origin of the tenant
+
+[ambiguities #3]  -> TP
+   CLAIM: The 'available options' that a user can view and select are not specified. -> List the specific options, such as room type, add-ons like towels, or payment methods.
+   R118: The system must allow the viewing and selection of available options
+
+[gaps #1]  -> TP
+   CLAIM: R110 allows a user to delete their account, but there are no associated requirements defining what happens to the user's data, such as their listings, past bookings, or reviews they have written/received.
+   R110: The system must allow the user to delete their account
+
+[gaps #2]  -> FP
+   CLAIM: The cluster introduces many distinct features (search, reviews, booking) but lacks the necessary detail to connect them. For example, it mentions search filters (R149) but doesn't list them, and mentions reviews (R142) but doesn't define their content.
+   R149: The system must allow search filters
+   R142: The system must allow the user to review a room
+   R148: The system must have a search bar
+   WHY:   the two examples the finding gives are both specified elsewhere: the filters by R69 and R209, the content of a review by R203. The observation describes the incoherence of the cluster rather than a defect of the specification.
+
+[dependencies #1] type=blocks  -> TP
+   CLAIM: The system must first verify that a user has stayed in the accommodation (R143) before allowing them to review it (R142).
+   R143: The system must verify that the user has stayed in the accommodation
+   R142: The system must allow the user to review a room
+
+##############################################################################
+# Uniwhere | Baseline | CLUSTER 3 | University Authentication Integration | coherence=80
+##############################################################################
+
+[duplicates #1] type=full  -> TP
+   CLAIM: All three requirements state that the system must allow students to register.
+   R154: The system must allow student registration
+   R163: The system must allow the registration of university students
+   R187: The app must allow students to register
+
+[duplicates #2] type=full  -> TP
+   CLAIM: All three requirements describe redirecting the user to their university's external authentication/login page.
+   R111: The system must be able to redirect the user to the university?s authentication service
+   R165: The system must redirect to the student's university login page
+   R189: The app must redirect the student to the authentication page of the university where they study
+
+[duplicates #3] type=partial  -> TP
+   CLAIM: R153 is a high-level requirement to interact with university systems, which is implemented by the specific actions of redirecting (R111) and receiving a response (R112).
+   R153: The system must interact with the universities' authentication systems
+   R111: The system must be able to redirect the user to the university?s authentication service
+   R112: The system must be able to receive an authentication response from the university
+
+[ambiguities #1]  -> TP
+   CLAIM: The frequency of 'periodically verify' is not defined. -> Specify the verification interval, such as 'at the start of each academic semester' or 'annually'.
+   R108: The system must periodically verify that the user is still an active university student
+
+[ambiguities #2]  -> TP
+   CLAIM: The specific 'information related to the user' to be received from the university is not listed. -> Define the data schema, for example, 'must receive user's full name, university email, and active student status'.
+   R113: The system must receive from the university the information related to the user
+
+[gaps #1]  -> TP
+   CLAIM: R108 requires periodic verification of a student's active status, but there is no requirement defining what action the system should take if the verification fails (e.g., the user has graduated).
+   R108: The system must periodically verify that the user is still an active university student
+   R164: The system must verify that the student is indeed a university student
+
+[gaps #2]  -> TP
+   CLAIM: The system relies on redirecting to external university services (R111, R189), but there is no requirement for handling errors, such as when the university's authentication service is unavailable or returns an error.
+   R111: The system must be able to redirect the user to the university?s authentication service
+   R112: The system must be able to receive an authentication response from the university
+   R190: The app must verify that authentication on the university?s authentication page was successful
+
+[dependencies #1] type=requires  -> TP
+   CLAIM: Redirecting to a university login page (R111) is a necessary step for a student to gain access to the system (R155).
+   R111: The system must be able to redirect the user to the university?s authentication service
+   R155: The system must allow student access
+
+##############################################################################
+# Uniwhere | Baseline | CLUSTER 5 | Student Wallet and Features | coherence=50
+##############################################################################
+
+[duplicates #1] type=partial  -> BORDERLINE
+   CLAIM: R128 states the student must have a wallet, and R213 describes a key function of that wallet: viewing the point balance. They describe the same feature.
+   R128: The system must allow each student to have a wallet
+   R213: The student must be able to view their points balance
+   WHY:   R128 introduces the wallet and R213 an operation on it; calling them the same feature overstates the overlap, and merging them would drop the viewing capability.
+
+[inconsistencies #1] type=constraint  -> TP
+   CLAIM: R217 states a cancellation must refund 'the points spent' (implying 100%), which directly contradicts R218's rule that a refund must return '80% of the points spent'.
+   R217: A cancellation must refund the requesting student the points spent
+   R218: A refund must return 80% of the points spent
+
+[ambiguities #1]  -> TP
+   CLAIM: The 'fixed number of points' given after registration is not specified. -> Define the exact number of points awarded.
+   R192: The student must receive a fixed number of points after registration
+
+[ambiguities #2]  -> TP
+   CLAIM: The 'star rating' scale is not defined. -> Specify the rating scale, for example, 'a rating from 1 to 5 stars'.
+   R203: The review must have a star rating and a description
+
+[gaps #1]  -> TP
+   CLAIM: R205 allows students to register credit/debit cards, but there are no accompanying requirements for security, storage (e.g., PCI compliance), or management of these saved payment methods.
+   R205: The student must be able to register their credit or debit cards
+   R204: The student must be able to purchase points via credit or debit card
+
+[gaps #2]  -> TP
+   CLAIM: The system allows adding listings to favorites (R212), but there is no corresponding requirement to allow a student to remove a listing from their favorites.
+   R211: The student must have a section dedicated to favorite listings
+   R212: The student must be able to add listings to favorites
+
+[dependencies #1] type=blocks  -> TP
+   CLAIM: The rule preventing a student from spending more points than they have (R215) is a precondition that blocks the action of spending points (R193) if the balance is insufficient.
+   R215: The student must not be able to spend more points than they possess
+   R193: The student must spend points when occupying accommodation
+
+[dependencies #2] type=influences  -> TP
+   CLAIM: R218 provides a specific rule (80% refund) that quantifies the general refund capability described in R217.
+   R218: A refund must return 80% of the points spent
+   R217: A cancellation must refund the requesting student the points spent
+
+##############################################################################
+# Uniwhere | Baseline | CLUSTER 10 | Accommodation Listing and Requesting | coherence=95
+##############################################################################
+
+[duplicates #1] type=full  -> TP
+   CLAIM: Both requirements state the same rule: a student can only request accommodation in a city that is different from their own university city.
+   R185: The requested accommodation must be located in a university city where the requesting student does not study
+   R238: The system allows a student to request accommodation in a city different from their study city
+
+[ambiguities #1]  -> TP
+   CLAIM: It is unclear if 'room or couch' are the only allowed accommodation types. -> Clarify by stating 'The type must be one of the following: room, couch'.
+   R196: The type must be room or couch
+
+[ambiguities #2]  -> TP
+   CLAIM: The mechanism for how extras like towels/sheets result in a 'different price' is not defined. -> Specify how the price difference is applied, e.g., 'The host can specify a fixed point surcharge for each extra'.
+   R201: The presence of towels and/or sheets must be able to result in a different price for the accommodation
+
+[gaps #1]  -> TP
+   CLAIM: R184 and R185 require specifying a 'university city' for a request, but there is no requirement for a predefined, selectable list of valid university cities for the user.
+   R184: The request must include the accommodation period and the university city of the accommodation
+   R185: The requested accommodation must be located in a university city where the requesting student does not study
+
+[gaps #2]  -> TP
+   CLAIM: R207 allows messaging between the offering and requesting students, but it does not specify the context or timing (e.g., is it allowed only before booking, or also after?).
+   R207: The student requesting accommodation must be able to message the student offering it and vice versa
+
+[dependencies #1] type=blocks  -> TP
+   CLAIM: The location constraint in R185 is a rule that restricts or blocks the general ability to request accommodation described in R183.
+   R185: The requested accommodation must be located in a university city where the requesting student does not study
+   R183: The app must allow students to request shared accommodation
+
+[dependencies #2] type=requires  -> TP
+   CLAIM: Providing specific details like address and cost (R199) is a necessary step in the process of offering accommodation through a listing (R194).
+   R199: The student must specify the availability period address and cost in points per night of the offered accommodation
+   R194: The student must be able to offer their own accommodation through a listing
+
+##############################################################################
+# V2I | Graph | CLUSTER 1 | Smart Road Hazard and Event Notifications | coherence=65
+##############################################################################
+
+[duplicates #1] type=full  -> TP
+   CLAIM: All three requirements mandate warning vehicles about accidents on the route, expressing the same core function.
+   R39: The system must send an alert to drivers when an accident is detected nearby.
+   R126: The system must warn vehicles of accidents along the route.
+   R96: La strada deve avvisare l’auto se c’è un incidente avanti.
+
+[duplicates #2] type=full  -> TP
+   CLAIM: All three requirements mandate notifying vehicles about road construction sites or roadworks.
+   R11: The system must notify vehicles of the presence of mobile worksites or road workers via push notifications on the on-board display.
+   R38: The system must immediately notify drivers in case of roadworks or diversions.
+   R129: The system must notify vehicles of active road construction sites.
+
+[duplicates #3] type=full  -> TP
+   CLAIM: Both requirements mandate warning vehicles of obstacles or impediments on the roadway.
+   R130: The system must warn vehicles of obstacles on the roadway.
+   R155: Cameras must notify me of the presence of road impediments (ongoing works or slowdowns or motorcycles etc.).
+
+[duplicates #4] type=partial  -> TP
+   CLAIM: Both requirements mandate alerting drivers to a wrong-way vehicle. R8 is more specific, defining a 2-kilometer radius for the alert.
+   R46: The system must alert drivers when a vehicle is traveling the wrong way.
+   R8: The infrastructure must send a Wrong-Way Vehicle alert to all drivers within a 2-kilometer radius of the detection point.
+
+[duplicates #5] type=full  -> TP
+   CLAIM: Both requirements, one in English and one in Italian, mandate reporting the presence of ice on the road surface to vehicles.
+   R9: Smart roads must monitor road surface conditions and report the presence of ice or standing water to passing vehicles.
+   R131: Il sistema deve segnalare ai veicoli condizioni di ghiaccio sull’asfalto.
+
+[duplicates #6] type=full  -> TP
+   CLAIM: Both requirements mandate notifying users about unsuccessful toll payments or payment errors.
+   R108: The toll booth must notify if the payment was unsuccessful.
+   R59: Automatic toll booths must immediately report any payment errors to users.
+
+[duplicates #7] type=full  -> TP
+   CLAIM: Both requirements specify that automatic toll booths must process payments without the vehicle having to stop.
+   R154: The automatic toll booth must allow me to pass without stopping to pay and without using a transponder by simply reading the license plate.
+   R37: Automatic toll booths must complete payment without stopping the vehicle.
+
+[duplicates #8] type=partial  -> TP
+   CLAIM: Both requirements concern the detection of unauthorized parking in disabled spaces. R16 is more specific as it includes the action of notifying the local police.
+   R16: Parking sensors must detect unauthorized occupation of disabled parking spaces and immediately notify the local police.
+   R139: Il parcheggio deve segnalare l’occupazione abusiva dei posti riservati ai disabili.
+
+[ambiguities #1]  -> TP
+   CLAIM: The term 'only when necessary' is highly subjective and lacks objective criteria. -> Define specific rules or user-configurable profiles that determine when a notification is considered necessary (e.g., based on event severity, proximity, or driver preferences).
+   R83: The system must send notifications to drivers only when necessary.
+
+[ambiguities #2]  -> TP
+   CLAIM: The term 'violent impact' is not defined. -> Specify a quantifiable threshold for detection, such as a G-force measurement or airbag deployment signal.
+   R110: The system must send automatic SOS alerts if it detects a violent impact.
+
+[ambiguities #3]  -> TP
+   CLAIM: The term 'immediately' is not a measurable time frame. -> Replace with a maximum latency, for example, 'within 500 milliseconds'.
+   R38: The system must immediately notify drivers in case of roadworks or diversions.
+
+[ambiguities #4]  -> TP
+   CLAIM: The term 'nearby' is vague. -> Define a specific distance or radius, for example, 'within a 2 km radius'.
+   R39: The system must send an alert to drivers when an accident is detected nearby.
+
+[ambiguities #5]  -> TP
+   CLAIM: The term 'dangerous weather conditions' is subjective. -> List the specific, measurable conditions that trigger a notification, such as 'fog with visibility under 100 meters' or 'crosswinds exceeding 60 km/h'.
+   R48: The system must send notifications to vehicles in case of dangerous weather conditions on the road.
+
+[ambiguities #6]  -> TP
+   CLAIM: The term 'nei dintorni' (nearby) is undefined. -> Specify a precise radius in meters or kilometers for detecting and alerting about approaching ambulances.
+   R153: Il sistema deve comunicarmi se c’è l’arrivo di un ambulanza nei dintorni in maniera che ci si possa preparare
+
+[gaps #1]  -> BORDERLINE
+   CLAIM: The cluster mandates numerous alerts and notifications (e.g., for accidents, roadworks, obstacles) but lacks requirements defining the format, priority, or delivery mechanism (e.g., visual, audio, haptic) for these messages.
+   R100: The system must alert if an animal crosses the road.
+   R11: The system must notify vehicles of the presence of mobile worksites or road workers via push notifications on the on-board display.
+   R39: The system must send an alert to drivers when an accident is detected nearby.
+   R46: The system must alert drivers when a vehicle is traveling the wrong way.
+   R48: The system must send notifications to vehicles in case of dangerous weather conditions on the road.
+   WHY:   the claim that no delivery mechanism is defined is contradicted by one of the requirements it cites, R11, which prescribes push notifications on the on-board display; the observation survives only for message format and priority.
+
+[gaps #2]  -> TP
+   CLAIM: Requirements R108 and R59 state that payment errors should be reported, but there is no defined process for the user to follow to resolve the payment issue.
+   R108: The toll booth must notify if the payment was unsuccessful.
+   R59: Automatic toll booths must immediately report any payment errors to users.
+
+[gaps #3]  -> FP
+   CLAIM: Requirements R154 and R37 specify drive-through tolling, but the underlying payment mechanism (e.g., linking a bank account, billing by mail based on license plate) is not defined.
+   R154: The automatic toll booth must allow me to pass without stopping to pay and without using a transponder by simply reading the license plate.
+   R37: Automatic toll booths must complete payment without stopping the vehicle.
+   WHY:   the payment mechanism for tolling is specified by R107 (C2), 'The system must deduct the toll cost from the online account'.
+
+[dependencies #1] type=requires  -> TP
+   CLAIM: Notifying vehicles of an accident (R64) requires the initial detection of that accident, a process described in R12.
+   R12: Cameras must automatically identify road accidents and send the exact GPS coordinates to emergency services within 5 seconds.
+   R64: The system must notify vehicles of accidents within a 2 km radius within 3 seconds of detection.
+
+[dependencies #2] type=influences  -> TP
+   CLAIM: The low-latency requirement of R20 is a critical performance constraint for implementing the 'automatic SOS alerts' in R110.
+   R20: Communication between infrastructure and vehicle for critical safety messages must occur with a latency of less than 20 milliseconds.
+   R110: The system must send automatic SOS alerts if it detects a violent impact.
+
+##############################################################################
+# V2I | Graph | CLUSTER 2 | Intelligent Traffic Flow Management | coherence=75
+##############################################################################
+
+[duplicates #1] type=partial  -> TP
+   CLAIM: All three requirements describe the same core concept of adaptive traffic lights that adjust timing based on real-time vehicle detection, just with slightly different phrasing.
+   R1: The system must regulate the duration of the green traffic light based on the vehicle flow detected by lane sensors in real time.
+   R51: Smart traffic lights must adapt waiting times based on the number of vehicles present.
+   R156: I semafori intelligenti devono automaticamente diventare verdi appena non rilevano più macchine davanti l’altro semaforo (senza aspettare inutilmente)
+
+[duplicates #2] type=full  -> TP
+   CLAIM: Both requirements specify that the system must update the status of smart traffic lights every 500 milliseconds.
+   R31: The V2I system must update the status of smart traffic lights in real time every 500 milliseconds.
+   R61: Il sistema deve aggiornare lo stato dei semafori intelligenti ogni 500 ms sulla base dei dati ricevuti dai sensori di traffico presenti nell’incrocio.
+
+[duplicates #3] type=partial  -> TP
+   CLAIM: R91 (green light for ambulances) is a specific instance of the more general requirement R122 (priority for emergency vehicles).
+   R91: The traffic light must turn green for ambulances.
+   R122: The system must assign traffic light priority to approaching emergency vehicles.
+
+[duplicates #4] type=partial  -> TP
+   CLAIM: Both requirements describe a monitoring dashboard for operators. R73 is more specific, mentioning a 'web dashboard' for viewing 'all traffic lights'.
+   R52: The system must allow municipal operators to monitor traffic via a centralized dashboard.
+   R73: The system must allow traffic operators to view in real time the status of all traffic lights in the city via a web dashboard.
+
+[inconsistencies #1] type=logical  -> TP
+   CLAIM: R80 aims to keep lights green 'for as long as possible', while R88 aims to 'minimize waiting times for all vehicles simultaneously'. These are contradictory goals in traffic management, as a green light for one direction necessitates a red light (and waiting time) for crossing traffic.
+   R80: The system must ensure that all traffic lights remain green for as long as possible to improve vehicle flow.
+   R88: The system should minimize waiting times at traffic lights for all vehicles simultaneously.
+
+[inconsistencies #2] type=logical  -> TP
+   CLAIM: R81 gives 'absolute priority' to public transport, while R122 gives priority to emergency vehicles. This creates a conflict when a bus and an ambulance approach an intersection simultaneously, as their priorities are not ranked.
+   R81: The system must always give absolute priority to public transport at all urban intersections.
+   R122: The system must assign traffic light priority to approaching emergency vehicles.
+
+[inconsistencies #3] type=logical  -> TP
+   CLAIM: R87 suggests 'blocking' congested roads, which is a contradictory traffic management strategy to R6, which aims to 'drain traffic' from congested areas by reconfiguring traffic lights.
+   R87: The system must automatically block all roads considered congested.
+   R6: In case of critical congestion the system must automatically reconfigure traffic light timings at nearby intersections to drain traffic.
+
+[inconsistencies #4] type=constraint  -> FP
+   CLAIM: These requirements define system capacity using different and potentially conflicting metrics (500 vehicles total, 10,000 vehicles/km², 50,000 vehicles total). Without a defined system scope (e.g., total area covered), it's impossible to know if these constraints can be met simultaneously.
+   R113: The system must connect 500 vehicles simultaneously.
+   R24: The software architecture must be capable of simultaneously managing connections from at least 10.000 vehicles per square kilometer.
+   R65: The system must support at least 50.000 simultaneously connected vehicles without degrading the average response time beyond 2 seconds.
+   WHY:   R113, R24 and R65 all state lower bounds on capacity, so they are jointly satisfiable: meeting 50.000 connections also meets 500. The requirements differ in the metric they use, which is a specification-style inconsistency, not a contradiction.
+
+[ambiguities #1]  -> TP
+   CLAIM: The phrase 'manage traffic quickly' is subjective and not measurable. -> Define specific performance metrics, such as 'reduce average intersection wait time by 25% during peak hours'.
+   R79: The system should manage traffic quickly during peak hours.
+
+[ambiguities #2]  -> TP
+   CLAIM: The term 'drastically reduce' is unquantified. -> Specify a measurable target, such as 'reduce vehicle volume in the city center by 15% compared to baseline'.
+   R82: The system must drastically reduce traffic in urban areas.
+
+[ambiguities #3]  -> TP
+   CLAIM: The requirement to 'stay on if power is lost' is underspecified. -> Specify the required duration of backup power and which specific functions must remain operational during an outage.
+   R115: The system must stay on if power is lost.
+
+[ambiguities #4]  -> TP
+   CLAIM: The ability to 'tell me whether I can overtake safely or not even on bends' is extremely complex and ambiguous. -> This requirement is likely infeasible. It should be removed or drastically re-scoped to define the exact conditions, sensor inputs, and liabilities involved.
+   R159: The system must be able to tell me whether I can overtake safely or not even on bends.
+
+[gaps #1]  -> TP
+   CLAIM: Multiple requirements grant priority to different vehicle types (R122: emergency, R147: public transport, R81: public transport). A clear hierarchy of these priorities is missing, creating ambiguity in conflict scenarios (e.g., an ambulance vs. a bus).
+   R122: The system must assign traffic light priority to approaching emergency vehicles.
+   R147: The system must activate priority routes for buses and public transport during peak hours.
+   R81: The system must always give absolute priority to public transport at all urban intersections.
+   R91: The traffic light must turn green for ambulances.
+
+[gaps #2]  -> FP
+   CLAIM: The system is required to redirect traffic (R124, R74), but there are no requirements defining how these diversions are communicated to drivers.
+   R124: The system must detect queues longer than 500 meters and redirect traffic to alternative routes.
+   R74: Il sistema deve generare automaticamente una deviazione del traffico quando il livello di congestione supera l’85% della capacità stradale.
+   WHY:   communicating diversions to drivers is specified by R38 (C1), 'The system must immediately notify drivers in case of roadworks or diversions'.
+
+[gaps #3]  -> TP
+   CLAIM: Requirement R107 ('deduct the toll cost from the online account') is functionally isolated and implies a complete payment subsystem that is otherwise undefined in this traffic-management-focused cluster.
+   R107: The system must deduct the toll cost from the online account.
+
+[dependencies #1] type=requires  -> TP
+   CLAIM: Reconfiguring traffic lights to drain traffic (R6) first requires the system to identify the areas with congested traffic (R50).
+   R6: In case of critical congestion the system must automatically reconfigure traffic light timings at nearby intersections to drain traffic.
+   R50: The system must automatically identify areas with congested traffic.
+
+[dependencies #2] type=requires  -> TP
+   CLAIM: Sending a priority route to an emergency vehicle (R62) depends on the system's fundamental ability to assign traffic light priority to it (R122).
+   R62: The system must send emergency vehicles a priority route within 2 seconds of receiving the priority request.
+   R122: The system must assign traffic light priority to approaching emergency vehicles.
+
+##############################################################################
+# V2I | Graph | CLUSTER 4 | Vehicle-to-Infrastructure (V2I) Communication | coherence=95
+##############################################################################
+
+[duplicates #1] type=full  -> TP
+   CLAIM: Both requirements describe the same function: transmitting the traffic light's remaining time or upcoming state change to the vehicle.
+   R3: The system must transmit to approaching vehicles the remaining time (countdown) before the traffic light changes state.
+   R93: The traffic light must tell the vehicle when the red light will activate.
+
+[ambiguities #1]  -> TP
+   CLAIM: The phrase 'work with all vehicle brands' is an absolute statement that is likely infeasible and untestable. -> Rephrase to specify compliance with open, industry-wide communication standards, such as those mentioned in R25.
+   R120: The system must work with all vehicle brands.
+
+[ambiguities #2]  -> TP
+   CLAIM: The criteria for a vehicle being 'compliant or not' are undefined. -> Specify the rules for compliance, such as 'must possess a valid and unrevoked security certificate' or 'must support ETSI ITS-G5 protocol version X.Y'.
+   R152: The system must detect when it receives a communication from the vehicle whether it is compliant or not.
+
+[ambiguities #3]  -> TP
+   CLAIM: The mechanism for identifying a vehicle as 'stolen' is not defined. -> Specify that the system must interface with an authoritative database (e.g., from law enforcement) and define the update frequency for this data.
+   R160: The system must not respond to stolen vehicles.
+
+[ambiguities #4]  -> TP
+   CLAIM: The phrase 'easy to use for any user' is subjective and non-functional. -> Define specific, measurable usability goals, such as 'A driver must be able to configure notification preferences in under 60 seconds with no prior training'.
+   R89: The system must be easy to use for any user.
+
+[gaps #1]  -> TP
+   CLAIM: R160 states the system must not respond to stolen vehicles, but it fails to specify if any other action should be taken, such as logging the vehicle's location or notifying authorities, which would be a critical security function.
+   R160: The system must not respond to stolen vehicles.
+
+[gaps #2]  -> TP
+   CLAIM: R44 requires encryption for all V2I communications, but there are no associated requirements for key management, certificate authority (CA) infrastructure, or specification of cryptographic algorithms.
+   R44: The system must encrypt all communications between infrastructure and vehicles.
+
+[gaps #3]  -> TP
+   CLAIM: R152 requires checking vehicle compliance, but the consequences for a non-compliant vehicle are not defined. It is unclear if service is denied, if the event is logged, or if an alert is raised.
+   R152: The system must detect when it receives a communication from the vehicle whether it is compliant or not.
+
+[dependencies #1] type=requires  -> TP
+   CLAIM: The ability to reserve a parking space via V2I communication (R14) depends on the system supporting a common communication standard (R25).
+   R14: The infrastructure must allow the reservation of a parking space through direct communication between the vehicle and the parking sensor.
+   R25: The system must support both the European communication standard (ETSI ITS-G5) and the cellular network-based one (C-V2X).
+
+[dependencies #2] type=requires  -> TP
+   CLAIM: To ignore a stolen vehicle (R160), the system must first be able to determine its status, which is part of the compliance check in R152.
+   R160: The system must not respond to stolen vehicles.
+   R152: The system must detect when it receives a communication from the vehicle whether it is compliant or not.
+
+##############################################################################
+# V2I | Graph | CLUSTER 5 | Smart Parking and System Reliability | coherence=70
+##############################################################################
+
+[duplicates #1] type=partial  -> TP
+   CLAIM: These requirements all describe the core function of informing a driver about and guiding them to an available parking space.
+   R101: Il parcheggio deve dire all’auto dove sono i posti liberi
+   R35: Smart parking lots must communicate available spaces in real time to nearby vehicles.
+   R137: The smart parking lot must guide the vehicle to the nearest free space.
+
+[duplicates #2] type=partial  -> TP
+   CLAIM: All three requirements concern providing preferential parking services (reserving, guiding) for electric vehicles, especially at charging stations.
+   R102: The system must reserve the space for electric vehicles.
+   R15: The system must identify electric vehicles and guide them as a priority to spaces equipped with a free charging station.
+   R138: The system must reserve parking spaces for electric vehicles that are charging.
+
+[duplicates #3] type=full  -> TP
+   CLAIM: Both requirements mandate that the system must lower speed limits in response to rain.
+   R132: The system must automatically lower speed limits in case of heavy rain.
+   R95: The system must lower the speed limit if it is raining.
+
+[duplicates #4] type=partial  -> TP
+   CLAIM: All three requirements address the need for system hardware to operate correctly under adverse environmental conditions like bad weather, fog, heat, and frost.
+   R43: Road sensors must operate correctly even in adverse weather conditions.
+   R112: The system must operate even in dense fog.
+   R114: Sensors must withstand heat and frost.
+
+[inconsistencies #1] type=constraint  -> TP
+   CLAIM: R90 demands operation 'without any interruption', which implies 100% availability. This directly contradicts R71, which specifies a more realistic availability target of 99.95%.
+   R71: The system must guarantee a service availability of at least 99.95% on a monthly basis.
+   R90: The system must operate correctly even in case of network problems or infrastructure failures without any interruption.
+
+[inconsistencies #2] type=temporal  -> FP
+   CLAIM: R13 states the parking system updates availability every 10 seconds, while R55 requires vehicles to receive updates within 5 seconds. A vehicle cannot receive data that is fresher than the system's 10-second update interval, creating a logical conflict in data freshness expectations.
+   R13: The parking system must update the number of available spaces every 10 seconds and transmit it to vehicle navigation systems.
+   R55: Connected vehicles must receive updates on parking availability within 5 seconds of the request.
+   WHY:   the two requirements constrain different quantities: R55 bounds the response latency to a request, R13 the refresh interval of the data. A reply delivered within 5 seconds carrying data up to 10 seconds old satisfies both; there is no contradiction.
+
+[ambiguities #1]  -> TP
+   CLAIM: The term 'adverse weather conditions' is vague. -> Specify the exact conditions the system must operate in, including temperature ranges, humidity levels, and precipitation types (e.g., rain, snow, hail).
+   R43: Road sensors must operate correctly even in adverse weather conditions.
+
+[ambiguities #2]  -> TP
+   CLAIM: It is unclear to whom the system should 'report' the unauthorized occupation of disabled spaces. -> Specify the recipient of the report, such as 'the parking management office' or 'the local law enforcement agency'.
+   R103: The parking lot must report who occupies disabled spaces without permission.
+
+[ambiguities #3]  -> TP
+   CLAIM: The term 'heavy rain' is not quantified. -> Define a specific threshold, such as a rainfall rate in mm/hour, to trigger the speed limit reduction.
+   R132: The system must automatically lower speed limits in case of heavy rain.
+
+[gaps #1]  -> TP
+   CLAIM: R140 specifies 'automatic parking payment', but the cluster lacks any requirements defining the payment processing mechanism, user accounts, or transaction security.
+   R140: The system must allow automatic parking payment through vehicle identification.
+
+[gaps #2]  -> TP
+   CLAIM: R132 and R95 require lowering speed limits during rain, but there is no corresponding requirement that specifies how this new, temporary speed limit is communicated to drivers.
+   R132: The system must automatically lower speed limits in case of heavy rain.
+   R95: The system must lower the speed limit if it is raining.
+
+[gaps #3]  -> TP
+   CLAIM: The system prioritizes parking for electric vehicles (R15, R102, R138) and penalizes improper use of disabled spaces (R103), but there is a gap in defining the rules or penalties for a non-electric vehicle occupying a designated charging spot.
+   R15: The system must identify electric vehicles and guide them as a priority to spaces equipped with a free charging station.
+   R102: The system must reserve the space for electric vehicles.
+   R103: The parking lot must report who occupies disabled spaces without permission.
+
+[dependencies #1] type=requires  -> TP
+   CLAIM: The ability to guide a vehicle to a free space (R137) is dependent on the system first knowing the real-time availability of spaces (R35).
+   R137: The smart parking lot must guide the vehicle to the nearest free space.
+   R35: Smart parking lots must communicate available spaces in real time to nearby vehicles.
+
+[dependencies #2] type=influences  -> TP
+   CLAIM: The 5-second update requirement for vehicles (R55) is constrained by the 10-second data refresh rate of the parking system (R13), highlighting a performance dependency.
+   R55: Connected vehicles must receive updates on parking availability within 5 seconds of the request.
+   R13: The parking system must update the number of available spaces every 10 seconds and transmit it to vehicle navigation systems.
+
+##############################################################################
+# V2I | Graph | CLUSTER 7 | Road Event Detection and System Monitoring | coherence=85
+##############################################################################
+
+[duplicates #1] type=full  -> TP
+   CLAIM: Both requirements specify that the system must detect vehicles stopped in the emergency lane.
+   R125: The system must detect vehicles stopped in the emergency lane.
+   R57: Smart roads must automatically detect vehicles stopped in the emergency lane.
+
+[duplicates #2] type=full  -> TP
+   CLAIM: Both requirements specify that the system must detect vehicles traveling in the wrong direction.
+   R135: The system must detect vehicles traveling in the wrong direction.
+   R99: Cameras must signal if a vehicle is going the wrong way.
+
+[duplicates #3] type=partial  -> TP
+   CLAIM: R2, which mandates an 'immediate green phase' for emergency vehicles, is a specific implementation of the more general policy in R32 to 'give priority' to them.
+   R2: The smart traffic light must activate the immediate green phase when an emergency vehicle (ambulance or fire truck) is within a 500-meter radius.
+   R32: The system must automatically give priority to emergency vehicles at controlled intersections.
+
+[duplicates #4] type=partial  -> TP
+   CLAIM: Both requirements specify a 3-second detection time for road hazards. R7 is specific to 'obstacles' detected by cameras, while R33 is broader, covering 'accidents or obstacles' detected by sensors.
+   R7: The system must detect the presence of obstacles on the roadway (e.g. debris or lost loads) within 3 seconds of the camera signal.
+   R33: I sensori stradali devono rilevare incidenti o ostacoli entro 3 secondi dal verificarsi dell’evento.
+
+[duplicates #5] type=partial  -> TP
+   CLAIM: Both requirements concern the detection of pedestrians on crosswalks. R78 is more specific about the method (cameras) and accuracy (95%), while R127 includes the subsequent action (activate light signals).
+   R127: The system must detect pedestrian crossings and activate light signals on the roadway.
+   R78: The system must automatically detect the presence of pedestrians on crosswalks using cameras with a minimum accuracy of 95%.
+
+[inconsistencies #1] type=constraint  -> FP
+   CLAIM: R84 requires recording vehicle movements 'without time limits' (implying forever), which contradicts the specific data retention policy of 'at least 365 days' for critical events defined in R63.
+   R63: The system must log all critical traffic events in a centralized database maintaining logs for at least 365 days.
+   R84: The system must record all vehicle movements without time limits.
+   WHY:   R63 sets a lower bound ('at least 365 days'), which retaining records without a time limit satisfies rather than contradicts; the two requirements also govern different data, critical events and vehicle movements.
+
+[ambiguities #1]  -> TP
+   CLAIM: The trigger condition 'sudden emergency braking' is not defined. -> Specify a quantifiable threshold, such as a deceleration rate exceeding 0.5g.
+   R10: The system must alert incoming vehicles if another vehicle has performed a sudden emergency braking beyond a blind curve.
+
+[ambiguities #2]  -> TP
+   CLAIM: The term 'authorized personnel' is not defined. -> Define the roles and groups that are permitted to view camera feeds and the criteria for granting such authorization.
+   R117: Only authorized personnel may view the cameras.
+
+[ambiguities #3]  -> TP
+   CLAIM: The requirement to 'record all vehicle movements without time limits' is extremely broad and has major privacy and data storage implications. -> Clarify the scope of data collection, define a clear purpose, specify anonymization techniques, and set a realistic data retention period.
+   R84: The system must record all vehicle movements without time limits.
+
+[gaps #1]  -> FP
+   CLAIM: The cluster is strong on *detecting* various events (obstacles, stopped vehicles, pedestrians) but is largely missing requirements that specify what the system should *do* with this information (e.g., alert drivers, notify authorities).
+   R7: The system must detect the presence of obstacles on the roadway (e.g. debris or lost loads) within 3 seconds of the camera signal.
+   R57: Smart roads must automatically detect vehicles stopped in the emergency lane.
+   R78: The system must automatically detect the presence of pedestrians on crosswalks using cameras with a minimum accuracy of 95%.
+   R99: Cameras must signal if a vehicle is going the wrong way.
+   R134: The system must signal the presence of animals crossing the road.
+   WHY:   the actions the cluster is said to lack are specified elsewhere in the collection: R130 warns vehicles of obstacles, R39 and R126 alert about accidents, R46 about wrong-way vehicles, all in C1.
+
+[gaps #2]  -> BORDERLINE
+   CLAIM: R150 requires the detection of stolen vehicles, but there is a critical gap as no action is defined upon detection, such as notifying law enforcement.
+   R150: The system must detect the presence of stolen vehicles through automatic license plate reading.
+   WHY:   R160 (C4) does prescribe one action on stolen vehicles, refusing to respond to them; the gap survives only as the absence of a notification to law enforcement.
+
+[gaps #3]  -> FP
+   CLAIM: Multiple requirements mandate logging for different purposes (R29, R56, R63), but there are no requirements defining the log format, security measures to prevent tampering, or log aggregation strategy.
+   R29: The system must maintain an immutable log of all decisions made by smart traffic lights for post-incident audit purposes.
+   R56: The system must log all administrative accesses for security and traceability reasons.
+   R63: The system must log all critical traffic events in a centralized database maintaining logs for at least 365 days.
+   WHY:   tamper protection is prescribed by R29, which the finding itself cites: 'an immutable log of all decisions made by smart traffic lights for post-incident audit purposes'.
+
+[dependencies #1] type=influences  -> BORDERLINE
+   CLAIM: The system's ability to alert vehicles about emergency braking (R10) relies on the same underlying V2I/V2V communication and low-latency detection capabilities required to detect obstacles (R7).
+   R10: The system must alert incoming vehicles if another vehicle has performed a sudden emergency braking beyond a blind curve.
+   R7: The system must detect the presence of obstacles on the roadway (e.g. debris or lost loads) within 3 seconds of the camera signal.
+   WHY:   the relation asserted is a shared reliance on common communication infrastructure rather than a dependency between the two requirements; neither presupposes, enables or blocks the other.
+
+[dependencies #2] type=influences  -> BORDERLINE
+   CLAIM: To effectively give an emergency vehicle an immediate green light (R2), the system may need to know how many cars are in the queue (R92) to manage the intersection safely.
+   R2: The smart traffic light must activate the immediate green phase when an emergency vehicle (ambulance or fire truck) is within a 500-meter radius.
+   R92: The traffic light must count how many cars are in the queue.
+   WHY:   the finding is hedged with 'may need'; nothing in R2 presupposes the queue count of R92.
+
+##############################################################################
+# V2I | Graph | CLUSTER 10 | Data Security, Privacy, and Management | coherence=90
+##############################################################################
+
+[duplicates #1] type=full  -> TP
+   CLAIM: Both requirements mandate that unauthenticated vehicles must be prevented from accessing the system or its data.
+   R22: The system must prevent access and communication to any vehicle not equipped with a valid and up-to-date authentication certificate.
+   R34: Il sistema deve impedire l’accesso ai dati di traffico ai veicoli non autenticati.
+
+[duplicates #2] type=partial  -> TP
+   CLAIM: All three requirements address data privacy. R116 and R23 are specific about anonymization, while R60 is a broader policy requirement for protecting personal data.
+   R116: All driver data must remain anonymous.
+   R23: All data exchanged between vehicle and infrastructure must be end-to-end encrypted and anonymized before being stored for statistical analysis.
+   R60: The system must ensure the protection of drivers' personal data in accordance with privacy regulations.
+
+[inconsistencies #1] type=logical  -> TP
+   CLAIM: R40 requires saving 'traffic data' for 30 days, while R85 forbids storing 'sensitive data'. Vehicle traffic data, especially location history, is often legally defined as sensitive, creating a direct conflict.
+   R40: The system must save traffic data for at least 30 days for analysis purposes.
+   R85: The system must not store sensitive data related to vehicles or drivers.
+
+[inconsistencies #2] type=logical  -> TP
+   CLAIM: R72 requires saving vehicle GPS positions, which is a form of sensitive personal data. This contradicts R85, which states the system must not store sensitive data related to vehicles or drivers.
+   R72: The system must save vehicle GPS positions with a maximum accuracy of ±5 meters.
+   R85: The system must not store sensitive data related to vehicles or drivers.
+
+[inconsistencies #3] type=logical  -> TP
+   CLAIM: R116 mandates that all driver data remain anonymous, which could conflict with R86, which allows authorized entities 'immediate access to all traffic data'. Fully anonymized data may not be useful for certain authorized purposes (e.g., law enforcement), creating a policy conflict.
+   R116: All driver data must remain anonymous.
+   R86: Il sistema deve consentire l’accesso immediato a tutti i dati di traffico a qualsiasi ente autorizzato.
+
+[ambiguities #1]  -> TP
+   CLAIM: The term 'sensitive data' is not defined. -> Establish a clear data classification policy that explicitly defines what data types are considered sensitive and how they must be handled.
+   R85: The system must not store sensitive data related to vehicles or drivers.
+
+[ambiguities #2]  -> TP
+   CLAIM: The term 'any authorized entity' is too broad and lacks a defined authorization process. -> Specify the roles of entities that can be granted access, the process for authorization, and the scope of data they can access.
+   R86: Il sistema deve consentire l’accesso immediato a tutti i dati di traffico a qualsiasi ente autorizzato.
+
+[ambiguities #3]  -> TP
+   CLAIM: The terms 'very short and lightweight' are not specific. -> Define a maximum message size in bytes and a maximum processing time in milliseconds.
+   R119: Sent messages must be very short and lightweight.
+
+[gaps #1]  -> TP
+   CLAIM: R22 and R34 require authentication using certificates, but there is a major gap as the Public Key Infrastructure (PKI) needed to manage the lifecycle of these certificates (issuance, revocation, etc.) is not defined.
+   R22: The system must prevent access and communication to any vehicle not equipped with a valid and up-to-date authentication certificate.
+   R34: Il sistema deve impedire l’accesso ai dati di traffico ai veicoli non autenticati.
+
+[gaps #2]  -> TP
+   CLAIM: R23 and R116 mandate data anonymization, but there are no requirements specifying the anonymization techniques to be used (e.g., k-anonymity, differential privacy) or how the effectiveness of the anonymization will be verified.
+   R23: All data exchanged between vehicle and infrastructure must be end-to-end encrypted and anonymized before being stored for statistical analysis.
+   R116: All driver data must remain anonymous.
+
+[gaps #3]  -> TP
+   CLAIM: R28 specifies secure Over-The-Air (OTA) updates, but lacks requirements for the update process itself, such as a mechanism for rollback in case of failure or a strategy for version management across devices.
+   R28: The software of roadside units (RSU - Road Side Units) must be updatable remotely via secure Over-The-Air (OTA) protocols.
+
+[dependencies #1] type=requires  -> TP
+   CLAIM: The requirement to anonymize data (R23) must be executed before the data is stored for analysis as required by R40.
+   R23: All data exchanged between vehicle and infrastructure must be end-to-end encrypted and anonymized before being stored for statistical analysis.
+   R40: The system must save traffic data for at least 30 days for analysis purposes.
+
+[dependencies #2] type=requires  -> TP
+   CLAIM: Allowing access to authorized entities (R86) presupposes a system that can distinguish between authenticated and unauthenticated entities (R34).
+   R86: Il sistema deve consentire l’accesso immediato a tutti i dati di traffico a qualsiasi ente autorizzato.
+   R34: Il sistema deve impedire l’accesso ai dati di traffico ai veicoli non autenticati.
+
+##############################################################################
+# V2I | Baseline | CLUSTER 1 | Intelligent Transport System Features | coherence=40
+##############################################################################
+
+[duplicates #1] type=full  -> TP
+   CLAIM: Both requirements describe adapting green light duration based on detected vehicle volume, using slightly different terms ('flow' vs 'number').
+   R1: The system must regulate the duration of the green traffic light based on the vehicle flow detected by lane sensors in real time.
+   R121: The smart traffic light must adapt the green light duration based on the number of vehicles detected at intersections.
+
+[duplicates #2] type=full  -> TP
+   CLAIM: Both requirements specify communicating the traffic light countdown timer to vehicles.
+   R3: The system must transmit to approaching vehicles the remaining time (countdown) before the traffic light changes state.
+   R123: The system must communicate to vehicles the remaining time before the traffic light changes.
+
+[duplicates #3] type=full  -> TP
+   CLAIM: Both requirements concern notifying vehicles about road construction sites.
+   R11: The system must notify vehicles of the presence of mobile worksites or road workers via push notifications on the on-board display.
+   R129: The system must notify vehicles of active road construction sites.
+
+[duplicates #4] type=partial  -> TP
+   CLAIM: R144 is a specific instance (work in tunnels) of the general requirement in R11 (mobile worksites).
+   R11: The system must notify vehicles of the presence of mobile worksites or road workers via push notifications on the on-board display.
+   R144: The system must warn vehicles of construction work in tunnels.
+
+[duplicates #5] type=partial  -> TP
+   CLAIM: R156 is a user-centric, more specific version of the general adaptive traffic light logic described in R1.
+   R1: The system must regulate the duration of the green traffic light based on the vehicle flow detected by lane sensors in real time.
+   R156: I semafori intelligenti devono automaticamente diventare verdi appena non rilevano più macchine davanti l’altro semaforo (senza aspettare inutilmente)
+
+[duplicates #6] type=partial  -> TP
+   CLAIM: These requirements overlap in detecting vulnerable road users. R127 covers pedestrians, R128 covers bicycles, and R5 covers both at nighttime.
+   R5: The system must detect and report to connected vehicles the presence of pedestrians or cyclists on crosswalks during nighttime hours.
+   R127: The system must detect pedestrian crossings and activate light signals on the roadway.
+   R128: The system must detect bicycles near intersections.
+
+[ambiguities #1]  -> TP
+   CLAIM: The terms 'critical congestion' and 'nearby intersections' are not defined. -> Define a specific metric and threshold for 'critical congestion' (e.g., queue length > X meters, or average speed < Y km/h) and a specific radius for 'nearby'.
+   R6: In case of critical congestion the system must automatically reconfigure traffic light timings at nearby intersections to drain traffic.
+
+[ambiguities #2]  -> TP
+   CLAIM: The term 'sudden emergency braking' is not quantified. -> Define a specific deceleration threshold (e.g., > 0.5g) to trigger the alert.
+   R10: The system must alert incoming vehicles if another vehicle has performed a sudden emergency braking beyond a blind curve.
+
+[ambiguities #3]  -> TP
+   CLAIM: The criteria for a communication being 'compliant or not' are undefined. -> Specify the standard, protocol, or rules against which communications are validated.
+   R152: The system must detect when it receives a communication from the vehicle whether it is compliant or not.
+
+[ambiguities #4]  -> TP
+   CLAIM: The condition 'safely' for overtaking is subjective and undefined. -> Specify the objective parameters used to determine safety, such as distance to oncoming traffic, speed differential, and road geometry.
+   R159: The system must be able to tell me whether I can overtake safely or not even on bends.
+
+[gaps #1]  -> FP
+   CLAIM: Multiple requirements mandate communication with vehicles (e.g., 10, 11, 123, 126), but no requirement specifies the underlying V2I (Vehicle-to-Infrastructure) communication standard or protocol to be used.
+   R10: The system must alert incoming vehicles if another vehicle has performed a sudden emergency braking beyond a blind curve.
+   R11: The system must notify vehicles of the presence of mobile worksites or road workers via push notifications on the on-board display.
+   R123: The system must communicate to vehicles the remaining time before the traffic light changes.
+   R126: The system must warn vehicles of accidents along the route.
+   WHY:   the communication standard is specified by R25, 'The system must support both the European communication standard (ETSI ITS-G5) and the cellular network-based one (C-V2X)'.
+
+[gaps #2]  -> TP
+   CLAIM: The system must give priority to emergency vehicles (122, 153), but there is no requirement defining how these vehicles are securely identified and authenticated to prevent misuse of the priority feature.
+   R122: The system must assign traffic light priority to approaching emergency vehicles.
+   R153: Il sistema deve comunicarmi se c’è l’arrivo di un ambulanza nei dintorni in maniera che ci si possa preparare
+
+[dependencies #1] type=requires  -> TP
+   CLAIM: The logging of traffic light decisions (R29) requires the existence of decision-making logic, such as the adaptive control described in R1.
+   R29: The system must maintain an immutable log of all decisions made by smart traffic lights for post-incident audit purposes.
+   R1: The system must regulate the duration of the green traffic light based on the vehicle flow detected by lane sensors in real time.
+
+[dependencies #2] type=requires  -> TP
+   CLAIM: Reconfiguring traffic lights to drain traffic during congestion (R6) depends on a mechanism to first detect that congestion, such as the queue detection in R124.
+   R6: In case of critical congestion the system must automatically reconfigure traffic light timings at nearby intersections to drain traffic.
+   R124: The system must detect queues longer than 500 meters and redirect traffic to alternative routes.
+
+##############################################################################
+# V2I | Baseline | CLUSTER 8 | Vehicle Authentication and Services | coherence=75
+##############################################################################
+
+[ambiguities #1]  -> TP
+   CLAIM: The term 'as a priority' is vague. -> Clarify what priority guidance entails, for example: 'routes that minimize travel time' or 'exclusive access to certain lanes'.
+   R15: The system must identify electric vehicles and guide them as a priority to spaces equipped with a free charging station.
+
+[ambiguities #2]  -> TP
+   CLAIM: The term 'anonymized' is not specific. -> Specify the required anonymization technique or standard (e.g., k-anonymity with k=5, differential privacy).
+   R23: All data exchanged between vehicle and infrastructure must be end-to-end encrypted and anonymized before being stored for statistical analysis.
+
+[ambiguities #3]  -> TP
+   CLAIM: The scope of 'autonomous mode' is undefined. -> Detail the specific functions that must remain operational during connectivity loss and describe the decision logic used in this mode.
+   R27: In case of global internet connectivity loss local infrastructure nodes (Edge) must continue to manage traffic in autonomous mode.
+
+[gaps #1]  -> TP
+   CLAIM: R22 requires a valid authentication certificate, but there are no requirements defining the Certificate Authority (CA), certificate lifecycle management (issuance, renewal, revocation), or the process for vehicles to obtain a certificate.
+   R22: The system must prevent access and communication to any vehicle not equipped with a valid and up-to-date authentication certificate.
+
+[gaps #2]  -> TP
+   CLAIM: R2 requires giving priority to emergency vehicles, but there is no requirement defining how the system authenticates a vehicle's emergency status to prevent abuse.
+   R2: The smart traffic light must activate the immediate green phase when an emergency vehicle (ambulance or fire truck) is within a 500-meter radius.
+   R22: The system must prevent access and communication to any vehicle not equipped with a valid and up-to-date authentication certificate.
+
+[dependencies #1] type=requires  -> TP
+   CLAIM: Automatic payment (R19) requires a secure method to identify and authenticate the vehicle, as specified in R22.
+   R19: The system must allow automatic payment for fuel refueling or electric charging via secure V2I authentication.
+   R22: The system must prevent access and communication to any vehicle not equipped with a valid and up-to-date authentication certificate.
+
+[dependencies #2] type=requires  -> TP
+   CLAIM: Calculating fees based on vehicle class (R18) requires a trusted way to identify the vehicle and its attributes, which depends on the authentication in R22.
+   R18: The infrastructure must automatically calculate the access fee for restricted traffic zones (ZTL) based on the vehicle's environmental class.
+   R22: The system must prevent access and communication to any vehicle not equipped with a valid and up-to-date authentication certificate.
+
+[dependencies #3] type=requires  -> TP
+   CLAIM: Secure payment (R19) depends on the end-to-end encryption of exchanged data as mandated by R23.
+   R19: The system must allow automatic payment for fuel refueling or electric charging via secure V2I authentication.
+   R23: All data exchanged between vehicle and infrastructure must be end-to-end encrypted and anonymized before being stored for statistical analysis.
+
+##############################################################################
+# V2I | Baseline | CLUSTER 6 | Hazard Detection and Response | coherence=85
+##############################################################################
+
+[duplicates #1] type=partial  -> TP
+   CLAIM: Both requirements concern the detection of obstacles/accidents within 3 seconds. R7 specifies detection from a 'camera signal', while R33 refers more generally to 'road sensors'.
+   R7: The system must detect the presence of obstacles on the roadway (e.g. debris or lost loads) within 3 seconds of the camera signal.
+   R33: I sensori stradali devono rilevare incidenti o ostacoli entro 3 secondi dal verificarsi dell’evento.
+
+[inconsistencies #1] type=constraint  -> FP
+   CLAIM: The requirements provide conflicting time limits for accident detection. R12 allows up to 5 seconds, while R33 mandates detection within 3 seconds.
+   R12: Cameras must automatically identify road accidents and send the exact GPS coordinates to emergency services within 5 seconds.
+   R33: I sensori stradali devono rilevare incidenti o ostacoli entro 3 secondi dal verificarsi dell’evento.
+   WHY:   the two budgets govern different components and different scopes: R33 bounds detection by road sensors, R12 bounds identification plus transmission to emergency services by cameras. Both can hold at once.
+
+[ambiguities #1]  -> TP
+   CLAIM: The term 'critical safety messages' is not defined. -> Provide an explicit list or a classification system for messages considered critical (e.g., collision warnings, wrong-way driver alerts).
+   R20: Communication between infrastructure and vehicle for critical safety messages must occur with a latency of less than 20 milliseconds.
+
+[ambiguities #2]  -> TP
+   CLAIM: The term 'road impediments' is vague and the example 'motorcycles' is unclear. -> Define a clear list of what constitutes an impediment and clarify why motorcycles would be considered one.
+   R155: Cameras must notify me of the presence of road impediments (ongoing works or slowdowns or motorcycles etc.).
+
+[gaps #1]  -> FP
+   CLAIM: R8 requires sending a 'Wrong-Way Vehicle alert', but there is no corresponding requirement that defines how a wrong-way vehicle is detected in the first place.
+   R8: The infrastructure must send a Wrong-Way Vehicle alert to all drivers within a 2-kilometer radius of the detection point.
+   WHY:   wrong-way detection is specified by R135 and R99, which the alert of R8 can rely on.
+
+[gaps #2]  -> TP
+   CLAIM: R12 and R70 specify sending reports to 'emergency services' and a 'control center', but the interfaces, data formats, and communication protocols for these external systems are not defined.
+   R12: Cameras must automatically identify road accidents and send the exact GPS coordinates to emergency services within 5 seconds.
+   R70: The system must send an immediate report to the control center when a camera detects a vehicle stopped on the roadway for more than 30 seconds.
+
+[dependencies #1] type=requires  -> TP
+   CLAIM: The notification of an accident to vehicles (R64) is dependent on the initial detection of that accident by a system like the one described in R12.
+   R64: The system must notify vehicles of accidents within a 2 km radius within 3 seconds of detection.
+   R12: Cameras must automatically identify road accidents and send the exact GPS coordinates to emergency services within 5 seconds.
+
+##############################################################################
+# V2I | Baseline | CLUSTER 0 | Hazard Response and Security | coherence=30
+##############################################################################
+
+[duplicates #1] type=full  -> TP
+   CLAIM: Both requirements describe the function of monitoring and reporting icy conditions on the road surface to vehicles.
+   R9: Smart roads must monitor road surface conditions and report the presence of ice or standing water to passing vehicles.
+   R131: Il sistema deve segnalare ai veicoli condizioni di ghiaccio sull’asfalto.
+
+[ambiguities #1]  -> TP
+   CLAIM: The term 'heavy rain' is not quantified, and the amount by which speed limits are lowered is not specified. -> Define a specific rainfall rate (e.g., in mm/hour) that triggers the rule and specify the new speed limit (e.g., 'reduce by 20 km/h' or 'set to 80 km/h').
+   R132: The system must automatically lower speed limits in case of heavy rain.
+
+[ambiguities #2]  -> TP
+   CLAIM: The method to 'block access to vehicles' is undefined. -> Specify whether the block is physical (e.g., a barrier), informational (a digital warning), or a command to autonomous vehicles.
+   R146: Il sistema deve rilevare attraversamenti ferroviari chiusi e bloccare l’accesso ai veicoli.
+
+[gaps #1]  -> FP
+   CLAIM: R26 and R34 introduce security measures (message validation, access control) but do not define the underlying authentication and encryption mechanisms required to implement them.
+   R26: The system must validate every message received from road sensors to prevent spoofing attacks (data falsification).
+   R34: Il sistema deve impedire l’accesso ai dati di traffico ai veicoli non autenticati.
+   WHY:   the underlying mechanisms are specified elsewhere: R22 requires authentication certificates, R44 and R23 require encryption of all vehicle-infrastructure communications.
+
+##############################################################################
+# V2I | Baseline | CLUSTER 11 | Smart Parking Management | coherence=95
+##############################################################################
+
+[duplicates #1] type=full  -> TP
+   CLAIM: Both requirements describe the function of guiding a vehicle to an available parking space.
+   R101: Il parcheggio deve dire all’auto dove sono i posti liberi
+   R137: The smart parking lot must guide the vehicle to the nearest free space.
+
+[duplicates #2] type=full  -> TP
+   CLAIM: All three requirements describe the same core function: detecting and reporting the unauthorized use of disabled parking spaces. R16 adds the specific detail of notifying the police.
+   R103: The parking lot must report who occupies disabled spaces without permission.
+   R139: Il parcheggio deve segnalare l’occupazione abusiva dei posti riservati ai disabili.
+   R16: Parking sensors must detect unauthorized occupation of disabled parking spaces and immediately notify the local police.
+
+[duplicates #3] type=partial  -> TP
+   CLAIM: Both requirements are about communicating parking availability. R151 ('throughout the city') is a superset of R136 ('nearby parking lots').
+   R136: The system must communicate available spaces in nearby parking lots to vehicles.
+   R151: The system must signal the presence of free parking spaces throughout the city.
+
+[ambiguities #1]  -> TP
+   CLAIM: The system's source for identifying 'stolen vehicles' is not specified. -> Specify that the system must interface with an official law enforcement database for stolen vehicle license plates.
+   R150: The system must detect the presence of stolen vehicles through automatic license plate reading.
+
+[ambiguities #2]  -> TP
+   CLAIM: The term 'nearby' is not defined. -> Define a specific search radius (e.g., within 2 kilometers) or a travel time limit.
+   R136: The system must communicate available spaces in nearby parking lots to vehicles.
+
+[gaps #1]  -> TP
+   CLAIM: R14 allows for parking space reservation, but there are no requirements defining the rules of a reservation, such as its duration, cancellation policy, or what happens if the user fails to arrive.
+   R14: The infrastructure must allow the reservation of a parking space through direct communication between the vehicle and the parking sensor.
+
+[gaps #2]  -> TP
+   CLAIM: R16 requires notifying the local police, but the communication interface, protocol, and data format for this notification are not defined.
+   R16: Parking sensors must detect unauthorized occupation of disabled parking spaces and immediately notify the local police.
+
+[dependencies #1] type=requires  -> TP
+   CLAIM: Guiding a vehicle to a free space (R137) requires up-to-date information on which spaces are available, as provided by the update mechanism in R13.
+   R137: The smart parking lot must guide the vehicle to the nearest free space.
+   R13: The parking system must update the number of available spaces every 10 seconds and transmit it to vehicle navigation systems.
+
+[dependencies #2] type=requires  -> TP
+   CLAIM: Notifying police about unauthorized occupation (R16) requires a mechanism to first detect the occupation and identify the vehicle (R103).
+   R16: Parking sensors must detect unauthorized occupation of disabled parking spaces and immediately notify the local police.
+   R103: The parking lot must report who occupies disabled spaces without permission.
+
+##############################################################################
+# V2I | Baseline | CLUSTER 10 | Automated Toll Collection | coherence=90
+##############################################################################
+
+[duplicates #1] type=full  -> TP
+   CLAIM: These requirements all describe the same core capability: allowing vehicles to pay tolls automatically without stopping, using license plate recognition.
+   R37: Automatic toll booths must complete payment without stopping the vehicle.
+   R106: The toll booth must read the license plate without stopping the vehicle.
+   R141: The automatic toll booth must allow authorized vehicles to pass without stopping.
+
+[duplicates #2] type=full  -> TP
+   CLAIM: Both requirements specify that the system must notify users about payment failures.
+   R108: The toll booth must notify if the payment was unsuccessful.
+   R59: Automatic toll booths must immediately report any payment errors to users.
+
+[inconsistencies #1] type=constraint  -> BORDERLINE
+   CLAIM: There is a potential conflict between the speed and time constraints. At 60 km/h (16.7 m/s), a vehicle passes through a typical gantry in well under a second, which may not be enough time to satisfy both the 1-second recognition (R47) and 1-second payment processing (R69) requirements.
+   R17: The toll system must identify the vehicle and process the charge without the vehicle needing to slow below 60 km/h.
+   R47: I caselli automatici devono riconoscere il veicolo entro 1 secondo dall’ingresso nella corsia di pagamento.
+   R69: The system must allow automatic toll booths to process a toll payment in less than 1 second.
+   WHY:   a feasibility concern rather than a contradiction, and hedged as such: R47 counts from entry into the payment lane, not from the gantry, so the three constraints are not shown to be jointly unsatisfiable.
+
+[ambiguities #1]  -> TP
+   CLAIM: The term 'suspicious goods' is extremely vague and likely out of scope for a tolling system. -> Remove this requirement or define objective criteria for 'suspicious' and specify the detection technology to be used (e.g., radiation sensors, weight anomaly detection).
+   R158: Automatic toll booths must detect the presence of suspicious goods in trucks.
+
+[ambiguities #2]  -> TP
+   CLAIM: The 'online account' system is not defined. -> Specify the requirements for the user account and payment management system, or reference the external system to be used.
+   R107: The system must deduct the toll cost from the online account.
+
+[gaps #1]  -> TP
+   CLAIM: The system relies on license plate reading (R106, R154), but there are no requirements defining the required accuracy of the recognition system or the procedure for handling unreadable plates or misreads.
+   R106: The toll booth must read the license plate without stopping the vehicle.
+   R154: The automatic toll booth must allow me to pass without stopping to pay and without using a transponder by simply reading the license plate.
+
+[gaps #2]  -> TP
+   CLAIM: The system must notify users of payment errors (R108, R59), but the process for resolving these failures (e.g., invoicing, fines, account suspension) is not defined.
+   R108: The toll booth must notify if the payment was unsuccessful.
+   R59: Automatic toll booths must immediately report any payment errors to users.
+
+[dependencies #1] type=requires  -> TP
+   CLAIM: Deducting the toll cost from an account (R107) requires the vehicle to be identified first, for example by reading its license plate (R106).
+   R107: The system must deduct the toll cost from the online account.
+   R106: The toll booth must read the license plate without stopping the vehicle.
+
+##############################################################################
+# V2I | Baseline | CLUSTER 4 | Non-Functional Requirements | coherence=80
+##############################################################################
+
+[inconsistencies #1] type=logical  -> TP
+   CLAIM: These requirements are contradictory. R77 implies a service interruption is acceptable by specifying a 15-minute recovery time, whereas R90 explicitly forbids 'any interruption' during failures.
+   R77: The system must allow full service recovery within 15 minutes in case of central node failure.
+   R90: The system must operate correctly even in case of network problems or infrastructure failures without any interruption.
+
+[ambiguities #1]  -> TP
+   CLAIM: The terms 'easy to use' and 'any user' are subjective and untestable. -> Define specific, measurable usability goals for defined user personas (e.g., 'a new traffic operator must be able to perform task X in under 3 minutes after 1 hour of training').
+   R89: The system must be easy to use for any user.
+
+[ambiguities #2]  -> TP
+   CLAIM: The phrase 'operate correctly' is not defined for failure scenarios. -> Specify the exact behavior and which functions must remain available during 'network problems or infrastructure failures'.
+   R90: The system must operate correctly even in case of network problems or infrastructure failures without any interruption.
+
+[gaps #1]  -> BORDERLINE
+   CLAIM: The cluster specifies availability (R21, R71) and recovery time (R77), but lacks a Mean Time Between Failures (MTBF) requirement, which is a key metric for overall system reliability.
+   R21: The system must guarantee an operational availability of 99.99% on an annual basis for emergency management functions.
+   R71: The system must guarantee a service availability of at least 99.95% on a monthly basis.
+   R77: The system must allow full service recovery within 15 minutes in case of central node failure.
+   WHY:   an MTBF figure is a reasonable engineering addition but is not entailed by the availability and recovery targets already stated; the prompt restricts gaps to what existing requirements strongly imply.
+
+##############################################################################
+# V2I | Baseline | CLUSTER 7 | System Data and Communication | coherence=70
+##############################################################################
+
+[duplicates #1] type=full  -> TP
+   CLAIM: Both requirements specify that the smart traffic light status must be updated every 500 milliseconds.
+   R31: The V2I system must update the status of smart traffic lights in real time every 500 milliseconds.
+   R61: Il sistema deve aggiornare lo stato dei semafori intelligenti ogni 500 ms sulla base dei dati ricevuti dai sensori di traffico presenti nell’incrocio.
+
+[inconsistencies #1] type=constraint  -> FP
+   CLAIM: There is a conflict in data freshness for parking availability. R66 states the system updates its data every 10 seconds, making it impossible to fulfill a request (R55) with data that is guaranteed to be fresher than that, even if the response is delivered in 5 seconds.
+   R55: Connected vehicles must receive updates on parking availability within 5 seconds of the request.
+   R66: The system must allow smart parking lots to update parking space availability every 10 seconds.
+   WHY:   R55 bounds the latency of the reply to a request, R66 the refresh interval of the source data; a reply delivered in 5 seconds carrying data up to 10 seconds old satisfies both.
+
+[ambiguities #1]  -> TP
+   CLAIM: The term 'in real time' is ambiguous. -> Replace with a specific, measurable time constraint, such as 'within 1 second' or 'with a maximum latency of 500ms'.
+   R35: Smart parking lots must communicate available spaces in real time to nearby vehicles.
+
+[ambiguities #2]  -> TP
+   CLAIM: The term 'heavy traffic conditions' is not quantified. -> Define a specific threshold, such as 'when vehicle density exceeds 100 vehicles per kilometer' or 'when managing over 1000 messages per second'.
+   R36: The system must maintain V2I communication active even under heavy traffic conditions.
+
+[gaps #1]  -> TP
+   CLAIM: R45 introduces a 'mobile application' as a user interface, but no other requirements exist to define this application's features, platform, or security.
+   R45: Smart parking lots must allow space reservation via a mobile application.
+
+[gaps #2]  -> TP
+   CLAIM: R53 mentions synchronizing data with a 'central server', but the architecture, purpose, and requirements of this server are not defined anywhere.
+   R53: Data collected by sensors must be synchronized with the central server every minute.
+
+[dependencies #1] type=influences  -> TP
+   CLAIM: The ability to deliver a parking update to a vehicle within 5 seconds (R55) is constrained by the 10-second interval at which the source data is updated (R66).
+   R55: Connected vehicles must receive updates on parking availability within 5 seconds of the request.
+   R66: The system must allow smart parking lots to update parking space availability every 10 seconds.
+
+##############################################################################
+# V2I | Baseline | CLUSTER 3 | General System Functions | coherence=20
+##############################################################################
+
+[ambiguities #1]  -> TP
+   CLAIM: The term 'nearby' is undefined. -> Specify a clear radius in meters or kilometers for the alert.
+   R39: The system must send an alert to drivers when an accident is detected nearby.
+
+[ambiguities #2]  -> TP
+   CLAIM: The terms 'reduce waiting times' and 'peak hours' are not quantified. -> Define a target reduction percentage for waiting times and specify the exact time windows for 'peak hours'.
+   R42: The system must automatically reduce waiting times at traffic lights during peak hours.
+
+[ambiguities #3]  -> TP
+   CLAIM: The terms 'operate correctly' and 'adverse weather conditions' are vague. -> Define the minimum acceptable performance level and list the specific weather conditions (e.g., rain up to 50mm/hr, temperatures from -20°C to 50°C) the sensors must withstand.
+   R43: Road sensors must operate correctly even in adverse weather conditions.
+
+[gaps #1]  -> TP
+   CLAIM: R52 specifies a monitoring dashboard for 'municipal operators', but there are no requirements defining the roles, permissions, or specific data needs of these operators.
+   R52: The system must allow municipal operators to monitor traffic via a centralized dashboard.
+
+[gaps #2]  -> TP
+   CLAIM: R60 requires protection of personal data, but it does not specify which regulations (e.g., GDPR) must be followed or what specific technical measures (e.g., encryption at rest, access controls) are required.
+   R60: The system must ensure the protection of drivers' personal data in accordance with privacy regulations.
+
+[dependencies #1] type=requires  -> TP
+   CLAIM: The ability for operators to monitor traffic (R52) depends on the system's capability to collect data and identify events, such as congested areas (R50).
+   R52: The system must allow municipal operators to monitor traffic via a centralized dashboard.
+   R50: The system must automatically identify areas with congested traffic.
+
+##############################################################################
+# V2I | Baseline | CLUSTER 5 | Conflicting System Policies | coherence=10
+##############################################################################
+
+[inconsistencies #1] type=logical  -> TP
+   CLAIM: These requirements are in direct contradiction. R84 mandates recording 'all vehicle movements', which is sensitive personal data, while R85 forbids storing 'sensitive data related to vehicles or drivers'.
+   R84: The system must record all vehicle movements without time limits.
+   R85: The system must not store sensitive data related to vehicles or drivers.
+
+[inconsistencies #2] type=constraint  -> FP
+   CLAIM: The data retention policies are contradictory. R63 specifies a 365-day retention period for critical events, while R84 mandates infinite ('without time limits') retention for all vehicle movements.
+   R63: The system must log all critical traffic events in a centralized database maintaining logs for at least 365 days.
+   R84: The system must record all vehicle movements without time limits.
+   WHY:   R63 sets a lower bound of 365 days, which unlimited retention satisfies rather than contradicts; the two also govern different data.
+
+[inconsistencies #3] type=logical  -> TP
+   CLAIM: These traffic control goals are mutually exclusive. Keeping lights green 'for as long as possible' (R80) for one traffic flow inevitably increases waiting times for conflicting flows, contradicting the goal of minimizing wait times for 'all vehicles simultaneously' (R88).
+   R80: The system must ensure that all traffic lights remain green for as long as possible to improve vehicle flow.
+   R88: The system should minimize waiting times at traffic lights for all vehicles simultaneously.
+
+[inconsistencies #4] type=logical  -> TP
+   CLAIM: Giving 'absolute priority to public transport' (R81) will necessarily increase the waiting times for other vehicles, which contradicts the goal of minimizing waiting times for 'all vehicles' (R88).
+   R81: The system must always give absolute priority to public transport at all urban intersections.
+   R88: The system should minimize waiting times at traffic lights for all vehicles simultaneously.
+
+[ambiguities #1]  -> TP
+   CLAIM: The goal to 'drastically reduce traffic' is vague and untestable. -> Define a specific, measurable target, such as 'reduce average vehicle travel time in the urban center by 15% during peak hours'.
+   R82: The system must drastically reduce traffic in urban areas.
+
+[ambiguities #2]  -> TP
+   CLAIM: The condition 'only when necessary' is subjective. -> Define clear rules and thresholds for when notifications should be sent to drivers.
+   R83: The system must send notifications to drivers only when necessary.
+
+[ambiguities #3]  -> TP
+   CLAIM: The action to 'block all roads considered congested' is extreme and the condition is vague. -> Define the congestion threshold and specify a less disruptive action, such as 'initiate dynamic rerouting'.
+   R87: The system must automatically block all roads considered congested.
+
+[gaps #1]  -> TP
+   CLAIM: R160 requires the system to identify and not respond to stolen vehicles, but the mechanism for checking a vehicle's stolen status (e.g., an interface to a law enforcement database) is not defined.
+   R160: The system must not respond to stolen vehicles.
+
+##############################################################################
+# V2I | Baseline | CLUSTER 2 | High-Level System Capabilities | coherence=35
+##############################################################################
+
+[ambiguities #1]  -> TP
+   CLAIM: The term 'violent impact' is not quantified. -> Define a specific trigger, such as a deceleration force measured by an accelerometer (e.g., > 10g).
+   R110: The system must send automatic SOS alerts if it detects a violent impact.
+
+[ambiguities #2]  -> TP
+   CLAIM: The terms 'very short and lightweight' are not specific. -> Specify a maximum message payload size in bytes (e.g., 'under 512 bytes').
+   R119: Sent messages must be very short and lightweight.
+
+[ambiguities #3]  -> TP
+   CLAIM: The condition 'if it is raining' is not defined, nor is the amount the speed limit is lowered by. -> Specify a rainfall threshold (e.g., > 2 mm/hour) and the resulting speed limit reduction (e.g., 'lower by 20 km/h').
+   R95: The system must lower the speed limit if it is raining.
+
+[gaps #1]  -> TP
+   CLAIM: R91 states the traffic light must turn green for ambulances, but there is no requirement defining how an ambulance is identified and authenticated by the system.
+   R91: The traffic light must turn green for ambulances.
+
+[gaps #2]  -> TP
+   CLAIM: R110 requires sending an automatic SOS alert, but it does not specify who the recipient of this alert is (e.g., emergency services, a central control room).
+   R110: The system must send automatic SOS alerts if it detects a violent impact.
+
+[dependencies #1] type=influences  -> BORDERLINE
+   CLAIM: The ability to warn a car of an accident ahead (R96) could be enabled by the system's detection of a violent impact (R110).
+   R96: La strada deve avvisare l’auto se c’è un incidente avanti.
+   R110: The system must send automatic SOS alerts if it detects a violent impact.
+   WHY:   the relation is hedged as 'could be enabled by' and the two requirements address different events; nothing in R96 presupposes R110.
+
+##############################################################################
+# V2I | Baseline | CLUSTER 9 | Parking and System NFRs | coherence=25
+##############################################################################
+
+[ambiguities #1]  -> TP
+   CLAIM: The terms 'heat and frost' are not quantified. -> Specify the operational temperature range the sensors must withstand (e.g., -20°C to +60°C).
+   R114: Sensors must withstand heat and frost.
+
+[ambiguities #2]  -> TP
+   CLAIM: The requirement to 'stay on if power is lost' is incomplete. -> Specify the required duration of backup power operation and which specific functions must remain active.
+   R115: The system must stay on if power is lost.
+
+[ambiguities #3]  -> TP
+   CLAIM: The concept of a 'secure password for each vehicle' is unusual and undefined. -> Clarify the authentication mechanism. If it's not a password, specify the use of digital certificates or another industry-standard method.
+   R118: The system must use a secure password for each vehicle.
+
+[gaps #1]  -> TP
+   CLAIM: R116 requires driver data to be anonymous, but other requirements like R105 ('send the parking receipt to the mobile phone') imply the storage of personally identifiable information. The method for reconciling these two needs is not defined.
+   R105: The system must send the parking receipt to the mobile phone.
+   R116: All driver data must remain anonymous.
+
+[dependencies #1] type=requires  -> TP
+   CLAIM: Automatically opening a parking barrier (R104) requires a secure vehicle authentication mechanism, such as the one vaguely described in R118.
+   R104: The system must open the parking barrier automatically.
+   R118: The system must use a secure password for each vehicle.

@@ -213,6 +213,21 @@ category, the number of consolidation opportunities implied by the duplicate gro
 coherence scores assigned by the model, and a check that no finding cites a requirement
 outside the cluster it belongs to.
 
+### Verification of the findings
+
+Every finding produced by the four Phase 4 runs was checked against the text of the
+requirements it cites, and the verdict recorded in `scripts/verdicts/` (one file per run,
+see the README there for the scheme). Two scripts work with this material:
+
+```bash
+# every finding next to the requirements it cites, with its verdict
+# -> results/verification/findings.json and findings.txt
+python scripts/export_findings.py
+
+# precision and false positives per category, graph vs. baseline
+python scripts/verification_stats.py
+```
+
 ## Project Structure
 
 ```
@@ -231,7 +246,10 @@ Keyword-Graph/
 │   └── test_reale/
 ├── scripts/                          # Supplementary experiment scripts
 │   ├── run_phase4_direct.py          # Phase 4 on the baseline partition
-│   └── compare_phase4.py             # Graph vs. baseline findings comparison
+│   ├── compare_phase4.py             # Graph vs. baseline findings comparison
+│   ├── export_findings.py            # Findings + cited requirements worksheet
+│   ├── verification_stats.py         # Precision / false-positive statistics
+│   └── verdicts/                     # Manual verdict on each finding
 └── src/
     ├── run_pipeline.py               # Main orchestrator
     ├── phase1/
