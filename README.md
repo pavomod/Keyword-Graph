@@ -230,6 +230,10 @@ python scripts/verification_stats.py
 # a standalone page for browsing the verified findings
 # -> results/verification/findings_audit.html
 python scripts/build_audit_page.py
+
+# merge a group of duplicate requirements into one (needs MODEL_API_KEY)
+# -> results/verification/consolidation.json
+python scripts/consolidate_duplicates.py
 ```
 
 `findings_audit.html` needs no server: open it in any browser to browse the 389 findings,
@@ -257,6 +261,7 @@ Keyword-Graph/
 │   ├── export_findings.py            # Findings + cited requirements worksheet
 │   ├── verification_stats.py         # Precision / false-positive statistics
 │   ├── build_audit_page.py           # Standalone review page
+│   ├── consolidate_duplicates.py     # Merge a duplicate group into one requirement
 │   ├── templates/                    # HTML template for the review page
 │   └── verdicts/                     # Manual verdict on each finding
 └── src/

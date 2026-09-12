@@ -1,0 +1,64 @@
+[
+  {
+    "dataset": "crowd",
+    "cluster": "8",
+    "group": 1,
+    "label": "Maximum stay duration",
+    "inputs": {
+      "7": "The system must not allow accommodation for more than 7 nights",
+      "40": "The system must allow stays of up to 7 nights.",
+      "116": "The system must prevent the booking if the stay exceeds 7 consecutive days",
+      "170": "The system must prevent service bookings from exceeding 7 consecutive nights",
+      "186": "The accommodation period specified in the request must have a duration of less than 8 days",
+      "223": "The system must allow users to book a stay of up to 7 nights through a dedicated section",
+      "239": "The system rejects accommodation requests lasting more than 7 nights"
+    },
+    "result": {
+      "consolidated": "The system must prevent users from creating an accommodation or service booking that exceeds 7 consecutive nights.",
+      "covered": [
+        "7",
+        "40",
+        "116",
+        "170",
+        "186",
+        "223",
+        "239"
+      ],
+      "decisions_required": [
+        "The maximum duration is specified as '7 nights' (or 'up to 7 nights'), '7 consecutive days', and 'less than 8 days'. The precise unit and value must be confirmed.",
+        "The rule applies to 'accommodation' or 'stays' in most inputs, but one (170) specifies 'service bookings'. The scope of this rule must be confirmed.",
+        "One requirement (223) states the limit applies when booking 'through a dedicated section', while others imply it is a global rule. The context of the rule must be clarified."
+      ],
+      "dropped": []
+    }
+  },
+  {
+    "dataset": "crowd",
+    "cluster": "1",
+    "group": 1,
+    "label": "Purchasing points",
+    "inputs": {
+      "33": "Students can purchase points from UniRoomShare",
+      "49": "The system must allow the user to purchase points.",
+      "135": "The system must allow the purchase of points",
+      "171": "The system must handle the purchase of points by a user using real money",
+      "227": "The system must allow users to purchase points through an in-app shop",
+      "248": "The system allows students to purchase points from UniRoomShare"
+    },
+    "result": {
+      "consolidated": "The UniRoomShare system must allow users to purchase points with real money through an in-app shop.",
+      "covered": [
+        "33",
+        "49",
+        "135",
+        "171",
+        "227",
+        "248"
+      ],
+      "decisions_required": [
+        "Clarify whether any 'user' can purchase points or if this function is restricted to 'students'."
+      ],
+      "dropped": []
+    }
+  }
+]
