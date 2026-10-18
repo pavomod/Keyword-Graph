@@ -1,0 +1,325 @@
+{
+  "clusters": [
+    {
+      "cluster_id": "0",
+      "label": "Smart City V2X Ecosystem",
+      "duplicates": [
+        {
+          "requirements": [
+            "1",
+            "51",
+            "121"
+          ],
+          "type": "partial",
+          "reason": "All require smart traffic lights to adjust green light duration based on detected vehicle flow or number of vehicles."
+        },
+        {
+          "requirements": [
+            "2",
+            "32",
+            "91",
+            "122"
+          ],
+          "type": "partial",
+          "reason": "All specify giving traffic light priority to emergency vehicles."
+        },
+        {
+          "requirements": [
+            "3",
+            "93",
+            "123"
+          ],
+          "type": "full",
+          "reason": "All require the system to communicate the remaining time before the traffic light changes state."
+        },
+        {
+          "requirements": [
+            "8",
+            "46",
+            "99",
+            "135"
+          ],
+          "type": "partial",
+          "reason": "All require detecting and alerting about wrong-way vehicles."
+        },
+        {
+          "requirements": [
+            "13",
+            "35",
+            "55",
+            "66",
+            "101",
+            "136"
+          ],
+          "type": "partial",
+          "reason": "All require smart parking lots to communicate available spaces to vehicles, with varying time constraints."
+        },
+        {
+          "requirements": [
+            "17",
+            "37",
+            "106",
+            "141",
+            "154"
+          ],
+          "type": "partial",
+          "reason": "All require automatic toll booths to process payments or identify vehicles without requiring the vehicle to stop."
+        }
+      ],
+      "inconsistencies": [
+        {
+          "requirements": [
+            "24",
+            "58",
+            "65",
+            "113"
+          ],
+          "type": "constraint",
+          "reason": "Requirement 24 requires managing 10,000 vehicles/km2, 58 requires 10,000 simultaneous communications, 65 requires 50,000 connected vehicles, and 113 requires connecting exactly 500 vehicles simultaneously. These capacity constraints conflict."
+        },
+        {
+          "requirements": [
+            "80",
+            "88"
+          ],
+          "type": "logical",
+          "reason": "Requirement 80 requires all traffic lights to remain green for as long as possible, which contradicts 88's requirement to minimize waiting times for all vehicles simultaneously, as cross-traffic must wait if one direction is kept green."
+        },
+        {
+          "requirements": [
+            "84",
+            "85"
+          ],
+          "type": "logical",
+          "reason": "Requirement 84 requires recording all vehicle movements without time limits, which inherently conflicts with 85's prohibition on storing sensitive data related to vehicles or drivers, as indefinite location tracking is highly sensitive."
+        }
+      ],
+      "ambiguities": [
+        {
+          "requirement": "79",
+          "issue": "'manage traffic quickly' is subjective and unquantifiable",
+          "suggestion": "Define specific metrics for traffic management, such as maximum acceptable delay or throughput increase"
+        },
+        {
+          "requirement": "82",
+          "issue": "'drastically reduce traffic' is vague and unmeasurable",
+          "suggestion": "Specify a target percentage reduction in traffic volume or congestion levels"
+        },
+        {
+          "requirement": "83",
+          "issue": "'only when necessary' is subjective",
+          "suggestion": "Define the exact conditions or severity thresholds that trigger a notification"
+        },
+        {
+          "requirement": "89",
+          "issue": "'easy to use for any user' is subjective and untestable",
+          "suggestion": "Specify usability standards, maximum time to learn, or compliance with specific accessibility guidelines"
+        },
+        {
+          "requirement": "119",
+          "issue": "'very short and lightweight' are undefined",
+          "suggestion": "Specify the maximum payload size in bytes or kilobytes for sent messages"
+        }
+      ],
+      "gaps": [
+        {
+          "description": "No requirement defines how the system verifies if a vehicle is authorized to park in a disabled space (e.g., digital permit linked to license plate), which is necessary to enforce the unauthorized occupation alerts.",
+          "related_to": [
+            "16",
+            "103",
+            "139"
+          ]
+        },
+        {
+          "description": "No requirement specifies the fallback mechanism or enforcement action if an automatic toll payment fails or the online account has insufficient funds, other than notifying the user.",
+          "related_to": [
+            "107",
+            "108"
+          ]
+        }
+      ],
+      "dependencies": [
+        {
+          "from": "108",
+          "to": "107",
+          "type": "requires",
+          "reason": "Notifying about an unsuccessful payment requires the system to first attempt to deduct the toll cost from the online account."
+        },
+        {
+          "from": "12",
+          "to": "72",
+          "type": "requires",
+          "reason": "Sending exact GPS coordinates of accidents depends on the system's ability to determine and save GPS positions with high accuracy."
+        },
+        {
+          "from": "6",
+          "to": "50",
+          "type": "requires",
+          "reason": "Automatically reconfiguring traffic light timings in case of critical congestion requires the system to first identify areas with congested traffic."
+        }
+      ],
+      "quality_score": 35,
+      "quality_reason": "The cluster is extremely large and acts as a catch-all for an entire Smart City and V2X ecosystem, grouping disparate domains like toll collection, smart parking, traffic light management, and emergency response into a single cluster, leading to poor cohesion.",
+      "summary": "This cluster encompasses a wide range of smart city and connected vehicle requirements, including traffic management, automated tolls, smart parking, and emergency vehicle prioritization."
+    }
+  ],
+  "requirement_to_cluster_mapping": {
+    "1": "0",
+    "2": "0",
+    "3": "0",
+    "4": "0",
+    "5": "0",
+    "6": "0",
+    "7": "0",
+    "8": "0",
+    "9": "0",
+    "10": "0",
+    "11": "0",
+    "12": "0",
+    "13": "0",
+    "14": "0",
+    "15": "0",
+    "16": "0",
+    "17": "0",
+    "18": "0",
+    "19": "0",
+    "20": "0",
+    "21": "0",
+    "22": "0",
+    "23": "0",
+    "24": "0",
+    "25": "0",
+    "26": "0",
+    "27": "0",
+    "28": "0",
+    "29": "0",
+    "30": "0",
+    "31": "0",
+    "32": "0",
+    "33": "0",
+    "34": "0",
+    "35": "0",
+    "36": "0",
+    "37": "0",
+    "38": "0",
+    "39": "0",
+    "40": "0",
+    "41": "0",
+    "42": "0",
+    "43": "0",
+    "44": "0",
+    "45": "0",
+    "46": "0",
+    "47": "0",
+    "48": "0",
+    "49": "0",
+    "50": "0",
+    "51": "0",
+    "52": "0",
+    "53": "0",
+    "54": "0",
+    "55": "0",
+    "56": "0",
+    "57": "0",
+    "58": "0",
+    "59": "0",
+    "60": "0",
+    "61": "0",
+    "62": "0",
+    "63": "0",
+    "64": "0",
+    "65": "0",
+    "66": "0",
+    "69": "0",
+    "70": "0",
+    "71": "0",
+    "72": "0",
+    "73": "0",
+    "74": "0",
+    "75": "0",
+    "77": "0",
+    "78": "0",
+    "79": "0",
+    "80": "0",
+    "81": "0",
+    "82": "0",
+    "83": "0",
+    "84": "0",
+    "85": "0",
+    "86": "0",
+    "87": "0",
+    "88": "0",
+    "89": "0",
+    "90": "0",
+    "91": "0",
+    "92": "0",
+    "93": "0",
+    "94": "0",
+    "95": "0",
+    "96": "0",
+    "97": "0",
+    "98": "0",
+    "99": "0",
+    "100": "0",
+    "101": "0",
+    "102": "0",
+    "103": "0",
+    "104": "0",
+    "105": "0",
+    "106": "0",
+    "107": "0",
+    "108": "0",
+    "109": "0",
+    "110": "0",
+    "111": "0",
+    "112": "0",
+    "113": "0",
+    "114": "0",
+    "115": "0",
+    "116": "0",
+    "117": "0",
+    "118": "0",
+    "119": "0",
+    "120": "0",
+    "121": "0",
+    "122": "0",
+    "123": "0",
+    "124": "0",
+    "125": "0",
+    "126": "0",
+    "127": "0",
+    "128": "0",
+    "129": "0",
+    "130": "0",
+    "131": "0",
+    "132": "0",
+    "133": "0",
+    "134": "0",
+    "135": "0",
+    "136": "0",
+    "137": "0",
+    "138": "0",
+    "139": "0",
+    "140": "0",
+    "141": "0",
+    "142": "0",
+    "143": "0",
+    "144": "0",
+    "145": "0",
+    "146": "0",
+    "147": "0",
+    "148": "0",
+    "149": "0",
+    "150": "0",
+    "151": "0",
+    "152": "0",
+    "153": "0",
+    "154": "0",
+    "155": "0",
+    "156": "0",
+    "157": "0",
+    "158": "0",
+    "159": "0",
+    "160": "0"
+  }
+}

@@ -1,0 +1,452 @@
+{
+  "clusters": [
+    {
+      "cluster_id": "0",
+      "inconsistencies": [
+        {
+          "requirements": [
+            "59",
+            "121"
+          ],
+          "type": "logical",
+          "reason": "Requirement 59 states that the Cancel Last Purchase transaction is performed off-line without issuer approval, whereas 121 mandates that it must always be performed online with direct card issuer approval."
+        },
+        {
+          "requirements": [
+            "97",
+            "174"
+          ],
+          "type": "logical",
+          "reason": "Requirement 97 states that POS devices are not required to support the cancel last purchase command, while 174 mandates that all POS devices must support it with no option to opt out."
+        },
+        {
+          "requirements": [
+            "53",
+            "119"
+          ],
+          "type": "logical",
+          "reason": "Requirement 53 requires the terminal to validate the card and sign the cancellation, but 119 states the transaction must be initiated without any involvement from the POS device."
+        }
+      ]
+    },
+    {
+      "cluster_id": "1",
+      "inconsistencies": [
+        {
+          "requirements": [
+            "139",
+            "148"
+          ],
+          "type": "constraint",
+          "reason": "Requirement 139 mandates that the card must maintain a global total balance with an absolute maximum limit, while 148 explicitly states there is no requirement for the card to maintain a maximum total value."
+        }
+      ]
+    },
+    {
+      "cluster_id": "2",
+      "inconsistencies": [
+        {
+          "requirements": [
+            "102",
+            "134",
+            "166"
+          ],
+          "type": "temporal",
+          "reason": "Requirement 102 states that S1 generation and transmission must occur after the transaction is completed. However, 134 and 166 state that S1 is sent in an authorization request and validated by the issuer to determine whether to allow the transaction to complete, which must happen before completion."
+        },
+        {
+          "requirements": [
+            "103",
+            "123",
+            "124"
+          ],
+          "type": "logical",
+          "reason": "Requirement 103 dictates that S1 must be generated entirely by the load device with no input from the card, whereas 123 and 124 state that the card generates S1 using data from both the card and the load device."
+        },
+        {
+          "requirements": [
+            "160",
+            "184"
+          ],
+          "type": "logical",
+          "reason": "Requirement 160 states that the issuer validates S1, but 184 strictly forbids the card issuer from performing S1 validation, mandating an independent third-party service instead."
+        }
+      ]
+    },
+    {
+      "cluster_id": "3",
+      "inconsistencies": [
+        {
+          "requirements": [
+            "86",
+            "156"
+          ],
+          "type": "logical",
+          "reason": "Requirement 86 permits certain POS devices to aggregate transactions, while 156 strictly forbids any automated aggregation processes in any POS device, requiring completely manual gathering."
+        },
+        {
+          "requirements": [
+            "156",
+            "173"
+          ],
+          "type": "logical",
+          "reason": "Requirement 173 allows the POS device to initiate the collection of a batch, which contradicts 156's mandate that the gathering of transaction records must be completely manual with no automated processes."
+        }
+      ]
+    },
+    {
+      "cluster_id": "4",
+      "inconsistencies": [
+        {
+          "requirements": [
+            "153",
+            "182"
+          ],
+          "type": "constraint",
+          "reason": "Requirement 153 states the count of aggregated transactions must be increased by 1, whereas 182 incorrectly mandates increasing the total count by the monetary amount of the aggregated transaction."
+        }
+      ]
+    },
+    {
+      "cluster_id": "5",
+      "inconsistencies": [
+        {
+          "requirements": [
+            "150",
+            "151"
+          ],
+          "type": "logical",
+          "reason": "Requirement 150 states a reversal is considered successful even with a negative response from the CEP card, but 151 states that under certain conditions the command is not allowed by the card, which contradicts the unconditional success described in 150."
+        },
+        {
+          "requirements": [
+            "146",
+            "147"
+          ],
+          "type": "logical",
+          "reason": "Requirement 146 states the CEP card authenticates the PSAM using previously received certificates and the S2 MAC, while 147 states the CEP card authenticates the terminal using the S2 MAC and the session key from the cancelled purchase transaction."
+        }
+      ]
+    },
+    {
+      "cluster_id": "6",
+      "inconsistencies": [
+        {
+          "requirements": [
+            "82",
+            "94"
+          ],
+          "type": "logical",
+          "reason": "Requirement 94 states that payment for a transaction is only required when a detail transaction is submitted, which contradicts 82, which allows acquirers to pay merchants based on header validation if transaction detail is missing."
+        }
+      ]
+    },
+    {
+      "cluster_id": "7",
+      "inconsistencies": []
+    },
+    {
+      "cluster_id": "8",
+      "inconsistencies": [
+        {
+          "requirements": [
+            "111",
+            "125"
+          ],
+          "type": "constraint",
+          "reason": "Requirement 111 leaves the specification of keys and signatures for on-line authentication up to the issuer, whereas 125 strictly mandates that the issuer and card must share a secret key."
+        }
+      ]
+    },
+    {
+      "cluster_id": "9",
+      "inconsistencies": [
+        {
+          "requirements": [
+            "141",
+            "142"
+          ],
+          "type": "logical",
+          "reason": "Requirement 141 mandates a globally shared signature key identical across all cards, while 142 requires a unique diversified secret key personalized into each card."
+        },
+        {
+          "requirements": [
+            "54",
+            "192",
+            "195"
+          ],
+          "type": "constraint",
+          "reason": "Requirement 54 mandates the use of asymmetric cryptography for off-line transactions, but 192 and 195 require the terminal to generate and retain a symmetric MACing key signature."
+        },
+        {
+          "requirements": [
+            "39",
+            "195"
+          ],
+          "type": "logical",
+          "reason": "Requirement 39 states the card plays only a passive validation role while the merchant generates the primary signature, but 195 requires retaining the card's symmetric MACing key signature, implying the card actively generates a signature."
+        }
+      ]
+    },
+    {
+      "cluster_id": "10",
+      "inconsistencies": [
+        {
+          "requirements": [
+            "14",
+            "23"
+          ],
+          "type": "logical",
+          "reason": "Requirement 14 mandates that authorization of funds for load transactions must require a form of cardholder verification, whereas 23 states that cardholder verification is not necessary."
+        },
+        {
+          "requirements": [
+            "117",
+            "212"
+          ],
+          "type": "logical",
+          "reason": "Requirement 117 states that unload must not be precluded from being supported on any or all devices, but 212 restricts unloads to only be performed at a load device under the control of the card issuer."
+        }
+      ]
+    },
+    {
+      "cluster_id": "11",
+      "inconsistencies": [
+        {
+          "requirements": [
+            "13",
+            "64",
+            "181"
+          ],
+          "type": "logical",
+          "reason": "Requirement 13 mandates that aggregation records must be permanently stored on the card itself with no option for external storage, while 64 and 181 require aggregation records to be created and stored externally in the PSAM or POS device."
+        }
+      ]
+    }
+  ],
+  "requirement_to_cluster_mapping": {
+    "53": "0",
+    "59": "0",
+    "96": "0",
+    "97": "0",
+    "119": "0",
+    "120": "0",
+    "121": "0",
+    "138": "0",
+    "174": "0",
+    "203": "0",
+    "1": "1",
+    "5": "1",
+    "21": "1",
+    "22": "1",
+    "26": "1",
+    "31": "1",
+    "32": "1",
+    "33": "1",
+    "34": "1",
+    "35": "1",
+    "37": "1",
+    "49": "1",
+    "70": "1",
+    "76": "1",
+    "106": "1",
+    "110": "1",
+    "116": "1",
+    "129": "1",
+    "130": "1",
+    "131": "1",
+    "137": "1",
+    "139": "1",
+    "140": "1",
+    "148": "1",
+    "149": "1",
+    "154": "1",
+    "169": "1",
+    "196": "1",
+    "209": "1",
+    "8": "2",
+    "9": "2",
+    "12": "2",
+    "68": "2",
+    "89": "2",
+    "91": "2",
+    "102": "2",
+    "103": "2",
+    "123": "2",
+    "124": "2",
+    "126": "2",
+    "127": "2",
+    "128": "2",
+    "133": "2",
+    "134": "2",
+    "135": "2",
+    "144": "2",
+    "158": "2",
+    "159": "2",
+    "160": "2",
+    "166": "2",
+    "184": "2",
+    "6": "3",
+    "25": "3",
+    "27": "3",
+    "41": "3",
+    "42": "3",
+    "45": "3",
+    "47": "3",
+    "48": "3",
+    "86": "3",
+    "155": "3",
+    "156": "3",
+    "170": "3",
+    "172": "3",
+    "173": "3",
+    "175": "3",
+    "178": "3",
+    "179": "3",
+    "198": "3",
+    "205": "3",
+    "29": "4",
+    "30": "4",
+    "40": "4",
+    "46": "4",
+    "152": "4",
+    "153": "4",
+    "182": "4",
+    "214": "4",
+    "2": "5",
+    "4": "5",
+    "11": "5",
+    "28": "5",
+    "36": "5",
+    "43": "5",
+    "55": "5",
+    "71": "5",
+    "75": "5",
+    "83": "5",
+    "87": "5",
+    "88": "5",
+    "95": "5",
+    "115": "5",
+    "122": "5",
+    "146": "5",
+    "147": "5",
+    "150": "5",
+    "151": "5",
+    "176": "5",
+    "177": "5",
+    "180": "5",
+    "7": "6",
+    "10": "6",
+    "82": "6",
+    "92": "6",
+    "93": "6",
+    "94": "6",
+    "100": "6",
+    "118": "6",
+    "171": "6",
+    "197": "6",
+    "202": "6",
+    "50": "7",
+    "60": "7",
+    "61": "7",
+    "63": "7",
+    "73": "7",
+    "90": "7",
+    "101": "7",
+    "105": "7",
+    "107": "7",
+    "108": "7",
+    "185": "7",
+    "186": "7",
+    "15": "8",
+    "16": "8",
+    "38": "8",
+    "44": "8",
+    "62": "8",
+    "65": "8",
+    "85": "8",
+    "98": "8",
+    "99": "8",
+    "111": "8",
+    "112": "8",
+    "125": "8",
+    "143": "8",
+    "145": "8",
+    "204": "8",
+    "215": "8",
+    "19": "9",
+    "39": "9",
+    "54": "9",
+    "74": "9",
+    "84": "9",
+    "109": "9",
+    "136": "9",
+    "141": "9",
+    "142": "9",
+    "168": "9",
+    "187": "9",
+    "189": "9",
+    "190": "9",
+    "191": "9",
+    "192": "9",
+    "193": "9",
+    "194": "9",
+    "195": "9",
+    "199": "9",
+    "200": "9",
+    "206": "9",
+    "207": "9",
+    "3": "10",
+    "14": "10",
+    "18": "10",
+    "20": "10",
+    "23": "10",
+    "24": "10",
+    "51": "10",
+    "52": "10",
+    "56": "10",
+    "57": "10",
+    "58": "10",
+    "69": "10",
+    "72": "10",
+    "77": "10",
+    "78": "10",
+    "79": "10",
+    "80": "10",
+    "81": "10",
+    "117": "10",
+    "132": "10",
+    "157": "10",
+    "161": "10",
+    "162": "10",
+    "163": "10",
+    "164": "10",
+    "165": "10",
+    "167": "10",
+    "188": "10",
+    "208": "10",
+    "210": "10",
+    "211": "10",
+    "212": "10",
+    "213": "10",
+    "13": "11",
+    "17": "11",
+    "64": "11",
+    "66": "11",
+    "67": "11",
+    "104": "11",
+    "113": "11",
+    "114": "11",
+    "181": "11",
+    "183": "11",
+    "201": "11"
+  },
+  "token_usage": {
+    "prompt": 12636,
+    "output": 2082,
+    "thinking": 11643,
+    "total": 26361,
+    "seconds": 138.4,
+    "model": "gemini-3.1-pro-preview"
+  }
+}

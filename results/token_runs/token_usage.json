@@ -1,0 +1,84 @@
+{
+  "thesis_runs_count_tokens": {
+    "crowd/phase1": {
+      "calls": 250,
+      "system_prompt_tokens_per_call": 611,
+      "input_tokens": 157053,
+      "output_tokens_approx": 1491
+    },
+    "crowd/phase4_graph": {
+      "calls": 1,
+      "input_tokens": 11143,
+      "output_tokens_approx": 9685
+    },
+    "crowd/phase4_baseline": {
+      "calls": 1,
+      "input_tokens": 11219,
+      "output_tokens_approx": 9922
+    },
+    "test_reale/phase1": {
+      "calls": 157,
+      "system_prompt_tokens_per_call": 611,
+      "input_tokens": 99234,
+      "output_tokens_approx": 1117
+    },
+    "test_reale/phase4_graph": {
+      "calls": 1,
+      "input_tokens": 8158,
+      "output_tokens_approx": 7423
+    },
+    "test_reale/phase4_baseline": {
+      "calls": 1,
+      "input_tokens": 8309,
+      "output_tokens_approx": 8048
+    }
+  },
+  "gemini-3.1-pro-preview/crowd/graph": {
+    "prompt": 11143,
+    "output": 6386,
+    "thinking": 9561,
+    "total": 27090,
+    "seconds": 107.9,
+    "model": "gemini-3.1-pro-preview"
+  },
+  "gemini-3.1-pro-preview/crowd/baseline": {
+    "prompt": 11219,
+    "output": 7304,
+    "thinking": 9031,
+    "total": 27554,
+    "seconds": 113.4,
+    "model": "gemini-3.1-pro-preview"
+  },
+  "gemini-3.1-pro-preview/crowd/flat": {
+    "prompt": 10916,
+    "output": 1114,
+    "thinking": 5956,
+    "total": 17986,
+    "seconds": 50.6,
+    "model": "gemini-3.1-pro-preview"
+  },
+  "gemini-3.1-pro-preview/test_reale/graph": {
+    "prompt": 8158,
+    "output": 4934,
+    "thinking": 8186,
+    "total": 21278,
+    "seconds": 93.0,
+    "model": "gemini-3.1-pro-preview"
+  },
+  "gemini-3.1-pro-preview/test_reale/baseline": {
+    "prompt": 8309,
+    "output": 6265,
+    "thinking": 7015,
+    "total": 21589,
+    "seconds": 90.6,
+    "model": "gemini-3.1-pro-preview"
+  },
+  "gemini-3.1-pro-preview/test_reale/flat": {
+    "prompt": 8032,
+    "output": 1498,
+    "thinking": 7338,
+    "total": 16868,
+    "seconds": 63.1,
+    "model": "gemini-3.1-pro-preview"
+  }
+}
